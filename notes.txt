@@ -1,6 +1,11 @@
 C++ 17 : header only!
-C++17, for the moment arm-only
-avr http://blog.zakkemble.co.uk/avr-gcc-builds/
+C++17
+
+arm: http://gnutoolchains.com/arm-eabi/
+avr: avr http://blog.zakkemble.co.uk/avr-gcc-builds/
+win: http://www.msys2.org (64 bits)
+beter: https://mingw-w64.org/doku.php/download/mingw-builds
+
 larger->small 
 no heap, cooperative rtos, calculated stack size(s)
 catch2 for testsd

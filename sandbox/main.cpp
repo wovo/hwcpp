@@ -1,9 +1,11 @@
-#include <ostream>
+#include <iostream>
 
 template< typename T >
 class pin_out_base : public T {
-   static const bool is_pin_out = true;
-   static const bool is_buffered = false;
+private:	
+   static constexpr bool is_pin_out = true;
+   static constexpr bool is_buffered = false;
+public:   
    static void flush(){}
 };
 
@@ -50,7 +52,10 @@ class pin_oc_base : public T {
 
 template< typename T >
 class invert : public T {
-   	
+public:	
+   	static void set( bool v ){ T::set( !v ); }
+
+   	static decltype( T::get() ) get(){ return ! T::get(); }
 };	
 
 template< typename T >
@@ -72,15 +77,18 @@ class buffer : public T {
 };
 
 template< int N >
-struct gpio_out : public pin_out_base< typename gpio_out< N > > { 
-   static void set( bool v ){}
+struct gpio_out_base { 
+   static void set( bool v ){
+      std::cout << "pin " << N << " set to "	 << v << "\n";
+   }
 };
 
-//template< int N >
-//class gpio : public pin_out_base< gpio_out< N > >{};
+template< int N >
+class gpio_out : public pin_out_base< gpio_out_base< N > >{};
 
 int main(){
-   //std::cout << "hello\n";
-   using led = gpio_out< 12 >;
+   std::cout << "hello\n";
+   using led = invert< gpio_out< 12 >>;
    led::set( 1 );
+   (void)led::get();
 }

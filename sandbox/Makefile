@@ -22,4 +22,4 @@ CPP_LANGUAGE ?= -std=c++17
 # set RELATIVE to the next higher directory 
 # and defer to the appropriate Makefile.* there
 RELATIVE := ..
-include $(RELATIVE)/Makefile.due
+include $(RELATIVE)/Makefile.native
