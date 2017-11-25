@@ -8,11 +8,9 @@ beter: https://mingw-w64.org/doku.php/download/mingw-builds
 
 larger->small 
 no heap, cooperative rtos, calculated stack size(s)
-catch2 for testsd
+catch2 for tests
 pin in, out, in/out, oc
 port idem, max pins = max unsigned size
-buffering?
-invert
 all/bundle
 mux/select
 demos: blink, kitt, circles, bouncing ball

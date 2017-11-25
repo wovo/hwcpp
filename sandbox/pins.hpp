@@ -28,7 +28,7 @@
 // ========== pin out direct ==========
 
 template< typename T >
-struct add_pin_out_direct_functions : public T {
+struct add_pin_out_direct_functions : T {
    
    static void HWLIB_INLINE set( bool v ){
        T::set_direct( v );
@@ -46,7 +46,7 @@ struct add_pin_out_direct_functions : public T {
 // ========== pin out buffered ==========
 
 template< typename T >
-struct add_pin_out_buffered_functions : public T {
+struct add_pin_out_buffered_functions : T {
    
    static void HWLIB_INLINE set( bool v ){
        T::set_buffered( v );
@@ -66,7 +66,7 @@ struct add_pin_out_buffered_functions : public T {
 // ========== pin in direct ==========
 
 template< typename T >
-struct add_pin_in_direct_functions : public T {
+struct add_pin_in_direct_functions : T {
    
    static bool HWLIB_INLINE get(){
       return T::get_direct();
@@ -84,7 +84,7 @@ struct add_pin_in_direct_functions : public T {
 // ========== pin in buffered ==========
 
 template< typename T >
-struct add_pin_in_buffered_functions : public T {
+struct add_pin_in_buffered_functions : T {
    
    static bool HWLIB_INLINE get(){
       T::invalidate();       
@@ -105,14 +105,14 @@ struct add_pin_in_buffered_functions : public T {
 
 template< typename T >
 struct add_pin_in_out_direct_functions : 
-   public add_pin_out_direct_functions< add_pin_in_direct_functions< T > > 
+   add_pin_out_direct_functions< add_pin_in_direct_functions< T > > 
 {};
 
 // ========== pin in-out buffered ==========
 
 template< typename T >
 struct add_pin_in_out_buffered_functions : 
-   public add_pin_out_buffered_functions< add_pin_in_buffered_functions< T > > 
+   add_pin_out_buffered_functions< add_pin_in_buffered_functions< T > > 
 {};
 
 
@@ -130,14 +130,14 @@ struct add_pin_in_out_buffered_functions :
 
 template< typename T >
 struct pin_out_base : 
-   public add_pin_out_direct_functions< T > 
+   add_pin_out_direct_functions< T > 
 {
    static constexpr bool is_pin_out = true;
 };
 
 template< typename T >
 struct pin_out_buffered_base : 
-   public add_pin_out_buffered_functions< T > 
+   add_pin_out_buffered_functions< T > 
 {
    static constexpr bool is_pin_out = true;
 };
@@ -146,14 +146,14 @@ struct pin_out_buffered_base :
 
 template< typename T >
 struct pin_in_base : 
-   public add_pin_in_direct_functions< T >  
+   add_pin_in_direct_functions< T >  
 {
    static const bool is_pin_in = true;
 };
 
 template< typename T >
 struct pin_in_buffered_base : 
-   public add_pin_in_buffered_functions< T > 
+   add_pin_in_buffered_functions< T > 
 {
    static const bool is_pin_in = true;
 };
@@ -162,7 +162,7 @@ struct pin_in_buffered_base :
 
 template< typename T >
 struct pin_in_out_base : 
-   public add_pin_in_out_direct_functions< T > 
+   add_pin_in_out_direct_functions< T > 
 {
    static const bool is_pin_in_out = true;
    
@@ -184,7 +184,7 @@ struct pin_in_out_base :
 
 template< typename T >
 struct pin_in_out_buffered_base : 
-   public add_pin_in_out_buffered_functions< T > 
+   add_pin_in_out_buffered_functions< T > 
 {
    static const bool is_pin_in_out = true;
      
@@ -225,14 +225,14 @@ struct pin_in_out_buffered_base :
 
 template< typename T >
 struct pin_oc_base : 
-   public add_pin_in_out_direct_functions< T > 
+   add_pin_in_out_direct_functions< T > 
 {
    static const bool is_pin_oc = true;
 };   
 
 template< typename T >
 struct pin_oc_buffered_base : 
-   public add_pin_in_out_buffered_functions< T > 
+   add_pin_in_out_buffered_functions< T > 
 {
    static const bool is_pin_oc = true;
 };   

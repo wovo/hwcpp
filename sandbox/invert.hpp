@@ -34,16 +34,16 @@ struct invert {
 };	
 
 template< is_pin_out T >
-struct invert< T > : public invert_set< T > {};	
+struct invert< T > : nvert_set< T > {};	
 
 template< is_pin_in T >
-struct invert< T > : public invert_get< T > {};
+struct invert< T > : invert_get< T > {};
 
 template< is_pin_in_out T >
-struct invert< T > : public invert_get< invert_set< T > > {};
+struct invert< T > : invert_get< invert_set< T > > {};
 
 template< is_pin_oc T >
-struct invert< T > : public invert_get< invert_set< T > > {};	
+struct invert< T > : invert_get< invert_set< T > > {};	
 
 // add for ports, pwm, a/d, d/a, quadrature -> means something different!
 
