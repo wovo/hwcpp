@@ -16,7 +16,9 @@
 // the implementation of CPU clock speed switching
 #include "sam3xa.inc"
 
-namespace hwcpp::sam3xa {
+namespace hwcpp {
+    
+struct sam3xa {
     
 static void init(){
    static bool done = false;
@@ -78,7 +80,9 @@ using pin_in_out = pin_in_out_direct_base< _pin_in_out< P, pin > >;
 template< pio P, uint32_t pin >
 using pin_out = pin_out< pin_in_out< P, pin > >;	
 
-}; // namespace hwcpp::sam3xa
+}; // struct sam3xa
+
+}; // namespace hwcpp
 
 
 

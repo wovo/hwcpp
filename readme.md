@@ -1,6 +1,6 @@
 **** THIS IS UNDER CONSTRUCTION, NOT FIT FOR USE RIGHT NOW **************
 
-Hwcpp is a C++ library for close-to-the-hardware programming,
+HwCpp is a C++ library for close-to-the-hardware programming,
 using templates, SFINAE, and other modern C++ trickery.
 
 The typical blink-al-led application code using hwcpp is:

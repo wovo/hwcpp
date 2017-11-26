@@ -8,19 +8,19 @@
 
 #include "sam3xa.hpp"
 
-namespace hwcpp::arduino_due {
+namespace hwcpp {
     
-   static void HWLIB_INLINE init(){
-      sam3xa::init();   
-   }    
+template< int clock = 100 >
+struct target :
+   sam3xa    
+{       
     
    using led = sam3xa::pin_out< sam3xa::pio::b, 27 >;
+   
+}; // template<...> struct target :
 	
-};
+}; // namespace hwcpp
 
-namespace hwcpp {
-   namespace target = hwcpp::arduino_due;    
-};
 
 
 

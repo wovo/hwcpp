@@ -9,8 +9,15 @@
 #include "sam3xa.hpp"
 
 namespace hwcpp {
-   namespace target = hwcpp::sam3xa;    
-};
+    
+template< int clock = 100 >
+struct target :
+   sam3xa    
+{       
+   
+}; // template<...> struct target :
+	
+}; // namespace hwcpp
 
 
 

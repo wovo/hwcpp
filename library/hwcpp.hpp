@@ -1,24 +1,44 @@
-// ==========================================================================
+// ============================================================================
 //
-// File      : hwcpp.hpp
-// Part of   : C++ hwlib library for close-to-the-hardware OO programming
-// Copyright : wouter@voti.nl 2017
+// file : hwcpp.hpp
 //
-// Distributed under the Boost Software License, Version 1.0.
-// (See accompanying file LICENSE_1_0.txt or copy at 
-// http://www.boost.org/LICENSE_1_0.txt)
+// The hwcpp files are meant to be included via this file. 
 //
-// ==========================================================================
+// In normal use the user would include this file, which (through a 
+// command-line defined HWCPP_TARGET) includes the correct target HAL file,
+// which includes the hwcpp-all.hpp, which includes the bulk of hwcpp.
+//
+// Or a user can include a target HAL file directly.
+//
+// ============================================================================
+//
+// Notes & ToDo
+//
+// - having to init the chip is not according to the rules
+// - show code, dseg, dss sizes from bmptk
+// - reinterpret a pin_in_out to something different (so only one to define)
+// - add author info, history, copyright to each file
+// - string! but be polite and print to cout too
+//
+// ============================================================================
 
-#ifndef HWCPP_H
-#define HWCPP_H
+#ifndef HWCPP_INCLUDED
+#define HWCPP_INCLUDED
 
-#ifdef BMPTK_TARGET_db103
-   #include "hwcpp-db103.hpp"
+#ifdef HWCPP_TARGET_samx3a
+   #include "target-samx3a.hpp"
 #endif
 
-#ifndef BMPTK_TARGET
-   #include "hwlib-all.hpp"
+#ifdef HWCPP_TARGET_arduino_due
+   #include "target-arduino-due.hpp"
 #endif
 
-#endif // HWCPP_H
+#ifdef HWCPP_TARGET_native
+   #include "target-native.hpp"
+#endif
+
+#ifndef HWCPP_TARGET
+   #include "hwcpp-all.hpp"
+#endif
+
+#endif // #ifndef HWCPP_INCLUDED

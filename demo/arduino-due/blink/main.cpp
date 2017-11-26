@@ -1,5 +1,7 @@
 #include "hwcpp.hpp"
 
+using target = hwcpp::target<>;
+
 void wait( int n ){
    for( volatile int i = 0; i < n; i++ ){} 
 }
@@ -17,5 +19,5 @@ void blink(){
 }
 
 int main(){ 
-   blink< hwcpp::target::led >();
+   blink< target::led >();
 }
