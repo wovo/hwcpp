@@ -11,16 +11,6 @@
 // Or a user can include a target HAL file directly.
 //
 // ============================================================================
-//
-// Notes & ToDo
-//
-// - having to init the chip is not according to the rules
-// - show code, dseg, dss sizes from bmptk
-// - reinterpret a pin_in_out to something different (so only one to define)
-// - add author info, history, copyright to each file
-// - string! but be polite and print to cout too
-//
-// ============================================================================
 
 #ifndef HWCPP_INCLUDED
 #define HWCPP_INCLUDED
