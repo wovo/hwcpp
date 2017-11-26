@@ -1,4 +1,4 @@
-**** THIS IS UNDER CONSTRUCTION, NOT FIT FOR USE RIGHT NOW **************
+**** THIS IS UNDER CONSTRUCTION, NOT FIT FOR USE RIGHT NOW ****
 
 HwCpp is a C++ library for close-to-the-hardware programming,
 using templates, SFINAE, and other modern C++ trickery.
@@ -8,7 +8,7 @@ The typical blink-al-led application code using hwcpp is:
 ```C++
 #include "hwcpp.hpp"
 
-using led = hwlib::target::pin_out< 1, 5 >;
+using led = hwlib::target<>::pin_out< 1, 5 >;
 
 int main( void ){   
    hwlib::blink< led >();
@@ -67,6 +67,8 @@ Distributed under the Boost Software License, Version 1.0.
 (See accompanying file LICENSE_1_0.txt or copy at 
 http://www.boost.org/LICENSE_1_0.txt)     
 
-note: lib/targets/hwlib-arduino-due-system-sam3xa.inc is (c) atmel, 
-under asf license.      
+note: 
+- lib/targets/hwlib-arduino-due-system-sam3xa.inc is (c) atmel, 
+  under asf license.      
+- documentation different due to xkcd  
       
