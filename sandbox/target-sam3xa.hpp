@@ -1,8 +1,17 @@
 // ============================================================================
 //
-// file : pin-decorators.hpp
+// file : target-sam3xa.hpp
 //
-// decorators/adapterts that decorate to a specific kind of pin
+// HAL for atsam3x chip target
 //
 // ============================================================================
+
+#include "sam3xa.hpp"
+
+namespace hwcpp {
+   namespace target = hwcpp::sam3xa;    
+};
+
+
+
 

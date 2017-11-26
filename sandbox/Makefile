@@ -12,14 +12,16 @@
 SOURCES :=
 
 # header files in this project
-HEADERS += hwcpp.hpp basics.hpp pins.hpp invert.hpp buffering.hpp
+HEADERS += sam3xa.hpp hwcpp.hpp basics.hpp pins.hpp invert.hpp buffering.hpp
 
 # other places to look for files for this project
 SEARCH  := 
 
-# CPP_LANGUAGE ?= -std=c++17 -fconcepts
+CPP_LANGUAGE ?= -std=c++17 -fconcepts
+
+RESULTS += main.lst main.lss
 
 # set RELATIVE to the next higher directory 
 # and defer to the appropriate Makefile.* there
 RELATIVE := ..
-include $(RELATIVE)/Makefile.native
+include $(RELATIVE)/Makefile.due

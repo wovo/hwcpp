@@ -32,10 +32,15 @@
     <File Name="main.cpp"/>
     <File Name="basics.hpp"/>
     <File Name="buffering.hpp"/>
+    <File Name="hwcpp-all.hpp"/>
     <File Name="hwcpp.hpp"/>
     <File Name="invert.hpp"/>
+    <File Name="main-save.cpp"/>
+    <File Name="main-test.cpp"/>
     <File Name="pins.hpp"/>
-    <File Name="pin_decorators.hpp"/>
+    <File Name="sam3xa.hpp"/>
+    <File Name="target-arduino-due.hpp"/>
+    <File Name="target-sam3xa.hpp"/>
     <File Name="makefile"/>
   </VirtualDirectory>
   <Settings Type="Dynamic Library">
