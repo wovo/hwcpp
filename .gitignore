@@ -7,6 +7,8 @@ _codelite.workspace
 *.elf
 *.ld
 *.map
+*.lss
+*.lst
 bmptk_*_stack.c
 _push.bat
 _pull.bat
