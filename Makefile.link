@@ -12,7 +12,7 @@
 TI-SOFTWARE       := C:/ti-software
 
 # add Catch
-SEARCH            += $(TI-SOFTWARE)/Catch/include
+SEARCH            += $(TI-SOFTWARE)/Catch2/include
 
 # include hwlib
 #HWLIB             ?= $(TI-SOFTWARE)/hwlib

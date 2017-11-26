@@ -11,8 +11,10 @@
 // derive pin::direction_set_output() ?
 // pull-ups & pull-downs
 // ports
-// buffering
 // invert -> needs bitwise_invert
+// pull-up & pull-down? => must be present for some purposes!
+//    .pull( up/down/none ), pull_up<>, pull_down<> with resistance?
+// how to do logging without a lambda-like thing?
 //
 // ============================================================================
 
@@ -23,7 +25,6 @@ namespace hwcpp {
 
    #include "basics.hpp"
    #include "pins.hpp"
-   #include "pin_decorators.hpp"
    #include "invert.hpp"
    #include "buffering.hpp"
 

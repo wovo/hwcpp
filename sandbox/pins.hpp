@@ -8,15 +8,60 @@
 
 // ============================================================================
 //
+// markers that identify the four kinds of pin,
+// and traits that test the presence of these markers
+//
+// ============================================================================
+
+struct pin_out_marker {
+   static constexpr bool is_pin_out = true;
+};
+
+template< typename T >
+concept bool is_pin_out(){ 
+   return T::is_pin_out;
+}
+
+struct pin_in_marker {
+   static constexpr bool is_pin_in = true;
+};
+
+template< typename T >
+concept bool is_pin_in(){ 
+   return T::is_pin_in;
+}
+
+struct pin_in_out_marker {
+   static constexpr bool is_pin_in_out = true;
+};
+
+template< typename T >
+concept bool is_pin_in_out(){ 
+   return T::is_pin_in_out;
+}
+
+struct pin_oc_marker {
+   static constexpr bool is_pin_oc = true;
+};
+
+template< typename T >
+concept bool is_pin_oc(){ 
+   return T::is_pin_oc;
+}
+
+
+// ============================================================================
+//
 // add_pin_ [ in | out | in_out ] _ [ direct | buffered ] _functions
 //
 // These class decorators are for use inside this file.
 //
-// The non-buffered ones add the buffered functions using the non-buffered
-// functions provided by the decorated class.
+// The non-buffered ones add the buffered functions, 
+// that call the non-buffered functions provided by the decorated class.
 //
-// The buffered ones add the direct functions using the buffered
-// functions (and invalidate() or flush()) provided by the decorated class.
+// The buffered ones add the direct functions,
+// that call buffered functions (and invalidate() or flush()) 
+// provided by the decorated class.
 //
 // These decorators are used by the 
 // pin_ [ in | out ] _ [ direct | buffered ] _base decorators that are used
@@ -60,7 +105,7 @@ struct add_pin_out_buffered_functions : T {
 
    // set_buffered provided by T
    
-   // flus() provided by T
+   // flush() provided by T
 };
 
 // ========== pin in direct ==========
@@ -125,46 +170,41 @@ struct add_pin_in_out_buffered_functions :
 //
 // ============================================================================
 
-
 // ========== pin out ==========
 
 template< typename T >
-struct pin_out_base : 
+struct pin_out_direct_base : 
+   pin_out_marker,
    add_pin_out_direct_functions< T > 
-{
-   static constexpr bool is_pin_out = true;
-};
+{};
 
 template< typename T >
 struct pin_out_buffered_base : 
+   pin_out_marker,
    add_pin_out_buffered_functions< T > 
-{
-   static constexpr bool is_pin_out = true;
-};
+{};
 
 // ========== pin in direct ==========
 
 template< typename T >
-struct pin_in_base : 
+struct pin_in_direct_base : 
+   pin_in_marker,
    add_pin_in_direct_functions< T >  
-{
-   static const bool is_pin_in = true;
-};
+{};
 
 template< typename T >
 struct pin_in_buffered_base : 
+   pin_in_marker,
    add_pin_in_buffered_functions< T > 
-{
-   static const bool is_pin_in = true;
-};
+{};
 
 // ========== pin in-out direct ==========
 
 template< typename T >
-struct pin_in_out_base : 
+struct pin_in_out_direct_base : 
+   pin_in_out_marker,
    add_pin_in_out_direct_functions< T > 
 {
-   static const bool is_pin_in_out = true;
    
    static void HWLIB_INLINE direction_set( direction d ){
       T::direction_set_direct( d );       
@@ -184,9 +224,9 @@ struct pin_in_out_base :
 
 template< typename T >
 struct pin_in_out_buffered_base : 
+   pin_in_out_marker,
    add_pin_in_out_buffered_functions< T > 
 {
-   static const bool is_pin_in_out = true;
      
    static void HWLIB_INLINE direction_set( direction d ){
       T::direction_set_buffered( d ); 
@@ -224,42 +264,349 @@ struct pin_in_out_buffered_base :
 // ========== pin oc ==========
 
 template< typename T >
-struct pin_oc_base : 
+struct pin_oc_direct_base : 
+   pin_oc_marker,
    add_pin_in_out_direct_functions< T > 
-{
-   static const bool is_pin_oc = true;
-};   
+{};   
 
 template< typename T >
 struct pin_oc_buffered_base : 
+   pin_oc_marker,
    add_pin_in_out_buffered_functions< T > 
+{};   
+
+
+// ============================================================================
+//
+// dummy (do-nothing) pins
+//
+// ============================================================================
+
+struct _pin_out_dummy {
+   static void set_direct( bool v ){}    
+};
+
+using pin_out_dummy = pin_out_direct_base< _pin_out_dummy >;
+
+struct _pin_in_dummy {
+   static bool get_direct(){ return 0; }    
+};
+
+using pin_in_dummy = pin_in_direct_base< _pin_in_dummy >;
+
+struct _pin_in_out_dummy : 
+   _pin_out_dummy,
+   _pin_in_dummy
+{    
+   static void direction_set_direct( direction d ){}
+};
+
+using pin_in_out_dummy = pin_in_out_direct_base< _pin_in_out_dummy >;
+
+struct _pin_oc_dummy : 
+   _pin_out_dummy,
+   _pin_in_dummy
+{};
+
+using pin_oc_dummy = pin_oc_direct_base< _pin_oc_dummy >;
+
+
+// ============================================================================
+//
+// value (store or retrieve from value) pins
+//
+// ============================================================================
+
+template< bool & value >
+struct _pin_out_value {
+   
+   static void set_direct( bool v ){ 
+      value = v; 
+   }    
+};
+
+template< bool & value >
+struct pin_out_value :
+   pin_out_direct_base< _pin_out_value< value > >
+{};   
+
+template< bool & value >
+struct _pin_in_value { 
+   
+   static bool get_direct(){ 
+      return value; 
+   }    
+};
+
+template< bool & value >
+struct pin_in_value :
+   pin_in_direct_base< _pin_in_value< value > >
+{};  
+
+template< bool & value, direction direction_value >
+struct _pin_in_out_value : 
+   _pin_out_value< value >,
+   _pin_in_value< value >
+{    
+   static void direction_set_direct( direction d ){
+      direction_value = d;
+   }
+};
+
+template< bool & value, direction & direction_value >
+struct pin_in_out_value :
+   pin_in_out_direct_base< _pin_in_out_value< value, direction_value > >
+{};   
+
+template< bool & value >
+struct _pin_oc_value : 
+   _pin_out_value< value >,
+   _pin_in_value< value >
+{};
+
+template< bool & value >
+struct pin_oc_value :
+   pin_oc_direct_base< _pin_oc_value< value > >
+{};   
+
+
+// ============================================================================
+//
+// pass (only) certain pin functions
+//
+// ============================================================================
+
+template< typename T >
+struct pass_pin_set { 
+    
+   static void set( bool v ){ 
+      T::set( v ); 
+   }
+   static void set_direct( bool v ){ 
+      T::set_direct( v ); 
+   }
+   
+   static void set_buffered( bool v ){ 
+      T::set_buffered( v ); 
+   }
+   
+   static void flush(){ 
+      T::flush(); 
+   }
+};    
+
+template< typename T >
+struct pass_pin_get { 
+    
+   static bool get(){ 
+      return T::get(); 
+   }
+   static bool get_direct(){ 
+      return T::get_direct(); 
+   }
+   
+   static bool get_buffered( bool v ){ 
+      return T::get_buffered( v ); 
+   }
+   
+   static void invalidate(){ 
+      T::invalidate(); 
+   }
+}; 
+
+
+// ============================================================================
+//
+// decorate to a pin_out
+//
+// ============================================================================
+
+template< typename T >
+struct pin_out { 
+   static_assert( always_false<T>::value, 
+      "that class can't be decorated to be a pin_out" );
+};	
+
+template< is_pin_out T >
+struct pin_out< T > : T {};	
+
+// a pin_in can't be decorated to a pin_out
+
+template< is_pin_in_out T >
+struct pin_out< T > : 
+   pin_out_marker,
+   pass_pin_set< T > 
 {
-   static const bool is_pin_oc = true;
-};   
+    
+   static void init(){
+	  T::init(); 
+      T::direction_set( direction::output );
+   }	
+};
+
+template< is_pin_oc T >
+struct pin_out< T > : 
+   pin_out_marker,
+   pass_pin_set< T >  
+{};	
 
 
 // ============================================================================
 //
-// pin concepts
+// decorate to a pin_in
 //
 // ============================================================================
 
 template< typename T >
-concept bool is_pin_out(){ 
-   return T::is_pin_out;
-}
+struct pin_in { 
+   static_assert( always_false<T>::value, 
+      "that class can't be decorated to be a pin_in" );
+};	
+
+// a pin_out can't be decorated to a pin_in
+
+template< is_pin_in T >
+struct pin_in< T > : T {};	
+
+template< is_pin_in_out T >
+struct pin_in< T > : 
+   pin_in_marker,
+   pass_pin_get< T > 
+{
+    
+   static void init(){
+	  T::init(); 
+      T::direction_set( direction::input );
+   }	
+};
+
+template< is_pin_oc T >
+struct pin_in< T > : 
+   pin_in_marker,
+   pass_pin_set< T >  
+{
+        
+   static void init(){
+	  T::init(); 
+      T::set_direct( 0 );
+   }
+};	
+
+
+// ============================================================================
+//
+// decorate to a pin_in_out
+//
+// ============================================================================
 
 template< typename T >
-concept bool is_pin_in(){ 
-   return T::is_pin_in;
-}
+struct pin_in_out { 
+   static_assert( always_false<T>::value, 
+      "that class can't be decorated to be a pin_in_out" );
+};	
+
+// a pin_out can't be decorated to a pin_in
+
+// a pin_in can't be decorated to a pin_in_out
+
+template< is_pin_in_out T >
+struct pin_in_out< T > : T {};
+
+template< is_pin_oc T >
+struct pin_in_out< T > : 
+   pin_in_out_marker,
+   pass_pin_set< T >,  
+   pass_pin_get< T >  
+{
+    
+   static void HWLIB_INLINE direction_set( direction d ){
+      if( d == direction::input ){
+         T::set( 1 );
+      }   
+   }    
+   
+   static void HWLIB_INLINE direction_direct( direction d ){
+      if( d == direction::input ){
+         T::set_direct( 1 );
+      }       
+   }    
+
+   static void HWLIB_INLINE direction_set_buffered( direction d ){
+      if( d == direction::input ){
+         T::set_buffered( 1 );
+      }         
+   }    
+   
+   static void direction_flush(){
+      T::flush();       
+   } 
+        
+   static void init(){
+	  T::init(); 
+      T::set_direct( 0 );
+   }
+};	
+
+
+// ============================================================================
+//
+// decorate to a pin_oc
+//
+// ============================================================================
 
 template< typename T >
-concept bool is_pin_in_out(){ 
-   return T::is_pin_in_out;
-}
+struct pin_oc { 
+   static_assert( always_false<T>::value, 
+      "that class can't be decorated to be a pin_oc" );
+};	
 
-template< typename T >
-concept bool is_pin_oc(){ 
-   return T::is_pin_oc;
-}
+// a pin_out can't be decorated to a pin_in
+
+// a pin_in can't be decorated to a pin_in_out
+
+template< is_pin_in_out T >
+struct pin_oc< T > : 
+   pin_oc_marker,
+   pass_pin_set< T >,  
+   pass_pin_get< T >  
+{
+    
+   static void HWLIB_INLINE set( bool v ){
+       if( v ){
+          T::direction_set( direction::input );   
+       } else {
+          T::set( 0 );
+       }
+   }
+   
+   static void HWLIB_INLINE set_direct( bool v ){
+       if( v ){
+          T::direction_set_direct( direction::input );   
+       } else {
+          T::set_direct( 0 );
+       }
+   }
+   
+   static void HWLIB_INLINE set_buffered( bool v ){
+       if( v ){
+          T::direction_set_buffered( direction::input );   
+       } else {
+          T::set_buffered( 0 );
+       }
+   }
+   
+   static void HWLIB_INLINE flush(){
+      T::direction_flush();
+      T:flush();
+   }       
+            
+   static void init(){
+	  T::init(); 
+      T::set_direct( 0 );
+   }
+};	
+
+template< is_pin_oc T >
+struct pin_oc< T > : T {};
+
+

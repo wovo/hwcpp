@@ -17,7 +17,7 @@ HEADERS += hwcpp.hpp basics.hpp pins.hpp invert.hpp buffering.hpp
 # other places to look for files for this project
 SEARCH  := 
 
-CPP_LANGUAGE ?= -std=c++17 -fconcepts
+# CPP_LANGUAGE ?= -std=c++17 -fconcepts
 
 # set RELATIVE to the next higher directory 
 # and defer to the appropriate Makefile.* there

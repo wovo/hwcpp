@@ -8,6 +8,13 @@
 bool invert_value( bool v ){ return ! v; }
 // unit8_t invert_value( uint8_t v ){ return ! v; }
 
+
+// ============================================================================
+//
+// pass everything, but invert specific functions
+//
+// ============================================================================
+
 template< typename T >
 struct invert_set : public T {
     
@@ -28,13 +35,21 @@ struct invert_get : public T {
        return invert_value( T::get_buffered() ); }
 };	
 
+
+// ============================================================================
+//
+// invert decorator
+//
+// ============================================================================
+
 template< typename T >
 struct invert { 
-   static_assert( always_false<T>::value, "that class can't be inverted" );
+   static_assert( always_false<T>::value, 
+      "that class can't be inverted" );
 };	
 
 template< is_pin_out T >
-struct invert< T > : nvert_set< T > {};	
+struct invert< T > : invert_set< T > {};	
 
 template< is_pin_in T >
 struct invert< T > : invert_get< T > {};
