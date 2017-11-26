@@ -1,0 +1,373 @@
+	.cpu cortex-m0
+	.fpu softvfp
+	.eabi_attribute 20, 1
+	.eabi_attribute 21, 1
+	.eabi_attribute 23, 3
+	.eabi_attribute 24, 1
+	.eabi_attribute 25, 1
+	.eabi_attribute 26, 1
+	.eabi_attribute 30, 4
+	.eabi_attribute 34, 0
+	.eabi_attribute 18, 4
+	.code	16
+	.file	"main.cpp"
+	.section	.text._ZN5hwcpp14pin_dummy_type4initEv,"axG",%progbits,_ZN5hwcpp14pin_dummy_type4initEv,comdat
+	.align	1
+	.weak	_ZN5hwcpp14pin_dummy_type4initEv
+	.code	16
+	.thumb_func
+	.type	_ZN5hwcpp14pin_dummy_type4initEv, %function
+_ZN5hwcpp14pin_dummy_type4initEv:
+	@ sp needed
+	bx	lr
+	.size	_ZN5hwcpp14pin_dummy_type4initEv, .-_ZN5hwcpp14pin_dummy_type4initEv
+	.section	.text._ZN5hwcpp14pin_dummy_type3getEv,"axG",%progbits,_ZN5hwcpp14pin_dummy_type3getEv,comdat
+	.align	1
+	.weak	_ZN5hwcpp14pin_dummy_type3getEv
+	.code	16
+	.thumb_func
+	.type	_ZN5hwcpp14pin_dummy_type3getEv, %function
+_ZN5hwcpp14pin_dummy_type3getEv:
+	mov	r0, #0
+	@ sp needed
+	bx	lr
+	.size	_ZN5hwcpp14pin_dummy_type3getEv, .-_ZN5hwcpp14pin_dummy_type3getEv
+	.section	.text._ZN5hwcpp14pin_dummy_type3setEb,"axG",%progbits,_ZN5hwcpp14pin_dummy_type3setEb,comdat
+	.align	1
+	.weak	_ZN5hwcpp14pin_dummy_type3setEb
+	.code	16
+	.thumb_func
+	.type	_ZN5hwcpp14pin_dummy_type3setEb, %function
+_ZN5hwcpp14pin_dummy_type3setEb:
+	@ sp needed
+	bx	lr
+	.size	_ZN5hwcpp14pin_dummy_type3setEb, .-_ZN5hwcpp14pin_dummy_type3setEb
+	.section	.text._ZN5hwcpp14pin_dummy_type19direction_set_inputEv,"axG",%progbits,_ZN5hwcpp14pin_dummy_type19direction_set_inputEv,comdat
+	.align	1
+	.weak	_ZN5hwcpp14pin_dummy_type19direction_set_inputEv
+	.code	16
+	.thumb_func
+	.type	_ZN5hwcpp14pin_dummy_type19direction_set_inputEv, %function
+_ZN5hwcpp14pin_dummy_type19direction_set_inputEv:
+	@ sp needed
+	bx	lr
+	.size	_ZN5hwcpp14pin_dummy_type19direction_set_inputEv, .-_ZN5hwcpp14pin_dummy_type19direction_set_inputEv
+	.section	.text._ZN5hwcpp14pin_dummy_type20direction_set_outputEv,"axG",%progbits,_ZN5hwcpp14pin_dummy_type20direction_set_outputEv,comdat
+	.align	1
+	.weak	_ZN5hwcpp14pin_dummy_type20direction_set_outputEv
+	.code	16
+	.thumb_func
+	.type	_ZN5hwcpp14pin_dummy_type20direction_set_outputEv, %function
+_ZN5hwcpp14pin_dummy_type20direction_set_outputEv:
+	@ sp needed
+	bx	lr
+	.size	_ZN5hwcpp14pin_dummy_type20direction_set_outputEv, .-_ZN5hwcpp14pin_dummy_type20direction_set_outputEv
+	.section	.text._ZN5hwcpp14pin_dummy_type13pullup_enableEv,"axG",%progbits,_ZN5hwcpp14pin_dummy_type13pullup_enableEv,comdat
+	.align	1
+	.weak	_ZN5hwcpp14pin_dummy_type13pullup_enableEv
+	.code	16
+	.thumb_func
+	.type	_ZN5hwcpp14pin_dummy_type13pullup_enableEv, %function
+_ZN5hwcpp14pin_dummy_type13pullup_enableEv:
+	@ sp needed
+	bx	lr
+	.size	_ZN5hwcpp14pin_dummy_type13pullup_enableEv, .-_ZN5hwcpp14pin_dummy_type13pullup_enableEv
+	.thumb_set .LTHUNK0,_ZN5hwcpp14pin_dummy_type13pullup_enableEv
+	.align	1
+	.weak	_ZThn4_N5hwcpp14pin_dummy_type13pullup_enableEv
+	.code	16
+	.thumb_func
+	.type	_ZThn4_N5hwcpp14pin_dummy_type13pullup_enableEv, %function
+_ZThn4_N5hwcpp14pin_dummy_type13pullup_enableEv:
+	push {r3}
+	ldr	r3, .LTHUMBFUNC0
+	mov r12, r3
+	sub	r0, r0, #4
+	pop	{r3}
+	bx	r12
+	.align	2
+.LTHUMBFUNC0:
+	.word	.LTHUNK0
+	.size	_ZThn4_N5hwcpp14pin_dummy_type13pullup_enableEv, .-_ZThn4_N5hwcpp14pin_dummy_type13pullup_enableEv
+	.section	.text._ZN5hwcpp14pin_dummy_type14pullup_disableEv,"axG",%progbits,_ZN5hwcpp14pin_dummy_type14pullup_disableEv,comdat
+	.align	1
+	.weak	_ZN5hwcpp14pin_dummy_type14pullup_disableEv
+	.code	16
+	.thumb_func
+	.type	_ZN5hwcpp14pin_dummy_type14pullup_disableEv, %function
+_ZN5hwcpp14pin_dummy_type14pullup_disableEv:
+	@ sp needed
+	bx	lr
+	.size	_ZN5hwcpp14pin_dummy_type14pullup_disableEv, .-_ZN5hwcpp14pin_dummy_type14pullup_disableEv
+	.thumb_set .LTHUNK1,_ZN5hwcpp14pin_dummy_type14pullup_disableEv
+	.align	1
+	.weak	_ZThn4_N5hwcpp14pin_dummy_type14pullup_disableEv
+	.code	16
+	.thumb_func
+	.type	_ZThn4_N5hwcpp14pin_dummy_type14pullup_disableEv, %function
+_ZThn4_N5hwcpp14pin_dummy_type14pullup_disableEv:
+	push {r3}
+	ldr	r3, .LTHUMBFUNC1
+	mov r12, r3
+	sub	r0, r0, #4
+	pop	{r3}
+	bx	r12
+	.align	2
+.LTHUMBFUNC1:
+	.word	.LTHUNK1
+	.size	_ZThn4_N5hwcpp14pin_dummy_type14pullup_disableEv, .-_ZThn4_N5hwcpp14pin_dummy_type14pullup_disableEv
+	.section	.text._ZN5hwcpp14pin_dummy_type15pulldown_enableEv,"axG",%progbits,_ZN5hwcpp14pin_dummy_type15pulldown_enableEv,comdat
+	.align	1
+	.weak	_ZN5hwcpp14pin_dummy_type15pulldown_enableEv
+	.code	16
+	.thumb_func
+	.type	_ZN5hwcpp14pin_dummy_type15pulldown_enableEv, %function
+_ZN5hwcpp14pin_dummy_type15pulldown_enableEv:
+	@ sp needed
+	bx	lr
+	.size	_ZN5hwcpp14pin_dummy_type15pulldown_enableEv, .-_ZN5hwcpp14pin_dummy_type15pulldown_enableEv
+	.thumb_set .LTHUNK2,_ZN5hwcpp14pin_dummy_type15pulldown_enableEv
+	.align	1
+	.weak	_ZThn8_N5hwcpp14pin_dummy_type15pulldown_enableEv
+	.code	16
+	.thumb_func
+	.type	_ZThn8_N5hwcpp14pin_dummy_type15pulldown_enableEv, %function
+_ZThn8_N5hwcpp14pin_dummy_type15pulldown_enableEv:
+	push {r3}
+	ldr	r3, .LTHUMBFUNC2
+	mov r12, r3
+	sub	r0, r0, #8
+	pop	{r3}
+	bx	r12
+	.align	2
+.LTHUMBFUNC2:
+	.word	.LTHUNK2
+	.size	_ZThn8_N5hwcpp14pin_dummy_type15pulldown_enableEv, .-_ZThn8_N5hwcpp14pin_dummy_type15pulldown_enableEv
+	.section	.text._ZN5hwcpp14pin_dummy_type16pulldown_disableEv,"axG",%progbits,_ZN5hwcpp14pin_dummy_type16pulldown_disableEv,comdat
+	.align	1
+	.weak	_ZN5hwcpp14pin_dummy_type16pulldown_disableEv
+	.code	16
+	.thumb_func
+	.type	_ZN5hwcpp14pin_dummy_type16pulldown_disableEv, %function
+_ZN5hwcpp14pin_dummy_type16pulldown_disableEv:
+	@ sp needed
+	bx	lr
+	.size	_ZN5hwcpp14pin_dummy_type16pulldown_disableEv, .-_ZN5hwcpp14pin_dummy_type16pulldown_disableEv
+	.thumb_set .LTHUNK3,_ZN5hwcpp14pin_dummy_type16pulldown_disableEv
+	.align	1
+	.weak	_ZThn8_N5hwcpp14pin_dummy_type16pulldown_disableEv
+	.code	16
+	.thumb_func
+	.type	_ZThn8_N5hwcpp14pin_dummy_type16pulldown_disableEv, %function
+_ZThn8_N5hwcpp14pin_dummy_type16pulldown_disableEv:
+	push {r3}
+	ldr	r3, .LTHUMBFUNC3
+	mov r12, r3
+	sub	r0, r0, #8
+	pop	{r3}
+	bx	r12
+	.align	2
+.LTHUMBFUNC3:
+	.word	.LTHUNK3
+	.size	_ZThn8_N5hwcpp14pin_dummy_type16pulldown_disableEv, .-_ZThn8_N5hwcpp14pin_dummy_type16pulldown_disableEv
+	.section	.text._ZN5hwcpp6targetINS_11MHz_literalILx12EEEE10delay_type4initEv,"axG",%progbits,_ZN5hwcpp6targetINS_11MHz_literalILx12EEEE10delay_type4initEv,comdat
+	.align	1
+	.weak	_ZN5hwcpp6targetINS_11MHz_literalILx12EEEE10delay_type4initEv
+	.code	16
+	.thumb_func
+	.type	_ZN5hwcpp6targetINS_11MHz_literalILx12EEEE10delay_type4initEv, %function
+_ZN5hwcpp6targetINS_11MHz_literalILx12EEEE10delay_type4initEv:
+	@ sp needed
+	bx	lr
+	.size	_ZN5hwcpp6targetINS_11MHz_literalILx12EEEE10delay_type4initEv, .-_ZN5hwcpp6targetINS_11MHz_literalILx12EEEE10delay_type4initEv
+	.section	.text._ZN5hwcpp12lpc1114_baseILi4096ELi32768ENS_11MHz_literalILx12EEEE12pin_oc_plainILi0ELi4EE4initEv,"axG",%progbits,_ZN5hwcpp12lpc1114_baseILi4096ELi32768ENS_11MHz_literalILx12EEEE12pin_oc_plainILi0ELi4EE4initEv,comdat
+	.align	1
+	.weak	_ZN5hwcpp12lpc1114_baseILi4096ELi32768ENS_11MHz_literalILx12EEEE12pin_oc_plainILi0ELi4EE4initEv
+	.code	16
+	.thumb_func
+	.type	_ZN5hwcpp12lpc1114_baseILi4096ELi32768ENS_11MHz_literalILx12EEEE12pin_oc_plainILi0ELi4EE4initEv, %function
+_ZN5hwcpp12lpc1114_baseILi4096ELi32768ENS_11MHz_literalILx12EEEE12pin_oc_plainILi0ELi4EE4initEv:
+	mov	r1, #128
+	ldr	r2, .L12
+	lsl	r1, r1, #9
+	ldr	r3, [r2, #124]
+	@ sp needed
+	orr	r3, r1
+	mov	r1, #7
+	str	r3, [r2, #124]
+	ldr	r2, .L12+4
+	ldr	r3, [r2]
+	bic	r3, r1
+	str	r3, [r2]
+	ldr	r2, .L12+8
+	add	r1, r1, #9
+	ldr	r3, [r2]
+	orr	r3, r1
+	str	r3, [r2]
+	bx	lr
+.L13:
+	.align	2
+.L12:
+	.word	1074036740
+	.word	1074020400
+	.word	1342210048
+	.size	_ZN5hwcpp12lpc1114_baseILi4096ELi32768ENS_11MHz_literalILx12EEEE12pin_oc_plainILi0ELi4EE4initEv, .-_ZN5hwcpp12lpc1114_baseILi4096ELi32768ENS_11MHz_literalILx12EEEE12pin_oc_plainILi0ELi4EE4initEv
+	.section	.text._ZN5hwcpp27pin_out_from_implementationIRNS_12lpc1114_baseILi4096ELi32768ENS_11MHz_literalILx12EEEE12pin_oc_plainILi0ELi4EEEvE4initEv,"axG",%progbits,_ZN5hwcpp27pin_out_from_implementationIRNS_12lpc1114_baseILi4096ELi32768ENS_11MHz_literalILx12EEEE12pin_oc_plainILi0ELi4EEEvE4initEv,comdat
+	.align	1
+	.weak	_ZN5hwcpp27pin_out_from_implementationIRNS_12lpc1114_baseILi4096ELi32768ENS_11MHz_literalILx12EEEE12pin_oc_plainILi0ELi4EEEvE4initEv
+	.code	16
+	.thumb_func
+	.type	_ZN5hwcpp27pin_out_from_implementationIRNS_12lpc1114_baseILi4096ELi32768ENS_11MHz_literalILx12EEEE12pin_oc_plainILi0ELi4EEEvE4initEv, %function
+_ZN5hwcpp27pin_out_from_implementationIRNS_12lpc1114_baseILi4096ELi32768ENS_11MHz_literalILx12EEEE12pin_oc_plainILi0ELi4EEEvE4initEv:
+	push	{r3, lr}
+	ldr	r0, [r0, #4]
+	bl	_ZN5hwcpp12lpc1114_baseILi4096ELi32768ENS_11MHz_literalILx12EEEE12pin_oc_plainILi0ELi4EE4initEv
+	@ sp needed
+	pop	{r3, pc}
+	.size	_ZN5hwcpp27pin_out_from_implementationIRNS_12lpc1114_baseILi4096ELi32768ENS_11MHz_literalILx12EEEE12pin_oc_plainILi0ELi4EEEvE4initEv, .-_ZN5hwcpp27pin_out_from_implementationIRNS_12lpc1114_baseILi4096ELi32768ENS_11MHz_literalILx12EEEE12pin_oc_plainILi0ELi4EEEvE4initEv
+	.section	.text._ZN5hwcpp12lpc1114_baseILi4096ELi32768ENS_11MHz_literalILx12EEEE12pin_oc_plainILi0ELi4EE3getEv,"axG",%progbits,_ZN5hwcpp12lpc1114_baseILi4096ELi32768ENS_11MHz_literalILx12EEEE12pin_oc_plainILi0ELi4EE3getEv,comdat
+	.align	1
+	.weak	_ZN5hwcpp12lpc1114_baseILi4096ELi32768ENS_11MHz_literalILx12EEEE12pin_oc_plainILi0ELi4EE3getEv
+	.code	16
+	.thumb_func
+	.type	_ZN5hwcpp12lpc1114_baseILi4096ELi32768ENS_11MHz_literalILx12EEEE12pin_oc_plainILi0ELi4EE3getEv, %function
+_ZN5hwcpp12lpc1114_baseILi4096ELi32768ENS_11MHz_literalILx12EEEE12pin_oc_plainILi0ELi4EE3getEv:
+	ldr	r3, .L16
+	@ sp needed
+	ldr	r0, [r3]
+	lsl	r0, r0, #27
+	lsr	r0, r0, #31
+	bx	lr
+.L17:
+	.align	2
+.L16:
+	.word	1342193660
+	.size	_ZN5hwcpp12lpc1114_baseILi4096ELi32768ENS_11MHz_literalILx12EEEE12pin_oc_plainILi0ELi4EE3getEv, .-_ZN5hwcpp12lpc1114_baseILi4096ELi32768ENS_11MHz_literalILx12EEEE12pin_oc_plainILi0ELi4EE3getEv
+	.section	.text._ZN5hwcpp12lpc1114_baseILi4096ELi32768ENS_11MHz_literalILx12EEEE12pin_oc_plainILi0ELi4EE3setEb,"axG",%progbits,_ZN5hwcpp12lpc1114_baseILi4096ELi32768ENS_11MHz_literalILx12EEEE12pin_oc_plainILi0ELi4EE3setEb,comdat
+	.align	1
+	.weak	_ZN5hwcpp12lpc1114_baseILi4096ELi32768ENS_11MHz_literalILx12EEEE12pin_oc_plainILi0ELi4EE3setEb
+	.code	16
+	.thumb_func
+	.type	_ZN5hwcpp12lpc1114_baseILi4096ELi32768ENS_11MHz_literalILx12EEEE12pin_oc_plainILi0ELi4EE3setEb, %function
+_ZN5hwcpp12lpc1114_baseILi4096ELi32768ENS_11MHz_literalILx12EEEE12pin_oc_plainILi0ELi4EE3setEb:
+	ldr	r3, .L22
+	mov	r0, #16
+	ldr	r2, [r3]
+	cmp	r1, #0
+	beq	.L19
+	bic	r2, r0
+	str	r2, [r3]
+	b	.L18
+.L19:
+	orr	r2, r0
+	str	r2, [r3]
+	ldr	r3, .L22+4
+	str	r1, [r3]
+.L18:
+	@ sp needed
+	bx	lr
+.L23:
+	.align	2
+.L22:
+	.word	1342210048
+	.word	1342177344
+	.size	_ZN5hwcpp12lpc1114_baseILi4096ELi32768ENS_11MHz_literalILx12EEEE12pin_oc_plainILi0ELi4EE3setEb, .-_ZN5hwcpp12lpc1114_baseILi4096ELi32768ENS_11MHz_literalILx12EEEE12pin_oc_plainILi0ELi4EE3setEb
+	.section	.text._ZN5hwcpp27pin_out_from_implementationIRNS_12lpc1114_baseILi4096ELi32768ENS_11MHz_literalILx12EEEE12pin_oc_plainILi0ELi4EEEvE3setEb,"axG",%progbits,_ZN5hwcpp27pin_out_from_implementationIRNS_12lpc1114_baseILi4096ELi32768ENS_11MHz_literalILx12EEEE12pin_oc_plainILi0ELi4EEEvE3setEb,comdat
+	.align	1
+	.weak	_ZN5hwcpp27pin_out_from_implementationIRNS_12lpc1114_baseILi4096ELi32768ENS_11MHz_literalILx12EEEE12pin_oc_plainILi0ELi4EEEvE3setEb
+	.code	16
+	.thumb_func
+	.type	_ZN5hwcpp27pin_out_from_implementationIRNS_12lpc1114_baseILi4096ELi32768ENS_11MHz_literalILx12EEEE12pin_oc_plainILi0ELi4EEEvE3setEb, %function
+_ZN5hwcpp27pin_out_from_implementationIRNS_12lpc1114_baseILi4096ELi32768ENS_11MHz_literalILx12EEEE12pin_oc_plainILi0ELi4EEEvE3setEb:
+	push	{r3, lr}
+	ldr	r0, [r0, #4]
+	bl	_ZN5hwcpp12lpc1114_baseILi4096ELi32768ENS_11MHz_literalILx12EEEE12pin_oc_plainILi0ELi4EE3setEb
+	@ sp needed
+	pop	{r3, pc}
+	.size	_ZN5hwcpp27pin_out_from_implementationIRNS_12lpc1114_baseILi4096ELi32768ENS_11MHz_literalILx12EEEE12pin_oc_plainILi0ELi4EEEvE3setEb, .-_ZN5hwcpp27pin_out_from_implementationIRNS_12lpc1114_baseILi4096ELi32768ENS_11MHz_literalILx12EEEE12pin_oc_plainILi0ELi4EEEvE3setEb
+	.section	.text.startup.main,"ax",%progbits
+	.align	1
+	.global	main
+	.code	16
+	.thumb_func
+	.type	main, %function
+main:
+	push	{r0, r1, r2, r3, r4, lr}
+	ldr	r3, .L27
+	add	r0, sp, #8
+	str	r3, [sp, #4]
+	add	r3, sp, #4
+	str	r3, [sp, #12]
+	ldr	r3, .L27+4
+	str	r3, [sp, #8]
+	bl	_ZN5hwcpp27pin_out_from_implementationIRNS_12lpc1114_baseILi4096ELi32768ENS_11MHz_literalILx12EEEE12pin_oc_plainILi0ELi4EEEvE4initEv
+.L26:
+	add	r0, sp, #8
+	mov	r1, #1
+	bl	_ZN5hwcpp27pin_out_from_implementationIRNS_12lpc1114_baseILi4096ELi32768ENS_11MHz_literalILx12EEEE12pin_oc_plainILi0ELi4EEEvE3setEb
+	add	r0, sp, #8
+	mov	r1, #0
+	bl	_ZN5hwcpp27pin_out_from_implementationIRNS_12lpc1114_baseILi4096ELi32768ENS_11MHz_literalILx12EEEE12pin_oc_plainILi0ELi4EEEvE3setEb
+	b	.L26
+.L28:
+	.align	2
+.L27:
+	.word	_ZTVN5hwcpp12lpc1114_baseILi4096ELi32768ENS_11MHz_literalILx12EEEE12pin_oc_plainILi0ELi4EEE+8
+	.word	_ZTVN5hwcpp23pin_out_from_add_pullupIRNS_12lpc1114_baseILi4096ELi32768ENS_11MHz_literalILx12EEEE12pin_oc_plainILi0ELi4EEEvEE+8
+	.size	main, .-main
+	.weak	_ZTVN5hwcpp14pin_dummy_typeE
+	.section	.rodata._ZTVN5hwcpp14pin_dummy_typeE,"aG",%progbits,_ZTVN5hwcpp14pin_dummy_typeE,comdat
+	.align	3
+	.type	_ZTVN5hwcpp14pin_dummy_typeE, %object
+	.size	_ZTVN5hwcpp14pin_dummy_typeE, 76
+_ZTVN5hwcpp14pin_dummy_typeE:
+	.word	0
+	.word	0
+	.word	_ZN5hwcpp14pin_dummy_type4initEv
+	.word	_ZN5hwcpp14pin_dummy_type19direction_set_inputEv
+	.word	_ZN5hwcpp14pin_dummy_type20direction_set_outputEv
+	.word	_ZN5hwcpp14pin_dummy_type3getEv
+	.word	_ZN5hwcpp14pin_dummy_type3setEb
+	.word	_ZN5hwcpp14pin_dummy_type13pullup_enableEv
+	.word	_ZN5hwcpp14pin_dummy_type14pullup_disableEv
+	.word	_ZN5hwcpp14pin_dummy_type15pulldown_enableEv
+	.word	_ZN5hwcpp14pin_dummy_type16pulldown_disableEv
+	.word	-4
+	.word	0
+	.word	_ZThn4_N5hwcpp14pin_dummy_type13pullup_enableEv
+	.word	_ZThn4_N5hwcpp14pin_dummy_type14pullup_disableEv
+	.word	-8
+	.word	0
+	.word	_ZThn8_N5hwcpp14pin_dummy_type15pulldown_enableEv
+	.word	_ZThn8_N5hwcpp14pin_dummy_type16pulldown_disableEv
+	.weak	_ZTVN5hwcpp12lpc1114_baseILi4096ELi32768ENS_11MHz_literalILx12EEEE12pin_oc_plainILi0ELi4EEE
+	.section	.rodata._ZTVN5hwcpp12lpc1114_baseILi4096ELi32768ENS_11MHz_literalILx12EEEE12pin_oc_plainILi0ELi4EEE,"aG",%progbits,_ZTVN5hwcpp12lpc1114_baseILi4096ELi32768ENS_11MHz_literalILx12EEEE12pin_oc_plainILi0ELi4EEE,comdat
+	.align	3
+	.type	_ZTVN5hwcpp12lpc1114_baseILi4096ELi32768ENS_11MHz_literalILx12EEEE12pin_oc_plainILi0ELi4EEE, %object
+	.size	_ZTVN5hwcpp12lpc1114_baseILi4096ELi32768ENS_11MHz_literalILx12EEEE12pin_oc_plainILi0ELi4EEE, 20
+_ZTVN5hwcpp12lpc1114_baseILi4096ELi32768ENS_11MHz_literalILx12EEEE12pin_oc_plainILi0ELi4EEE:
+	.word	0
+	.word	0
+	.word	_ZN5hwcpp12lpc1114_baseILi4096ELi32768ENS_11MHz_literalILx12EEEE12pin_oc_plainILi0ELi4EE4initEv
+	.word	_ZN5hwcpp12lpc1114_baseILi4096ELi32768ENS_11MHz_literalILx12EEEE12pin_oc_plainILi0ELi4EE3getEv
+	.word	_ZN5hwcpp12lpc1114_baseILi4096ELi32768ENS_11MHz_literalILx12EEEE12pin_oc_plainILi0ELi4EE3setEb
+	.weak	_ZTVN5hwcpp23pin_out_from_add_pullupIRNS_12lpc1114_baseILi4096ELi32768ENS_11MHz_literalILx12EEEE12pin_oc_plainILi0ELi4EEEvEE
+	.section	.rodata._ZTVN5hwcpp23pin_out_from_add_pullupIRNS_12lpc1114_baseILi4096ELi32768ENS_11MHz_literalILx12EEEE12pin_oc_plainILi0ELi4EEEvEE,"aG",%progbits,_ZTVN5hwcpp23pin_out_from_add_pullupIRNS_12lpc1114_baseILi4096ELi32768ENS_11MHz_literalILx12EEEE12pin_oc_plainILi0ELi4EEEvEE,comdat
+	.align	3
+	.type	_ZTVN5hwcpp23pin_out_from_add_pullupIRNS_12lpc1114_baseILi4096ELi32768ENS_11MHz_literalILx12EEEE12pin_oc_plainILi0ELi4EEEvEE, %object
+	.size	_ZTVN5hwcpp23pin_out_from_add_pullupIRNS_12lpc1114_baseILi4096ELi32768ENS_11MHz_literalILx12EEEE12pin_oc_plainILi0ELi4EEEvEE, 16
+_ZTVN5hwcpp23pin_out_from_add_pullupIRNS_12lpc1114_baseILi4096ELi32768ENS_11MHz_literalILx12EEEE12pin_oc_plainILi0ELi4EEEvEE:
+	.word	0
+	.word	0
+	.word	_ZN5hwcpp27pin_out_from_implementationIRNS_12lpc1114_baseILi4096ELi32768ENS_11MHz_literalILx12EEEE12pin_oc_plainILi0ELi4EEEvE4initEv
+	.word	_ZN5hwcpp27pin_out_from_implementationIRNS_12lpc1114_baseILi4096ELi32768ENS_11MHz_literalILx12EEEE12pin_oc_plainILi0ELi4EEEvE3setEb
+	.global	_ZN5hwcpp9pin_dummyE
+	.section	.data._ZN5hwcpp9pin_dummyE,"aw",%progbits
+	.align	2
+	.type	_ZN5hwcpp9pin_dummyE, %object
+	.size	_ZN5hwcpp9pin_dummyE, 12
+_ZN5hwcpp9pin_dummyE:
+	.word	_ZTVN5hwcpp14pin_dummy_typeE+8
+	.word	_ZTVN5hwcpp14pin_dummy_typeE+52
+	.word	_ZTVN5hwcpp14pin_dummy_typeE+68
+	.ident	"GCC: (GNU Tools for ARM Embedded Processors) 4.9.3 20150529 (release) [ARM/embedded-4_9-branch revision 224288]"

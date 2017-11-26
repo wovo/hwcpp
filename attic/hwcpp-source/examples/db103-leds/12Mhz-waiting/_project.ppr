@@ -1,0 +1,49 @@
+[Config]
+Compilator.FileName=build.bat
+Compilator.SaveAll=1
+Compilator.Capture=1
+Compilator.ParsLog=%F:%L:*
+Compilator.HideOutput=1
+Compilator.ProgSaveAll=0
+Compilator.ProgRunSelection=0
+Compilator.LogType=0
+Prog1=Clean,cmd /C "make clean "
+Prog2=Run,cmd /C "make run "
+DefaultCPIndex=0
+LogtoEnd=1
+DontOpen=0
+AbsolutePath=0
+FileFormat=0
+ProjectFilesOnly=0
+[Project tree]
+Project
+	+Files
+		-includes
+		+compile
+			main.cpp
+		+others
+			Makefile
+[Open project files]
+0=main.cpp
+1=..\..\..\core\basics.hpp
+2=..\..\..\targets\lpc1114.hpp
+3=..\..\..\targets\lpc1114fn28.hpp
+4=..\..\..\hwcpp_all.hpp
+[Selected Project Files]
+Main=
+Selected=..\..\..\hwcpp_all.hpp
+[main.cpp]
+TopLine=64
+Caret=35,76
+[..\..\..\core\basics.hpp]
+TopLine=223
+Caret=7,239
+[..\..\..\targets\lpc1114.hpp]
+TopLine=387
+Caret=35,406
+[..\..\..\targets\lpc1114fn28.hpp]
+TopLine=1
+Caret=1,13
+[..\..\..\hwcpp_all.hpp]
+TopLine=1
+Caret=1,5

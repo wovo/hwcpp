@@ -1,0 +1,139 @@
+
+main.elf:     file format elf32-littlearm
+
+
+Disassembly of section .text:
+
+00000000 <__text_start>:
+   0:	10000400 	.word	0x10000400
+   4:	00000099 	.word	0x00000099
+	...
+
+00000020 <_ZN5hwcpp12lpc1114_baseILi4096ELi32768ENS_11MHz_literalILx12EEEE12pin_oc_plainILi0ELi4EE3getEv>:
+  20:	4b02      	ldr	r3, [pc, #8]	; (2c <_ZN5hwcpp12lpc1114_baseILi4096ELi32768ENS_11MHz_literalILx12EEEE12pin_oc_plainILi0ELi4EE3getEv+0xc>)
+  22:	6818      	ldr	r0, [r3, #0]
+  24:	06c0      	lsls	r0, r0, #27
+  26:	0fc0      	lsrs	r0, r0, #31
+  28:	4770      	bx	lr
+  2a:	46c0      	nop			; (mov r8, r8)
+  2c:	50003ffc 	.word	0x50003ffc
+
+00000030 <_ZN5hwcpp12lpc1114_baseILi4096ELi32768ENS_11MHz_literalILx12EEEE12pin_oc_plainILi0ELi4EE3setEb>:
+  30:	4b06      	ldr	r3, [pc, #24]	; (4c <_ZN5hwcpp12lpc1114_baseILi4096ELi32768ENS_11MHz_literalILx12EEEE12pin_oc_plainILi0ELi4EE3setEb+0x1c>)
+  32:	2010      	movs	r0, #16
+  34:	681a      	ldr	r2, [r3, #0]
+  36:	2900      	cmp	r1, #0
+  38:	d002      	beq.n	40 <_ZN5hwcpp12lpc1114_baseILi4096ELi32768ENS_11MHz_literalILx12EEEE12pin_oc_plainILi0ELi4EE3setEb+0x10>
+  3a:	4382      	bics	r2, r0
+  3c:	601a      	str	r2, [r3, #0]
+  3e:	e003      	b.n	48 <_ZN5hwcpp12lpc1114_baseILi4096ELi32768ENS_11MHz_literalILx12EEEE12pin_oc_plainILi0ELi4EE3setEb+0x18>
+  40:	4302      	orrs	r2, r0
+  42:	601a      	str	r2, [r3, #0]
+  44:	4b02      	ldr	r3, [pc, #8]	; (50 <_ZN5hwcpp12lpc1114_baseILi4096ELi32768ENS_11MHz_literalILx12EEEE12pin_oc_plainILi0ELi4EE3setEb+0x20>)
+  46:	6019      	str	r1, [r3, #0]
+  48:	4770      	bx	lr
+  4a:	46c0      	nop			; (mov r8, r8)
+  4c:	50008000 	.word	0x50008000
+  50:	50000040 	.word	0x50000040
+
+00000054 <_ZN5hwcpp12lpc1114_baseILi4096ELi32768ENS_11MHz_literalILx12EEEE12pin_oc_plainILi0ELi4EE4initEv>:
+  54:	2180      	movs	r1, #128	; 0x80
+  56:	4a08      	ldr	r2, [pc, #32]	; (78 <_ZN5hwcpp12lpc1114_baseILi4096ELi32768ENS_11MHz_literalILx12EEEE12pin_oc_plainILi0ELi4EE4initEv+0x24>)
+  58:	0249      	lsls	r1, r1, #9
+  5a:	6fd3      	ldr	r3, [r2, #124]	; 0x7c
+  5c:	430b      	orrs	r3, r1
+  5e:	2107      	movs	r1, #7
+  60:	67d3      	str	r3, [r2, #124]	; 0x7c
+  62:	4a06      	ldr	r2, [pc, #24]	; (7c <_ZN5hwcpp12lpc1114_baseILi4096ELi32768ENS_11MHz_literalILx12EEEE12pin_oc_plainILi0ELi4EE4initEv+0x28>)
+  64:	6813      	ldr	r3, [r2, #0]
+  66:	438b      	bics	r3, r1
+  68:	6013      	str	r3, [r2, #0]
+  6a:	4a05      	ldr	r2, [pc, #20]	; (80 <_ZN5hwcpp12lpc1114_baseILi4096ELi32768ENS_11MHz_literalILx12EEEE12pin_oc_plainILi0ELi4EE4initEv+0x2c>)
+  6c:	3109      	adds	r1, #9
+  6e:	6813      	ldr	r3, [r2, #0]
+  70:	430b      	orrs	r3, r1
+  72:	6013      	str	r3, [r2, #0]
+  74:	4770      	bx	lr
+  76:	46c0      	nop			; (mov r8, r8)
+  78:	40048004 	.word	0x40048004
+  7c:	40044030 	.word	0x40044030
+  80:	50008000 	.word	0x50008000
+
+00000084 <_ZN5hwcpp27pin_out_from_implementationIRNS_12lpc1114_baseILi4096ELi32768ENS_11MHz_literalILx12EEEE12pin_oc_plainILi0ELi4EEEvE3setEb>:
+  84:	b508      	push	{r3, lr}
+  86:	6840      	ldr	r0, [r0, #4]
+  88:	f7ff ffd2 	bl	30 <_ZN5hwcpp12lpc1114_baseILi4096ELi32768ENS_11MHz_literalILx12EEEE12pin_oc_plainILi0ELi4EE3setEb>
+  8c:	bd08      	pop	{r3, pc}
+
+0000008e <_ZN5hwcpp27pin_out_from_implementationIRNS_12lpc1114_baseILi4096ELi32768ENS_11MHz_literalILx12EEEE12pin_oc_plainILi0ELi4EEEvE4initEv>:
+  8e:	b508      	push	{r3, lr}
+  90:	6840      	ldr	r0, [r0, #4]
+  92:	f7ff ffdf 	bl	54 <_ZN5hwcpp12lpc1114_baseILi4096ELi32768ENS_11MHz_literalILx12EEEE12pin_oc_plainILi0ELi4EE4initEv>
+  96:	bd08      	pop	{r3, pc}
+
+00000098 <__startup>:
+  98:	b51f      	push	{r0, r1, r2, r3, r4, lr}
+  9a:	2200      	movs	r2, #0
+  9c:	4918      	ldr	r1, [pc, #96]	; (100 <__startup+0x68>)
+  9e:	4b19      	ldr	r3, [pc, #100]	; (104 <__startup+0x6c>)
+  a0:	1a5b      	subs	r3, r3, r1
+  a2:	089b      	lsrs	r3, r3, #2
+  a4:	3301      	adds	r3, #1
+  a6:	009b      	lsls	r3, r3, #2
+  a8:	1d10      	adds	r0, r2, #4
+  aa:	4298      	cmp	r0, r3
+  ac:	d004      	beq.n	b8 <__startup+0x20>
+  ae:	2400      	movs	r4, #0
+  b0:	188a      	adds	r2, r1, r2
+  b2:	6014      	str	r4, [r2, #0]
+  b4:	1c02      	adds	r2, r0, #0
+  b6:	e7f7      	b.n	a8 <__startup+0x10>
+  b8:	2200      	movs	r2, #0
+  ba:	4913      	ldr	r1, [pc, #76]	; (108 <__startup+0x70>)
+  bc:	4b13      	ldr	r3, [pc, #76]	; (10c <__startup+0x74>)
+  be:	1a5b      	subs	r3, r3, r1
+  c0:	089b      	lsrs	r3, r3, #2
+  c2:	3301      	adds	r3, #1
+  c4:	009b      	lsls	r3, r3, #2
+  c6:	1d10      	adds	r0, r2, #4
+  c8:	4298      	cmp	r0, r3
+  ca:	d004      	beq.n	d6 <__startup+0x3e>
+  cc:	4c10      	ldr	r4, [pc, #64]	; (110 <__startup+0x78>)
+  ce:	58a4      	ldr	r4, [r4, r2]
+  d0:	508c      	str	r4, [r1, r2]
+  d2:	1c02      	adds	r2, r0, #0
+  d4:	e7f7      	b.n	c6 <__startup+0x2e>
+  d6:	4b0f      	ldr	r3, [pc, #60]	; (114 <__startup+0x7c>)
+  d8:	a802      	add	r0, sp, #8
+  da:	3308      	adds	r3, #8
+  dc:	9301      	str	r3, [sp, #4]
+  de:	ab01      	add	r3, sp, #4
+  e0:	9303      	str	r3, [sp, #12]
+  e2:	4b0d      	ldr	r3, [pc, #52]	; (118 <__startup+0x80>)
+  e4:	3308      	adds	r3, #8
+  e6:	9302      	str	r3, [sp, #8]
+  e8:	f7ff ffd1 	bl	8e <_ZN5hwcpp27pin_out_from_implementationIRNS_12lpc1114_baseILi4096ELi32768ENS_11MHz_literalILx12EEEE12pin_oc_plainILi0ELi4EEEvE4initEv>
+  ec:	a802      	add	r0, sp, #8
+  ee:	2101      	movs	r1, #1
+  f0:	f7ff ffc8 	bl	84 <_ZN5hwcpp27pin_out_from_implementationIRNS_12lpc1114_baseILi4096ELi32768ENS_11MHz_literalILx12EEEE12pin_oc_plainILi0ELi4EEEvE3setEb>
+  f4:	a802      	add	r0, sp, #8
+  f6:	2100      	movs	r1, #0
+  f8:	f7ff ffc4 	bl	84 <_ZN5hwcpp27pin_out_from_implementationIRNS_12lpc1114_baseILi4096ELi32768ENS_11MHz_literalILx12EEEE12pin_oc_plainILi0ELi4EEEvE3setEb>
+  fc:	e7f6      	b.n	ec <__startup+0x54>
+  fe:	46c0      	nop			; (mov r8, r8)
+ 100:	10000000 	.word	0x10000000
+ 104:	10000000 	.word	0x10000000
+ 108:	10000000 	.word	0x10000000
+ 10c:	10000000 	.word	0x10000000
+ 110:	00000144 	.word	0x00000144
+ 114:	00000130 	.word	0x00000130
+ 118:	00000120 	.word	0x00000120
+ 11c:	00000000 	.word	0x00000000
+
+00000120 <_ZTVN5hwcpp23pin_out_from_add_pullupIRNS_12lpc1114_baseILi4096ELi32768ENS_11MHz_literalILx12EEEE12pin_oc_plainILi0ELi4EEEvEE>:
+	...
+ 128:	0000008f 00000085                       ........
+
+00000130 <_ZTVN5hwcpp12lpc1114_baseILi4096ELi32768ENS_11MHz_literalILx12EEEE12pin_oc_plainILi0ELi4EEE>:
+	...
+ 138:	00000055 00000021 00000031              U...!...1...

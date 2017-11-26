@@ -1,0 +1,116 @@
+
+main.elf:     file format elf32-littlearm
+
+
+Disassembly of section .text:
+
+00000000 <__text_start>:
+   0:	10000400 	.word	0x10000400
+   4:	00000031 	.word	0x00000031
+	...
+
+00000020 <_ZN5hwcpp12lpc1114_baseILi4096ELi32768ENS_11MHz_literalILx12EEEE7pu_confEPVmb.part.0.lto_priv.59>:
+  20:	2218      	movs	r2, #24
+  22:	6803      	ldr	r3, [r0, #0]
+  24:	4393      	bics	r3, r2
+  26:	3a08      	subs	r2, #8
+  28:	4313      	orrs	r3, r2
+  2a:	6003      	str	r3, [r0, #0]
+  2c:	4770      	bx	lr
+	...
+
+00000030 <__startup>:
+  30:	2200      	movs	r2, #0
+  32:	b5f8      	push	{r3, r4, r5, r6, r7, lr}
+  34:	4929      	ldr	r1, [pc, #164]	; (dc <__startup+0xac>)
+  36:	4b2a      	ldr	r3, [pc, #168]	; (e0 <__startup+0xb0>)
+  38:	1a5b      	subs	r3, r3, r1
+  3a:	089b      	lsrs	r3, r3, #2
+  3c:	3301      	adds	r3, #1
+  3e:	009b      	lsls	r3, r3, #2
+  40:	1d10      	adds	r0, r2, #4
+  42:	4298      	cmp	r0, r3
+  44:	d004      	beq.n	50 <__startup+0x20>
+  46:	2400      	movs	r4, #0
+  48:	188a      	adds	r2, r1, r2
+  4a:	6014      	str	r4, [r2, #0]
+  4c:	1c02      	adds	r2, r0, #0
+  4e:	e7f7      	b.n	40 <__startup+0x10>
+  50:	2200      	movs	r2, #0
+  52:	4924      	ldr	r1, [pc, #144]	; (e4 <__startup+0xb4>)
+  54:	4b24      	ldr	r3, [pc, #144]	; (e8 <__startup+0xb8>)
+  56:	1a5b      	subs	r3, r3, r1
+  58:	089b      	lsrs	r3, r3, #2
+  5a:	3301      	adds	r3, #1
+  5c:	009b      	lsls	r3, r3, #2
+  5e:	1d10      	adds	r0, r2, #4
+  60:	4298      	cmp	r0, r3
+  62:	d004      	beq.n	6e <__startup+0x3e>
+  64:	4c21      	ldr	r4, [pc, #132]	; (ec <__startup+0xbc>)
+  66:	58a4      	ldr	r4, [r4, r2]
+  68:	508c      	str	r4, [r1, r2]
+  6a:	1c02      	adds	r2, r0, #0
+  6c:	e7f7      	b.n	5e <__startup+0x2e>
+  6e:	2680      	movs	r6, #128	; 0x80
+  70:	2207      	movs	r2, #7
+  72:	4c1f      	ldr	r4, [pc, #124]	; (f0 <__startup+0xc0>)
+  74:	0276      	lsls	r6, r6, #9
+  76:	6fe3      	ldr	r3, [r4, #124]	; 0x7c
+  78:	4d1e      	ldr	r5, [pc, #120]	; (f4 <__startup+0xc4>)
+  7a:	4333      	orrs	r3, r6
+  7c:	67e3      	str	r3, [r4, #124]	; 0x7c
+  7e:	682b      	ldr	r3, [r5, #0]
+  80:	4f1d      	ldr	r7, [pc, #116]	; (f8 <__startup+0xc8>)
+  82:	4393      	bics	r3, r2
+  84:	602b      	str	r3, [r5, #0]
+  86:	683b      	ldr	r3, [r7, #0]
+  88:	32fa      	adds	r2, #250	; 0xfa
+  8a:	32ff      	adds	r2, #255	; 0xff
+  8c:	4313      	orrs	r3, r2
+  8e:	603b      	str	r3, [r7, #0]
+  90:	6fe3      	ldr	r3, [r4, #124]	; 0x7c
+  92:	1c28      	adds	r0, r5, #0
+  94:	4333      	orrs	r3, r6
+  96:	67e3      	str	r3, [r4, #124]	; 0x7c
+  98:	f7ff ffc2 	bl	20 <_ZN5hwcpp12lpc1114_baseILi4096ELi32768ENS_11MHz_literalILx12EEEE7pu_confEPVmb.part.0.lto_priv.59>
+  9c:	2207      	movs	r2, #7
+  9e:	6fe3      	ldr	r3, [r4, #124]	; 0x7c
+  a0:	2107      	movs	r1, #7
+  a2:	4333      	orrs	r3, r6
+  a4:	67e3      	str	r3, [r4, #124]	; 0x7c
+  a6:	682b      	ldr	r3, [r5, #0]
+  a8:	4393      	bics	r3, r2
+  aa:	602b      	str	r3, [r5, #0]
+  ac:	683b      	ldr	r3, [r7, #0]
+  ae:	32fa      	adds	r2, #250	; 0xfa
+  b0:	32ff      	adds	r2, #255	; 0xff
+  b2:	4313      	orrs	r3, r2
+  b4:	2201      	movs	r2, #1
+  b6:	603b      	str	r3, [r7, #0]
+  b8:	4b10      	ldr	r3, [pc, #64]	; (fc <__startup+0xcc>)
+  ba:	4252      	negs	r2, r2
+  bc:	601a      	str	r2, [r3, #0]
+  be:	6fe2      	ldr	r2, [r4, #124]	; 0x7c
+  c0:	4316      	orrs	r6, r2
+  c2:	67e6      	str	r6, [r4, #124]	; 0x7c
+  c4:	682a      	ldr	r2, [r5, #0]
+  c6:	438a      	bics	r2, r1
+  c8:	602a      	str	r2, [r5, #0]
+  ca:	2201      	movs	r2, #1
+  cc:	4252      	negs	r2, r2
+  ce:	601a      	str	r2, [r3, #0]
+  d0:	46c0      	nop			; (mov r8, r8)
+  d2:	2200      	movs	r2, #0
+  d4:	601a      	str	r2, [r3, #0]
+  d6:	46c0      	nop			; (mov r8, r8)
+  d8:	e7f7      	b.n	ca <__startup+0x9a>
+  da:	46c0      	nop			; (mov r8, r8)
+  dc:	10000000 	.word	0x10000000
+  e0:	10000000 	.word	0x10000000
+  e4:	10000000 	.word	0x10000000
+  e8:	10000000 	.word	0x10000000
+  ec:	00000100 	.word	0x00000100
+  f0:	40048004 	.word	0x40048004
+  f4:	40044038 	.word	0x40044038
+  f8:	50018000 	.word	0x50018000
+  fc:	50010800 	.word	0x50010800

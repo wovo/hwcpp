@@ -1,0 +1,43 @@
+[Config]
+Relative path=1
+Compilator.FileName=build.bat
+Compilator.PSPar=
+Compilator.Log=
+Compilator.Run=
+Compilator.DefaultDir=
+Compilator.SaveAll=1
+Compilator.Capture=1
+Compilator.ParsLog=%F:%L:*
+Compilator.HideOutput=1
+Prog1=Clean,cmd /C "make clean "
+Prog2=Run,cmd /C "make run "
+Prog3=
+Prog4=
+Prog5=
+DefaultDir=
+DefaultCPIndex=0
+LogtoEnd=1
+DontOpen=0
+FileFormat=0
+DocumentRoot=
+HTServer=
+[Project tree]
+Project
+	+Files
+		-includes
+		+compile
+			main.cpp
+		+others
+			Makefile
+[Open project files]
+0=main.cpp
+1=..\..\..\core\time.hpp
+[Selected Project Files]
+Main=
+Selected=main.cpp
+[main.cpp]
+TopLine=1
+Caret=62,33
+[..\..\..\core\time.hpp]
+TopLine=352
+Caret=25,362

@@ -1,0 +1,4267 @@
+	.cpu cortex-m0
+	.fpu softvfp
+	.eabi_attribute 20, 1
+	.eabi_attribute 21, 1
+	.eabi_attribute 23, 3
+	.eabi_attribute 24, 1
+	.eabi_attribute 25, 1
+	.eabi_attribute 26, 1
+	.eabi_attribute 30, 4
+	.eabi_attribute 34, 0
+	.eabi_attribute 18, 4
+	.code	16
+	.file	"main.cpp"
+	.section	.text._ZN5hwcpp14pin_dummy_type4initEv,"axG",%progbits,_ZN5hwcpp14pin_dummy_type4initEv,comdat
+	.align	1
+	.weak	_ZN5hwcpp14pin_dummy_type4initEv
+	.code	16
+	.thumb_func
+	.type	_ZN5hwcpp14pin_dummy_type4initEv, %function
+_ZN5hwcpp14pin_dummy_type4initEv:
+	@ sp needed
+	bx	lr
+	.size	_ZN5hwcpp14pin_dummy_type4initEv, .-_ZN5hwcpp14pin_dummy_type4initEv
+	.section	.text._ZN5hwcpp14pin_dummy_type3getEv,"axG",%progbits,_ZN5hwcpp14pin_dummy_type3getEv,comdat
+	.align	1
+	.weak	_ZN5hwcpp14pin_dummy_type3getEv
+	.code	16
+	.thumb_func
+	.type	_ZN5hwcpp14pin_dummy_type3getEv, %function
+_ZN5hwcpp14pin_dummy_type3getEv:
+	mov	r0, #0
+	@ sp needed
+	bx	lr
+	.size	_ZN5hwcpp14pin_dummy_type3getEv, .-_ZN5hwcpp14pin_dummy_type3getEv
+	.section	.text._ZN5hwcpp14pin_dummy_type3setEb,"axG",%progbits,_ZN5hwcpp14pin_dummy_type3setEb,comdat
+	.align	1
+	.weak	_ZN5hwcpp14pin_dummy_type3setEb
+	.code	16
+	.thumb_func
+	.type	_ZN5hwcpp14pin_dummy_type3setEb, %function
+_ZN5hwcpp14pin_dummy_type3setEb:
+	@ sp needed
+	bx	lr
+	.size	_ZN5hwcpp14pin_dummy_type3setEb, .-_ZN5hwcpp14pin_dummy_type3setEb
+	.section	.text._ZN5hwcpp14pin_dummy_type19direction_set_inputEv,"axG",%progbits,_ZN5hwcpp14pin_dummy_type19direction_set_inputEv,comdat
+	.align	1
+	.weak	_ZN5hwcpp14pin_dummy_type19direction_set_inputEv
+	.code	16
+	.thumb_func
+	.type	_ZN5hwcpp14pin_dummy_type19direction_set_inputEv, %function
+_ZN5hwcpp14pin_dummy_type19direction_set_inputEv:
+	@ sp needed
+	bx	lr
+	.size	_ZN5hwcpp14pin_dummy_type19direction_set_inputEv, .-_ZN5hwcpp14pin_dummy_type19direction_set_inputEv
+	.section	.text._ZN5hwcpp14pin_dummy_type20direction_set_outputEv,"axG",%progbits,_ZN5hwcpp14pin_dummy_type20direction_set_outputEv,comdat
+	.align	1
+	.weak	_ZN5hwcpp14pin_dummy_type20direction_set_outputEv
+	.code	16
+	.thumb_func
+	.type	_ZN5hwcpp14pin_dummy_type20direction_set_outputEv, %function
+_ZN5hwcpp14pin_dummy_type20direction_set_outputEv:
+	@ sp needed
+	bx	lr
+	.size	_ZN5hwcpp14pin_dummy_type20direction_set_outputEv, .-_ZN5hwcpp14pin_dummy_type20direction_set_outputEv
+	.section	.text._ZN5hwcpp14pin_dummy_type13pullup_enableEv,"axG",%progbits,_ZN5hwcpp14pin_dummy_type13pullup_enableEv,comdat
+	.align	1
+	.weak	_ZN5hwcpp14pin_dummy_type13pullup_enableEv
+	.code	16
+	.thumb_func
+	.type	_ZN5hwcpp14pin_dummy_type13pullup_enableEv, %function
+_ZN5hwcpp14pin_dummy_type13pullup_enableEv:
+	@ sp needed
+	bx	lr
+	.size	_ZN5hwcpp14pin_dummy_type13pullup_enableEv, .-_ZN5hwcpp14pin_dummy_type13pullup_enableEv
+	.thumb_set .LTHUNK0,_ZN5hwcpp14pin_dummy_type13pullup_enableEv
+	.align	1
+	.weak	_ZThn4_N5hwcpp14pin_dummy_type13pullup_enableEv
+	.code	16
+	.thumb_func
+	.type	_ZThn4_N5hwcpp14pin_dummy_type13pullup_enableEv, %function
+_ZThn4_N5hwcpp14pin_dummy_type13pullup_enableEv:
+	push {r3}
+	ldr	r3, .LTHUMBFUNC0
+	mov r12, r3
+	sub	r0, r0, #4
+	pop	{r3}
+	bx	r12
+	.align	2
+.LTHUMBFUNC0:
+	.word	.LTHUNK0
+	.size	_ZThn4_N5hwcpp14pin_dummy_type13pullup_enableEv, .-_ZThn4_N5hwcpp14pin_dummy_type13pullup_enableEv
+	.section	.text._ZN5hwcpp14pin_dummy_type14pullup_disableEv,"axG",%progbits,_ZN5hwcpp14pin_dummy_type14pullup_disableEv,comdat
+	.align	1
+	.weak	_ZN5hwcpp14pin_dummy_type14pullup_disableEv
+	.code	16
+	.thumb_func
+	.type	_ZN5hwcpp14pin_dummy_type14pullup_disableEv, %function
+_ZN5hwcpp14pin_dummy_type14pullup_disableEv:
+	@ sp needed
+	bx	lr
+	.size	_ZN5hwcpp14pin_dummy_type14pullup_disableEv, .-_ZN5hwcpp14pin_dummy_type14pullup_disableEv
+	.thumb_set .LTHUNK1,_ZN5hwcpp14pin_dummy_type14pullup_disableEv
+	.align	1
+	.weak	_ZThn4_N5hwcpp14pin_dummy_type14pullup_disableEv
+	.code	16
+	.thumb_func
+	.type	_ZThn4_N5hwcpp14pin_dummy_type14pullup_disableEv, %function
+_ZThn4_N5hwcpp14pin_dummy_type14pullup_disableEv:
+	push {r3}
+	ldr	r3, .LTHUMBFUNC1
+	mov r12, r3
+	sub	r0, r0, #4
+	pop	{r3}
+	bx	r12
+	.align	2
+.LTHUMBFUNC1:
+	.word	.LTHUNK1
+	.size	_ZThn4_N5hwcpp14pin_dummy_type14pullup_disableEv, .-_ZThn4_N5hwcpp14pin_dummy_type14pullup_disableEv
+	.section	.text._ZN5hwcpp14pin_dummy_type15pulldown_enableEv,"axG",%progbits,_ZN5hwcpp14pin_dummy_type15pulldown_enableEv,comdat
+	.align	1
+	.weak	_ZN5hwcpp14pin_dummy_type15pulldown_enableEv
+	.code	16
+	.thumb_func
+	.type	_ZN5hwcpp14pin_dummy_type15pulldown_enableEv, %function
+_ZN5hwcpp14pin_dummy_type15pulldown_enableEv:
+	@ sp needed
+	bx	lr
+	.size	_ZN5hwcpp14pin_dummy_type15pulldown_enableEv, .-_ZN5hwcpp14pin_dummy_type15pulldown_enableEv
+	.thumb_set .LTHUNK2,_ZN5hwcpp14pin_dummy_type15pulldown_enableEv
+	.align	1
+	.weak	_ZThn8_N5hwcpp14pin_dummy_type15pulldown_enableEv
+	.code	16
+	.thumb_func
+	.type	_ZThn8_N5hwcpp14pin_dummy_type15pulldown_enableEv, %function
+_ZThn8_N5hwcpp14pin_dummy_type15pulldown_enableEv:
+	push {r3}
+	ldr	r3, .LTHUMBFUNC2
+	mov r12, r3
+	sub	r0, r0, #8
+	pop	{r3}
+	bx	r12
+	.align	2
+.LTHUMBFUNC2:
+	.word	.LTHUNK2
+	.size	_ZThn8_N5hwcpp14pin_dummy_type15pulldown_enableEv, .-_ZThn8_N5hwcpp14pin_dummy_type15pulldown_enableEv
+	.section	.text._ZN5hwcpp14pin_dummy_type16pulldown_disableEv,"axG",%progbits,_ZN5hwcpp14pin_dummy_type16pulldown_disableEv,comdat
+	.align	1
+	.weak	_ZN5hwcpp14pin_dummy_type16pulldown_disableEv
+	.code	16
+	.thumb_func
+	.type	_ZN5hwcpp14pin_dummy_type16pulldown_disableEv, %function
+_ZN5hwcpp14pin_dummy_type16pulldown_disableEv:
+	@ sp needed
+	bx	lr
+	.size	_ZN5hwcpp14pin_dummy_type16pulldown_disableEv, .-_ZN5hwcpp14pin_dummy_type16pulldown_disableEv
+	.thumb_set .LTHUNK3,_ZN5hwcpp14pin_dummy_type16pulldown_disableEv
+	.align	1
+	.weak	_ZThn8_N5hwcpp14pin_dummy_type16pulldown_disableEv
+	.code	16
+	.thumb_func
+	.type	_ZThn8_N5hwcpp14pin_dummy_type16pulldown_disableEv, %function
+_ZThn8_N5hwcpp14pin_dummy_type16pulldown_disableEv:
+	push {r3}
+	ldr	r3, .LTHUMBFUNC3
+	mov r12, r3
+	sub	r0, r0, #8
+	pop	{r3}
+	bx	r12
+	.align	2
+.LTHUMBFUNC3:
+	.word	.LTHUNK3
+	.size	_ZThn8_N5hwcpp14pin_dummy_type16pulldown_disableEv, .-_ZThn8_N5hwcpp14pin_dummy_type16pulldown_disableEv
+	.section	.text._ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi1ELi4EE4initEv,"axG",%progbits,_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi1ELi4EE4initEv,comdat
+	.align	1
+	.weak	_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi1ELi4EE4initEv
+	.code	16
+	.thumb_func
+	.type	_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi1ELi4EE4initEv, %function
+_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi1ELi4EE4initEv:
+	mov	r1, #128
+	ldr	r2, .L11
+	push	{r3, lr}
+	ldr	r3, [r2, #124]
+	lsl	r1, r1, #9
+	orr	r3, r1
+	str	r3, [r2, #124]
+	ldr	r0, .L11+4
+	mov	r1, #0
+	bl	_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE11pin_ad_confEPVmi
+	@ sp needed
+	pop	{r3, pc}
+.L12:
+	.align	2
+.L11:
+	.word	1074036740
+	.word	1074020500
+	.size	_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi1ELi4EE4initEv, .-_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi1ELi4EE4initEv
+	.section	.text._ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi1ELi4EE20direction_set_outputEv,"axG",%progbits,_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi1ELi4EE20direction_set_outputEv,comdat
+	.align	1
+	.weak	_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi1ELi4EE20direction_set_outputEv
+	.code	16
+	.thumb_func
+	.type	_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi1ELi4EE20direction_set_outputEv, %function
+_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi1ELi4EE20direction_set_outputEv:
+	mov	r1, #16
+	ldr	r2, .L14
+	@ sp needed
+	ldr	r3, [r2]
+	orr	r3, r1
+	str	r3, [r2]
+	bx	lr
+.L15:
+	.align	2
+.L14:
+	.word	1342275584
+	.size	_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi1ELi4EE20direction_set_outputEv, .-_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi1ELi4EE20direction_set_outputEv
+	.section	.text._ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi1ELi4EE13pullup_enableEv,"axG",%progbits,_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi1ELi4EE13pullup_enableEv,comdat
+	.align	1
+	.weak	_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi1ELi4EE13pullup_enableEv
+	.code	16
+	.thumb_func
+	.type	_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi1ELi4EE13pullup_enableEv, %function
+_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi1ELi4EE13pullup_enableEv:
+	push	{r3, lr}
+	bl	_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE16pullup_configureILi1ELi4ELb1EEEvv
+	@ sp needed
+	pop	{r3, pc}
+	.size	_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi1ELi4EE13pullup_enableEv, .-_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi1ELi4EE13pullup_enableEv
+	.thumb_set .LTHUNK4,_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi1ELi4EE13pullup_enableEv
+	.align	1
+	.weak	_ZThn4_N5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi1ELi4EE13pullup_enableEv
+	.code	16
+	.thumb_func
+	.type	_ZThn4_N5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi1ELi4EE13pullup_enableEv, %function
+_ZThn4_N5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi1ELi4EE13pullup_enableEv:
+	push {r3}
+	ldr	r3, .LTHUMBFUNC4
+	mov r12, r3
+	sub	r0, r0, #4
+	pop	{r3}
+	bx	r12
+	.align	2
+.LTHUMBFUNC4:
+	.word	.LTHUNK4
+	.size	_ZThn4_N5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi1ELi4EE13pullup_enableEv, .-_ZThn4_N5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi1ELi4EE13pullup_enableEv
+	.section	.text._ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi1ELi4EE3setEb,"axG",%progbits,_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi1ELi4EE3setEb,comdat
+	.align	1
+	.weak	_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi1ELi4EE3setEb
+	.code	16
+	.thumb_func
+	.type	_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi1ELi4EE3setEb, %function
+_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi1ELi4EE3setEb:
+	ldr	r3, .L18
+	neg	r1, r1
+	str	r1, [r3]
+	@ sp needed
+	bx	lr
+.L19:
+	.align	2
+.L18:
+	.word	1342242880
+	.size	_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi1ELi4EE3setEb, .-_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi1ELi4EE3setEb
+	.section	.text._ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi1ELi4EE19direction_set_inputEv,"axG",%progbits,_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi1ELi4EE19direction_set_inputEv,comdat
+	.align	1
+	.weak	_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi1ELi4EE19direction_set_inputEv
+	.code	16
+	.thumb_func
+	.type	_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi1ELi4EE19direction_set_inputEv, %function
+_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi1ELi4EE19direction_set_inputEv:
+	mov	r1, #16
+	ldr	r2, .L21
+	@ sp needed
+	ldr	r3, [r2]
+	bic	r3, r1
+	str	r3, [r2]
+	bx	lr
+.L22:
+	.align	2
+.L21:
+	.word	1342275584
+	.size	_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi1ELi4EE19direction_set_inputEv, .-_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi1ELi4EE19direction_set_inputEv
+	.section	.text._ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi1ELi4EE3getEv,"axG",%progbits,_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi1ELi4EE3getEv,comdat
+	.align	1
+	.weak	_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi1ELi4EE3getEv
+	.code	16
+	.thumb_func
+	.type	_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi1ELi4EE3getEv, %function
+_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi1ELi4EE3getEv:
+	ldr	r3, .L24
+	@ sp needed
+	ldr	r0, [r3]
+	lsl	r0, r0, #27
+	lsr	r0, r0, #31
+	bx	lr
+.L25:
+	.align	2
+.L24:
+	.word	1342259196
+	.size	_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi1ELi4EE3getEv, .-_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi1ELi4EE3getEv
+	.section	.text._ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi1ELi4EE14pullup_disableEv,"axG",%progbits,_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi1ELi4EE14pullup_disableEv,comdat
+	.align	1
+	.weak	_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi1ELi4EE14pullup_disableEv
+	.code	16
+	.thumb_func
+	.type	_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi1ELi4EE14pullup_disableEv, %function
+_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi1ELi4EE14pullup_disableEv:
+	mov	r1, #128
+	ldr	r2, .L27
+	lsl	r1, r1, #9
+	ldr	r3, [r2, #124]
+	@ sp needed
+	orr	r3, r1
+	mov	r1, #24
+	str	r3, [r2, #124]
+	ldr	r2, .L27+4
+	ldr	r3, [r2]
+	bic	r3, r1
+	str	r3, [r2]
+	bx	lr
+.L28:
+	.align	2
+.L27:
+	.word	1074036740
+	.word	1074020500
+	.size	_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi1ELi4EE14pullup_disableEv, .-_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi1ELi4EE14pullup_disableEv
+	.thumb_set .LTHUNK7,_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi1ELi4EE14pullup_disableEv
+	.align	1
+	.weak	_ZThn4_N5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi1ELi4EE14pullup_disableEv
+	.code	16
+	.thumb_func
+	.type	_ZThn4_N5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi1ELi4EE14pullup_disableEv, %function
+_ZThn4_N5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi1ELi4EE14pullup_disableEv:
+	push {r3}
+	ldr	r3, .LTHUMBFUNC5
+	mov r12, r3
+	sub	r0, r0, #4
+	pop	{r3}
+	bx	r12
+	.align	2
+.LTHUMBFUNC5:
+	.word	.LTHUNK7
+	.size	_ZThn4_N5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi1ELi4EE14pullup_disableEv, .-_ZThn4_N5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi1ELi4EE14pullup_disableEv
+	.section	.text._ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE20pin_in_out_ad_pullupILi1ELi4ELi5EE17ad_get_will_blockEv,"axG",%progbits,_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE20pin_in_out_ad_pullupILi1ELi4ELi5EE17ad_get_will_blockEv,comdat
+	.align	1
+	.weak	_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE20pin_in_out_ad_pullupILi1ELi4ELi5EE17ad_get_will_blockEv
+	.code	16
+	.thumb_func
+	.type	_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE20pin_in_out_ad_pullupILi1ELi4ELi5EE17ad_get_will_blockEv, %function
+_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE20pin_in_out_ad_pullupILi1ELi4ELi5EE17ad_get_will_blockEv:
+	ldr	r3, .L30
+	@ sp needed
+	ldr	r0, [r3, #4]
+	lsr	r0, r0, #31
+	bx	lr
+.L31:
+	.align	2
+.L30:
+	.word	1073856512
+	.size	_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE20pin_in_out_ad_pullupILi1ELi4ELi5EE17ad_get_will_blockEv, .-_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE20pin_in_out_ad_pullupILi1ELi4ELi5EE17ad_get_will_blockEv
+	.thumb_set .LTHUNK10,_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE20pin_in_out_ad_pullupILi1ELi4ELi5EE17ad_get_will_blockEv
+	.align	1
+	.weak	_ZThn8_N5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE20pin_in_out_ad_pullupILi1ELi4ELi5EE17ad_get_will_blockEv
+	.code	16
+	.thumb_func
+	.type	_ZThn8_N5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE20pin_in_out_ad_pullupILi1ELi4ELi5EE17ad_get_will_blockEv, %function
+_ZThn8_N5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE20pin_in_out_ad_pullupILi1ELi4ELi5EE17ad_get_will_blockEv:
+	push {r3}
+	ldr	r3, .LTHUMBFUNC6
+	mov r12, r3
+	sub	r0, r0, #8
+	pop	{r3}
+	bx	r12
+	.align	2
+.LTHUMBFUNC6:
+	.word	.LTHUNK10
+	.size	_ZThn8_N5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE20pin_in_out_ad_pullupILi1ELi4ELi5EE17ad_get_will_blockEv, .-_ZThn8_N5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE20pin_in_out_ad_pullupILi1ELi4ELi5EE17ad_get_will_blockEv
+	.section	.text._ZN5hwcpp6pin_adILj10EE12ad_start_getEv,"axG",%progbits,_ZN5hwcpp6pin_adILj10EE12ad_start_getEv,comdat
+	.align	1
+	.weak	_ZN5hwcpp6pin_adILj10EE12ad_start_getEv
+	.code	16
+	.thumb_func
+	.type	_ZN5hwcpp6pin_adILj10EE12ad_start_getEv, %function
+_ZN5hwcpp6pin_adILj10EE12ad_start_getEv:
+	push	{r4, lr}
+	mov	r4, r0
+	ldr	r3, [r0]
+	@ sp needed
+	ldr	r3, [r3, #4]
+	blx	r3
+	ldr	r3, [r4]
+	mov	r0, r4
+	ldr	r3, [r3, #12]
+	blx	r3
+	pop	{r4, pc}
+	.size	_ZN5hwcpp6pin_adILj10EE12ad_start_getEv, .-_ZN5hwcpp6pin_adILj10EE12ad_start_getEv
+	.section	.text._ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi1ELi3EE4initEv,"axG",%progbits,_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi1ELi3EE4initEv,comdat
+	.align	1
+	.weak	_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi1ELi3EE4initEv
+	.code	16
+	.thumb_func
+	.type	_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi1ELi3EE4initEv, %function
+_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi1ELi3EE4initEv:
+	mov	r1, #128
+	ldr	r2, .L34
+	push	{r3, lr}
+	ldr	r3, [r2, #124]
+	lsl	r1, r1, #9
+	orr	r3, r1
+	str	r3, [r2, #124]
+	ldr	r0, .L34+4
+	mov	r1, #1
+	bl	_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE11pin_ad_confEPVmi
+	@ sp needed
+	pop	{r3, pc}
+.L35:
+	.align	2
+.L34:
+	.word	1074036740
+	.word	1074020496
+	.size	_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi1ELi3EE4initEv, .-_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi1ELi3EE4initEv
+	.section	.text._ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi1ELi3EE19direction_set_inputEv,"axG",%progbits,_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi1ELi3EE19direction_set_inputEv,comdat
+	.align	1
+	.weak	_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi1ELi3EE19direction_set_inputEv
+	.code	16
+	.thumb_func
+	.type	_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi1ELi3EE19direction_set_inputEv, %function
+_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi1ELi3EE19direction_set_inputEv:
+	mov	r1, #8
+	ldr	r2, .L37
+	@ sp needed
+	ldr	r3, [r2]
+	bic	r3, r1
+	str	r3, [r2]
+	bx	lr
+.L38:
+	.align	2
+.L37:
+	.word	1342275584
+	.size	_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi1ELi3EE19direction_set_inputEv, .-_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi1ELi3EE19direction_set_inputEv
+	.section	.text._ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi1ELi3EE20direction_set_outputEv,"axG",%progbits,_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi1ELi3EE20direction_set_outputEv,comdat
+	.align	1
+	.weak	_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi1ELi3EE20direction_set_outputEv
+	.code	16
+	.thumb_func
+	.type	_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi1ELi3EE20direction_set_outputEv, %function
+_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi1ELi3EE20direction_set_outputEv:
+	mov	r1, #8
+	ldr	r2, .L40
+	@ sp needed
+	ldr	r3, [r2]
+	orr	r3, r1
+	str	r3, [r2]
+	bx	lr
+.L41:
+	.align	2
+.L40:
+	.word	1342275584
+	.size	_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi1ELi3EE20direction_set_outputEv, .-_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi1ELi3EE20direction_set_outputEv
+	.section	.text._ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi1ELi3EE3getEv,"axG",%progbits,_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi1ELi3EE3getEv,comdat
+	.align	1
+	.weak	_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi1ELi3EE3getEv
+	.code	16
+	.thumb_func
+	.type	_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi1ELi3EE3getEv, %function
+_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi1ELi3EE3getEv:
+	ldr	r3, .L43
+	@ sp needed
+	ldr	r0, [r3]
+	lsl	r0, r0, #28
+	lsr	r0, r0, #31
+	bx	lr
+.L44:
+	.align	2
+.L43:
+	.word	1342259196
+	.size	_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi1ELi3EE3getEv, .-_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi1ELi3EE3getEv
+	.section	.text._ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi1ELi3EE3setEb,"axG",%progbits,_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi1ELi3EE3setEb,comdat
+	.align	1
+	.weak	_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi1ELi3EE3setEb
+	.code	16
+	.thumb_func
+	.type	_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi1ELi3EE3setEb, %function
+_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi1ELi3EE3setEb:
+	ldr	r3, .L46
+	neg	r1, r1
+	str	r1, [r3]
+	@ sp needed
+	bx	lr
+.L47:
+	.align	2
+.L46:
+	.word	1342242848
+	.size	_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi1ELi3EE3setEb, .-_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi1ELi3EE3setEb
+	.section	.text._ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi1ELi3EE13pullup_enableEv,"axG",%progbits,_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi1ELi3EE13pullup_enableEv,comdat
+	.align	1
+	.weak	_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi1ELi3EE13pullup_enableEv
+	.code	16
+	.thumb_func
+	.type	_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi1ELi3EE13pullup_enableEv, %function
+_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi1ELi3EE13pullup_enableEv:
+	mov	r1, #128
+	ldr	r2, .L49
+	push	{r3, lr}
+	ldr	r3, [r2, #124]
+	lsl	r1, r1, #9
+	orr	r3, r1
+	str	r3, [r2, #124]
+	ldr	r0, .L49+4
+	bl	_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE7pu_confEPVmb.part.2
+	@ sp needed
+	pop	{r3, pc}
+.L50:
+	.align	2
+.L49:
+	.word	1074036740
+	.word	1074020496
+	.size	_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi1ELi3EE13pullup_enableEv, .-_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi1ELi3EE13pullup_enableEv
+	.thumb_set .LTHUNK12,_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi1ELi3EE13pullup_enableEv
+	.align	1
+	.weak	_ZThn4_N5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi1ELi3EE13pullup_enableEv
+	.code	16
+	.thumb_func
+	.type	_ZThn4_N5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi1ELi3EE13pullup_enableEv, %function
+_ZThn4_N5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi1ELi3EE13pullup_enableEv:
+	push {r3}
+	ldr	r3, .LTHUMBFUNC7
+	mov r12, r3
+	sub	r0, r0, #4
+	pop	{r3}
+	bx	r12
+	.align	2
+.LTHUMBFUNC7:
+	.word	.LTHUNK12
+	.size	_ZThn4_N5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi1ELi3EE13pullup_enableEv, .-_ZThn4_N5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi1ELi3EE13pullup_enableEv
+	.section	.text._ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi1ELi3EE14pullup_disableEv,"axG",%progbits,_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi1ELi3EE14pullup_disableEv,comdat
+	.align	1
+	.weak	_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi1ELi3EE14pullup_disableEv
+	.code	16
+	.thumb_func
+	.type	_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi1ELi3EE14pullup_disableEv, %function
+_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi1ELi3EE14pullup_disableEv:
+	mov	r1, #128
+	ldr	r2, .L52
+	lsl	r1, r1, #9
+	ldr	r3, [r2, #124]
+	@ sp needed
+	orr	r3, r1
+	mov	r1, #24
+	str	r3, [r2, #124]
+	ldr	r2, .L52+4
+	ldr	r3, [r2]
+	bic	r3, r1
+	str	r3, [r2]
+	bx	lr
+.L53:
+	.align	2
+.L52:
+	.word	1074036740
+	.word	1074020496
+	.size	_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi1ELi3EE14pullup_disableEv, .-_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi1ELi3EE14pullup_disableEv
+	.thumb_set .LTHUNK13,_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi1ELi3EE14pullup_disableEv
+	.align	1
+	.weak	_ZThn4_N5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi1ELi3EE14pullup_disableEv
+	.code	16
+	.thumb_func
+	.type	_ZThn4_N5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi1ELi3EE14pullup_disableEv, %function
+_ZThn4_N5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi1ELi3EE14pullup_disableEv:
+	push {r3}
+	ldr	r3, .LTHUMBFUNC8
+	mov r12, r3
+	sub	r0, r0, #4
+	pop	{r3}
+	bx	r12
+	.align	2
+.LTHUMBFUNC8:
+	.word	.LTHUNK13
+	.size	_ZThn4_N5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi1ELi3EE14pullup_disableEv, .-_ZThn4_N5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi1ELi3EE14pullup_disableEv
+	.section	.text._ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE20pin_in_out_ad_pullupILi1ELi3ELi4EE17ad_get_will_blockEv,"axG",%progbits,_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE20pin_in_out_ad_pullupILi1ELi3ELi4EE17ad_get_will_blockEv,comdat
+	.align	1
+	.weak	_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE20pin_in_out_ad_pullupILi1ELi3ELi4EE17ad_get_will_blockEv
+	.code	16
+	.thumb_func
+	.type	_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE20pin_in_out_ad_pullupILi1ELi3ELi4EE17ad_get_will_blockEv, %function
+_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE20pin_in_out_ad_pullupILi1ELi3ELi4EE17ad_get_will_blockEv:
+	ldr	r3, .L55
+	@ sp needed
+	ldr	r0, [r3, #4]
+	lsr	r0, r0, #31
+	bx	lr
+.L56:
+	.align	2
+.L55:
+	.word	1073856512
+	.size	_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE20pin_in_out_ad_pullupILi1ELi3ELi4EE17ad_get_will_blockEv, .-_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE20pin_in_out_ad_pullupILi1ELi3ELi4EE17ad_get_will_blockEv
+	.thumb_set .LTHUNK16,_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE20pin_in_out_ad_pullupILi1ELi3ELi4EE17ad_get_will_blockEv
+	.align	1
+	.weak	_ZThn8_N5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE20pin_in_out_ad_pullupILi1ELi3ELi4EE17ad_get_will_blockEv
+	.code	16
+	.thumb_func
+	.type	_ZThn8_N5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE20pin_in_out_ad_pullupILi1ELi3ELi4EE17ad_get_will_blockEv, %function
+_ZThn8_N5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE20pin_in_out_ad_pullupILi1ELi3ELi4EE17ad_get_will_blockEv:
+	push {r3}
+	ldr	r3, .LTHUMBFUNC9
+	mov r12, r3
+	sub	r0, r0, #8
+	pop	{r3}
+	bx	r12
+	.align	2
+.LTHUMBFUNC9:
+	.word	.LTHUNK16
+	.size	_ZThn8_N5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE20pin_in_out_ad_pullupILi1ELi3ELi4EE17ad_get_will_blockEv, .-_ZThn8_N5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE20pin_in_out_ad_pullupILi1ELi3ELi4EE17ad_get_will_blockEv
+	.section	.text._ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi1ELi2EE4initEv,"axG",%progbits,_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi1ELi2EE4initEv,comdat
+	.align	1
+	.weak	_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi1ELi2EE4initEv
+	.code	16
+	.thumb_func
+	.type	_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi1ELi2EE4initEv, %function
+_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi1ELi2EE4initEv:
+	mov	r1, #128
+	ldr	r2, .L58
+	push	{r3, lr}
+	ldr	r3, [r2, #124]
+	lsl	r1, r1, #9
+	orr	r3, r1
+	str	r3, [r2, #124]
+	ldr	r0, .L58+4
+	mov	r1, #1
+	bl	_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE11pin_ad_confEPVmi
+	@ sp needed
+	pop	{r3, pc}
+.L59:
+	.align	2
+.L58:
+	.word	1074036740
+	.word	1074020480
+	.size	_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi1ELi2EE4initEv, .-_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi1ELi2EE4initEv
+	.section	.text._ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi1ELi2EE19direction_set_inputEv,"axG",%progbits,_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi1ELi2EE19direction_set_inputEv,comdat
+	.align	1
+	.weak	_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi1ELi2EE19direction_set_inputEv
+	.code	16
+	.thumb_func
+	.type	_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi1ELi2EE19direction_set_inputEv, %function
+_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi1ELi2EE19direction_set_inputEv:
+	mov	r1, #4
+	ldr	r2, .L61
+	@ sp needed
+	ldr	r3, [r2]
+	bic	r3, r1
+	str	r3, [r2]
+	bx	lr
+.L62:
+	.align	2
+.L61:
+	.word	1342275584
+	.size	_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi1ELi2EE19direction_set_inputEv, .-_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi1ELi2EE19direction_set_inputEv
+	.section	.text._ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi1ELi2EE20direction_set_outputEv,"axG",%progbits,_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi1ELi2EE20direction_set_outputEv,comdat
+	.align	1
+	.weak	_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi1ELi2EE20direction_set_outputEv
+	.code	16
+	.thumb_func
+	.type	_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi1ELi2EE20direction_set_outputEv, %function
+_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi1ELi2EE20direction_set_outputEv:
+	mov	r1, #4
+	ldr	r2, .L64
+	@ sp needed
+	ldr	r3, [r2]
+	orr	r3, r1
+	str	r3, [r2]
+	bx	lr
+.L65:
+	.align	2
+.L64:
+	.word	1342275584
+	.size	_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi1ELi2EE20direction_set_outputEv, .-_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi1ELi2EE20direction_set_outputEv
+	.section	.text._ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi1ELi2EE3getEv,"axG",%progbits,_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi1ELi2EE3getEv,comdat
+	.align	1
+	.weak	_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi1ELi2EE3getEv
+	.code	16
+	.thumb_func
+	.type	_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi1ELi2EE3getEv, %function
+_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi1ELi2EE3getEv:
+	ldr	r3, .L67
+	@ sp needed
+	ldr	r0, [r3]
+	lsl	r0, r0, #29
+	lsr	r0, r0, #31
+	bx	lr
+.L68:
+	.align	2
+.L67:
+	.word	1342259196
+	.size	_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi1ELi2EE3getEv, .-_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi1ELi2EE3getEv
+	.section	.text._ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi1ELi2EE3setEb,"axG",%progbits,_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi1ELi2EE3setEb,comdat
+	.align	1
+	.weak	_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi1ELi2EE3setEb
+	.code	16
+	.thumb_func
+	.type	_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi1ELi2EE3setEb, %function
+_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi1ELi2EE3setEb:
+	ldr	r3, .L70
+	neg	r1, r1
+	str	r1, [r3]
+	@ sp needed
+	bx	lr
+.L71:
+	.align	2
+.L70:
+	.word	1342242832
+	.size	_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi1ELi2EE3setEb, .-_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi1ELi2EE3setEb
+	.section	.text._ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi1ELi2EE13pullup_enableEv,"axG",%progbits,_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi1ELi2EE13pullup_enableEv,comdat
+	.align	1
+	.weak	_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi1ELi2EE13pullup_enableEv
+	.code	16
+	.thumb_func
+	.type	_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi1ELi2EE13pullup_enableEv, %function
+_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi1ELi2EE13pullup_enableEv:
+	mov	r1, #128
+	ldr	r2, .L73
+	push	{r3, lr}
+	ldr	r3, [r2, #124]
+	lsl	r1, r1, #9
+	orr	r3, r1
+	str	r3, [r2, #124]
+	ldr	r0, .L73+4
+	bl	_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE7pu_confEPVmb.part.2
+	@ sp needed
+	pop	{r3, pc}
+.L74:
+	.align	2
+.L73:
+	.word	1074036740
+	.word	1074020480
+	.size	_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi1ELi2EE13pullup_enableEv, .-_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi1ELi2EE13pullup_enableEv
+	.thumb_set .LTHUNK18,_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi1ELi2EE13pullup_enableEv
+	.align	1
+	.weak	_ZThn4_N5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi1ELi2EE13pullup_enableEv
+	.code	16
+	.thumb_func
+	.type	_ZThn4_N5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi1ELi2EE13pullup_enableEv, %function
+_ZThn4_N5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi1ELi2EE13pullup_enableEv:
+	push {r3}
+	ldr	r3, .LTHUMBFUNC10
+	mov r12, r3
+	sub	r0, r0, #4
+	pop	{r3}
+	bx	r12
+	.align	2
+.LTHUMBFUNC10:
+	.word	.LTHUNK18
+	.size	_ZThn4_N5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi1ELi2EE13pullup_enableEv, .-_ZThn4_N5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi1ELi2EE13pullup_enableEv
+	.section	.text._ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi1ELi2EE14pullup_disableEv,"axG",%progbits,_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi1ELi2EE14pullup_disableEv,comdat
+	.align	1
+	.weak	_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi1ELi2EE14pullup_disableEv
+	.code	16
+	.thumb_func
+	.type	_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi1ELi2EE14pullup_disableEv, %function
+_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi1ELi2EE14pullup_disableEv:
+	mov	r1, #128
+	ldr	r2, .L76
+	lsl	r1, r1, #9
+	ldr	r3, [r2, #124]
+	@ sp needed
+	orr	r3, r1
+	mov	r1, #24
+	str	r3, [r2, #124]
+	ldr	r2, .L76+4
+	ldr	r3, [r2]
+	bic	r3, r1
+	str	r3, [r2]
+	bx	lr
+.L77:
+	.align	2
+.L76:
+	.word	1074036740
+	.word	1074020480
+	.size	_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi1ELi2EE14pullup_disableEv, .-_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi1ELi2EE14pullup_disableEv
+	.thumb_set .LTHUNK19,_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi1ELi2EE14pullup_disableEv
+	.align	1
+	.weak	_ZThn4_N5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi1ELi2EE14pullup_disableEv
+	.code	16
+	.thumb_func
+	.type	_ZThn4_N5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi1ELi2EE14pullup_disableEv, %function
+_ZThn4_N5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi1ELi2EE14pullup_disableEv:
+	push {r3}
+	ldr	r3, .LTHUMBFUNC11
+	mov r12, r3
+	sub	r0, r0, #4
+	pop	{r3}
+	bx	r12
+	.align	2
+.LTHUMBFUNC11:
+	.word	.LTHUNK19
+	.size	_ZThn4_N5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi1ELi2EE14pullup_disableEv, .-_ZThn4_N5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi1ELi2EE14pullup_disableEv
+	.section	.text._ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE20pin_in_out_ad_pullupILi1ELi2ELi3EE17ad_get_will_blockEv,"axG",%progbits,_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE20pin_in_out_ad_pullupILi1ELi2ELi3EE17ad_get_will_blockEv,comdat
+	.align	1
+	.weak	_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE20pin_in_out_ad_pullupILi1ELi2ELi3EE17ad_get_will_blockEv
+	.code	16
+	.thumb_func
+	.type	_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE20pin_in_out_ad_pullupILi1ELi2ELi3EE17ad_get_will_blockEv, %function
+_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE20pin_in_out_ad_pullupILi1ELi2ELi3EE17ad_get_will_blockEv:
+	ldr	r3, .L79
+	@ sp needed
+	ldr	r0, [r3, #4]
+	lsr	r0, r0, #31
+	bx	lr
+.L80:
+	.align	2
+.L79:
+	.word	1073856512
+	.size	_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE20pin_in_out_ad_pullupILi1ELi2ELi3EE17ad_get_will_blockEv, .-_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE20pin_in_out_ad_pullupILi1ELi2ELi3EE17ad_get_will_blockEv
+	.thumb_set .LTHUNK22,_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE20pin_in_out_ad_pullupILi1ELi2ELi3EE17ad_get_will_blockEv
+	.align	1
+	.weak	_ZThn8_N5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE20pin_in_out_ad_pullupILi1ELi2ELi3EE17ad_get_will_blockEv
+	.code	16
+	.thumb_func
+	.type	_ZThn8_N5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE20pin_in_out_ad_pullupILi1ELi2ELi3EE17ad_get_will_blockEv, %function
+_ZThn8_N5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE20pin_in_out_ad_pullupILi1ELi2ELi3EE17ad_get_will_blockEv:
+	push {r3}
+	ldr	r3, .LTHUMBFUNC12
+	mov r12, r3
+	sub	r0, r0, #8
+	pop	{r3}
+	bx	r12
+	.align	2
+.LTHUMBFUNC12:
+	.word	.LTHUNK22
+	.size	_ZThn8_N5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE20pin_in_out_ad_pullupILi1ELi2ELi3EE17ad_get_will_blockEv, .-_ZThn8_N5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE20pin_in_out_ad_pullupILi1ELi2ELi3EE17ad_get_will_blockEv
+	.section	.text._ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi1ELi1EE4initEv,"axG",%progbits,_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi1ELi1EE4initEv,comdat
+	.align	1
+	.weak	_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi1ELi1EE4initEv
+	.code	16
+	.thumb_func
+	.type	_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi1ELi1EE4initEv, %function
+_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi1ELi1EE4initEv:
+	mov	r1, #128
+	ldr	r2, .L82
+	push	{r3, lr}
+	ldr	r3, [r2, #124]
+	lsl	r1, r1, #9
+	orr	r3, r1
+	str	r3, [r2, #124]
+	ldr	r0, .L82+4
+	mov	r1, #1
+	bl	_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE11pin_ad_confEPVmi
+	@ sp needed
+	pop	{r3, pc}
+.L83:
+	.align	2
+.L82:
+	.word	1074036740
+	.word	1074020476
+	.size	_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi1ELi1EE4initEv, .-_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi1ELi1EE4initEv
+	.section	.text._ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi1ELi1EE19direction_set_inputEv,"axG",%progbits,_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi1ELi1EE19direction_set_inputEv,comdat
+	.align	1
+	.weak	_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi1ELi1EE19direction_set_inputEv
+	.code	16
+	.thumb_func
+	.type	_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi1ELi1EE19direction_set_inputEv, %function
+_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi1ELi1EE19direction_set_inputEv:
+	mov	r1, #2
+	ldr	r2, .L85
+	@ sp needed
+	ldr	r3, [r2]
+	bic	r3, r1
+	str	r3, [r2]
+	bx	lr
+.L86:
+	.align	2
+.L85:
+	.word	1342275584
+	.size	_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi1ELi1EE19direction_set_inputEv, .-_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi1ELi1EE19direction_set_inputEv
+	.section	.text._ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi1ELi1EE20direction_set_outputEv,"axG",%progbits,_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi1ELi1EE20direction_set_outputEv,comdat
+	.align	1
+	.weak	_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi1ELi1EE20direction_set_outputEv
+	.code	16
+	.thumb_func
+	.type	_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi1ELi1EE20direction_set_outputEv, %function
+_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi1ELi1EE20direction_set_outputEv:
+	mov	r1, #2
+	ldr	r2, .L88
+	@ sp needed
+	ldr	r3, [r2]
+	orr	r3, r1
+	str	r3, [r2]
+	bx	lr
+.L89:
+	.align	2
+.L88:
+	.word	1342275584
+	.size	_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi1ELi1EE20direction_set_outputEv, .-_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi1ELi1EE20direction_set_outputEv
+	.section	.text._ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi1ELi1EE3getEv,"axG",%progbits,_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi1ELi1EE3getEv,comdat
+	.align	1
+	.weak	_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi1ELi1EE3getEv
+	.code	16
+	.thumb_func
+	.type	_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi1ELi1EE3getEv, %function
+_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi1ELi1EE3getEv:
+	ldr	r3, .L91
+	@ sp needed
+	ldr	r0, [r3]
+	lsl	r0, r0, #30
+	lsr	r0, r0, #31
+	bx	lr
+.L92:
+	.align	2
+.L91:
+	.word	1342259196
+	.size	_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi1ELi1EE3getEv, .-_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi1ELi1EE3getEv
+	.section	.text._ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi1ELi1EE3setEb,"axG",%progbits,_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi1ELi1EE3setEb,comdat
+	.align	1
+	.weak	_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi1ELi1EE3setEb
+	.code	16
+	.thumb_func
+	.type	_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi1ELi1EE3setEb, %function
+_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi1ELi1EE3setEb:
+	ldr	r3, .L94
+	neg	r1, r1
+	str	r1, [r3]
+	@ sp needed
+	bx	lr
+.L95:
+	.align	2
+.L94:
+	.word	1342242824
+	.size	_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi1ELi1EE3setEb, .-_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi1ELi1EE3setEb
+	.section	.text._ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi1ELi1EE13pullup_enableEv,"axG",%progbits,_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi1ELi1EE13pullup_enableEv,comdat
+	.align	1
+	.weak	_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi1ELi1EE13pullup_enableEv
+	.code	16
+	.thumb_func
+	.type	_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi1ELi1EE13pullup_enableEv, %function
+_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi1ELi1EE13pullup_enableEv:
+	mov	r1, #128
+	ldr	r2, .L97
+	push	{r3, lr}
+	ldr	r3, [r2, #124]
+	lsl	r1, r1, #9
+	orr	r3, r1
+	str	r3, [r2, #124]
+	ldr	r0, .L97+4
+	bl	_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE7pu_confEPVmb.part.2
+	@ sp needed
+	pop	{r3, pc}
+.L98:
+	.align	2
+.L97:
+	.word	1074036740
+	.word	1074020476
+	.size	_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi1ELi1EE13pullup_enableEv, .-_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi1ELi1EE13pullup_enableEv
+	.thumb_set .LTHUNK24,_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi1ELi1EE13pullup_enableEv
+	.align	1
+	.weak	_ZThn4_N5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi1ELi1EE13pullup_enableEv
+	.code	16
+	.thumb_func
+	.type	_ZThn4_N5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi1ELi1EE13pullup_enableEv, %function
+_ZThn4_N5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi1ELi1EE13pullup_enableEv:
+	push {r3}
+	ldr	r3, .LTHUMBFUNC13
+	mov r12, r3
+	sub	r0, r0, #4
+	pop	{r3}
+	bx	r12
+	.align	2
+.LTHUMBFUNC13:
+	.word	.LTHUNK24
+	.size	_ZThn4_N5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi1ELi1EE13pullup_enableEv, .-_ZThn4_N5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi1ELi1EE13pullup_enableEv
+	.section	.text._ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi1ELi1EE14pullup_disableEv,"axG",%progbits,_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi1ELi1EE14pullup_disableEv,comdat
+	.align	1
+	.weak	_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi1ELi1EE14pullup_disableEv
+	.code	16
+	.thumb_func
+	.type	_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi1ELi1EE14pullup_disableEv, %function
+_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi1ELi1EE14pullup_disableEv:
+	mov	r1, #128
+	ldr	r2, .L100
+	lsl	r1, r1, #9
+	ldr	r3, [r2, #124]
+	@ sp needed
+	orr	r3, r1
+	mov	r1, #24
+	str	r3, [r2, #124]
+	ldr	r2, .L100+4
+	ldr	r3, [r2]
+	bic	r3, r1
+	str	r3, [r2]
+	bx	lr
+.L101:
+	.align	2
+.L100:
+	.word	1074036740
+	.word	1074020476
+	.size	_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi1ELi1EE14pullup_disableEv, .-_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi1ELi1EE14pullup_disableEv
+	.thumb_set .LTHUNK25,_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi1ELi1EE14pullup_disableEv
+	.align	1
+	.weak	_ZThn4_N5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi1ELi1EE14pullup_disableEv
+	.code	16
+	.thumb_func
+	.type	_ZThn4_N5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi1ELi1EE14pullup_disableEv, %function
+_ZThn4_N5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi1ELi1EE14pullup_disableEv:
+	push {r3}
+	ldr	r3, .LTHUMBFUNC14
+	mov r12, r3
+	sub	r0, r0, #4
+	pop	{r3}
+	bx	r12
+	.align	2
+.LTHUMBFUNC14:
+	.word	.LTHUNK25
+	.size	_ZThn4_N5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi1ELi1EE14pullup_disableEv, .-_ZThn4_N5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi1ELi1EE14pullup_disableEv
+	.section	.text._ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE20pin_in_out_ad_pullupILi1ELi1ELi2EE17ad_get_will_blockEv,"axG",%progbits,_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE20pin_in_out_ad_pullupILi1ELi1ELi2EE17ad_get_will_blockEv,comdat
+	.align	1
+	.weak	_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE20pin_in_out_ad_pullupILi1ELi1ELi2EE17ad_get_will_blockEv
+	.code	16
+	.thumb_func
+	.type	_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE20pin_in_out_ad_pullupILi1ELi1ELi2EE17ad_get_will_blockEv, %function
+_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE20pin_in_out_ad_pullupILi1ELi1ELi2EE17ad_get_will_blockEv:
+	ldr	r3, .L103
+	@ sp needed
+	ldr	r0, [r3, #4]
+	lsr	r0, r0, #31
+	bx	lr
+.L104:
+	.align	2
+.L103:
+	.word	1073856512
+	.size	_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE20pin_in_out_ad_pullupILi1ELi1ELi2EE17ad_get_will_blockEv, .-_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE20pin_in_out_ad_pullupILi1ELi1ELi2EE17ad_get_will_blockEv
+	.thumb_set .LTHUNK28,_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE20pin_in_out_ad_pullupILi1ELi1ELi2EE17ad_get_will_blockEv
+	.align	1
+	.weak	_ZThn8_N5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE20pin_in_out_ad_pullupILi1ELi1ELi2EE17ad_get_will_blockEv
+	.code	16
+	.thumb_func
+	.type	_ZThn8_N5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE20pin_in_out_ad_pullupILi1ELi1ELi2EE17ad_get_will_blockEv, %function
+_ZThn8_N5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE20pin_in_out_ad_pullupILi1ELi1ELi2EE17ad_get_will_blockEv:
+	push {r3}
+	ldr	r3, .LTHUMBFUNC15
+	mov r12, r3
+	sub	r0, r0, #8
+	pop	{r3}
+	bx	r12
+	.align	2
+.LTHUMBFUNC15:
+	.word	.LTHUNK28
+	.size	_ZThn8_N5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE20pin_in_out_ad_pullupILi1ELi1ELi2EE17ad_get_will_blockEv, .-_ZThn8_N5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE20pin_in_out_ad_pullupILi1ELi1ELi2EE17ad_get_will_blockEv
+	.section	.text._ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi1ELi0EE4initEv,"axG",%progbits,_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi1ELi0EE4initEv,comdat
+	.align	1
+	.weak	_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi1ELi0EE4initEv
+	.code	16
+	.thumb_func
+	.type	_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi1ELi0EE4initEv, %function
+_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi1ELi0EE4initEv:
+	mov	r1, #128
+	ldr	r2, .L106
+	push	{r3, lr}
+	ldr	r3, [r2, #124]
+	lsl	r1, r1, #9
+	orr	r3, r1
+	str	r3, [r2, #124]
+	ldr	r0, .L106+4
+	mov	r1, #1
+	bl	_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE11pin_ad_confEPVmi
+	@ sp needed
+	pop	{r3, pc}
+.L107:
+	.align	2
+.L106:
+	.word	1074036740
+	.word	1074020472
+	.size	_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi1ELi0EE4initEv, .-_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi1ELi0EE4initEv
+	.section	.text._ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi1ELi0EE19direction_set_inputEv,"axG",%progbits,_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi1ELi0EE19direction_set_inputEv,comdat
+	.align	1
+	.weak	_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi1ELi0EE19direction_set_inputEv
+	.code	16
+	.thumb_func
+	.type	_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi1ELi0EE19direction_set_inputEv, %function
+_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi1ELi0EE19direction_set_inputEv:
+	mov	r1, #1
+	ldr	r2, .L109
+	@ sp needed
+	ldr	r3, [r2]
+	bic	r3, r1
+	str	r3, [r2]
+	bx	lr
+.L110:
+	.align	2
+.L109:
+	.word	1342275584
+	.size	_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi1ELi0EE19direction_set_inputEv, .-_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi1ELi0EE19direction_set_inputEv
+	.section	.text._ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi1ELi0EE20direction_set_outputEv,"axG",%progbits,_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi1ELi0EE20direction_set_outputEv,comdat
+	.align	1
+	.weak	_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi1ELi0EE20direction_set_outputEv
+	.code	16
+	.thumb_func
+	.type	_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi1ELi0EE20direction_set_outputEv, %function
+_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi1ELi0EE20direction_set_outputEv:
+	mov	r1, #1
+	ldr	r2, .L112
+	@ sp needed
+	ldr	r3, [r2]
+	orr	r3, r1
+	str	r3, [r2]
+	bx	lr
+.L113:
+	.align	2
+.L112:
+	.word	1342275584
+	.size	_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi1ELi0EE20direction_set_outputEv, .-_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi1ELi0EE20direction_set_outputEv
+	.section	.text._ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi1ELi0EE3getEv,"axG",%progbits,_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi1ELi0EE3getEv,comdat
+	.align	1
+	.weak	_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi1ELi0EE3getEv
+	.code	16
+	.thumb_func
+	.type	_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi1ELi0EE3getEv, %function
+_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi1ELi0EE3getEv:
+	ldr	r3, .L115
+	@ sp needed
+	ldr	r0, [r3]
+	mov	r3, #1
+	and	r0, r3
+	bx	lr
+.L116:
+	.align	2
+.L115:
+	.word	1342259196
+	.size	_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi1ELi0EE3getEv, .-_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi1ELi0EE3getEv
+	.section	.text._ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi1ELi0EE3setEb,"axG",%progbits,_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi1ELi0EE3setEb,comdat
+	.align	1
+	.weak	_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi1ELi0EE3setEb
+	.code	16
+	.thumb_func
+	.type	_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi1ELi0EE3setEb, %function
+_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi1ELi0EE3setEb:
+	ldr	r3, .L118
+	neg	r1, r1
+	str	r1, [r3]
+	@ sp needed
+	bx	lr
+.L119:
+	.align	2
+.L118:
+	.word	1342242820
+	.size	_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi1ELi0EE3setEb, .-_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi1ELi0EE3setEb
+	.section	.text._ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi1ELi0EE13pullup_enableEv,"axG",%progbits,_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi1ELi0EE13pullup_enableEv,comdat
+	.align	1
+	.weak	_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi1ELi0EE13pullup_enableEv
+	.code	16
+	.thumb_func
+	.type	_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi1ELi0EE13pullup_enableEv, %function
+_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi1ELi0EE13pullup_enableEv:
+	mov	r1, #128
+	ldr	r2, .L121
+	push	{r3, lr}
+	ldr	r3, [r2, #124]
+	lsl	r1, r1, #9
+	orr	r3, r1
+	str	r3, [r2, #124]
+	ldr	r0, .L121+4
+	bl	_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE7pu_confEPVmb.part.2
+	@ sp needed
+	pop	{r3, pc}
+.L122:
+	.align	2
+.L121:
+	.word	1074036740
+	.word	1074020472
+	.size	_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi1ELi0EE13pullup_enableEv, .-_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi1ELi0EE13pullup_enableEv
+	.thumb_set .LTHUNK30,_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi1ELi0EE13pullup_enableEv
+	.align	1
+	.weak	_ZThn4_N5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi1ELi0EE13pullup_enableEv
+	.code	16
+	.thumb_func
+	.type	_ZThn4_N5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi1ELi0EE13pullup_enableEv, %function
+_ZThn4_N5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi1ELi0EE13pullup_enableEv:
+	push {r3}
+	ldr	r3, .LTHUMBFUNC16
+	mov r12, r3
+	sub	r0, r0, #4
+	pop	{r3}
+	bx	r12
+	.align	2
+.LTHUMBFUNC16:
+	.word	.LTHUNK30
+	.size	_ZThn4_N5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi1ELi0EE13pullup_enableEv, .-_ZThn4_N5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi1ELi0EE13pullup_enableEv
+	.section	.text._ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi1ELi0EE14pullup_disableEv,"axG",%progbits,_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi1ELi0EE14pullup_disableEv,comdat
+	.align	1
+	.weak	_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi1ELi0EE14pullup_disableEv
+	.code	16
+	.thumb_func
+	.type	_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi1ELi0EE14pullup_disableEv, %function
+_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi1ELi0EE14pullup_disableEv:
+	mov	r1, #128
+	ldr	r2, .L124
+	lsl	r1, r1, #9
+	ldr	r3, [r2, #124]
+	@ sp needed
+	orr	r3, r1
+	mov	r1, #24
+	str	r3, [r2, #124]
+	ldr	r2, .L124+4
+	ldr	r3, [r2]
+	bic	r3, r1
+	str	r3, [r2]
+	bx	lr
+.L125:
+	.align	2
+.L124:
+	.word	1074036740
+	.word	1074020472
+	.size	_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi1ELi0EE14pullup_disableEv, .-_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi1ELi0EE14pullup_disableEv
+	.thumb_set .LTHUNK31,_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi1ELi0EE14pullup_disableEv
+	.align	1
+	.weak	_ZThn4_N5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi1ELi0EE14pullup_disableEv
+	.code	16
+	.thumb_func
+	.type	_ZThn4_N5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi1ELi0EE14pullup_disableEv, %function
+_ZThn4_N5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi1ELi0EE14pullup_disableEv:
+	push {r3}
+	ldr	r3, .LTHUMBFUNC17
+	mov r12, r3
+	sub	r0, r0, #4
+	pop	{r3}
+	bx	r12
+	.align	2
+.LTHUMBFUNC17:
+	.word	.LTHUNK31
+	.size	_ZThn4_N5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi1ELi0EE14pullup_disableEv, .-_ZThn4_N5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi1ELi0EE14pullup_disableEv
+	.section	.text._ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE20pin_in_out_ad_pullupILi1ELi0ELi1EE17ad_get_will_blockEv,"axG",%progbits,_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE20pin_in_out_ad_pullupILi1ELi0ELi1EE17ad_get_will_blockEv,comdat
+	.align	1
+	.weak	_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE20pin_in_out_ad_pullupILi1ELi0ELi1EE17ad_get_will_blockEv
+	.code	16
+	.thumb_func
+	.type	_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE20pin_in_out_ad_pullupILi1ELi0ELi1EE17ad_get_will_blockEv, %function
+_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE20pin_in_out_ad_pullupILi1ELi0ELi1EE17ad_get_will_blockEv:
+	ldr	r3, .L127
+	@ sp needed
+	ldr	r0, [r3, #4]
+	lsr	r0, r0, #31
+	bx	lr
+.L128:
+	.align	2
+.L127:
+	.word	1073856512
+	.size	_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE20pin_in_out_ad_pullupILi1ELi0ELi1EE17ad_get_will_blockEv, .-_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE20pin_in_out_ad_pullupILi1ELi0ELi1EE17ad_get_will_blockEv
+	.thumb_set .LTHUNK34,_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE20pin_in_out_ad_pullupILi1ELi0ELi1EE17ad_get_will_blockEv
+	.align	1
+	.weak	_ZThn8_N5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE20pin_in_out_ad_pullupILi1ELi0ELi1EE17ad_get_will_blockEv
+	.code	16
+	.thumb_func
+	.type	_ZThn8_N5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE20pin_in_out_ad_pullupILi1ELi0ELi1EE17ad_get_will_blockEv, %function
+_ZThn8_N5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE20pin_in_out_ad_pullupILi1ELi0ELi1EE17ad_get_will_blockEv:
+	push {r3}
+	ldr	r3, .LTHUMBFUNC18
+	mov r12, r3
+	sub	r0, r0, #8
+	pop	{r3}
+	bx	r12
+	.align	2
+.LTHUMBFUNC18:
+	.word	.LTHUNK34
+	.size	_ZThn8_N5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE20pin_in_out_ad_pullupILi1ELi0ELi1EE17ad_get_will_blockEv, .-_ZThn8_N5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE20pin_in_out_ad_pullupILi1ELi0ELi1EE17ad_get_will_blockEv
+	.section	.text._ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi11EE4initEv,"axG",%progbits,_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi11EE4initEv,comdat
+	.align	1
+	.weak	_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi11EE4initEv
+	.code	16
+	.thumb_func
+	.type	_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi11EE4initEv, %function
+_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi11EE4initEv:
+	mov	r1, #128
+	ldr	r2, .L130
+	push	{r3, lr}
+	ldr	r3, [r2, #124]
+	lsl	r1, r1, #9
+	orr	r3, r1
+	str	r3, [r2, #124]
+	ldr	r0, .L130+4
+	mov	r1, #1
+	bl	_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE11pin_ad_confEPVmi
+	@ sp needed
+	pop	{r3, pc}
+.L131:
+	.align	2
+.L130:
+	.word	1074036740
+	.word	1074020468
+	.size	_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi11EE4initEv, .-_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi11EE4initEv
+	.section	.text._ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi11EE19direction_set_inputEv,"axG",%progbits,_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi11EE19direction_set_inputEv,comdat
+	.align	1
+	.weak	_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi11EE19direction_set_inputEv
+	.code	16
+	.thumb_func
+	.type	_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi11EE19direction_set_inputEv, %function
+_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi11EE19direction_set_inputEv:
+	ldr	r2, .L133
+	ldr	r3, .L133+4
+	ldr	r1, [r2]
+	@ sp needed
+	and	r3, r1
+	str	r3, [r2]
+	bx	lr
+.L134:
+	.align	2
+.L133:
+	.word	1342210048
+	.word	-2049
+	.size	_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi11EE19direction_set_inputEv, .-_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi11EE19direction_set_inputEv
+	.section	.text._ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi11EE20direction_set_outputEv,"axG",%progbits,_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi11EE20direction_set_outputEv,comdat
+	.align	1
+	.weak	_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi11EE20direction_set_outputEv
+	.code	16
+	.thumb_func
+	.type	_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi11EE20direction_set_outputEv, %function
+_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi11EE20direction_set_outputEv:
+	mov	r1, #128
+	ldr	r2, .L136
+	lsl	r1, r1, #4
+	ldr	r3, [r2]
+	@ sp needed
+	orr	r3, r1
+	str	r3, [r2]
+	bx	lr
+.L137:
+	.align	2
+.L136:
+	.word	1342210048
+	.size	_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi11EE20direction_set_outputEv, .-_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi11EE20direction_set_outputEv
+	.section	.text._ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi11EE3getEv,"axG",%progbits,_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi11EE3getEv,comdat
+	.align	1
+	.weak	_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi11EE3getEv
+	.code	16
+	.thumb_func
+	.type	_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi11EE3getEv, %function
+_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi11EE3getEv:
+	ldr	r3, .L139
+	@ sp needed
+	ldr	r0, [r3]
+	lsl	r0, r0, #20
+	lsr	r0, r0, #31
+	bx	lr
+.L140:
+	.align	2
+.L139:
+	.word	1342193660
+	.size	_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi11EE3getEv, .-_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi11EE3getEv
+	.section	.text._ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi11EE3setEb,"axG",%progbits,_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi11EE3setEb,comdat
+	.align	1
+	.weak	_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi11EE3setEb
+	.code	16
+	.thumb_func
+	.type	_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi11EE3setEb, %function
+_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi11EE3setEb:
+	ldr	r3, .L142
+	neg	r1, r1
+	str	r1, [r3]
+	@ sp needed
+	bx	lr
+.L143:
+	.align	2
+.L142:
+	.word	1342185472
+	.size	_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi11EE3setEb, .-_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi11EE3setEb
+	.section	.text._ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi11EE13pullup_enableEv,"axG",%progbits,_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi11EE13pullup_enableEv,comdat
+	.align	1
+	.weak	_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi11EE13pullup_enableEv
+	.code	16
+	.thumb_func
+	.type	_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi11EE13pullup_enableEv, %function
+_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi11EE13pullup_enableEv:
+	mov	r1, #128
+	ldr	r2, .L145
+	push	{r3, lr}
+	ldr	r3, [r2, #124]
+	lsl	r1, r1, #9
+	orr	r3, r1
+	str	r3, [r2, #124]
+	ldr	r0, .L145+4
+	bl	_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE7pu_confEPVmb.part.2
+	@ sp needed
+	pop	{r3, pc}
+.L146:
+	.align	2
+.L145:
+	.word	1074036740
+	.word	1074020468
+	.size	_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi11EE13pullup_enableEv, .-_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi11EE13pullup_enableEv
+	.thumb_set .LTHUNK36,_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi11EE13pullup_enableEv
+	.align	1
+	.weak	_ZThn4_N5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi11EE13pullup_enableEv
+	.code	16
+	.thumb_func
+	.type	_ZThn4_N5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi11EE13pullup_enableEv, %function
+_ZThn4_N5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi11EE13pullup_enableEv:
+	push {r3}
+	ldr	r3, .LTHUMBFUNC19
+	mov r12, r3
+	sub	r0, r0, #4
+	pop	{r3}
+	bx	r12
+	.align	2
+.LTHUMBFUNC19:
+	.word	.LTHUNK36
+	.size	_ZThn4_N5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi11EE13pullup_enableEv, .-_ZThn4_N5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi11EE13pullup_enableEv
+	.section	.text._ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi11EE14pullup_disableEv,"axG",%progbits,_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi11EE14pullup_disableEv,comdat
+	.align	1
+	.weak	_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi11EE14pullup_disableEv
+	.code	16
+	.thumb_func
+	.type	_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi11EE14pullup_disableEv, %function
+_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi11EE14pullup_disableEv:
+	mov	r1, #128
+	ldr	r2, .L148
+	lsl	r1, r1, #9
+	ldr	r3, [r2, #124]
+	@ sp needed
+	orr	r3, r1
+	mov	r1, #24
+	str	r3, [r2, #124]
+	ldr	r2, .L148+4
+	ldr	r3, [r2]
+	bic	r3, r1
+	str	r3, [r2]
+	bx	lr
+.L149:
+	.align	2
+.L148:
+	.word	1074036740
+	.word	1074020468
+	.size	_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi11EE14pullup_disableEv, .-_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi11EE14pullup_disableEv
+	.thumb_set .LTHUNK37,_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi11EE14pullup_disableEv
+	.align	1
+	.weak	_ZThn4_N5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi11EE14pullup_disableEv
+	.code	16
+	.thumb_func
+	.type	_ZThn4_N5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi11EE14pullup_disableEv, %function
+_ZThn4_N5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi11EE14pullup_disableEv:
+	push {r3}
+	ldr	r3, .LTHUMBFUNC20
+	mov r12, r3
+	sub	r0, r0, #4
+	pop	{r3}
+	bx	r12
+	.align	2
+.LTHUMBFUNC20:
+	.word	.LTHUNK37
+	.size	_ZThn4_N5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi11EE14pullup_disableEv, .-_ZThn4_N5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi11EE14pullup_disableEv
+	.section	.text._ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE20pin_in_out_ad_pullupILi0ELi11ELi0EE17ad_get_will_blockEv,"axG",%progbits,_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE20pin_in_out_ad_pullupILi0ELi11ELi0EE17ad_get_will_blockEv,comdat
+	.align	1
+	.weak	_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE20pin_in_out_ad_pullupILi0ELi11ELi0EE17ad_get_will_blockEv
+	.code	16
+	.thumb_func
+	.type	_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE20pin_in_out_ad_pullupILi0ELi11ELi0EE17ad_get_will_blockEv, %function
+_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE20pin_in_out_ad_pullupILi0ELi11ELi0EE17ad_get_will_blockEv:
+	ldr	r3, .L151
+	@ sp needed
+	ldr	r0, [r3, #4]
+	lsr	r0, r0, #31
+	bx	lr
+.L152:
+	.align	2
+.L151:
+	.word	1073856512
+	.size	_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE20pin_in_out_ad_pullupILi0ELi11ELi0EE17ad_get_will_blockEv, .-_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE20pin_in_out_ad_pullupILi0ELi11ELi0EE17ad_get_will_blockEv
+	.thumb_set .LTHUNK40,_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE20pin_in_out_ad_pullupILi0ELi11ELi0EE17ad_get_will_blockEv
+	.align	1
+	.weak	_ZThn8_N5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE20pin_in_out_ad_pullupILi0ELi11ELi0EE17ad_get_will_blockEv
+	.code	16
+	.thumb_func
+	.type	_ZThn8_N5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE20pin_in_out_ad_pullupILi0ELi11ELi0EE17ad_get_will_blockEv, %function
+_ZThn8_N5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE20pin_in_out_ad_pullupILi0ELi11ELi0EE17ad_get_will_blockEv:
+	push {r3}
+	ldr	r3, .LTHUMBFUNC21
+	mov r12, r3
+	sub	r0, r0, #8
+	pop	{r3}
+	bx	r12
+	.align	2
+.LTHUMBFUNC21:
+	.word	.LTHUNK40
+	.size	_ZThn8_N5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE20pin_in_out_ad_pullupILi0ELi11ELi0EE17ad_get_will_blockEv, .-_ZThn8_N5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE20pin_in_out_ad_pullupILi0ELi11ELi0EE17ad_get_will_blockEv
+	.section	.text._ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi10EE4initEv,"axG",%progbits,_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi10EE4initEv,comdat
+	.align	1
+	.weak	_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi10EE4initEv
+	.code	16
+	.thumb_func
+	.type	_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi10EE4initEv, %function
+_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi10EE4initEv:
+	mov	r1, #128
+	ldr	r2, .L154
+	lsl	r1, r1, #9
+	ldr	r3, [r2, #124]
+	@ sp needed
+	orr	r3, r1
+	mov	r1, #7
+	str	r3, [r2, #124]
+	ldr	r2, .L154+4
+	ldr	r3, [r2]
+	bic	r3, r1
+	sub	r1, r1, #6
+	orr	r3, r1
+	str	r3, [r2]
+	bx	lr
+.L155:
+	.align	2
+.L154:
+	.word	1074036740
+	.word	1074020456
+	.size	_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi10EE4initEv, .-_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi10EE4initEv
+	.section	.text._ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi10EE19direction_set_inputEv,"axG",%progbits,_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi10EE19direction_set_inputEv,comdat
+	.align	1
+	.weak	_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi10EE19direction_set_inputEv
+	.code	16
+	.thumb_func
+	.type	_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi10EE19direction_set_inputEv, %function
+_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi10EE19direction_set_inputEv:
+	ldr	r2, .L157
+	ldr	r3, .L157+4
+	ldr	r1, [r2]
+	@ sp needed
+	and	r3, r1
+	str	r3, [r2]
+	bx	lr
+.L158:
+	.align	2
+.L157:
+	.word	1342210048
+	.word	-1025
+	.size	_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi10EE19direction_set_inputEv, .-_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi10EE19direction_set_inputEv
+	.section	.text._ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi10EE20direction_set_outputEv,"axG",%progbits,_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi10EE20direction_set_outputEv,comdat
+	.align	1
+	.weak	_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi10EE20direction_set_outputEv
+	.code	16
+	.thumb_func
+	.type	_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi10EE20direction_set_outputEv, %function
+_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi10EE20direction_set_outputEv:
+	mov	r1, #128
+	ldr	r2, .L160
+	lsl	r1, r1, #3
+	ldr	r3, [r2]
+	@ sp needed
+	orr	r3, r1
+	str	r3, [r2]
+	bx	lr
+.L161:
+	.align	2
+.L160:
+	.word	1342210048
+	.size	_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi10EE20direction_set_outputEv, .-_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi10EE20direction_set_outputEv
+	.section	.text._ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi10EE3getEv,"axG",%progbits,_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi10EE3getEv,comdat
+	.align	1
+	.weak	_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi10EE3getEv
+	.code	16
+	.thumb_func
+	.type	_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi10EE3getEv, %function
+_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi10EE3getEv:
+	ldr	r3, .L163
+	@ sp needed
+	ldr	r0, [r3]
+	lsl	r0, r0, #21
+	lsr	r0, r0, #31
+	bx	lr
+.L164:
+	.align	2
+.L163:
+	.word	1342193660
+	.size	_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi10EE3getEv, .-_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi10EE3getEv
+	.section	.text._ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi10EE3setEb,"axG",%progbits,_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi10EE3setEb,comdat
+	.align	1
+	.weak	_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi10EE3setEb
+	.code	16
+	.thumb_func
+	.type	_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi10EE3setEb, %function
+_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi10EE3setEb:
+	ldr	r3, .L166
+	neg	r1, r1
+	str	r1, [r3]
+	@ sp needed
+	bx	lr
+.L167:
+	.align	2
+.L166:
+	.word	1342181376
+	.size	_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi10EE3setEb, .-_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi10EE3setEb
+	.section	.text._ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi10EE13pullup_enableEv,"axG",%progbits,_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi10EE13pullup_enableEv,comdat
+	.align	1
+	.weak	_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi10EE13pullup_enableEv
+	.code	16
+	.thumb_func
+	.type	_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi10EE13pullup_enableEv, %function
+_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi10EE13pullup_enableEv:
+	mov	r1, #128
+	ldr	r2, .L169
+	push	{r3, lr}
+	ldr	r3, [r2, #124]
+	lsl	r1, r1, #9
+	orr	r3, r1
+	str	r3, [r2, #124]
+	ldr	r0, .L169+4
+	bl	_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE7pu_confEPVmb.part.2
+	@ sp needed
+	pop	{r3, pc}
+.L170:
+	.align	2
+.L169:
+	.word	1074036740
+	.word	1074020456
+	.size	_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi10EE13pullup_enableEv, .-_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi10EE13pullup_enableEv
+	.thumb_set .LTHUNK42,_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi10EE13pullup_enableEv
+	.align	1
+	.weak	_ZThn4_N5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi10EE13pullup_enableEv
+	.code	16
+	.thumb_func
+	.type	_ZThn4_N5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi10EE13pullup_enableEv, %function
+_ZThn4_N5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi10EE13pullup_enableEv:
+	push {r3}
+	ldr	r3, .LTHUMBFUNC22
+	mov r12, r3
+	sub	r0, r0, #4
+	pop	{r3}
+	bx	r12
+	.align	2
+.LTHUMBFUNC22:
+	.word	.LTHUNK42
+	.size	_ZThn4_N5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi10EE13pullup_enableEv, .-_ZThn4_N5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi10EE13pullup_enableEv
+	.section	.text._ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi10EE14pullup_disableEv,"axG",%progbits,_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi10EE14pullup_disableEv,comdat
+	.align	1
+	.weak	_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi10EE14pullup_disableEv
+	.code	16
+	.thumb_func
+	.type	_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi10EE14pullup_disableEv, %function
+_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi10EE14pullup_disableEv:
+	mov	r1, #128
+	ldr	r2, .L172
+	lsl	r1, r1, #9
+	ldr	r3, [r2, #124]
+	@ sp needed
+	orr	r3, r1
+	mov	r1, #24
+	str	r3, [r2, #124]
+	ldr	r2, .L172+4
+	ldr	r3, [r2]
+	bic	r3, r1
+	str	r3, [r2]
+	bx	lr
+.L173:
+	.align	2
+.L172:
+	.word	1074036740
+	.word	1074020456
+	.size	_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi10EE14pullup_disableEv, .-_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi10EE14pullup_disableEv
+	.thumb_set .LTHUNK43,_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi10EE14pullup_disableEv
+	.align	1
+	.weak	_ZThn4_N5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi10EE14pullup_disableEv
+	.code	16
+	.thumb_func
+	.type	_ZThn4_N5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi10EE14pullup_disableEv, %function
+_ZThn4_N5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi10EE14pullup_disableEv:
+	push {r3}
+	ldr	r3, .LTHUMBFUNC23
+	mov r12, r3
+	sub	r0, r0, #4
+	pop	{r3}
+	bx	r12
+	.align	2
+.LTHUMBFUNC23:
+	.word	.LTHUNK43
+	.size	_ZThn4_N5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi10EE14pullup_disableEv, .-_ZThn4_N5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi10EE14pullup_disableEv
+	.section	.text._ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi9EE4initEv,"axG",%progbits,_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi9EE4initEv,comdat
+	.align	1
+	.weak	_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi9EE4initEv
+	.code	16
+	.thumb_func
+	.type	_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi9EE4initEv, %function
+_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi9EE4initEv:
+	mov	r1, #128
+	ldr	r2, .L175
+	lsl	r1, r1, #9
+	ldr	r3, [r2, #124]
+	@ sp needed
+	orr	r3, r1
+	mov	r1, #7
+	str	r3, [r2, #124]
+	ldr	r2, .L175+4
+	ldr	r3, [r2]
+	bic	r3, r1
+	str	r3, [r2]
+	bx	lr
+.L176:
+	.align	2
+.L175:
+	.word	1074036740
+	.word	1074020452
+	.size	_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi9EE4initEv, .-_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi9EE4initEv
+	.section	.text._ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi9EE19direction_set_inputEv,"axG",%progbits,_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi9EE19direction_set_inputEv,comdat
+	.align	1
+	.weak	_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi9EE19direction_set_inputEv
+	.code	16
+	.thumb_func
+	.type	_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi9EE19direction_set_inputEv, %function
+_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi9EE19direction_set_inputEv:
+	ldr	r2, .L178
+	ldr	r3, .L178+4
+	ldr	r1, [r2]
+	@ sp needed
+	and	r3, r1
+	str	r3, [r2]
+	bx	lr
+.L179:
+	.align	2
+.L178:
+	.word	1342210048
+	.word	-513
+	.size	_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi9EE19direction_set_inputEv, .-_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi9EE19direction_set_inputEv
+	.section	.text._ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi9EE20direction_set_outputEv,"axG",%progbits,_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi9EE20direction_set_outputEv,comdat
+	.align	1
+	.weak	_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi9EE20direction_set_outputEv
+	.code	16
+	.thumb_func
+	.type	_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi9EE20direction_set_outputEv, %function
+_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi9EE20direction_set_outputEv:
+	mov	r1, #128
+	ldr	r2, .L181
+	lsl	r1, r1, #2
+	ldr	r3, [r2]
+	@ sp needed
+	orr	r3, r1
+	str	r3, [r2]
+	bx	lr
+.L182:
+	.align	2
+.L181:
+	.word	1342210048
+	.size	_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi9EE20direction_set_outputEv, .-_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi9EE20direction_set_outputEv
+	.section	.text._ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi9EE3getEv,"axG",%progbits,_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi9EE3getEv,comdat
+	.align	1
+	.weak	_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi9EE3getEv
+	.code	16
+	.thumb_func
+	.type	_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi9EE3getEv, %function
+_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi9EE3getEv:
+	ldr	r3, .L184
+	@ sp needed
+	ldr	r0, [r3]
+	lsl	r0, r0, #22
+	lsr	r0, r0, #31
+	bx	lr
+.L185:
+	.align	2
+.L184:
+	.word	1342193660
+	.size	_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi9EE3getEv, .-_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi9EE3getEv
+	.section	.text._ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi9EE3setEb,"axG",%progbits,_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi9EE3setEb,comdat
+	.align	1
+	.weak	_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi9EE3setEb
+	.code	16
+	.thumb_func
+	.type	_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi9EE3setEb, %function
+_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi9EE3setEb:
+	ldr	r3, .L187
+	neg	r1, r1
+	str	r1, [r3]
+	@ sp needed
+	bx	lr
+.L188:
+	.align	2
+.L187:
+	.word	1342179328
+	.size	_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi9EE3setEb, .-_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi9EE3setEb
+	.section	.text._ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi9EE13pullup_enableEv,"axG",%progbits,_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi9EE13pullup_enableEv,comdat
+	.align	1
+	.weak	_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi9EE13pullup_enableEv
+	.code	16
+	.thumb_func
+	.type	_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi9EE13pullup_enableEv, %function
+_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi9EE13pullup_enableEv:
+	mov	r1, #128
+	ldr	r2, .L190
+	push	{r3, lr}
+	ldr	r3, [r2, #124]
+	lsl	r1, r1, #9
+	orr	r3, r1
+	str	r3, [r2, #124]
+	ldr	r0, .L190+4
+	bl	_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE7pu_confEPVmb.part.2
+	@ sp needed
+	pop	{r3, pc}
+.L191:
+	.align	2
+.L190:
+	.word	1074036740
+	.word	1074020452
+	.size	_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi9EE13pullup_enableEv, .-_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi9EE13pullup_enableEv
+	.thumb_set .LTHUNK44,_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi9EE13pullup_enableEv
+	.align	1
+	.weak	_ZThn4_N5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi9EE13pullup_enableEv
+	.code	16
+	.thumb_func
+	.type	_ZThn4_N5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi9EE13pullup_enableEv, %function
+_ZThn4_N5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi9EE13pullup_enableEv:
+	push {r3}
+	ldr	r3, .LTHUMBFUNC24
+	mov r12, r3
+	sub	r0, r0, #4
+	pop	{r3}
+	bx	r12
+	.align	2
+.LTHUMBFUNC24:
+	.word	.LTHUNK44
+	.size	_ZThn4_N5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi9EE13pullup_enableEv, .-_ZThn4_N5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi9EE13pullup_enableEv
+	.section	.text._ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi9EE14pullup_disableEv,"axG",%progbits,_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi9EE14pullup_disableEv,comdat
+	.align	1
+	.weak	_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi9EE14pullup_disableEv
+	.code	16
+	.thumb_func
+	.type	_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi9EE14pullup_disableEv, %function
+_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi9EE14pullup_disableEv:
+	mov	r1, #128
+	ldr	r2, .L193
+	lsl	r1, r1, #9
+	ldr	r3, [r2, #124]
+	@ sp needed
+	orr	r3, r1
+	mov	r1, #24
+	str	r3, [r2, #124]
+	ldr	r2, .L193+4
+	ldr	r3, [r2]
+	bic	r3, r1
+	str	r3, [r2]
+	bx	lr
+.L194:
+	.align	2
+.L193:
+	.word	1074036740
+	.word	1074020452
+	.size	_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi9EE14pullup_disableEv, .-_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi9EE14pullup_disableEv
+	.thumb_set .LTHUNK45,_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi9EE14pullup_disableEv
+	.align	1
+	.weak	_ZThn4_N5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi9EE14pullup_disableEv
+	.code	16
+	.thumb_func
+	.type	_ZThn4_N5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi9EE14pullup_disableEv, %function
+_ZThn4_N5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi9EE14pullup_disableEv:
+	push {r3}
+	ldr	r3, .LTHUMBFUNC25
+	mov r12, r3
+	sub	r0, r0, #4
+	pop	{r3}
+	bx	r12
+	.align	2
+.LTHUMBFUNC25:
+	.word	.LTHUNK45
+	.size	_ZThn4_N5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi9EE14pullup_disableEv, .-_ZThn4_N5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi9EE14pullup_disableEv
+	.section	.text._ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi8EE4initEv,"axG",%progbits,_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi8EE4initEv,comdat
+	.align	1
+	.weak	_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi8EE4initEv
+	.code	16
+	.thumb_func
+	.type	_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi8EE4initEv, %function
+_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi8EE4initEv:
+	mov	r1, #128
+	ldr	r2, .L196
+	lsl	r1, r1, #9
+	ldr	r3, [r2, #124]
+	@ sp needed
+	orr	r3, r1
+	mov	r1, #7
+	str	r3, [r2, #124]
+	ldr	r2, .L196+4
+	ldr	r3, [r2]
+	bic	r3, r1
+	str	r3, [r2]
+	bx	lr
+.L197:
+	.align	2
+.L196:
+	.word	1074036740
+	.word	1074020448
+	.size	_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi8EE4initEv, .-_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi8EE4initEv
+	.section	.text._ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi8EE19direction_set_inputEv,"axG",%progbits,_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi8EE19direction_set_inputEv,comdat
+	.align	1
+	.weak	_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi8EE19direction_set_inputEv
+	.code	16
+	.thumb_func
+	.type	_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi8EE19direction_set_inputEv, %function
+_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi8EE19direction_set_inputEv:
+	ldr	r2, .L199
+	ldr	r3, .L199+4
+	ldr	r1, [r2]
+	@ sp needed
+	and	r3, r1
+	str	r3, [r2]
+	bx	lr
+.L200:
+	.align	2
+.L199:
+	.word	1342210048
+	.word	-257
+	.size	_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi8EE19direction_set_inputEv, .-_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi8EE19direction_set_inputEv
+	.section	.text._ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi8EE20direction_set_outputEv,"axG",%progbits,_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi8EE20direction_set_outputEv,comdat
+	.align	1
+	.weak	_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi8EE20direction_set_outputEv
+	.code	16
+	.thumb_func
+	.type	_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi8EE20direction_set_outputEv, %function
+_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi8EE20direction_set_outputEv:
+	mov	r1, #128
+	ldr	r2, .L202
+	lsl	r1, r1, #1
+	ldr	r3, [r2]
+	@ sp needed
+	orr	r3, r1
+	str	r3, [r2]
+	bx	lr
+.L203:
+	.align	2
+.L202:
+	.word	1342210048
+	.size	_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi8EE20direction_set_outputEv, .-_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi8EE20direction_set_outputEv
+	.section	.text._ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi8EE3getEv,"axG",%progbits,_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi8EE3getEv,comdat
+	.align	1
+	.weak	_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi8EE3getEv
+	.code	16
+	.thumb_func
+	.type	_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi8EE3getEv, %function
+_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi8EE3getEv:
+	ldr	r3, .L205
+	@ sp needed
+	ldr	r0, [r3]
+	lsl	r0, r0, #23
+	lsr	r0, r0, #31
+	bx	lr
+.L206:
+	.align	2
+.L205:
+	.word	1342193660
+	.size	_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi8EE3getEv, .-_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi8EE3getEv
+	.section	.text._ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi8EE3setEb,"axG",%progbits,_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi8EE3setEb,comdat
+	.align	1
+	.weak	_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi8EE3setEb
+	.code	16
+	.thumb_func
+	.type	_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi8EE3setEb, %function
+_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi8EE3setEb:
+	ldr	r3, .L208
+	neg	r1, r1
+	str	r1, [r3]
+	@ sp needed
+	bx	lr
+.L209:
+	.align	2
+.L208:
+	.word	1342178304
+	.size	_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi8EE3setEb, .-_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi8EE3setEb
+	.section	.text._ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi8EE13pullup_enableEv,"axG",%progbits,_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi8EE13pullup_enableEv,comdat
+	.align	1
+	.weak	_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi8EE13pullup_enableEv
+	.code	16
+	.thumb_func
+	.type	_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi8EE13pullup_enableEv, %function
+_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi8EE13pullup_enableEv:
+	mov	r1, #128
+	ldr	r2, .L211
+	push	{r3, lr}
+	ldr	r3, [r2, #124]
+	lsl	r1, r1, #9
+	orr	r3, r1
+	str	r3, [r2, #124]
+	ldr	r0, .L211+4
+	bl	_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE7pu_confEPVmb.part.2
+	@ sp needed
+	pop	{r3, pc}
+.L212:
+	.align	2
+.L211:
+	.word	1074036740
+	.word	1074020448
+	.size	_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi8EE13pullup_enableEv, .-_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi8EE13pullup_enableEv
+	.thumb_set .LTHUNK46,_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi8EE13pullup_enableEv
+	.align	1
+	.weak	_ZThn4_N5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi8EE13pullup_enableEv
+	.code	16
+	.thumb_func
+	.type	_ZThn4_N5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi8EE13pullup_enableEv, %function
+_ZThn4_N5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi8EE13pullup_enableEv:
+	push {r3}
+	ldr	r3, .LTHUMBFUNC26
+	mov r12, r3
+	sub	r0, r0, #4
+	pop	{r3}
+	bx	r12
+	.align	2
+.LTHUMBFUNC26:
+	.word	.LTHUNK46
+	.size	_ZThn4_N5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi8EE13pullup_enableEv, .-_ZThn4_N5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi8EE13pullup_enableEv
+	.section	.text._ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi8EE14pullup_disableEv,"axG",%progbits,_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi8EE14pullup_disableEv,comdat
+	.align	1
+	.weak	_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi8EE14pullup_disableEv
+	.code	16
+	.thumb_func
+	.type	_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi8EE14pullup_disableEv, %function
+_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi8EE14pullup_disableEv:
+	mov	r1, #128
+	ldr	r2, .L214
+	lsl	r1, r1, #9
+	ldr	r3, [r2, #124]
+	@ sp needed
+	orr	r3, r1
+	mov	r1, #24
+	str	r3, [r2, #124]
+	ldr	r2, .L214+4
+	ldr	r3, [r2]
+	bic	r3, r1
+	str	r3, [r2]
+	bx	lr
+.L215:
+	.align	2
+.L214:
+	.word	1074036740
+	.word	1074020448
+	.size	_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi8EE14pullup_disableEv, .-_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi8EE14pullup_disableEv
+	.thumb_set .LTHUNK47,_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi8EE14pullup_disableEv
+	.align	1
+	.weak	_ZThn4_N5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi8EE14pullup_disableEv
+	.code	16
+	.thumb_func
+	.type	_ZThn4_N5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi8EE14pullup_disableEv, %function
+_ZThn4_N5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi8EE14pullup_disableEv:
+	push {r3}
+	ldr	r3, .LTHUMBFUNC27
+	mov r12, r3
+	sub	r0, r0, #4
+	pop	{r3}
+	bx	r12
+	.align	2
+.LTHUMBFUNC27:
+	.word	.LTHUNK47
+	.size	_ZThn4_N5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi8EE14pullup_disableEv, .-_ZThn4_N5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi8EE14pullup_disableEv
+	.section	.text._ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi7EE4initEv,"axG",%progbits,_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi7EE4initEv,comdat
+	.align	1
+	.weak	_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi7EE4initEv
+	.code	16
+	.thumb_func
+	.type	_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi7EE4initEv, %function
+_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi7EE4initEv:
+	mov	r1, #128
+	ldr	r2, .L217
+	lsl	r1, r1, #9
+	ldr	r3, [r2, #124]
+	@ sp needed
+	orr	r3, r1
+	mov	r1, #7
+	str	r3, [r2, #124]
+	ldr	r2, .L217+4
+	ldr	r3, [r2]
+	bic	r3, r1
+	str	r3, [r2]
+	bx	lr
+.L218:
+	.align	2
+.L217:
+	.word	1074036740
+	.word	1074020432
+	.size	_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi7EE4initEv, .-_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi7EE4initEv
+	.section	.text._ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi7EE19direction_set_inputEv,"axG",%progbits,_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi7EE19direction_set_inputEv,comdat
+	.align	1
+	.weak	_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi7EE19direction_set_inputEv
+	.code	16
+	.thumb_func
+	.type	_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi7EE19direction_set_inputEv, %function
+_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi7EE19direction_set_inputEv:
+	mov	r1, #128
+	ldr	r2, .L220
+	@ sp needed
+	ldr	r3, [r2]
+	bic	r3, r1
+	str	r3, [r2]
+	bx	lr
+.L221:
+	.align	2
+.L220:
+	.word	1342210048
+	.size	_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi7EE19direction_set_inputEv, .-_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi7EE19direction_set_inputEv
+	.section	.text._ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi7EE20direction_set_outputEv,"axG",%progbits,_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi7EE20direction_set_outputEv,comdat
+	.align	1
+	.weak	_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi7EE20direction_set_outputEv
+	.code	16
+	.thumb_func
+	.type	_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi7EE20direction_set_outputEv, %function
+_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi7EE20direction_set_outputEv:
+	mov	r1, #128
+	ldr	r2, .L223
+	@ sp needed
+	ldr	r3, [r2]
+	orr	r3, r1
+	str	r3, [r2]
+	bx	lr
+.L224:
+	.align	2
+.L223:
+	.word	1342210048
+	.size	_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi7EE20direction_set_outputEv, .-_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi7EE20direction_set_outputEv
+	.section	.text._ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi7EE3getEv,"axG",%progbits,_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi7EE3getEv,comdat
+	.align	1
+	.weak	_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi7EE3getEv
+	.code	16
+	.thumb_func
+	.type	_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi7EE3getEv, %function
+_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi7EE3getEv:
+	ldr	r3, .L226
+	@ sp needed
+	ldr	r0, [r3]
+	lsl	r0, r0, #24
+	lsr	r0, r0, #31
+	bx	lr
+.L227:
+	.align	2
+.L226:
+	.word	1342193660
+	.size	_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi7EE3getEv, .-_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi7EE3getEv
+	.section	.text._ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi7EE3setEb,"axG",%progbits,_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi7EE3setEb,comdat
+	.align	1
+	.weak	_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi7EE3setEb
+	.code	16
+	.thumb_func
+	.type	_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi7EE3setEb, %function
+_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi7EE3setEb:
+	ldr	r3, .L229
+	neg	r1, r1
+	str	r1, [r3]
+	@ sp needed
+	bx	lr
+.L230:
+	.align	2
+.L229:
+	.word	1342177792
+	.size	_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi7EE3setEb, .-_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi7EE3setEb
+	.section	.text._ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi7EE13pullup_enableEv,"axG",%progbits,_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi7EE13pullup_enableEv,comdat
+	.align	1
+	.weak	_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi7EE13pullup_enableEv
+	.code	16
+	.thumb_func
+	.type	_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi7EE13pullup_enableEv, %function
+_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi7EE13pullup_enableEv:
+	mov	r1, #128
+	ldr	r2, .L232
+	push	{r3, lr}
+	ldr	r3, [r2, #124]
+	lsl	r1, r1, #9
+	orr	r3, r1
+	str	r3, [r2, #124]
+	ldr	r0, .L232+4
+	bl	_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE7pu_confEPVmb.part.2
+	@ sp needed
+	pop	{r3, pc}
+.L233:
+	.align	2
+.L232:
+	.word	1074036740
+	.word	1074020432
+	.size	_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi7EE13pullup_enableEv, .-_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi7EE13pullup_enableEv
+	.thumb_set .LTHUNK48,_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi7EE13pullup_enableEv
+	.align	1
+	.weak	_ZThn4_N5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi7EE13pullup_enableEv
+	.code	16
+	.thumb_func
+	.type	_ZThn4_N5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi7EE13pullup_enableEv, %function
+_ZThn4_N5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi7EE13pullup_enableEv:
+	push {r3}
+	ldr	r3, .LTHUMBFUNC28
+	mov r12, r3
+	sub	r0, r0, #4
+	pop	{r3}
+	bx	r12
+	.align	2
+.LTHUMBFUNC28:
+	.word	.LTHUNK48
+	.size	_ZThn4_N5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi7EE13pullup_enableEv, .-_ZThn4_N5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi7EE13pullup_enableEv
+	.section	.text._ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi7EE14pullup_disableEv,"axG",%progbits,_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi7EE14pullup_disableEv,comdat
+	.align	1
+	.weak	_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi7EE14pullup_disableEv
+	.code	16
+	.thumb_func
+	.type	_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi7EE14pullup_disableEv, %function
+_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi7EE14pullup_disableEv:
+	mov	r1, #128
+	ldr	r2, .L235
+	lsl	r1, r1, #9
+	ldr	r3, [r2, #124]
+	@ sp needed
+	orr	r3, r1
+	mov	r1, #24
+	str	r3, [r2, #124]
+	ldr	r2, .L235+4
+	ldr	r3, [r2]
+	bic	r3, r1
+	str	r3, [r2]
+	bx	lr
+.L236:
+	.align	2
+.L235:
+	.word	1074036740
+	.word	1074020432
+	.size	_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi7EE14pullup_disableEv, .-_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi7EE14pullup_disableEv
+	.thumb_set .LTHUNK49,_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi7EE14pullup_disableEv
+	.align	1
+	.weak	_ZThn4_N5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi7EE14pullup_disableEv
+	.code	16
+	.thumb_func
+	.type	_ZThn4_N5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi7EE14pullup_disableEv, %function
+_ZThn4_N5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi7EE14pullup_disableEv:
+	push {r3}
+	ldr	r3, .LTHUMBFUNC29
+	mov r12, r3
+	sub	r0, r0, #4
+	pop	{r3}
+	bx	r12
+	.align	2
+.LTHUMBFUNC29:
+	.word	.LTHUNK49
+	.size	_ZThn4_N5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi7EE14pullup_disableEv, .-_ZThn4_N5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi7EE14pullup_disableEv
+	.section	.text._ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi6EE4initEv,"axG",%progbits,_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi6EE4initEv,comdat
+	.align	1
+	.weak	_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi6EE4initEv
+	.code	16
+	.thumb_func
+	.type	_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi6EE4initEv, %function
+_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi6EE4initEv:
+	mov	r1, #128
+	ldr	r2, .L238
+	lsl	r1, r1, #9
+	ldr	r3, [r2, #124]
+	@ sp needed
+	orr	r3, r1
+	mov	r1, #7
+	str	r3, [r2, #124]
+	ldr	r2, .L238+4
+	ldr	r3, [r2]
+	bic	r3, r1
+	str	r3, [r2]
+	bx	lr
+.L239:
+	.align	2
+.L238:
+	.word	1074036740
+	.word	1074020428
+	.size	_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi6EE4initEv, .-_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi6EE4initEv
+	.section	.text._ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi6EE19direction_set_inputEv,"axG",%progbits,_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi6EE19direction_set_inputEv,comdat
+	.align	1
+	.weak	_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi6EE19direction_set_inputEv
+	.code	16
+	.thumb_func
+	.type	_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi6EE19direction_set_inputEv, %function
+_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi6EE19direction_set_inputEv:
+	mov	r1, #64
+	ldr	r2, .L241
+	@ sp needed
+	ldr	r3, [r2]
+	bic	r3, r1
+	str	r3, [r2]
+	bx	lr
+.L242:
+	.align	2
+.L241:
+	.word	1342210048
+	.size	_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi6EE19direction_set_inputEv, .-_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi6EE19direction_set_inputEv
+	.section	.text._ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi6EE20direction_set_outputEv,"axG",%progbits,_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi6EE20direction_set_outputEv,comdat
+	.align	1
+	.weak	_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi6EE20direction_set_outputEv
+	.code	16
+	.thumb_func
+	.type	_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi6EE20direction_set_outputEv, %function
+_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi6EE20direction_set_outputEv:
+	mov	r1, #64
+	ldr	r2, .L244
+	@ sp needed
+	ldr	r3, [r2]
+	orr	r3, r1
+	str	r3, [r2]
+	bx	lr
+.L245:
+	.align	2
+.L244:
+	.word	1342210048
+	.size	_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi6EE20direction_set_outputEv, .-_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi6EE20direction_set_outputEv
+	.section	.text._ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi6EE3getEv,"axG",%progbits,_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi6EE3getEv,comdat
+	.align	1
+	.weak	_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi6EE3getEv
+	.code	16
+	.thumb_func
+	.type	_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi6EE3getEv, %function
+_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi6EE3getEv:
+	ldr	r3, .L247
+	@ sp needed
+	ldr	r0, [r3]
+	lsl	r0, r0, #25
+	lsr	r0, r0, #31
+	bx	lr
+.L248:
+	.align	2
+.L247:
+	.word	1342193660
+	.size	_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi6EE3getEv, .-_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi6EE3getEv
+	.section	.text._ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi6EE3setEb,"axG",%progbits,_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi6EE3setEb,comdat
+	.align	1
+	.weak	_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi6EE3setEb
+	.code	16
+	.thumb_func
+	.type	_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi6EE3setEb, %function
+_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi6EE3setEb:
+	ldr	r3, .L250
+	neg	r1, r1
+	str	r1, [r3]
+	@ sp needed
+	bx	lr
+.L251:
+	.align	2
+.L250:
+	.word	1342177536
+	.size	_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi6EE3setEb, .-_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi6EE3setEb
+	.section	.text._ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi6EE13pullup_enableEv,"axG",%progbits,_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi6EE13pullup_enableEv,comdat
+	.align	1
+	.weak	_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi6EE13pullup_enableEv
+	.code	16
+	.thumb_func
+	.type	_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi6EE13pullup_enableEv, %function
+_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi6EE13pullup_enableEv:
+	mov	r1, #128
+	ldr	r2, .L253
+	push	{r3, lr}
+	ldr	r3, [r2, #124]
+	lsl	r1, r1, #9
+	orr	r3, r1
+	str	r3, [r2, #124]
+	ldr	r0, .L253+4
+	bl	_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE7pu_confEPVmb.part.2
+	@ sp needed
+	pop	{r3, pc}
+.L254:
+	.align	2
+.L253:
+	.word	1074036740
+	.word	1074020428
+	.size	_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi6EE13pullup_enableEv, .-_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi6EE13pullup_enableEv
+	.thumb_set .LTHUNK50,_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi6EE13pullup_enableEv
+	.align	1
+	.weak	_ZThn4_N5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi6EE13pullup_enableEv
+	.code	16
+	.thumb_func
+	.type	_ZThn4_N5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi6EE13pullup_enableEv, %function
+_ZThn4_N5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi6EE13pullup_enableEv:
+	push {r3}
+	ldr	r3, .LTHUMBFUNC30
+	mov r12, r3
+	sub	r0, r0, #4
+	pop	{r3}
+	bx	r12
+	.align	2
+.LTHUMBFUNC30:
+	.word	.LTHUNK50
+	.size	_ZThn4_N5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi6EE13pullup_enableEv, .-_ZThn4_N5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi6EE13pullup_enableEv
+	.section	.text._ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi6EE14pullup_disableEv,"axG",%progbits,_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi6EE14pullup_disableEv,comdat
+	.align	1
+	.weak	_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi6EE14pullup_disableEv
+	.code	16
+	.thumb_func
+	.type	_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi6EE14pullup_disableEv, %function
+_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi6EE14pullup_disableEv:
+	mov	r1, #128
+	ldr	r2, .L256
+	lsl	r1, r1, #9
+	ldr	r3, [r2, #124]
+	@ sp needed
+	orr	r3, r1
+	mov	r1, #24
+	str	r3, [r2, #124]
+	ldr	r2, .L256+4
+	ldr	r3, [r2]
+	bic	r3, r1
+	str	r3, [r2]
+	bx	lr
+.L257:
+	.align	2
+.L256:
+	.word	1074036740
+	.word	1074020428
+	.size	_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi6EE14pullup_disableEv, .-_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi6EE14pullup_disableEv
+	.thumb_set .LTHUNK51,_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi6EE14pullup_disableEv
+	.align	1
+	.weak	_ZThn4_N5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi6EE14pullup_disableEv
+	.code	16
+	.thumb_func
+	.type	_ZThn4_N5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi6EE14pullup_disableEv, %function
+_ZThn4_N5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi6EE14pullup_disableEv:
+	push {r3}
+	ldr	r3, .LTHUMBFUNC31
+	mov r12, r3
+	sub	r0, r0, #4
+	pop	{r3}
+	bx	r12
+	.align	2
+.LTHUMBFUNC31:
+	.word	.LTHUNK51
+	.size	_ZThn4_N5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi6EE14pullup_disableEv, .-_ZThn4_N5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi6EE14pullup_disableEv
+	.section	.text._ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi3EE4initEv,"axG",%progbits,_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi3EE4initEv,comdat
+	.align	1
+	.weak	_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi3EE4initEv
+	.code	16
+	.thumb_func
+	.type	_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi3EE4initEv, %function
+_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi3EE4initEv:
+	mov	r1, #128
+	ldr	r2, .L259
+	lsl	r1, r1, #9
+	ldr	r3, [r2, #124]
+	@ sp needed
+	orr	r3, r1
+	mov	r1, #7
+	str	r3, [r2, #124]
+	ldr	r2, .L259+4
+	ldr	r3, [r2]
+	bic	r3, r1
+	str	r3, [r2]
+	bx	lr
+.L260:
+	.align	2
+.L259:
+	.word	1074036740
+	.word	1074020396
+	.size	_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi3EE4initEv, .-_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi3EE4initEv
+	.section	.text._ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi3EE19direction_set_inputEv,"axG",%progbits,_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi3EE19direction_set_inputEv,comdat
+	.align	1
+	.weak	_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi3EE19direction_set_inputEv
+	.code	16
+	.thumb_func
+	.type	_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi3EE19direction_set_inputEv, %function
+_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi3EE19direction_set_inputEv:
+	mov	r1, #8
+	ldr	r2, .L262
+	@ sp needed
+	ldr	r3, [r2]
+	bic	r3, r1
+	str	r3, [r2]
+	bx	lr
+.L263:
+	.align	2
+.L262:
+	.word	1342210048
+	.size	_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi3EE19direction_set_inputEv, .-_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi3EE19direction_set_inputEv
+	.section	.text._ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi3EE20direction_set_outputEv,"axG",%progbits,_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi3EE20direction_set_outputEv,comdat
+	.align	1
+	.weak	_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi3EE20direction_set_outputEv
+	.code	16
+	.thumb_func
+	.type	_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi3EE20direction_set_outputEv, %function
+_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi3EE20direction_set_outputEv:
+	mov	r1, #8
+	ldr	r2, .L265
+	@ sp needed
+	ldr	r3, [r2]
+	orr	r3, r1
+	str	r3, [r2]
+	bx	lr
+.L266:
+	.align	2
+.L265:
+	.word	1342210048
+	.size	_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi3EE20direction_set_outputEv, .-_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi3EE20direction_set_outputEv
+	.section	.text._ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi3EE3getEv,"axG",%progbits,_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi3EE3getEv,comdat
+	.align	1
+	.weak	_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi3EE3getEv
+	.code	16
+	.thumb_func
+	.type	_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi3EE3getEv, %function
+_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi3EE3getEv:
+	ldr	r3, .L268
+	@ sp needed
+	ldr	r0, [r3]
+	lsl	r0, r0, #28
+	lsr	r0, r0, #31
+	bx	lr
+.L269:
+	.align	2
+.L268:
+	.word	1342193660
+	.size	_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi3EE3getEv, .-_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi3EE3getEv
+	.section	.text._ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi3EE3setEb,"axG",%progbits,_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi3EE3setEb,comdat
+	.align	1
+	.weak	_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi3EE3setEb
+	.code	16
+	.thumb_func
+	.type	_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi3EE3setEb, %function
+_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi3EE3setEb:
+	ldr	r3, .L271
+	neg	r1, r1
+	str	r1, [r3]
+	@ sp needed
+	bx	lr
+.L272:
+	.align	2
+.L271:
+	.word	1342177312
+	.size	_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi3EE3setEb, .-_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi3EE3setEb
+	.section	.text._ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi3EE13pullup_enableEv,"axG",%progbits,_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi3EE13pullup_enableEv,comdat
+	.align	1
+	.weak	_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi3EE13pullup_enableEv
+	.code	16
+	.thumb_func
+	.type	_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi3EE13pullup_enableEv, %function
+_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi3EE13pullup_enableEv:
+	mov	r1, #128
+	ldr	r2, .L274
+	push	{r3, lr}
+	ldr	r3, [r2, #124]
+	lsl	r1, r1, #9
+	orr	r3, r1
+	str	r3, [r2, #124]
+	ldr	r0, .L274+4
+	bl	_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE7pu_confEPVmb.part.2
+	@ sp needed
+	pop	{r3, pc}
+.L275:
+	.align	2
+.L274:
+	.word	1074036740
+	.word	1074020396
+	.size	_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi3EE13pullup_enableEv, .-_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi3EE13pullup_enableEv
+	.thumb_set .LTHUNK52,_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi3EE13pullup_enableEv
+	.align	1
+	.weak	_ZThn4_N5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi3EE13pullup_enableEv
+	.code	16
+	.thumb_func
+	.type	_ZThn4_N5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi3EE13pullup_enableEv, %function
+_ZThn4_N5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi3EE13pullup_enableEv:
+	push {r3}
+	ldr	r3, .LTHUMBFUNC32
+	mov r12, r3
+	sub	r0, r0, #4
+	pop	{r3}
+	bx	r12
+	.align	2
+.LTHUMBFUNC32:
+	.word	.LTHUNK52
+	.size	_ZThn4_N5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi3EE13pullup_enableEv, .-_ZThn4_N5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi3EE13pullup_enableEv
+	.section	.text._ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi3EE14pullup_disableEv,"axG",%progbits,_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi3EE14pullup_disableEv,comdat
+	.align	1
+	.weak	_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi3EE14pullup_disableEv
+	.code	16
+	.thumb_func
+	.type	_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi3EE14pullup_disableEv, %function
+_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi3EE14pullup_disableEv:
+	mov	r1, #128
+	ldr	r2, .L277
+	lsl	r1, r1, #9
+	ldr	r3, [r2, #124]
+	@ sp needed
+	orr	r3, r1
+	mov	r1, #24
+	str	r3, [r2, #124]
+	ldr	r2, .L277+4
+	ldr	r3, [r2]
+	bic	r3, r1
+	str	r3, [r2]
+	bx	lr
+.L278:
+	.align	2
+.L277:
+	.word	1074036740
+	.word	1074020396
+	.size	_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi3EE14pullup_disableEv, .-_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi3EE14pullup_disableEv
+	.thumb_set .LTHUNK53,_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi3EE14pullup_disableEv
+	.align	1
+	.weak	_ZThn4_N5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi3EE14pullup_disableEv
+	.code	16
+	.thumb_func
+	.type	_ZThn4_N5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi3EE14pullup_disableEv, %function
+_ZThn4_N5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi3EE14pullup_disableEv:
+	push {r3}
+	ldr	r3, .LTHUMBFUNC33
+	mov r12, r3
+	sub	r0, r0, #4
+	pop	{r3}
+	bx	r12
+	.align	2
+.LTHUMBFUNC33:
+	.word	.LTHUNK53
+	.size	_ZThn4_N5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi3EE14pullup_disableEv, .-_ZThn4_N5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi3EE14pullup_disableEv
+	.section	.text._ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi2EE4initEv,"axG",%progbits,_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi2EE4initEv,comdat
+	.align	1
+	.weak	_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi2EE4initEv
+	.code	16
+	.thumb_func
+	.type	_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi2EE4initEv, %function
+_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi2EE4initEv:
+	mov	r1, #128
+	ldr	r2, .L280
+	lsl	r1, r1, #9
+	ldr	r3, [r2, #124]
+	@ sp needed
+	orr	r3, r1
+	mov	r1, #7
+	str	r3, [r2, #124]
+	ldr	r2, .L280+4
+	ldr	r3, [r2]
+	bic	r3, r1
+	str	r3, [r2]
+	bx	lr
+.L281:
+	.align	2
+.L280:
+	.word	1074036740
+	.word	1074020380
+	.size	_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi2EE4initEv, .-_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi2EE4initEv
+	.section	.text._ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi2EE19direction_set_inputEv,"axG",%progbits,_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi2EE19direction_set_inputEv,comdat
+	.align	1
+	.weak	_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi2EE19direction_set_inputEv
+	.code	16
+	.thumb_func
+	.type	_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi2EE19direction_set_inputEv, %function
+_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi2EE19direction_set_inputEv:
+	mov	r1, #4
+	ldr	r2, .L283
+	@ sp needed
+	ldr	r3, [r2]
+	bic	r3, r1
+	str	r3, [r2]
+	bx	lr
+.L284:
+	.align	2
+.L283:
+	.word	1342210048
+	.size	_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi2EE19direction_set_inputEv, .-_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi2EE19direction_set_inputEv
+	.section	.text._ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi2EE20direction_set_outputEv,"axG",%progbits,_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi2EE20direction_set_outputEv,comdat
+	.align	1
+	.weak	_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi2EE20direction_set_outputEv
+	.code	16
+	.thumb_func
+	.type	_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi2EE20direction_set_outputEv, %function
+_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi2EE20direction_set_outputEv:
+	mov	r1, #4
+	ldr	r2, .L286
+	@ sp needed
+	ldr	r3, [r2]
+	orr	r3, r1
+	str	r3, [r2]
+	bx	lr
+.L287:
+	.align	2
+.L286:
+	.word	1342210048
+	.size	_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi2EE20direction_set_outputEv, .-_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi2EE20direction_set_outputEv
+	.section	.text._ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi2EE3getEv,"axG",%progbits,_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi2EE3getEv,comdat
+	.align	1
+	.weak	_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi2EE3getEv
+	.code	16
+	.thumb_func
+	.type	_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi2EE3getEv, %function
+_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi2EE3getEv:
+	ldr	r3, .L289
+	@ sp needed
+	ldr	r0, [r3]
+	lsl	r0, r0, #29
+	lsr	r0, r0, #31
+	bx	lr
+.L290:
+	.align	2
+.L289:
+	.word	1342193660
+	.size	_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi2EE3getEv, .-_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi2EE3getEv
+	.section	.text._ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi2EE3setEb,"axG",%progbits,_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi2EE3setEb,comdat
+	.align	1
+	.weak	_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi2EE3setEb
+	.code	16
+	.thumb_func
+	.type	_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi2EE3setEb, %function
+_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi2EE3setEb:
+	ldr	r3, .L292
+	neg	r1, r1
+	str	r1, [r3]
+	@ sp needed
+	bx	lr
+.L293:
+	.align	2
+.L292:
+	.word	1342177296
+	.size	_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi2EE3setEb, .-_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi2EE3setEb
+	.section	.text._ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi2EE13pullup_enableEv,"axG",%progbits,_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi2EE13pullup_enableEv,comdat
+	.align	1
+	.weak	_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi2EE13pullup_enableEv
+	.code	16
+	.thumb_func
+	.type	_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi2EE13pullup_enableEv, %function
+_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi2EE13pullup_enableEv:
+	mov	r1, #128
+	ldr	r2, .L295
+	push	{r3, lr}
+	ldr	r3, [r2, #124]
+	lsl	r1, r1, #9
+	orr	r3, r1
+	str	r3, [r2, #124]
+	ldr	r0, .L295+4
+	bl	_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE7pu_confEPVmb.part.2
+	@ sp needed
+	pop	{r3, pc}
+.L296:
+	.align	2
+.L295:
+	.word	1074036740
+	.word	1074020380
+	.size	_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi2EE13pullup_enableEv, .-_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi2EE13pullup_enableEv
+	.thumb_set .LTHUNK54,_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi2EE13pullup_enableEv
+	.align	1
+	.weak	_ZThn4_N5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi2EE13pullup_enableEv
+	.code	16
+	.thumb_func
+	.type	_ZThn4_N5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi2EE13pullup_enableEv, %function
+_ZThn4_N5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi2EE13pullup_enableEv:
+	push {r3}
+	ldr	r3, .LTHUMBFUNC34
+	mov r12, r3
+	sub	r0, r0, #4
+	pop	{r3}
+	bx	r12
+	.align	2
+.LTHUMBFUNC34:
+	.word	.LTHUNK54
+	.size	_ZThn4_N5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi2EE13pullup_enableEv, .-_ZThn4_N5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi2EE13pullup_enableEv
+	.section	.text._ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi2EE14pullup_disableEv,"axG",%progbits,_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi2EE14pullup_disableEv,comdat
+	.align	1
+	.weak	_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi2EE14pullup_disableEv
+	.code	16
+	.thumb_func
+	.type	_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi2EE14pullup_disableEv, %function
+_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi2EE14pullup_disableEv:
+	mov	r1, #128
+	ldr	r2, .L298
+	lsl	r1, r1, #9
+	ldr	r3, [r2, #124]
+	@ sp needed
+	orr	r3, r1
+	mov	r1, #24
+	str	r3, [r2, #124]
+	ldr	r2, .L298+4
+	ldr	r3, [r2]
+	bic	r3, r1
+	str	r3, [r2]
+	bx	lr
+.L299:
+	.align	2
+.L298:
+	.word	1074036740
+	.word	1074020380
+	.size	_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi2EE14pullup_disableEv, .-_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi2EE14pullup_disableEv
+	.thumb_set .LTHUNK55,_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi2EE14pullup_disableEv
+	.align	1
+	.weak	_ZThn4_N5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi2EE14pullup_disableEv
+	.code	16
+	.thumb_func
+	.type	_ZThn4_N5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi2EE14pullup_disableEv, %function
+_ZThn4_N5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi2EE14pullup_disableEv:
+	push {r3}
+	ldr	r3, .LTHUMBFUNC35
+	mov r12, r3
+	sub	r0, r0, #4
+	pop	{r3}
+	bx	r12
+	.align	2
+.LTHUMBFUNC35:
+	.word	.LTHUNK55
+	.size	_ZThn4_N5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi2EE14pullup_disableEv, .-_ZThn4_N5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi2EE14pullup_disableEv
+	.section	.text._ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi1EE4initEv,"axG",%progbits,_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi1EE4initEv,comdat
+	.align	1
+	.weak	_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi1EE4initEv
+	.code	16
+	.thumb_func
+	.type	_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi1EE4initEv, %function
+_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi1EE4initEv:
+	mov	r1, #128
+	ldr	r2, .L301
+	lsl	r1, r1, #9
+	ldr	r3, [r2, #124]
+	@ sp needed
+	orr	r3, r1
+	mov	r1, #7
+	str	r3, [r2, #124]
+	ldr	r2, .L301+4
+	ldr	r3, [r2]
+	bic	r3, r1
+	str	r3, [r2]
+	bx	lr
+.L302:
+	.align	2
+.L301:
+	.word	1074036740
+	.word	1074020368
+	.size	_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi1EE4initEv, .-_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi1EE4initEv
+	.section	.text._ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi1EE19direction_set_inputEv,"axG",%progbits,_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi1EE19direction_set_inputEv,comdat
+	.align	1
+	.weak	_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi1EE19direction_set_inputEv
+	.code	16
+	.thumb_func
+	.type	_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi1EE19direction_set_inputEv, %function
+_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi1EE19direction_set_inputEv:
+	mov	r1, #2
+	ldr	r2, .L304
+	@ sp needed
+	ldr	r3, [r2]
+	bic	r3, r1
+	str	r3, [r2]
+	bx	lr
+.L305:
+	.align	2
+.L304:
+	.word	1342210048
+	.size	_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi1EE19direction_set_inputEv, .-_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi1EE19direction_set_inputEv
+	.section	.text._ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi1EE20direction_set_outputEv,"axG",%progbits,_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi1EE20direction_set_outputEv,comdat
+	.align	1
+	.weak	_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi1EE20direction_set_outputEv
+	.code	16
+	.thumb_func
+	.type	_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi1EE20direction_set_outputEv, %function
+_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi1EE20direction_set_outputEv:
+	mov	r1, #2
+	ldr	r2, .L307
+	@ sp needed
+	ldr	r3, [r2]
+	orr	r3, r1
+	str	r3, [r2]
+	bx	lr
+.L308:
+	.align	2
+.L307:
+	.word	1342210048
+	.size	_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi1EE20direction_set_outputEv, .-_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi1EE20direction_set_outputEv
+	.section	.text._ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi1EE3getEv,"axG",%progbits,_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi1EE3getEv,comdat
+	.align	1
+	.weak	_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi1EE3getEv
+	.code	16
+	.thumb_func
+	.type	_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi1EE3getEv, %function
+_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi1EE3getEv:
+	ldr	r3, .L310
+	@ sp needed
+	ldr	r0, [r3]
+	lsl	r0, r0, #30
+	lsr	r0, r0, #31
+	bx	lr
+.L311:
+	.align	2
+.L310:
+	.word	1342193660
+	.size	_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi1EE3getEv, .-_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi1EE3getEv
+	.section	.text._ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi1EE3setEb,"axG",%progbits,_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi1EE3setEb,comdat
+	.align	1
+	.weak	_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi1EE3setEb
+	.code	16
+	.thumb_func
+	.type	_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi1EE3setEb, %function
+_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi1EE3setEb:
+	ldr	r3, .L313
+	neg	r1, r1
+	str	r1, [r3]
+	@ sp needed
+	bx	lr
+.L314:
+	.align	2
+.L313:
+	.word	1342177288
+	.size	_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi1EE3setEb, .-_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi1EE3setEb
+	.section	.text._ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi1EE13pullup_enableEv,"axG",%progbits,_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi1EE13pullup_enableEv,comdat
+	.align	1
+	.weak	_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi1EE13pullup_enableEv
+	.code	16
+	.thumb_func
+	.type	_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi1EE13pullup_enableEv, %function
+_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi1EE13pullup_enableEv:
+	mov	r1, #128
+	ldr	r2, .L316
+	push	{r3, lr}
+	ldr	r3, [r2, #124]
+	lsl	r1, r1, #9
+	orr	r3, r1
+	str	r3, [r2, #124]
+	ldr	r0, .L316+4
+	bl	_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE7pu_confEPVmb.part.2
+	@ sp needed
+	pop	{r3, pc}
+.L317:
+	.align	2
+.L316:
+	.word	1074036740
+	.word	1074020368
+	.size	_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi1EE13pullup_enableEv, .-_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi1EE13pullup_enableEv
+	.thumb_set .LTHUNK56,_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi1EE13pullup_enableEv
+	.align	1
+	.weak	_ZThn4_N5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi1EE13pullup_enableEv
+	.code	16
+	.thumb_func
+	.type	_ZThn4_N5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi1EE13pullup_enableEv, %function
+_ZThn4_N5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi1EE13pullup_enableEv:
+	push {r3}
+	ldr	r3, .LTHUMBFUNC36
+	mov r12, r3
+	sub	r0, r0, #4
+	pop	{r3}
+	bx	r12
+	.align	2
+.LTHUMBFUNC36:
+	.word	.LTHUNK56
+	.size	_ZThn4_N5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi1EE13pullup_enableEv, .-_ZThn4_N5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi1EE13pullup_enableEv
+	.section	.text._ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi1EE14pullup_disableEv,"axG",%progbits,_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi1EE14pullup_disableEv,comdat
+	.align	1
+	.weak	_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi1EE14pullup_disableEv
+	.code	16
+	.thumb_func
+	.type	_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi1EE14pullup_disableEv, %function
+_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi1EE14pullup_disableEv:
+	mov	r1, #128
+	ldr	r2, .L319
+	lsl	r1, r1, #9
+	ldr	r3, [r2, #124]
+	@ sp needed
+	orr	r3, r1
+	mov	r1, #24
+	str	r3, [r2, #124]
+	ldr	r2, .L319+4
+	ldr	r3, [r2]
+	bic	r3, r1
+	str	r3, [r2]
+	bx	lr
+.L320:
+	.align	2
+.L319:
+	.word	1074036740
+	.word	1074020368
+	.size	_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi1EE14pullup_disableEv, .-_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi1EE14pullup_disableEv
+	.thumb_set .LTHUNK57,_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi1EE14pullup_disableEv
+	.align	1
+	.weak	_ZThn4_N5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi1EE14pullup_disableEv
+	.code	16
+	.thumb_func
+	.type	_ZThn4_N5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi1EE14pullup_disableEv, %function
+_ZThn4_N5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi1EE14pullup_disableEv:
+	push {r3}
+	ldr	r3, .LTHUMBFUNC37
+	mov r12, r3
+	sub	r0, r0, #4
+	pop	{r3}
+	bx	r12
+	.align	2
+.LTHUMBFUNC37:
+	.word	.LTHUNK57
+	.size	_ZThn4_N5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi1EE14pullup_disableEv, .-_ZThn4_N5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi1EE14pullup_disableEv
+	.section	.text._ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi0EE4initEv,"axG",%progbits,_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi0EE4initEv,comdat
+	.align	1
+	.weak	_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi0EE4initEv
+	.code	16
+	.thumb_func
+	.type	_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi0EE4initEv, %function
+_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi0EE4initEv:
+	mov	r1, #128
+	ldr	r2, .L322
+	lsl	r1, r1, #9
+	ldr	r3, [r2, #124]
+	@ sp needed
+	orr	r3, r1
+	mov	r1, #7
+	str	r3, [r2, #124]
+	ldr	r2, .L322+4
+	ldr	r3, [r2]
+	bic	r3, r1
+	sub	r1, r1, #6
+	orr	r3, r1
+	str	r3, [r2]
+	bx	lr
+.L323:
+	.align	2
+.L322:
+	.word	1074036740
+	.word	1074020364
+	.size	_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi0EE4initEv, .-_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi0EE4initEv
+	.section	.text._ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi0EE19direction_set_inputEv,"axG",%progbits,_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi0EE19direction_set_inputEv,comdat
+	.align	1
+	.weak	_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi0EE19direction_set_inputEv
+	.code	16
+	.thumb_func
+	.type	_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi0EE19direction_set_inputEv, %function
+_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi0EE19direction_set_inputEv:
+	mov	r1, #1
+	ldr	r2, .L325
+	@ sp needed
+	ldr	r3, [r2]
+	bic	r3, r1
+	str	r3, [r2]
+	bx	lr
+.L326:
+	.align	2
+.L325:
+	.word	1342210048
+	.size	_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi0EE19direction_set_inputEv, .-_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi0EE19direction_set_inputEv
+	.section	.text._ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi0EE20direction_set_outputEv,"axG",%progbits,_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi0EE20direction_set_outputEv,comdat
+	.align	1
+	.weak	_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi0EE20direction_set_outputEv
+	.code	16
+	.thumb_func
+	.type	_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi0EE20direction_set_outputEv, %function
+_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi0EE20direction_set_outputEv:
+	mov	r1, #1
+	ldr	r2, .L328
+	@ sp needed
+	ldr	r3, [r2]
+	orr	r3, r1
+	str	r3, [r2]
+	bx	lr
+.L329:
+	.align	2
+.L328:
+	.word	1342210048
+	.size	_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi0EE20direction_set_outputEv, .-_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi0EE20direction_set_outputEv
+	.section	.text._ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi0EE3getEv,"axG",%progbits,_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi0EE3getEv,comdat
+	.align	1
+	.weak	_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi0EE3getEv
+	.code	16
+	.thumb_func
+	.type	_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi0EE3getEv, %function
+_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi0EE3getEv:
+	ldr	r3, .L331
+	@ sp needed
+	ldr	r0, [r3]
+	mov	r3, #1
+	and	r0, r3
+	bx	lr
+.L332:
+	.align	2
+.L331:
+	.word	1342193660
+	.size	_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi0EE3getEv, .-_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi0EE3getEv
+	.section	.text._ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi0EE3setEb,"axG",%progbits,_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi0EE3setEb,comdat
+	.align	1
+	.weak	_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi0EE3setEb
+	.code	16
+	.thumb_func
+	.type	_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi0EE3setEb, %function
+_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi0EE3setEb:
+	ldr	r3, .L334
+	neg	r1, r1
+	str	r1, [r3]
+	@ sp needed
+	bx	lr
+.L335:
+	.align	2
+.L334:
+	.word	1342177284
+	.size	_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi0EE3setEb, .-_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi0EE3setEb
+	.section	.text._ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi0EE13pullup_enableEv,"axG",%progbits,_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi0EE13pullup_enableEv,comdat
+	.align	1
+	.weak	_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi0EE13pullup_enableEv
+	.code	16
+	.thumb_func
+	.type	_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi0EE13pullup_enableEv, %function
+_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi0EE13pullup_enableEv:
+	mov	r1, #128
+	ldr	r2, .L337
+	push	{r3, lr}
+	ldr	r3, [r2, #124]
+	lsl	r1, r1, #9
+	orr	r3, r1
+	str	r3, [r2, #124]
+	ldr	r0, .L337+4
+	bl	_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE7pu_confEPVmb.part.2
+	@ sp needed
+	pop	{r3, pc}
+.L338:
+	.align	2
+.L337:
+	.word	1074036740
+	.word	1074020364
+	.size	_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi0EE13pullup_enableEv, .-_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi0EE13pullup_enableEv
+	.thumb_set .LTHUNK58,_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi0EE13pullup_enableEv
+	.align	1
+	.weak	_ZThn4_N5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi0EE13pullup_enableEv
+	.code	16
+	.thumb_func
+	.type	_ZThn4_N5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi0EE13pullup_enableEv, %function
+_ZThn4_N5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi0EE13pullup_enableEv:
+	push {r3}
+	ldr	r3, .LTHUMBFUNC38
+	mov r12, r3
+	sub	r0, r0, #4
+	pop	{r3}
+	bx	r12
+	.align	2
+.LTHUMBFUNC38:
+	.word	.LTHUNK58
+	.size	_ZThn4_N5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi0EE13pullup_enableEv, .-_ZThn4_N5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi0EE13pullup_enableEv
+	.section	.text._ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi0EE14pullup_disableEv,"axG",%progbits,_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi0EE14pullup_disableEv,comdat
+	.align	1
+	.weak	_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi0EE14pullup_disableEv
+	.code	16
+	.thumb_func
+	.type	_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi0EE14pullup_disableEv, %function
+_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi0EE14pullup_disableEv:
+	mov	r1, #128
+	ldr	r2, .L340
+	lsl	r1, r1, #9
+	ldr	r3, [r2, #124]
+	@ sp needed
+	orr	r3, r1
+	mov	r1, #24
+	str	r3, [r2, #124]
+	ldr	r2, .L340+4
+	ldr	r3, [r2]
+	bic	r3, r1
+	str	r3, [r2]
+	bx	lr
+.L341:
+	.align	2
+.L340:
+	.word	1074036740
+	.word	1074020364
+	.size	_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi0EE14pullup_disableEv, .-_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi0EE14pullup_disableEv
+	.thumb_set .LTHUNK59,_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi0EE14pullup_disableEv
+	.align	1
+	.weak	_ZThn4_N5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi0EE14pullup_disableEv
+	.code	16
+	.thumb_func
+	.type	_ZThn4_N5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi0EE14pullup_disableEv, %function
+_ZThn4_N5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi0EE14pullup_disableEv:
+	push {r3}
+	ldr	r3, .LTHUMBFUNC39
+	mov r12, r3
+	sub	r0, r0, #4
+	pop	{r3}
+	bx	r12
+	.align	2
+.LTHUMBFUNC39:
+	.word	.LTHUNK59
+	.size	_ZThn4_N5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi0EE14pullup_disableEv, .-_ZThn4_N5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE17pin_in_out_pullupILi0ELi0EE14pullup_disableEv
+	.section	.text._ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE20pin_in_out_ad_pullupILi1ELi4ELi5EE7ad_initEv,"axG",%progbits,_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE20pin_in_out_ad_pullupILi1ELi4ELi5EE7ad_initEv,comdat
+	.align	1
+	.weak	_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE20pin_in_out_ad_pullupILi1ELi4ELi5EE7ad_initEv
+	.code	16
+	.thumb_func
+	.type	_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE20pin_in_out_ad_pullupILi1ELi4ELi5EE7ad_initEv, %function
+_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE20pin_in_out_ad_pullupILi1ELi4ELi5EE7ad_initEv:
+	mov	r0, #144
+	ldr	r3, .L343
+	lsl	r0, r0, #9
+	add	r1, r3, #4
+	ldr	r2, [r1, #124]
+	@ sp needed
+	orr	r2, r0
+	str	r2, [r1, #124]
+	mov	r1, #142
+	mov	r0, #16
+	lsl	r1, r1, #2
+	ldr	r2, [r3, r1]
+	bic	r2, r0
+	str	r2, [r3, r1]
+	ldr	r2, .L343+4
+	sub	r1, r1, #178
+	ldr	r3, [r2]
+	sub	r1, r1, #255
+	bic	r3, r1
+	sub	r1, r1, #134
+	orr	r3, r1
+	str	r3, [r2]
+	bx	lr
+.L344:
+	.align	2
+.L343:
+	.word	1074036736
+	.word	1074020500
+	.size	_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE20pin_in_out_ad_pullupILi1ELi4ELi5EE7ad_initEv, .-_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE20pin_in_out_ad_pullupILi1ELi4ELi5EE7ad_initEv
+	.thumb_set .LTHUNK8,_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE20pin_in_out_ad_pullupILi1ELi4ELi5EE7ad_initEv
+	.align	1
+	.weak	_ZThn8_N5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE20pin_in_out_ad_pullupILi1ELi4ELi5EE7ad_initEv
+	.code	16
+	.thumb_func
+	.type	_ZThn8_N5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE20pin_in_out_ad_pullupILi1ELi4ELi5EE7ad_initEv, %function
+_ZThn8_N5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE20pin_in_out_ad_pullupILi1ELi4ELi5EE7ad_initEv:
+	push {r3}
+	ldr	r3, .LTHUMBFUNC40
+	mov r12, r3
+	sub	r0, r0, #8
+	pop	{r3}
+	bx	r12
+	.align	2
+.LTHUMBFUNC40:
+	.word	.LTHUNK8
+	.size	_ZThn8_N5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE20pin_in_out_ad_pullupILi1ELi4ELi5EE7ad_initEv, .-_ZThn8_N5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE20pin_in_out_ad_pullupILi1ELi4ELi5EE7ad_initEv
+	.section	.text._ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE20pin_in_out_ad_pullupILi1ELi4ELi5EE8ad_startEv,"axG",%progbits,_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE20pin_in_out_ad_pullupILi1ELi4ELi5EE8ad_startEv,comdat
+	.align	1
+	.weak	_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE20pin_in_out_ad_pullupILi1ELi4ELi5EE8ad_startEv
+	.code	16
+	.thumb_func
+	.type	_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE20pin_in_out_ad_pullupILi1ELi4ELi5EE8ad_startEv, %function
+_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE20pin_in_out_ad_pullupILi1ELi4ELi5EE8ad_startEv:
+	mov	r2, #194
+	mov	r1, #128
+	ldr	r3, .L346
+	lsl	r2, r2, #4
+	str	r2, [r3]
+	ldr	r2, [r3]
+	lsl	r1, r1, #17
+	orr	r2, r1
+	str	r2, [r3]
+	@ sp needed
+	bx	lr
+.L347:
+	.align	2
+.L346:
+	.word	1073856512
+	.size	_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE20pin_in_out_ad_pullupILi1ELi4ELi5EE8ad_startEv, .-_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE20pin_in_out_ad_pullupILi1ELi4ELi5EE8ad_startEv
+	.thumb_set .LTHUNK9,_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE20pin_in_out_ad_pullupILi1ELi4ELi5EE8ad_startEv
+	.align	1
+	.weak	_ZThn8_N5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE20pin_in_out_ad_pullupILi1ELi4ELi5EE8ad_startEv
+	.code	16
+	.thumb_func
+	.type	_ZThn8_N5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE20pin_in_out_ad_pullupILi1ELi4ELi5EE8ad_startEv, %function
+_ZThn8_N5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE20pin_in_out_ad_pullupILi1ELi4ELi5EE8ad_startEv:
+	push {r3}
+	ldr	r3, .LTHUMBFUNC41
+	mov r12, r3
+	sub	r0, r0, #8
+	pop	{r3}
+	bx	r12
+	.align	2
+.LTHUMBFUNC41:
+	.word	.LTHUNK9
+	.size	_ZThn8_N5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE20pin_in_out_ad_pullupILi1ELi4ELi5EE8ad_startEv, .-_ZThn8_N5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE20pin_in_out_ad_pullupILi1ELi4ELi5EE8ad_startEv
+	.section	.text._ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE20pin_in_out_ad_pullupILi1ELi4ELi5EE6ad_getEv,"axG",%progbits,_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE20pin_in_out_ad_pullupILi1ELi4ELi5EE6ad_getEv,comdat
+	.align	1
+	.weak	_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE20pin_in_out_ad_pullupILi1ELi4ELi5EE6ad_getEv
+	.code	16
+	.thumb_func
+	.type	_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE20pin_in_out_ad_pullupILi1ELi4ELi5EE6ad_getEv, %function
+_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE20pin_in_out_ad_pullupILi1ELi4ELi5EE6ad_getEv:
+.L349:
+	ldr	r3, .L351
+	ldr	r2, [r3, #4]
+	cmp	r2, #0
+	blt	.L349
+	ldr	r0, [r3, #4]
+	@ sp needed
+	lsl	r0, r0, #16
+	lsr	r0, r0, #22
+	bx	lr
+.L352:
+	.align	2
+.L351:
+	.word	1073856512
+	.size	_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE20pin_in_out_ad_pullupILi1ELi4ELi5EE6ad_getEv, .-_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE20pin_in_out_ad_pullupILi1ELi4ELi5EE6ad_getEv
+	.thumb_set .LTHUNK11,_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE20pin_in_out_ad_pullupILi1ELi4ELi5EE6ad_getEv
+	.align	1
+	.weak	_ZThn8_N5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE20pin_in_out_ad_pullupILi1ELi4ELi5EE6ad_getEv
+	.code	16
+	.thumb_func
+	.type	_ZThn8_N5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE20pin_in_out_ad_pullupILi1ELi4ELi5EE6ad_getEv, %function
+_ZThn8_N5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE20pin_in_out_ad_pullupILi1ELi4ELi5EE6ad_getEv:
+	push {r3}
+	ldr	r3, .LTHUMBFUNC42
+	mov r12, r3
+	sub	r0, r0, #8
+	pop	{r3}
+	bx	r12
+	.align	2
+.LTHUMBFUNC42:
+	.word	.LTHUNK11
+	.size	_ZThn8_N5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE20pin_in_out_ad_pullupILi1ELi4ELi5EE6ad_getEv, .-_ZThn8_N5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE20pin_in_out_ad_pullupILi1ELi4ELi5EE6ad_getEv
+	.section	.text._ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE20pin_in_out_ad_pullupILi1ELi3ELi4EE7ad_initEv,"axG",%progbits,_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE20pin_in_out_ad_pullupILi1ELi3ELi4EE7ad_initEv,comdat
+	.align	1
+	.weak	_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE20pin_in_out_ad_pullupILi1ELi3ELi4EE7ad_initEv
+	.code	16
+	.thumb_func
+	.type	_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE20pin_in_out_ad_pullupILi1ELi3ELi4EE7ad_initEv, %function
+_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE20pin_in_out_ad_pullupILi1ELi3ELi4EE7ad_initEv:
+	mov	r0, #144
+	ldr	r3, .L354
+	lsl	r0, r0, #9
+	add	r1, r3, #4
+	ldr	r2, [r1, #124]
+	@ sp needed
+	orr	r2, r0
+	str	r2, [r1, #124]
+	mov	r1, #142
+	mov	r0, #16
+	lsl	r1, r1, #2
+	ldr	r2, [r3, r1]
+	bic	r2, r0
+	str	r2, [r3, r1]
+	ldr	r2, .L354+4
+	sub	r1, r1, #178
+	ldr	r3, [r2]
+	sub	r1, r1, #255
+	bic	r3, r1
+	sub	r1, r1, #133
+	orr	r3, r1
+	str	r3, [r2]
+	bx	lr
+.L355:
+	.align	2
+.L354:
+	.word	1074036736
+	.word	1074020496
+	.size	_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE20pin_in_out_ad_pullupILi1ELi3ELi4EE7ad_initEv, .-_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE20pin_in_out_ad_pullupILi1ELi3ELi4EE7ad_initEv
+	.thumb_set .LTHUNK14,_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE20pin_in_out_ad_pullupILi1ELi3ELi4EE7ad_initEv
+	.align	1
+	.weak	_ZThn8_N5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE20pin_in_out_ad_pullupILi1ELi3ELi4EE7ad_initEv
+	.code	16
+	.thumb_func
+	.type	_ZThn8_N5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE20pin_in_out_ad_pullupILi1ELi3ELi4EE7ad_initEv, %function
+_ZThn8_N5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE20pin_in_out_ad_pullupILi1ELi3ELi4EE7ad_initEv:
+	push {r3}
+	ldr	r3, .LTHUMBFUNC43
+	mov r12, r3
+	sub	r0, r0, #8
+	pop	{r3}
+	bx	r12
+	.align	2
+.LTHUMBFUNC43:
+	.word	.LTHUNK14
+	.size	_ZThn8_N5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE20pin_in_out_ad_pullupILi1ELi3ELi4EE7ad_initEv, .-_ZThn8_N5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE20pin_in_out_ad_pullupILi1ELi3ELi4EE7ad_initEv
+	.section	.text._ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE20pin_in_out_ad_pullupILi1ELi3ELi4EE8ad_startEv,"axG",%progbits,_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE20pin_in_out_ad_pullupILi1ELi3ELi4EE8ad_startEv,comdat
+	.align	1
+	.weak	_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE20pin_in_out_ad_pullupILi1ELi3ELi4EE8ad_startEv
+	.code	16
+	.thumb_func
+	.type	_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE20pin_in_out_ad_pullupILi1ELi3ELi4EE8ad_startEv, %function
+_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE20pin_in_out_ad_pullupILi1ELi3ELi4EE8ad_startEv:
+	mov	r2, #193
+	mov	r1, #128
+	ldr	r3, .L357
+	lsl	r2, r2, #4
+	str	r2, [r3]
+	ldr	r2, [r3]
+	lsl	r1, r1, #17
+	orr	r2, r1
+	str	r2, [r3]
+	@ sp needed
+	bx	lr
+.L358:
+	.align	2
+.L357:
+	.word	1073856512
+	.size	_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE20pin_in_out_ad_pullupILi1ELi3ELi4EE8ad_startEv, .-_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE20pin_in_out_ad_pullupILi1ELi3ELi4EE8ad_startEv
+	.thumb_set .LTHUNK15,_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE20pin_in_out_ad_pullupILi1ELi3ELi4EE8ad_startEv
+	.align	1
+	.weak	_ZThn8_N5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE20pin_in_out_ad_pullupILi1ELi3ELi4EE8ad_startEv
+	.code	16
+	.thumb_func
+	.type	_ZThn8_N5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE20pin_in_out_ad_pullupILi1ELi3ELi4EE8ad_startEv, %function
+_ZThn8_N5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE20pin_in_out_ad_pullupILi1ELi3ELi4EE8ad_startEv:
+	push {r3}
+	ldr	r3, .LTHUMBFUNC44
+	mov r12, r3
+	sub	r0, r0, #8
+	pop	{r3}
+	bx	r12
+	.align	2
+.LTHUMBFUNC44:
+	.word	.LTHUNK15
+	.size	_ZThn8_N5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE20pin_in_out_ad_pullupILi1ELi3ELi4EE8ad_startEv, .-_ZThn8_N5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE20pin_in_out_ad_pullupILi1ELi3ELi4EE8ad_startEv
+	.section	.text._ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE20pin_in_out_ad_pullupILi1ELi3ELi4EE6ad_getEv,"axG",%progbits,_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE20pin_in_out_ad_pullupILi1ELi3ELi4EE6ad_getEv,comdat
+	.align	1
+	.weak	_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE20pin_in_out_ad_pullupILi1ELi3ELi4EE6ad_getEv
+	.code	16
+	.thumb_func
+	.type	_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE20pin_in_out_ad_pullupILi1ELi3ELi4EE6ad_getEv, %function
+_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE20pin_in_out_ad_pullupILi1ELi3ELi4EE6ad_getEv:
+.L360:
+	ldr	r3, .L361
+	ldr	r2, [r3, #4]
+	cmp	r2, #0
+	blt	.L360
+	ldr	r0, [r3, #4]
+	@ sp needed
+	lsl	r0, r0, #16
+	lsr	r0, r0, #22
+	bx	lr
+.L362:
+	.align	2
+.L361:
+	.word	1073856512
+	.size	_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE20pin_in_out_ad_pullupILi1ELi3ELi4EE6ad_getEv, .-_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE20pin_in_out_ad_pullupILi1ELi3ELi4EE6ad_getEv
+	.thumb_set .LTHUNK17,_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE20pin_in_out_ad_pullupILi1ELi3ELi4EE6ad_getEv
+	.align	1
+	.weak	_ZThn8_N5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE20pin_in_out_ad_pullupILi1ELi3ELi4EE6ad_getEv
+	.code	16
+	.thumb_func
+	.type	_ZThn8_N5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE20pin_in_out_ad_pullupILi1ELi3ELi4EE6ad_getEv, %function
+_ZThn8_N5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE20pin_in_out_ad_pullupILi1ELi3ELi4EE6ad_getEv:
+	push {r3}
+	ldr	r3, .LTHUMBFUNC45
+	mov r12, r3
+	sub	r0, r0, #8
+	pop	{r3}
+	bx	r12
+	.align	2
+.LTHUMBFUNC45:
+	.word	.LTHUNK17
+	.size	_ZThn8_N5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE20pin_in_out_ad_pullupILi1ELi3ELi4EE6ad_getEv, .-_ZThn8_N5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE20pin_in_out_ad_pullupILi1ELi3ELi4EE6ad_getEv
+	.section	.text._ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE20pin_in_out_ad_pullupILi1ELi2ELi3EE7ad_initEv,"axG",%progbits,_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE20pin_in_out_ad_pullupILi1ELi2ELi3EE7ad_initEv,comdat
+	.align	1
+	.weak	_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE20pin_in_out_ad_pullupILi1ELi2ELi3EE7ad_initEv
+	.code	16
+	.thumb_func
+	.type	_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE20pin_in_out_ad_pullupILi1ELi2ELi3EE7ad_initEv, %function
+_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE20pin_in_out_ad_pullupILi1ELi2ELi3EE7ad_initEv:
+	mov	r0, #144
+	ldr	r3, .L364
+	lsl	r0, r0, #9
+	add	r1, r3, #4
+	ldr	r2, [r1, #124]
+	@ sp needed
+	orr	r2, r0
+	str	r2, [r1, #124]
+	mov	r1, #142
+	mov	r0, #16
+	lsl	r1, r1, #2
+	ldr	r2, [r3, r1]
+	bic	r2, r0
+	str	r2, [r3, r1]
+	ldr	r2, .L364+4
+	sub	r1, r1, #178
+	ldr	r3, [r2]
+	sub	r1, r1, #255
+	bic	r3, r1
+	sub	r1, r1, #133
+	orr	r3, r1
+	str	r3, [r2]
+	bx	lr
+.L365:
+	.align	2
+.L364:
+	.word	1074036736
+	.word	1074020480
+	.size	_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE20pin_in_out_ad_pullupILi1ELi2ELi3EE7ad_initEv, .-_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE20pin_in_out_ad_pullupILi1ELi2ELi3EE7ad_initEv
+	.thumb_set .LTHUNK20,_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE20pin_in_out_ad_pullupILi1ELi2ELi3EE7ad_initEv
+	.align	1
+	.weak	_ZThn8_N5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE20pin_in_out_ad_pullupILi1ELi2ELi3EE7ad_initEv
+	.code	16
+	.thumb_func
+	.type	_ZThn8_N5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE20pin_in_out_ad_pullupILi1ELi2ELi3EE7ad_initEv, %function
+_ZThn8_N5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE20pin_in_out_ad_pullupILi1ELi2ELi3EE7ad_initEv:
+	push {r3}
+	ldr	r3, .LTHUMBFUNC46
+	mov r12, r3
+	sub	r0, r0, #8
+	pop	{r3}
+	bx	r12
+	.align	2
+.LTHUMBFUNC46:
+	.word	.LTHUNK20
+	.size	_ZThn8_N5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE20pin_in_out_ad_pullupILi1ELi2ELi3EE7ad_initEv, .-_ZThn8_N5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE20pin_in_out_ad_pullupILi1ELi2ELi3EE7ad_initEv
+	.section	.text._ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE20pin_in_out_ad_pullupILi1ELi2ELi3EE8ad_startEv,"axG",%progbits,_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE20pin_in_out_ad_pullupILi1ELi2ELi3EE8ad_startEv,comdat
+	.align	1
+	.weak	_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE20pin_in_out_ad_pullupILi1ELi2ELi3EE8ad_startEv
+	.code	16
+	.thumb_func
+	.type	_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE20pin_in_out_ad_pullupILi1ELi2ELi3EE8ad_startEv, %function
+_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE20pin_in_out_ad_pullupILi1ELi2ELi3EE8ad_startEv:
+	mov	r1, #128
+	ldr	r3, .L367
+	ldr	r2, .L367+4
+	lsl	r1, r1, #17
+	str	r2, [r3]
+	ldr	r2, [r3]
+	@ sp needed
+	orr	r2, r1
+	str	r2, [r3]
+	bx	lr
+.L368:
+	.align	2
+.L367:
+	.word	1073856512
+	.word	3080
+	.size	_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE20pin_in_out_ad_pullupILi1ELi2ELi3EE8ad_startEv, .-_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE20pin_in_out_ad_pullupILi1ELi2ELi3EE8ad_startEv
+	.thumb_set .LTHUNK21,_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE20pin_in_out_ad_pullupILi1ELi2ELi3EE8ad_startEv
+	.align	1
+	.weak	_ZThn8_N5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE20pin_in_out_ad_pullupILi1ELi2ELi3EE8ad_startEv
+	.code	16
+	.thumb_func
+	.type	_ZThn8_N5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE20pin_in_out_ad_pullupILi1ELi2ELi3EE8ad_startEv, %function
+_ZThn8_N5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE20pin_in_out_ad_pullupILi1ELi2ELi3EE8ad_startEv:
+	push {r3}
+	ldr	r3, .LTHUMBFUNC47
+	mov r12, r3
+	sub	r0, r0, #8
+	pop	{r3}
+	bx	r12
+	.align	2
+.LTHUMBFUNC47:
+	.word	.LTHUNK21
+	.size	_ZThn8_N5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE20pin_in_out_ad_pullupILi1ELi2ELi3EE8ad_startEv, .-_ZThn8_N5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE20pin_in_out_ad_pullupILi1ELi2ELi3EE8ad_startEv
+	.section	.text._ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE20pin_in_out_ad_pullupILi1ELi2ELi3EE6ad_getEv,"axG",%progbits,_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE20pin_in_out_ad_pullupILi1ELi2ELi3EE6ad_getEv,comdat
+	.align	1
+	.weak	_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE20pin_in_out_ad_pullupILi1ELi2ELi3EE6ad_getEv
+	.code	16
+	.thumb_func
+	.type	_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE20pin_in_out_ad_pullupILi1ELi2ELi3EE6ad_getEv, %function
+_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE20pin_in_out_ad_pullupILi1ELi2ELi3EE6ad_getEv:
+.L370:
+	ldr	r3, .L371
+	ldr	r2, [r3, #4]
+	cmp	r2, #0
+	blt	.L370
+	ldr	r0, [r3, #4]
+	@ sp needed
+	lsl	r0, r0, #16
+	lsr	r0, r0, #22
+	bx	lr
+.L372:
+	.align	2
+.L371:
+	.word	1073856512
+	.size	_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE20pin_in_out_ad_pullupILi1ELi2ELi3EE6ad_getEv, .-_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE20pin_in_out_ad_pullupILi1ELi2ELi3EE6ad_getEv
+	.thumb_set .LTHUNK23,_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE20pin_in_out_ad_pullupILi1ELi2ELi3EE6ad_getEv
+	.align	1
+	.weak	_ZThn8_N5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE20pin_in_out_ad_pullupILi1ELi2ELi3EE6ad_getEv
+	.code	16
+	.thumb_func
+	.type	_ZThn8_N5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE20pin_in_out_ad_pullupILi1ELi2ELi3EE6ad_getEv, %function
+_ZThn8_N5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE20pin_in_out_ad_pullupILi1ELi2ELi3EE6ad_getEv:
+	push {r3}
+	ldr	r3, .LTHUMBFUNC48
+	mov r12, r3
+	sub	r0, r0, #8
+	pop	{r3}
+	bx	r12
+	.align	2
+.LTHUMBFUNC48:
+	.word	.LTHUNK23
+	.size	_ZThn8_N5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE20pin_in_out_ad_pullupILi1ELi2ELi3EE6ad_getEv, .-_ZThn8_N5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE20pin_in_out_ad_pullupILi1ELi2ELi3EE6ad_getEv
+	.section	.text._ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE20pin_in_out_ad_pullupILi1ELi1ELi2EE7ad_initEv,"axG",%progbits,_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE20pin_in_out_ad_pullupILi1ELi1ELi2EE7ad_initEv,comdat
+	.align	1
+	.weak	_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE20pin_in_out_ad_pullupILi1ELi1ELi2EE7ad_initEv
+	.code	16
+	.thumb_func
+	.type	_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE20pin_in_out_ad_pullupILi1ELi1ELi2EE7ad_initEv, %function
+_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE20pin_in_out_ad_pullupILi1ELi1ELi2EE7ad_initEv:
+	mov	r0, #144
+	ldr	r3, .L374
+	lsl	r0, r0, #9
+	add	r1, r3, #4
+	ldr	r2, [r1, #124]
+	@ sp needed
+	orr	r2, r0
+	str	r2, [r1, #124]
+	mov	r1, #142
+	mov	r0, #16
+	lsl	r1, r1, #2
+	ldr	r2, [r3, r1]
+	bic	r2, r0
+	str	r2, [r3, r1]
+	ldr	r2, .L374+4
+	sub	r1, r1, #178
+	ldr	r3, [r2]
+	sub	r1, r1, #255
+	bic	r3, r1
+	sub	r1, r1, #133
+	orr	r3, r1
+	str	r3, [r2]
+	bx	lr
+.L375:
+	.align	2
+.L374:
+	.word	1074036736
+	.word	1074020476
+	.size	_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE20pin_in_out_ad_pullupILi1ELi1ELi2EE7ad_initEv, .-_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE20pin_in_out_ad_pullupILi1ELi1ELi2EE7ad_initEv
+	.thumb_set .LTHUNK26,_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE20pin_in_out_ad_pullupILi1ELi1ELi2EE7ad_initEv
+	.align	1
+	.weak	_ZThn8_N5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE20pin_in_out_ad_pullupILi1ELi1ELi2EE7ad_initEv
+	.code	16
+	.thumb_func
+	.type	_ZThn8_N5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE20pin_in_out_ad_pullupILi1ELi1ELi2EE7ad_initEv, %function
+_ZThn8_N5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE20pin_in_out_ad_pullupILi1ELi1ELi2EE7ad_initEv:
+	push {r3}
+	ldr	r3, .LTHUMBFUNC49
+	mov r12, r3
+	sub	r0, r0, #8
+	pop	{r3}
+	bx	r12
+	.align	2
+.LTHUMBFUNC49:
+	.word	.LTHUNK26
+	.size	_ZThn8_N5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE20pin_in_out_ad_pullupILi1ELi1ELi2EE7ad_initEv, .-_ZThn8_N5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE20pin_in_out_ad_pullupILi1ELi1ELi2EE7ad_initEv
+	.section	.text._ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE20pin_in_out_ad_pullupILi1ELi1ELi2EE8ad_startEv,"axG",%progbits,_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE20pin_in_out_ad_pullupILi1ELi1ELi2EE8ad_startEv,comdat
+	.align	1
+	.weak	_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE20pin_in_out_ad_pullupILi1ELi1ELi2EE8ad_startEv
+	.code	16
+	.thumb_func
+	.type	_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE20pin_in_out_ad_pullupILi1ELi1ELi2EE8ad_startEv, %function
+_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE20pin_in_out_ad_pullupILi1ELi1ELi2EE8ad_startEv:
+	mov	r1, #128
+	ldr	r3, .L377
+	ldr	r2, .L377+4
+	lsl	r1, r1, #17
+	str	r2, [r3]
+	ldr	r2, [r3]
+	@ sp needed
+	orr	r2, r1
+	str	r2, [r3]
+	bx	lr
+.L378:
+	.align	2
+.L377:
+	.word	1073856512
+	.word	3076
+	.size	_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE20pin_in_out_ad_pullupILi1ELi1ELi2EE8ad_startEv, .-_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE20pin_in_out_ad_pullupILi1ELi1ELi2EE8ad_startEv
+	.thumb_set .LTHUNK27,_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE20pin_in_out_ad_pullupILi1ELi1ELi2EE8ad_startEv
+	.align	1
+	.weak	_ZThn8_N5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE20pin_in_out_ad_pullupILi1ELi1ELi2EE8ad_startEv
+	.code	16
+	.thumb_func
+	.type	_ZThn8_N5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE20pin_in_out_ad_pullupILi1ELi1ELi2EE8ad_startEv, %function
+_ZThn8_N5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE20pin_in_out_ad_pullupILi1ELi1ELi2EE8ad_startEv:
+	push {r3}
+	ldr	r3, .LTHUMBFUNC50
+	mov r12, r3
+	sub	r0, r0, #8
+	pop	{r3}
+	bx	r12
+	.align	2
+.LTHUMBFUNC50:
+	.word	.LTHUNK27
+	.size	_ZThn8_N5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE20pin_in_out_ad_pullupILi1ELi1ELi2EE8ad_startEv, .-_ZThn8_N5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE20pin_in_out_ad_pullupILi1ELi1ELi2EE8ad_startEv
+	.section	.text._ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE20pin_in_out_ad_pullupILi1ELi1ELi2EE6ad_getEv,"axG",%progbits,_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE20pin_in_out_ad_pullupILi1ELi1ELi2EE6ad_getEv,comdat
+	.align	1
+	.weak	_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE20pin_in_out_ad_pullupILi1ELi1ELi2EE6ad_getEv
+	.code	16
+	.thumb_func
+	.type	_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE20pin_in_out_ad_pullupILi1ELi1ELi2EE6ad_getEv, %function
+_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE20pin_in_out_ad_pullupILi1ELi1ELi2EE6ad_getEv:
+.L380:
+	ldr	r3, .L381
+	ldr	r2, [r3, #4]
+	cmp	r2, #0
+	blt	.L380
+	ldr	r0, [r3, #4]
+	@ sp needed
+	lsl	r0, r0, #16
+	lsr	r0, r0, #22
+	bx	lr
+.L382:
+	.align	2
+.L381:
+	.word	1073856512
+	.size	_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE20pin_in_out_ad_pullupILi1ELi1ELi2EE6ad_getEv, .-_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE20pin_in_out_ad_pullupILi1ELi1ELi2EE6ad_getEv
+	.thumb_set .LTHUNK29,_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE20pin_in_out_ad_pullupILi1ELi1ELi2EE6ad_getEv
+	.align	1
+	.weak	_ZThn8_N5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE20pin_in_out_ad_pullupILi1ELi1ELi2EE6ad_getEv
+	.code	16
+	.thumb_func
+	.type	_ZThn8_N5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE20pin_in_out_ad_pullupILi1ELi1ELi2EE6ad_getEv, %function
+_ZThn8_N5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE20pin_in_out_ad_pullupILi1ELi1ELi2EE6ad_getEv:
+	push {r3}
+	ldr	r3, .LTHUMBFUNC51
+	mov r12, r3
+	sub	r0, r0, #8
+	pop	{r3}
+	bx	r12
+	.align	2
+.LTHUMBFUNC51:
+	.word	.LTHUNK29
+	.size	_ZThn8_N5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE20pin_in_out_ad_pullupILi1ELi1ELi2EE6ad_getEv, .-_ZThn8_N5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE20pin_in_out_ad_pullupILi1ELi1ELi2EE6ad_getEv
+	.section	.text._ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE20pin_in_out_ad_pullupILi1ELi0ELi1EE7ad_initEv,"axG",%progbits,_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE20pin_in_out_ad_pullupILi1ELi0ELi1EE7ad_initEv,comdat
+	.align	1
+	.weak	_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE20pin_in_out_ad_pullupILi1ELi0ELi1EE7ad_initEv
+	.code	16
+	.thumb_func
+	.type	_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE20pin_in_out_ad_pullupILi1ELi0ELi1EE7ad_initEv, %function
+_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE20pin_in_out_ad_pullupILi1ELi0ELi1EE7ad_initEv:
+	mov	r0, #144
+	ldr	r3, .L384
+	lsl	r0, r0, #9
+	add	r1, r3, #4
+	ldr	r2, [r1, #124]
+	@ sp needed
+	orr	r2, r0
+	str	r2, [r1, #124]
+	mov	r1, #142
+	mov	r0, #16
+	lsl	r1, r1, #2
+	ldr	r2, [r3, r1]
+	bic	r2, r0
+	str	r2, [r3, r1]
+	ldr	r2, .L384+4
+	sub	r1, r1, #178
+	ldr	r3, [r2]
+	sub	r1, r1, #255
+	bic	r3, r1
+	sub	r1, r1, #133
+	orr	r3, r1
+	str	r3, [r2]
+	bx	lr
+.L385:
+	.align	2
+.L384:
+	.word	1074036736
+	.word	1074020472
+	.size	_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE20pin_in_out_ad_pullupILi1ELi0ELi1EE7ad_initEv, .-_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE20pin_in_out_ad_pullupILi1ELi0ELi1EE7ad_initEv
+	.thumb_set .LTHUNK32,_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE20pin_in_out_ad_pullupILi1ELi0ELi1EE7ad_initEv
+	.align	1
+	.weak	_ZThn8_N5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE20pin_in_out_ad_pullupILi1ELi0ELi1EE7ad_initEv
+	.code	16
+	.thumb_func
+	.type	_ZThn8_N5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE20pin_in_out_ad_pullupILi1ELi0ELi1EE7ad_initEv, %function
+_ZThn8_N5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE20pin_in_out_ad_pullupILi1ELi0ELi1EE7ad_initEv:
+	push {r3}
+	ldr	r3, .LTHUMBFUNC52
+	mov r12, r3
+	sub	r0, r0, #8
+	pop	{r3}
+	bx	r12
+	.align	2
+.LTHUMBFUNC52:
+	.word	.LTHUNK32
+	.size	_ZThn8_N5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE20pin_in_out_ad_pullupILi1ELi0ELi1EE7ad_initEv, .-_ZThn8_N5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE20pin_in_out_ad_pullupILi1ELi0ELi1EE7ad_initEv
+	.section	.text._ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE20pin_in_out_ad_pullupILi1ELi0ELi1EE8ad_startEv,"axG",%progbits,_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE20pin_in_out_ad_pullupILi1ELi0ELi1EE8ad_startEv,comdat
+	.align	1
+	.weak	_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE20pin_in_out_ad_pullupILi1ELi0ELi1EE8ad_startEv
+	.code	16
+	.thumb_func
+	.type	_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE20pin_in_out_ad_pullupILi1ELi0ELi1EE8ad_startEv, %function
+_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE20pin_in_out_ad_pullupILi1ELi0ELi1EE8ad_startEv:
+	mov	r1, #128
+	ldr	r3, .L387
+	ldr	r2, .L387+4
+	lsl	r1, r1, #17
+	str	r2, [r3]
+	ldr	r2, [r3]
+	@ sp needed
+	orr	r2, r1
+	str	r2, [r3]
+	bx	lr
+.L388:
+	.align	2
+.L387:
+	.word	1073856512
+	.word	3074
+	.size	_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE20pin_in_out_ad_pullupILi1ELi0ELi1EE8ad_startEv, .-_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE20pin_in_out_ad_pullupILi1ELi0ELi1EE8ad_startEv
+	.thumb_set .LTHUNK33,_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE20pin_in_out_ad_pullupILi1ELi0ELi1EE8ad_startEv
+	.align	1
+	.weak	_ZThn8_N5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE20pin_in_out_ad_pullupILi1ELi0ELi1EE8ad_startEv
+	.code	16
+	.thumb_func
+	.type	_ZThn8_N5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE20pin_in_out_ad_pullupILi1ELi0ELi1EE8ad_startEv, %function
+_ZThn8_N5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE20pin_in_out_ad_pullupILi1ELi0ELi1EE8ad_startEv:
+	push {r3}
+	ldr	r3, .LTHUMBFUNC53
+	mov r12, r3
+	sub	r0, r0, #8
+	pop	{r3}
+	bx	r12
+	.align	2
+.LTHUMBFUNC53:
+	.word	.LTHUNK33
+	.size	_ZThn8_N5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE20pin_in_out_ad_pullupILi1ELi0ELi1EE8ad_startEv, .-_ZThn8_N5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE20pin_in_out_ad_pullupILi1ELi0ELi1EE8ad_startEv
+	.section	.text._ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE20pin_in_out_ad_pullupILi1ELi0ELi1EE6ad_getEv,"axG",%progbits,_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE20pin_in_out_ad_pullupILi1ELi0ELi1EE6ad_getEv,comdat
+	.align	1
+	.weak	_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE20pin_in_out_ad_pullupILi1ELi0ELi1EE6ad_getEv
+	.code	16
+	.thumb_func
+	.type	_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE20pin_in_out_ad_pullupILi1ELi0ELi1EE6ad_getEv, %function
+_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE20pin_in_out_ad_pullupILi1ELi0ELi1EE6ad_getEv:
+.L390:
+	ldr	r3, .L391
+	ldr	r2, [r3, #4]
+	cmp	r2, #0
+	blt	.L390
+	ldr	r0, [r3, #4]
+	@ sp needed
+	lsl	r0, r0, #16
+	lsr	r0, r0, #22
+	bx	lr
+.L392:
+	.align	2
+.L391:
+	.word	1073856512
+	.size	_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE20pin_in_out_ad_pullupILi1ELi0ELi1EE6ad_getEv, .-_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE20pin_in_out_ad_pullupILi1ELi0ELi1EE6ad_getEv
+	.thumb_set .LTHUNK35,_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE20pin_in_out_ad_pullupILi1ELi0ELi1EE6ad_getEv
+	.align	1
+	.weak	_ZThn8_N5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE20pin_in_out_ad_pullupILi1ELi0ELi1EE6ad_getEv
+	.code	16
+	.thumb_func
+	.type	_ZThn8_N5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE20pin_in_out_ad_pullupILi1ELi0ELi1EE6ad_getEv, %function
+_ZThn8_N5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE20pin_in_out_ad_pullupILi1ELi0ELi1EE6ad_getEv:
+	push {r3}
+	ldr	r3, .LTHUMBFUNC54
+	mov r12, r3
+	sub	r0, r0, #8
+	pop	{r3}
+	bx	r12
+	.align	2
+.LTHUMBFUNC54:
+	.word	.LTHUNK35
+	.size	_ZThn8_N5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE20pin_in_out_ad_pullupILi1ELi0ELi1EE6ad_getEv, .-_ZThn8_N5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE20pin_in_out_ad_pullupILi1ELi0ELi1EE6ad_getEv
+	.section	.text._ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE20pin_in_out_ad_pullupILi0ELi11ELi0EE7ad_initEv,"axG",%progbits,_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE20pin_in_out_ad_pullupILi0ELi11ELi0EE7ad_initEv,comdat
+	.align	1
+	.weak	_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE20pin_in_out_ad_pullupILi0ELi11ELi0EE7ad_initEv
+	.code	16
+	.thumb_func
+	.type	_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE20pin_in_out_ad_pullupILi0ELi11ELi0EE7ad_initEv, %function
+_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE20pin_in_out_ad_pullupILi0ELi11ELi0EE7ad_initEv:
+	mov	r0, #144
+	ldr	r3, .L394
+	lsl	r0, r0, #9
+	add	r1, r3, #4
+	ldr	r2, [r1, #124]
+	@ sp needed
+	orr	r2, r0
+	str	r2, [r1, #124]
+	mov	r1, #142
+	mov	r0, #16
+	lsl	r1, r1, #2
+	ldr	r2, [r3, r1]
+	bic	r2, r0
+	str	r2, [r3, r1]
+	ldr	r2, .L394+4
+	sub	r1, r1, #178
+	ldr	r3, [r2]
+	sub	r1, r1, #255
+	bic	r3, r1
+	sub	r1, r1, #133
+	orr	r3, r1
+	str	r3, [r2]
+	bx	lr
+.L395:
+	.align	2
+.L394:
+	.word	1074036736
+	.word	1074020468
+	.size	_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE20pin_in_out_ad_pullupILi0ELi11ELi0EE7ad_initEv, .-_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE20pin_in_out_ad_pullupILi0ELi11ELi0EE7ad_initEv
+	.thumb_set .LTHUNK38,_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE20pin_in_out_ad_pullupILi0ELi11ELi0EE7ad_initEv
+	.align	1
+	.weak	_ZThn8_N5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE20pin_in_out_ad_pullupILi0ELi11ELi0EE7ad_initEv
+	.code	16
+	.thumb_func
+	.type	_ZThn8_N5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE20pin_in_out_ad_pullupILi0ELi11ELi0EE7ad_initEv, %function
+_ZThn8_N5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE20pin_in_out_ad_pullupILi0ELi11ELi0EE7ad_initEv:
+	push {r3}
+	ldr	r3, .LTHUMBFUNC55
+	mov r12, r3
+	sub	r0, r0, #8
+	pop	{r3}
+	bx	r12
+	.align	2
+.LTHUMBFUNC55:
+	.word	.LTHUNK38
+	.size	_ZThn8_N5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE20pin_in_out_ad_pullupILi0ELi11ELi0EE7ad_initEv, .-_ZThn8_N5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE20pin_in_out_ad_pullupILi0ELi11ELi0EE7ad_initEv
+	.section	.text._ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE20pin_in_out_ad_pullupILi0ELi11ELi0EE8ad_startEv,"axG",%progbits,_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE20pin_in_out_ad_pullupILi0ELi11ELi0EE8ad_startEv,comdat
+	.align	1
+	.weak	_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE20pin_in_out_ad_pullupILi0ELi11ELi0EE8ad_startEv
+	.code	16
+	.thumb_func
+	.type	_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE20pin_in_out_ad_pullupILi0ELi11ELi0EE8ad_startEv, %function
+_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE20pin_in_out_ad_pullupILi0ELi11ELi0EE8ad_startEv:
+	mov	r1, #128
+	ldr	r3, .L397
+	ldr	r2, .L397+4
+	lsl	r1, r1, #17
+	str	r2, [r3]
+	ldr	r2, [r3]
+	@ sp needed
+	orr	r2, r1
+	str	r2, [r3]
+	bx	lr
+.L398:
+	.align	2
+.L397:
+	.word	1073856512
+	.word	3073
+	.size	_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE20pin_in_out_ad_pullupILi0ELi11ELi0EE8ad_startEv, .-_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE20pin_in_out_ad_pullupILi0ELi11ELi0EE8ad_startEv
+	.thumb_set .LTHUNK39,_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE20pin_in_out_ad_pullupILi0ELi11ELi0EE8ad_startEv
+	.align	1
+	.weak	_ZThn8_N5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE20pin_in_out_ad_pullupILi0ELi11ELi0EE8ad_startEv
+	.code	16
+	.thumb_func
+	.type	_ZThn8_N5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE20pin_in_out_ad_pullupILi0ELi11ELi0EE8ad_startEv, %function
+_ZThn8_N5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE20pin_in_out_ad_pullupILi0ELi11ELi0EE8ad_startEv:
+	push {r3}
+	ldr	r3, .LTHUMBFUNC56
+	mov r12, r3
+	sub	r0, r0, #8
+	pop	{r3}
+	bx	r12
+	.align	2
+.LTHUMBFUNC56:
+	.word	.LTHUNK39
+	.size	_ZThn8_N5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE20pin_in_out_ad_pullupILi0ELi11ELi0EE8ad_startEv, .-_ZThn8_N5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE20pin_in_out_ad_pullupILi0ELi11ELi0EE8ad_startEv
+	.section	.text._ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE20pin_in_out_ad_pullupILi0ELi11ELi0EE6ad_getEv,"axG",%progbits,_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE20pin_in_out_ad_pullupILi0ELi11ELi0EE6ad_getEv,comdat
+	.align	1
+	.weak	_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE20pin_in_out_ad_pullupILi0ELi11ELi0EE6ad_getEv
+	.code	16
+	.thumb_func
+	.type	_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE20pin_in_out_ad_pullupILi0ELi11ELi0EE6ad_getEv, %function
+_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE20pin_in_out_ad_pullupILi0ELi11ELi0EE6ad_getEv:
+.L400:
+	ldr	r3, .L401
+	ldr	r2, [r3, #4]
+	cmp	r2, #0
+	blt	.L400
+	ldr	r0, [r3, #4]
+	@ sp needed
+	lsl	r0, r0, #16
+	lsr	r0, r0, #22
+	bx	lr
+.L402:
+	.align	2
+.L401:
+	.word	1073856512
+	.size	_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE20pin_in_out_ad_pullupILi0ELi11ELi0EE6ad_getEv, .-_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE20pin_in_out_ad_pullupILi0ELi11ELi0EE6ad_getEv
+	.thumb_set .LTHUNK41,_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE20pin_in_out_ad_pullupILi0ELi11ELi0EE6ad_getEv
+	.align	1
+	.weak	_ZThn8_N5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE20pin_in_out_ad_pullupILi0ELi11ELi0EE6ad_getEv
+	.code	16
+	.thumb_func
+	.type	_ZThn8_N5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE20pin_in_out_ad_pullupILi0ELi11ELi0EE6ad_getEv, %function
+_ZThn8_N5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE20pin_in_out_ad_pullupILi0ELi11ELi0EE6ad_getEv:
+	push {r3}
+	ldr	r3, .LTHUMBFUNC57
+	mov r12, r3
+	sub	r0, r0, #8
+	pop	{r3}
+	bx	r12
+	.align	2
+.LTHUMBFUNC57:
+	.word	.LTHUNK41
+	.size	_ZThn8_N5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE20pin_in_out_ad_pullupILi0ELi11ELi0EE6ad_getEv, .-_ZThn8_N5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE20pin_in_out_ad_pullupILi0ELi11ELi0EE6ad_getEv
+	.section	.text._ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE12pin_oc_plainILi0ELi5EE3getEv,"axG",%progbits,_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE12pin_oc_plainILi0ELi5EE3getEv,comdat
+	.align	1
+	.weak	_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE12pin_oc_plainILi0ELi5EE3getEv
+	.code	16
+	.thumb_func
+	.type	_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE12pin_oc_plainILi0ELi5EE3getEv, %function
+_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE12pin_oc_plainILi0ELi5EE3getEv:
+	ldr	r3, .L404
+	@ sp needed
+	ldr	r0, [r3]
+	lsl	r0, r0, #26
+	lsr	r0, r0, #31
+	bx	lr
+.L405:
+	.align	2
+.L404:
+	.word	1342193660
+	.size	_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE12pin_oc_plainILi0ELi5EE3getEv, .-_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE12pin_oc_plainILi0ELi5EE3getEv
+	.section	.text._ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE12pin_oc_plainILi0ELi4EE3getEv,"axG",%progbits,_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE12pin_oc_plainILi0ELi4EE3getEv,comdat
+	.align	1
+	.weak	_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE12pin_oc_plainILi0ELi4EE3getEv
+	.code	16
+	.thumb_func
+	.type	_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE12pin_oc_plainILi0ELi4EE3getEv, %function
+_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE12pin_oc_plainILi0ELi4EE3getEv:
+	ldr	r3, .L407
+	@ sp needed
+	ldr	r0, [r3]
+	lsl	r0, r0, #27
+	lsr	r0, r0, #31
+	bx	lr
+.L408:
+	.align	2
+.L407:
+	.word	1342193660
+	.size	_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE12pin_oc_plainILi0ELi4EE3getEv, .-_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE12pin_oc_plainILi0ELi4EE3getEv
+	.section	.text._ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE7pu_confEPVmb.part.2,"ax",%progbits
+	.align	1
+	.code	16
+	.thumb_func
+	.type	_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE7pu_confEPVmb.part.2, %function
+_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE7pu_confEPVmb.part.2:
+	mov	r2, #24
+	ldr	r3, [r0]
+	@ sp needed
+	bic	r3, r2
+	sub	r2, r2, #8
+	orr	r3, r2
+	str	r3, [r0]
+	bx	lr
+	.size	_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE7pu_confEPVmb.part.2, .-_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE7pu_confEPVmb.part.2
+	.section	.text._ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE12pin_oc_plainILi0ELi4EE3setEb,"axG",%progbits,_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE12pin_oc_plainILi0ELi4EE3setEb,comdat
+	.align	1
+	.weak	_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE12pin_oc_plainILi0ELi4EE3setEb
+	.code	16
+	.thumb_func
+	.type	_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE12pin_oc_plainILi0ELi4EE3setEb, %function
+_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE12pin_oc_plainILi0ELi4EE3setEb:
+	ldr	r3, .L413
+	mov	r0, #16
+	ldr	r2, [r3]
+	cmp	r1, #0
+	beq	.L411
+	bic	r2, r0
+	str	r2, [r3]
+	b	.L410
+.L411:
+	orr	r2, r0
+	str	r2, [r3]
+	ldr	r3, .L413+4
+	str	r1, [r3]
+.L410:
+	@ sp needed
+	bx	lr
+.L414:
+	.align	2
+.L413:
+	.word	1342210048
+	.word	1342177344
+	.size	_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE12pin_oc_plainILi0ELi4EE3setEb, .-_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE12pin_oc_plainILi0ELi4EE3setEb
+	.section	.text._ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE12pin_oc_plainILi0ELi5EE3setEb,"axG",%progbits,_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE12pin_oc_plainILi0ELi5EE3setEb,comdat
+	.align	1
+	.weak	_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE12pin_oc_plainILi0ELi5EE3setEb
+	.code	16
+	.thumb_func
+	.type	_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE12pin_oc_plainILi0ELi5EE3setEb, %function
+_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE12pin_oc_plainILi0ELi5EE3setEb:
+	ldr	r3, .L418
+	mov	r0, #32
+	ldr	r2, [r3]
+	cmp	r1, #0
+	beq	.L416
+	bic	r2, r0
+	str	r2, [r3]
+	b	.L415
+.L416:
+	orr	r2, r0
+	str	r2, [r3]
+	ldr	r3, .L418+4
+	str	r1, [r3]
+.L415:
+	@ sp needed
+	bx	lr
+.L419:
+	.align	2
+.L418:
+	.word	1342210048
+	.word	1342177408
+	.size	_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE12pin_oc_plainILi0ELi5EE3setEb, .-_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE12pin_oc_plainILi0ELi5EE3setEb
+	.section	.text._ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE12pin_oc_plainILi0ELi5EE4initEv,"axG",%progbits,_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE12pin_oc_plainILi0ELi5EE4initEv,comdat
+	.align	1
+	.weak	_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE12pin_oc_plainILi0ELi5EE4initEv
+	.code	16
+	.thumb_func
+	.type	_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE12pin_oc_plainILi0ELi5EE4initEv, %function
+_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE12pin_oc_plainILi0ELi5EE4initEv:
+	mov	r1, #128
+	ldr	r2, .L421
+	lsl	r1, r1, #9
+	ldr	r3, [r2, #124]
+	@ sp needed
+	orr	r3, r1
+	mov	r1, #7
+	str	r3, [r2, #124]
+	ldr	r2, .L421+4
+	ldr	r3, [r2]
+	bic	r3, r1
+	str	r3, [r2]
+	ldr	r2, .L421+8
+	add	r1, r1, #25
+	ldr	r3, [r2]
+	orr	r3, r1
+	str	r3, [r2]
+	bx	lr
+.L422:
+	.align	2
+.L421:
+	.word	1074036740
+	.word	1074020404
+	.word	1342210048
+	.size	_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE12pin_oc_plainILi0ELi5EE4initEv, .-_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE12pin_oc_plainILi0ELi5EE4initEv
+	.section	.text._ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE12pin_oc_plainILi0ELi4EE4initEv,"axG",%progbits,_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE12pin_oc_plainILi0ELi4EE4initEv,comdat
+	.align	1
+	.weak	_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE12pin_oc_plainILi0ELi4EE4initEv
+	.code	16
+	.thumb_func
+	.type	_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE12pin_oc_plainILi0ELi4EE4initEv, %function
+_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE12pin_oc_plainILi0ELi4EE4initEv:
+	mov	r1, #128
+	ldr	r2, .L424
+	lsl	r1, r1, #9
+	ldr	r3, [r2, #124]
+	@ sp needed
+	orr	r3, r1
+	mov	r1, #7
+	str	r3, [r2, #124]
+	ldr	r2, .L424+4
+	ldr	r3, [r2]
+	bic	r3, r1
+	str	r3, [r2]
+	ldr	r2, .L424+8
+	add	r1, r1, #9
+	ldr	r3, [r2]
+	orr	r3, r1
+	str	r3, [r2]
+	bx	lr
+.L425:
+	.align	2
+.L424:
+	.word	1074036740
+	.word	1074020400
+	.word	1342210048
+	.size	_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE12pin_oc_plainILi0ELi4EE4initEv, .-_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE12pin_oc_plainILi0ELi4EE4initEv
+	.section	.text._Z7wait_usi,"ax",%progbits
+	.align	1
+	.global	_Z7wait_usi
+	.code	16
+	.thumb_func
+	.type	_Z7wait_usi, %function
+_Z7wait_usi:
+@ 18 "main.cpp" 1
+	   .align 2         	
+1: sub r0, #1   	
+   bgt 1b           	
+
+@ 0 "" 2
+	.code	16
+	@ sp needed
+	bx	lr
+	.size	_Z7wait_usi, .-_Z7wait_usi
+	.section	.text._Z4wait8duration,"ax",%progbits
+	.align	1
+	.global	_Z4wait8duration
+	.code	16
+	.thumb_func
+	.type	_Z4wait8duration, %function
+_Z4wait8duration:
+	push	{r3, lr}
+	mov	r3, #3
+	mul	r0, r3
+	bl	_Z7wait_usi
+	@ sp needed
+	pop	{r3, pc}
+	.size	_Z4wait8duration, .-_Z4wait8duration
+	.section	.text._ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE16pullup_configureILi1ELi4ELb1EEEvv,"axG",%progbits,_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE16pullup_configureILi1ELi4ELb1EEEvv,comdat
+	.align	1
+	.weak	_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE16pullup_configureILi1ELi4ELb1EEEvv
+	.code	16
+	.thumb_func
+	.type	_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE16pullup_configureILi1ELi4ELb1EEEvv, %function
+_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE16pullup_configureILi1ELi4ELb1EEEvv:
+	mov	r1, #128
+	ldr	r2, .L429
+	push	{r3, lr}
+	ldr	r3, [r2, #124]
+	lsl	r1, r1, #9
+	orr	r3, r1
+	str	r3, [r2, #124]
+	ldr	r0, .L429+4
+	bl	_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE7pu_confEPVmb.part.2
+	@ sp needed
+	pop	{r3, pc}
+.L430:
+	.align	2
+.L429:
+	.word	1074036740
+	.word	1074020500
+	.size	_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE16pullup_configureILi1ELi4ELb1EEEvv, .-_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE16pullup_configureILi1ELi4ELb1EEEvv
+	.section	.text._ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE11pin_ad_confEPVmi,"axG",%progbits,_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE11pin_ad_confEPVmi,comdat
+	.align	1
+	.weak	_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE11pin_ad_confEPVmi
+	.code	16
+	.thumb_func
+	.type	_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE11pin_ad_confEPVmi, %function
+_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE11pin_ad_confEPVmi:
+	mov	r3, #7
+	ldr	r2, [r0]
+	@ sp needed
+	bic	r2, r3
+	add	r3, r3, #121
+	orr	r3, r2
+	orr	r3, r1
+	str	r3, [r0]
+	bx	lr
+	.size	_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE11pin_ad_confEPVmi, .-_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE11pin_ad_confEPVmi
+	.section	.text.startup.main,"ax",%progbits
+	.align	1
+	.global	main
+	.code	16
+	.thumb_func
+	.type	main, %function
+main:
+	push	{r3, r4, r5, r6, r7, lr}
+	mov	r6, #128
+	mov	r7, #16
+	ldr	r4, .L436
+	lsl	r6, r6, #9
+	ldr	r3, [r4, #124]
+	ldr	r5, .L436+4
+	orr	r3, r6
+	str	r3, [r4, #124]
+	ldr	r0, .L436+8
+	mov	r1, #0
+	bl	_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE11pin_ad_confEPVmi
+	ldr	r3, [r5]
+	orr	r3, r7
+	str	r3, [r5]
+	bl	_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE16pullup_configureILi1ELi4ELb1EEEvv
+	ldr	r3, [r4, #124]
+	ldr	r0, .L436+8
+	orr	r3, r6
+	str	r3, [r4, #124]
+	mov	r1, #0
+	bl	_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE11pin_ad_confEPVmi
+	ldr	r3, [r5]
+	ldr	r0, .L436+8
+	orr	r3, r7
+	str	r3, [r5]
+	mov	r3, #1
+	ldr	r5, .L436+12
+	neg	r3, r3
+	str	r3, [r5]
+	ldr	r3, [r4, #124]
+	mov	r1, #0
+	orr	r3, r6
+	str	r3, [r4, #124]
+	bl	_ZN5hwcpp12lpc1114_baseILi4096ELi32768ELi12000000EE11pin_ad_confEPVmi
+	mov	r4, r5
+.L435:
+	mov	r3, #1
+	neg	r3, r3
+	str	r3, [r4]
+	mov	r0, #0
+	bl	_Z7wait_usi
+	mov	r0, #0
+	str	r0, [r4]
+	bl	_Z7wait_usi
+	b	.L435
+.L437:
+	.align	2
+.L436:
+	.word	1074036740
+	.word	1342275584
+	.word	1074020500
+	.word	1342242880
+	.size	main, .-main
+	.weak	_ZTVN5hwcpp14pin_dummy_typeE
+	.section	.rodata._ZTVN5hwcpp14pin_dummy_typeE,"aG",%progbits,_ZTVN5hwcpp14pin_dummy_typeE,comdat
+	.align	3
+	.type	_ZTVN5hwcpp14pin_dummy_typeE, %object
+	.size	_ZTVN5hwcpp14pin_dummy_typeE, 76
+_ZTVN5hwcpp14pin_dummy_typeE:
+	.word	0
+	.word	0
+	.word	_ZN5hwcpp14pin_dummy_type4initEv
+	.word	_ZN5hwcpp14pin_dummy_type19direction_set_inputEv
+	.word	_ZN5hwcpp14pin_dummy_type20direction_set_outputEv
+	.word	_ZN5hwcpp14pin_dummy_type3getEv
+	.word	_ZN5hwcpp14pin_dummy_type3setEb
+	.word	_ZN5hwcpp14pin_dummy_type13pullup_enableEv
+	.word	_ZN5hwcpp14pin_dummy_type14pullup_disableEv
+	.word	_ZN5hwcpp14pin_dummy_type15pulldown_enableEv
+	.word	_ZN5hwcpp14pin_dummy_type16pulldown_disableEv
+	.word	-4
+	.word	0
+	.word	_ZThn4_N5hwcpp14pin_dummy_type13pullup_enableEv
+	.word	_ZThn4_N5hwcpp14pin_dummy_type14pullup_disableEv
+	.word	-8
+	.word	0
+	.word	_ZThn8_N5hwcpp14pin_dummy_type15pulldown_enableEv
+	.word	_ZThn8_N5hwcpp14pin_dummy_type16pulldown_disableEv
+	.global	_ZN5hwcpp9pin_dummyE
+	.section	.data._ZN5hwcpp9pin_dummyE,"aw",%progbits
+	.align	2
+	.type	_ZN5hwcpp9pin_dummyE, %object
+	.size	_ZN5hwcpp9pin_dummyE, 12
+_ZN5hwcpp9pin_dummyE:
+	.word	_ZTVN5hwcpp14pin_dummy_typeE+8
+	.word	_ZTVN5hwcpp14pin_dummy_typeE+52
+	.word	_ZTVN5hwcpp14pin_dummy_typeE+68
+	.ident	"GCC: (GNU Tools for ARM Embedded Processors) 4.9.3 20141119 (release) [ARM/embedded-4_9-branch revision 218278]"
