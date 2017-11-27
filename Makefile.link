@@ -1,6 +1,8 @@
 #############################################################################
 #
-# makefile.shared common settings and link to bmptk/makefile.inc
+# file : Makefile.link 
+# 
+# common settings and link to the bmptk/makefile.inc
 #
 # (c) Wouter van Ooijen (www.voti.nl) 2017
 #
@@ -9,17 +11,22 @@
 #############################################################################
 
 # the location of the ti software directory
-TI-SOFTWARE       := C:/ti-software
+TI-SOFTWARE        ?= C:/ti-software
+
+# add ourselves
+HWCPP              ?= $(RELATIVE)
+include            $(RELATIVE)makefile.inc
 
 # add Catch
-SEARCH            += $(TI-SOFTWARE)/Catch/include
-
-# include hwlib
-#HWLIB             ?= $(TI-SOFTWARE)/hwlib
-#include           $(HWLIB)/Makefile.inc
+SEARCH             += $(TI-SOFTWARE)/Catch/include
 
 # set BMPTK to the bmptk subdirectory
-BMPTK := C:/ti-software/bmptk
+BMPTK              ?= $(TI-SOFTWARE)/bmptk
 
-# Defer to the bmptk/Makefile.inc to do the work
-include $(BMPTK)/Makefile.inc
+ifeq ($(TARGET),native)
+   # enable exeptions (disabled by default by bmptk)
+   PROJECT_CPP_FLAGS  += -fexceptions 
+endif
+
+# Defer to the bmptk/Makefile.inc to do the real work
+include            $(BMPTK)/Makefile.inc

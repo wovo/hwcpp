@@ -2,9 +2,9 @@
 #
 # makefile-include for bmptk: 
 # sets 
-# - the search path (the hwlib/include directory)
+# - the search path (the hwcpp/include directory)
 # - the dependencies (all hwlib source files)
-# - the sources (only hwlib.cpp)
+# - CPP_LANGUAGE to 17 an enables concepts
 # 
 # (c) Wouter van Ooijen (wouter@voti.nl) 2017
 #
@@ -14,20 +14,17 @@
 #
 #============================================================================
 
-SEARCH            += $(HWCPP)/library
-SEARCH            += $(HWCPP)/library/pins
-SEARCH            += $(HWCPP)/library/targets
+CPP_LANGUAGE      ?= -std=c++17 -fconcepts
 
-SOURCES           += hwcpp.cpp
+SEARCH            += $(HWCPP)/library
+
 HEADERS           += hwcpp.hpp
 HEADERS           += hwcpp-all.hpp
+HEADERS           += basics.hpp 
+HEADERS           += pins.hpp 
+HEADERS           += invert.hpp 
+HEADERS           += target-sam3xa.hpp 
+HEADERS           += target-arduino-due.hpp 
+HEADERS           += target-arduino-uno.hpp 
 
-# in library/pins
-HEADERS           += hwcpp-pin.hpp
-HEADERS           += hwcpp-pin-decorators.hpp
-HEADERS           += hwcpp-pin-dummies.hpp
-
-# library/targets
-HEADERS           += hwcpp-lpc1114.hpp
-HEADERS           += hwcpp-lpc1114fn28.hpp
 

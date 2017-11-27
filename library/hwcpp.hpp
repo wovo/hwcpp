@@ -19,6 +19,10 @@
    #include "target-samx3a.hpp"
 #endif
 
+#ifdef HWCPP_TARGET_arduino_uno
+   #include "target-arduino-uno.hpp"
+#endif
+
 #ifdef HWCPP_TARGET_arduino_due
    #include "target-arduino-due.hpp"
 #endif

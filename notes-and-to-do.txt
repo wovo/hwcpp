@@ -1,8 +1,0 @@
-Notes & ToDo
-
-- show code, dseg, dss sizes from bmptk
-- reinterpret a pin_in_out to something different (so only one to define)
-- add author info, history, copyright to each file
-- string! but be polite and print to cout too
-- get the bmptk intgeration stuff out of the main path
-- check xkcd license

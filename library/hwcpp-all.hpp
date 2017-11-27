@@ -34,7 +34,7 @@
 //
 // ============================================================================
 
-#include <climits>
+//#include <climits>
 
 #ifndef HWCPP_ALL_INCLUDED
 #define HWCPP_ALL_INCLUDED
@@ -44,7 +44,6 @@ namespace hwcpp {
    #include "basics.hpp"
    #include "pins.hpp"
    #include "invert.hpp"
-   #include "buffering.hpp"
 
 }; // namespace hwcpp
 

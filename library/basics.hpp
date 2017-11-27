@@ -20,13 +20,13 @@ constexpr char version[] = "V0.1 2017-11-17 work-in-progress";
 // ============================================================================
   
 // for expressing memory sizes
-constexpr int Kib  = 1024;
-constexpr int Mib  = 1024 * 1024;
+//constexpr int Kib  = 1024;
+//constexpr int Mib  = 1024 * 1024;
    
 // for expressing frequencies
-constexpr int Hz   = 1;
-constexpr int kHz  = 1000;
-constexpr int MHz  = 1000 * 1000;
+//constexpr int Hz   = 1;
+//constexpr int kHz  = 1000;
+//constexpr int MHz  = 1000 * 1000;
    
    
 // ============================================================================
@@ -83,9 +83,9 @@ template<> struct uint_t< 8 * sizeof( unsigned char ) > {
    typedef unsigned char fast;
 };   
 
-template<> struct uint_t< 8 * sizeof( unsigned short ) > {
-   typedef unsigned short fast;
-};   
+//template<> struct uint_t< 8 * sizeof( unsigned short ) > {
+//   typedef unsigned short fast;
+//};   
 
 template<> struct uint_t< 8 * sizeof( unsigned int ) > {
    typedef unsigned int fast;
@@ -101,7 +101,8 @@ template<> struct uint_t< 8 * sizeof( unsigned long long int ) > {
 // The maximum value that fits in a given type
 //
 // ============================================================================   
-   
+  
+/* 
 template< class base >
 struct int_info {};
 
@@ -116,7 +117,7 @@ template<> struct int_info< long long int > {
 template<> struct int_info< int > {
    static constexpr int maximum = INT_MAX;
 };
-
+*/
 
 // ============================================================================
 //
