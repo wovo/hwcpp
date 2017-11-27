@@ -1,22 +1,24 @@
 // ============================================================================
 //
-// file : target-sam3xa.hpp
+// file : target-stm32f103.hpp
 //
-// HAL for atsam3x chip target
+// HAL for stm32f103 chip target
 //
 // ============================================================================
 
-#include "sam3xa.hpp"
+#include "chip-stm32f103.hpp"
 
 namespace hwcpp {
     
 template< int clock = 100 >
-struct target :
-   sam3xa    
+struct target_stm32f103 :
+   chip_stm32f103    
 {       
-   
-}; // template<...> struct target :
+
+}; // template<...> struct target_stm32f103
 	
+using target = target_stm32f103; 
+   
 }; // namespace hwcpp
 
 

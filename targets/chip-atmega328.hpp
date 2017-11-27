@@ -15,7 +15,7 @@
 
 namespace hwcpp {
     
-struct atmega328 {
+struct chip_atmega328 {
 	
 enum class port {
 //   a,
@@ -49,17 +49,17 @@ static void HWLIB_INLINE init(){
 template< port p, uint32_t pin >
 struct _pin_in_out {
 	
-static void HWLIB_INLINE init(){
-   hwcpp::atmega328::init();
-}
-   
-static void HWLIB_INLINE direction_set_direct( direction d ){
-   if( d == direction::input ){
-      *port_direction[ (int)p ] &= ~ ( 0x1U << pin );
-   } else {
-      *port_direction[ (int)p ] |= ( 0x1U << pin );
+   static void HWLIB_INLINE init(){
+      hwcpp::chip_atmega328::init();
    }
-}
+   
+   static void HWLIB_INLINE direction_set_direct( direction d ){
+      if( d == direction::input ){
+         *port_direction[ (int)p ] &= ~ ( 0x1U << pin );
+      } else {
+         *port_direction[ (int)p ] |= ( 0x1U << pin );
+     }
+   }
    
    static void HWLIB_INLINE set_direct( bool v ){
       if( v ){

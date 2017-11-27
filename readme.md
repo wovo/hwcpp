@@ -1,41 +1,53 @@
 **** THIS IS UNDER CONSTRUCTION, NOT FIT FOR USE RIGHT NOW ****
 
-HwCpp is a C++ library for close-to-the-hardware programming,
-using templates, SFINAE, and other modern C++ trickery.
+HwCpp (Hardware-C++) is a C++ close-to-the-hardware library 
+for writing micro-controller applications. 
+It uses modern C++ features (C++17 and concepts) 
+to enable efficient code re-use. It relies heavily on unicorns.
 
-The typical blink-al-led application code using hwcpp is:
+The typical blink-a-LED application using HwCpp is:
 
 ```C++
 #include "hwcpp.hpp"
 
-using led = hwlib::target<>::pin_out< 1, 5 >;
+using target = hwcpp::target<>;
 
-int main( void ){   
-   hwlib::blink< led >();
+int main(){ 
+   hwcpp::blink< target::led >();
 }
 ```
+(This assumes that the target has a default LED, which is the case 
+for the usual suspects like the Arduino Uno, Arduino Due and Blue Pill
+boards.)
 
 -----------------------------------------------------------------------------
 
 Notes & ToDo
 
+- make pin interfaces more regular, use mask in other targets
+- enumerate all pins
+- target frequencies
+- wait & delay, blink in demos.hpp
 - show code, dseg, dss sizes from bmptk
 - reinterpret a pin_in_out to something different (so only one to define)
 - add author info, history, copyright to each file
 - string! but be polite and print to cout too
 - get the bmptk intgeration stuff out of the main path
 - check xkcd license
+- buffer/direct decorators
+- add data type for easier decorators (needed for ports anyway)
+- remove AVR8 hacks from basics.hpp
 
 -----------------------------------------------------------------------------
       
 (c) Wouter van Ooijen (wouter.vanooijen@hu.nl, wouter@voti.nl) 2017
 
-Distributed under the Boost Software License, Version 1.0.
+Except for the notes below, HwCpp is distributed 
+under the Boost Software License, Version 1.0.
 (See accompanying file LICENSE_1_0.txt or copy at 
 http://www.boost.org/LICENSE_1_0.txt)     
 
-note: 
-- lib/targets/hwlib-arduino-due-system-sam3xa.inc is (c) atmel, 
-  under asf license.      
+Notes: 
+- targets/chip-sam3xa.inc is (c) atmel, under asf license.      
 - documentation license different due to xkcd  
       

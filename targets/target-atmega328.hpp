@@ -1,24 +1,24 @@
 // ============================================================================
 //
-// file : target-arduino-uno.hpp
+// file : target-atmega328.hpp
 //
 // HAL for the arduino uno board target
 //
 // ============================================================================
 
-#include "atmega328.hpp"
+#include "chip-atmega328.hpp"
 
 namespace hwcpp {
     
 template< int clock = 100 >
-struct target :
-   atmega328    
+struct target_atmega328 :
+   chip_atmega328    
 {       
     
-   using led = atmega328::pin_in_out< atmega328::port::b, 5 >;
-   
-}; // template<...> struct target :
+}; // template<...> struct target_atmega328
 	
+using target = target_atmega328;    
+   
 }; // namespace hwcpp
 
 

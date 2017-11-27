@@ -1,23 +1,26 @@
 // ============================================================================
 //
-// file : target-arduino-due.hpp
+// file : target-blue-pill.hpp
 //
 // HAL for the arduino due board target
 //
 // ============================================================================
 
-#include "sam3xa.hpp"
+#include "chip-stm32f103.hpp"
 
 namespace hwcpp {
     
 template< int clock = 100 >
-struct target :
-   sam3xa    
+struct target_blue_pill :
+   chip_stm32f103    
 {       
     
-   using led = sam3xa::pin_out< sam3xa::pio::b, 27 >;
+   using led = chip_stm32f103::pin_in_out< chip_stm32f103::port::c, 13 >;
    
-}; // template<...> struct target :
+}; // template<...> struct target_arduino_due
+
+template< int clock = 100 >
+using target = target_blue_pill< clock >; 
 	
 }; // namespace hwcpp
 

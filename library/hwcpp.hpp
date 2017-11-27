@@ -27,6 +27,10 @@
    #include "target-arduino-due.hpp"
 #endif
 
+#ifdef HWCPP_TARGET_blue_pill
+   #include "target-blue-pill.hpp"
+#endif
+
 #ifdef HWCPP_TARGET_native
    #include "target-native.hpp"
 #endif
