@@ -28,6 +28,7 @@ Notes & ToDo
 - enumerate all pins
 - target frequencies
 - wait & delay, blink in demos.hpp
+- .lst is not automatically updated by bmptk
 - show code, dseg, dss sizes from bmptk
 - reinterpret a pin_in_out to something different (so only one to define)
 - add author info, history, copyright to each file

@@ -2,7 +2,7 @@
 
 using target = hwcpp::target<>;
 
-void wait( long long int n ){
+void wait(){
    for( volatile long long int i = 0; i < 150'000; i++ ){} 
 }
 
@@ -12,9 +12,9 @@ void blink(){
    led::init();
    for(;;){    
       led::set( 1 );
-      wait( 150'00 );  
+      wait();  
       led::set( 0 );
-      wait( 150'00 );
+      wait();
    }
 }
 

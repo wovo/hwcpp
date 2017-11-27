@@ -66,7 +66,7 @@ struct _pin_in_out {
    }
    
    static void HWLIB_INLINE set_direct( bool v ){
-      port_block[ (int) p ]->BSRR |= ( v ? mask : ( mask << 16 ));	   
+      port_block[ (int) p ]->BSRR = ( v ? mask : ( mask << 16 ));	   
    }
 
    static int HWLIB_INLINE get_direct( bool v ){
