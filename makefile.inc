@@ -2,9 +2,9 @@
 #
 # makefile-include for bmptk: 
 # sets 
-# - the search path (the hwcpp/include directory)
-# - the dependencies (all hwlib source files)
 # - CPP_LANGUAGE to C++ 17, and enables concepts
+# - the search path (the hwcpp/include and targets directories)
+# - the dependencies (all hwlib source files)
 # 
 # (c) Wouter van Ooijen (wouter@voti.nl) 2017
 #
@@ -14,16 +14,20 @@
 #
 #============================================================================
 
-CPP_LANGUAGE      ?= -std=c++17 -fconcepts
+CPP_LANGUAGE      += -std=c++17 -fconcepts
 
 SEARCH            += $(HWCPP)/targets
 SEARCH            += $(HWCPP)/library
+
+# HwCpp files
 
 HEADERS           += hwcpp.hpp
 HEADERS           += hwcpp-all.hpp
 HEADERS           += basics.hpp 
 HEADERS           += pins.hpp 
 HEADERS           += invert.hpp 
+
+# HAL files
 \
 HEADERS           += chip-sam3xa.hpp 
 HEADERS           += target-sam3xa.hpp 
