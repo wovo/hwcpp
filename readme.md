@@ -78,6 +78,7 @@ under the Boost Software License, Version 1.0.
 http://www.boost.org/LICENSE_1_0.txt)     
 
 Exceptions: 
-   - targets/chip-sam3xa.inc is (c) atmel, under asf license.      
-   - documentation license different due to xkcd  
+   - targets/chip-sam3xa.inc is (c) Atmel (now Microchip), asf license.      
+   - the hwcpp-documentation document is under CC BY-NC 2.5.
+   
       

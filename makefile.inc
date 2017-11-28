@@ -18,6 +18,7 @@ CPP_LANGUAGE      += -std=c++17 -fconcepts
 
 SEARCH            += $(HWCPP)/targets
 SEARCH            += $(HWCPP)/library
+SEARCH            += $(HWCPP)/avr8-hacks
 
 # HwCpp files
 

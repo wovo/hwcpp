@@ -1,0 +1,9 @@
+// AVR has no <ratio>
+
+namespace std {
+template< int n, int d >
+struct ratio {
+   static constexpr int num = n;
+   static constexpr int denum = d;
+};   
+};

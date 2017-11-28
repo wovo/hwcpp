@@ -102,22 +102,23 @@ template<> struct uint_t< 8 * sizeof( unsigned long long int ) > {
 //
 // ============================================================================   
   
-  /*
 template< class base >
-struct int_info {};
+struct int_info {
+    
+};
 
 template<> struct int_info< unsigned long long int > {
-   static constexpr unsigned long long int maximum = ULLONG_MAX;
+   static constexpr unsigned long long int max = ULLONG_MAX;
 };
 
 template<> struct int_info< long long int > {
-   static constexpr unsigned long long int maximum = LLONG_MAX;
+   static constexpr unsigned long long int max = LLONG_MAX;
 };
 
 template<> struct int_info< int > {
-   static constexpr int maximum = INT_MAX;
+   static constexpr int max = INT_MAX;
 };
-*/
+
 
 // ============================================================================
 //

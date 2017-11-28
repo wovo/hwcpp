@@ -37,9 +37,10 @@
 #ifndef HWCPP_ALL_INCLUDED
 #define HWCPP_ALL_INCLUDED
 
-#include <stddef.h> // AVR has no <cstddef>
-#include <limits.h> // AVR has no <climits>
-//#include <ratio.h>
+#include <cstddef>
+#include <climits>
+#include <cstdint>
+#include <ratio>
 
 namespace hwcpp {
 
