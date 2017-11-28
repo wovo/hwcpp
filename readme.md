@@ -58,12 +58,12 @@ Notes & ToDo
       
 (c) Wouter van Ooijen (wouter.vanooijen@hu.nl, wouter@voti.nl) 2017
 
-Except for the notes below, HwCpp is distributed 
+Except for the exceptions below, HwCpp is distributed 
 under the Boost Software License, Version 1.0.
 (See accompanying file LICENSE_1_0.txt or copy at 
 http://www.boost.org/LICENSE_1_0.txt)     
 
-Notes: 
-- targets/chip-sam3xa.inc is (c) atmel, under asf license.      
-- documentation license different due to xkcd  
+Exceptions: 
+   - targets/chip-sam3xa.inc is (c) atmel, under asf license.      
+   - documentation license different due to xkcd  
       
