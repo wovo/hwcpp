@@ -1,6 +1,6 @@
 **** THIS IS UNDER CONSTRUCTION, NOT FIT FOR USE RIGHT NOW ****
 
-HwCpp (Hardware-C++) is a C++ close-to-the-hardware library 
+HwCpp (Hardware-C++) is a heasder-only C++ close-to-the-hardware library 
 for writing micro-controller applications. 
 It uses modern C++ features (C++17 and concepts) 
 to enable efficient code re-use. It relies heavily on unicorns.
@@ -19,6 +19,21 @@ int main(){
 (This assumes that the target has a default LED, which is the case 
 for the usual suspects like the Arduino Uno, Arduino Due and Blue Pill
 boards.)
+
+-----------------------------------------------------------------------------
+
+Subdirectories:
+   attic : junk from that past that I might need one time
+   demo : demonstration projects, organized by target
+   library : the target and hardware independent parts of the library
+   targets : the HALs for the supported taregts
+   
+Files:
+   license_1_0.txt : boost license
+   documentation.docx : HcWpp documentation
+   makefile.inc : add the settings for this library (for bmptk)
+   Makefile.link : build dependemcies on other libraries and bmptk
+   readme.md : this file
 
 -----------------------------------------------------------------------------
 
