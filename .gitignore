@@ -1,6 +1,7 @@
 .clang
 .codelite/
 _codelite.workspace
+~$*.docx
 .project
 *.o
 *.bin
