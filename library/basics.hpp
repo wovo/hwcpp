@@ -102,6 +102,7 @@ template<> struct uint_t< 8 * sizeof( unsigned long long int ) > {
 //
 // ============================================================================   
   
+  /*
 template< class base >
 struct int_info {};
 
@@ -116,7 +117,7 @@ template<> struct int_info< long long int > {
 template<> struct int_info< int > {
    static constexpr int maximum = INT_MAX;
 };
-
+*/
 
 // ============================================================================
 //

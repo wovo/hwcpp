@@ -24,8 +24,8 @@ boards.)
 -----------------------------------------------------------------------------
 
 Subdirectories:
-   - attic   : junk from that past that I might need one time
-   - demo    : demonstration projects, organized by target
+   - attic : junk from that past that I might need one time
+   - demo : demonstration projects, organized by target
    - library : the target and hardware independent parts of the library
    - targets : the HALs for the supported taregts
    
@@ -44,13 +44,13 @@ Notes & ToDo
 - macro for one-time initialization? init(){ call_once< init_proper >(); }
 - port, kitt, I2C, PCF8574A
 - graphics, name problem!, OLED, 84x48
-- AVR has problems with includes and int64?
+- AVR has problems with includes and int64? no libstdc++, hence not a valid target?
 - max toggle frequency, very short waits, busy waits
 - check blue pill default & fast clocks
 - SysTick use can be generalized
 - compile for uno
 - waiting for blue and uno
-- make pin interfaces more regular, use mask in other targets
+- make HAL port/pin interfaces more regular, use mask in other targets
 - enumerate all pins
 - target frequencies
 - wait & delay, blink in demos.hpp
@@ -64,6 +64,9 @@ Notes & ToDo
 - buffer/direct decorators
 - add data type for easier decorators (needed for ports anyway)
 - remove AVR8 hacks from basics.hpp
+- compare code & size with OO-approach
+- document with standardese?
+
 
 -----------------------------------------------------------------------------
       

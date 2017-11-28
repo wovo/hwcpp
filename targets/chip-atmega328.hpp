@@ -6,6 +6,14 @@
 //
 // ============================================================================
 
+namespace std {
+template< int n, int d >
+struct ratio {
+   static constexpr int num = n;
+   static constexpr int denum = d;
+};   
+};
+
 #include "hwcpp-all.hpp"
 
 // the atmel header files use 'register', which is removed in C++17
