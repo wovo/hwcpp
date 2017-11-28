@@ -1,4 +1,4 @@
-These directories contain demos for the Ardono Due board.
+These directories contain demos for the Arduino Due board.
 
 Some of these demos are used by the documentation.
 
