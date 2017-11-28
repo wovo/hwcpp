@@ -32,11 +32,22 @@ static constexpr GPIO_TypeDef * port_block[] = {
 };
    
 static void HWLIB_INLINE init(){
+   static bool done = false;
+   if( done ){
+      return; 
+   }       
+   done = true;	
 	
    // enable the clock to all GPIO ports	
    RCC->APB2ENR |= 
       RCC_APB2ENR_IOPAEN | RCC_APB2ENR_IOPBEN | 
       RCC_APB2ENR_IOPCEN | RCC_APB2ENR_IOPDEN;	
+	  
+   // start the systick timer      
+   SysTick->CTRL  = 0;         // stop the timer
+   SysTick->LOAD  = 0xFFFFFF;  // use its as a 24-bit timer
+   SysTick->VAL   = 0;         // clear the timer
+   SysTick->CTRL  = 5;         // start the timer, 1:1	  
 }
    
 
@@ -76,6 +87,29 @@ struct _pin_in_out {
 
 template< port p, uint32_t pin >
 using pin_in_out = pin_in_out_direct_base< _pin_in_out< p, pin > >;	
+
+// ========= SysTick ==========
+
+static uint_fast64_t now_ticks(){
+	
+   init();	
+   
+   static unsigned int last_low = 0;
+   static unsigned long long int high = 0;
+
+   // the timer ticks down, but we want an up counter
+   unsigned int low = 0xFFFFFF - ( SysTick->VAL & 0xFFFFFF );
+   if( low < last_low ){
+   
+      // the timer rolled over, so increment the high part
+      high += 0x1ULL << 24;
+   }
+   last_low = low;
+
+   // return the aggregated ticks value
+   // the counter runs at 84 MHz 
+   return ( low | high ); 
+} 
 
 }; // struct stm32f103
 

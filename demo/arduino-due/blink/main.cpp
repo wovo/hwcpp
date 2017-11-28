@@ -1,23 +1,8 @@
 #include "hwcpp.hpp"
 
 using target = hwcpp::target<>;
-
-void wait( int n ){
-   for( volatile int i = 0; i < n; i++ ){} 
-}
-
-template< typename pin >
-void blink(){
-   using led = hwcpp::pin_out< pin >;    
-   led::init();
-   for(;;){    
-      led::set( 1 );
-      wait(  50'000 );  
-      led::set( 0 );
-      wait( 200'000 );
-   }
-}
+using timing = target::waiting;
 
 int main(){ 
-   blink< target::led >();
+   hwcpp::blink< target::led, timing::ms< 200 > >();
 }

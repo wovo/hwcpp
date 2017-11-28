@@ -36,7 +36,7 @@ struct sam3xa {
 #define SYS_BOARD_PLLAR     (CKGR_PLLAR_ONE | CKGR_PLLAR_MULA(0xdUL) | CKGR_PLLAR_PLLACOUNT(0x3fUL) | CKGR_PLLAR_DIVA(0x1UL))
 #define SYS_BOARD_MCKR      (PMC_MCKR_PRES_CLK_2 | PMC_MCKR_CSS_PLLA_CLK)
 
-static uint32_t SystemCoreClock;
+static inline uint32_t SystemCoreClock = CHIP_FREQ_MAINCK_RC_4MHZ;
 
 /**
  * \brief Setup the microcontroller system.
@@ -225,5 +225,3 @@ static void system_init_flash( uint32_t dw_clk )
 }
 
 }; // struct sam3xa
-
-//HWLIB_WEAK uint32_t sam3xa::SystemCoreClock = CHIP_FREQ_MAINCK_RC_4MHZ;

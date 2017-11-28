@@ -11,9 +11,10 @@ The typical blink-a-LED application using HwCpp is:
 #include "hwcpp.hpp"
 
 using target = hwcpp::target<>;
+using timing = target::waiting;
 
 int main(){ 
-   hwcpp::blink< target::led >();
+   hwcpp::blink< target::led, timing::ms< 200 > >();
 }
 ```
 (This assumes that the target has a default LED, which is the case 
@@ -23,14 +24,14 @@ boards.)
 -----------------------------------------------------------------------------
 
 Subdirectories:
-   - attic : junk from that past that I might need one time
-   - demo : demonstration projects, organized by target
+   - attic   : junk from that past that I might need one time
+   - demo    : demonstration projects, organized by target
    - library : the target and hardware independent parts of the library
    - targets : the HALs for the supported taregts
    
 Files:
    - license_1_0.txt : boost license
-   - documentation.docx : HcWpp documentation
+   - documentation.docx : HwCpp documentation
    - makefile.inc : add the settings for this library (for bmptk)
    - Makefile.link : build dependemcies on other libraries and bmptk
    - readme.md : this file
@@ -39,6 +40,16 @@ Files:
 
 Notes & ToDo
 
+- bmptk-build for demo (or even for all)
+- macro for one-time initialization? init(){ call_once< init_proper >(); }
+- port, kitt, I2C, PCF8574A
+- graphics, name problem!, OLED, 84x48
+- AVR has problems with includes and int64?
+- max toggle frequency, very short waits, busy waits
+- check blue pill default & fast clocks
+- SysTick use can be generalized
+- compile for uno
+- waiting for blue and uno
 - make pin interfaces more regular, use mask in other targets
 - enumerate all pins
 - target frequencies

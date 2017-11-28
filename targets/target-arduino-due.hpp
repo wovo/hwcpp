@@ -17,6 +17,8 @@ struct target_arduino_due :
     
    using led = chip_sam3xa::pin_out< chip_sam3xa::pio::b, 27 >;
    
+   using waiting = timing_waiting< chip_sam3xa, long long int, MHz< 84 > >;
+   
 }; // template<...> struct target_arduino_due
 
 template< int clock = 100 >

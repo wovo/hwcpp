@@ -26,10 +26,13 @@ HEADERS           += hwcpp-all.hpp
 HEADERS           += basics.hpp 
 HEADERS           += pins.hpp 
 HEADERS           += invert.hpp 
+HEADERS           += timing.hpp 
+HEADERS           += demos.hpp 
 
 # HAL files
-\
+
 HEADERS           += chip-sam3xa.hpp 
+HEADERS           += chip-sam3xa.inc
 HEADERS           += target-sam3xa.hpp 
 HEADERS           += target-arduino-due.hpp 
 

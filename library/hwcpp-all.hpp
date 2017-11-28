@@ -34,16 +34,20 @@
 //
 // ============================================================================
 
-//#include <climits>
-
 #ifndef HWCPP_ALL_INCLUDED
 #define HWCPP_ALL_INCLUDED
+
+#include <stddef.h> // AVR has no <cstddef>
+#include <limits.h> // AVR has no <climits>
+//#include <ratio.h>
 
 namespace hwcpp {
 
    #include "basics.hpp"
    #include "pins.hpp"
    #include "invert.hpp"
+   #include "timing.hpp"
+   #include "demos.hpp"
 
 }; // namespace hwcpp
 

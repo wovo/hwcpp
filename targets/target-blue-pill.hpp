@@ -17,6 +17,8 @@ struct target_blue_pill :
     
    using led = chip_stm32f103::pin_in_out< chip_stm32f103::port::c, 13 >;
    
+   using waiting = timing_waiting< chip_stm32f103, long long int, MHz< 12 > >;   
+   
 }; // template<...> struct target_arduino_due
 
 template< int clock = 100 >
