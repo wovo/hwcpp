@@ -23,17 +23,17 @@ boards.)
 -----------------------------------------------------------------------------
 
 Subdirectories:
-   attic : junk from that past that I might need one time
-   demo : demonstration projects, organized by target
-   library : the target and hardware independent parts of the library
-   targets : the HALs for the supported taregts
+   - attic : junk from that past that I might need one time
+   - demo : demonstration projects, organized by target
+   - library : the target and hardware independent parts of the library
+   - targets : the HALs for the supported taregts
    
 Files:
-   license_1_0.txt : boost license
-   documentation.docx : HcWpp documentation
-   makefile.inc : add the settings for this library (for bmptk)
-   Makefile.link : build dependemcies on other libraries and bmptk
-   readme.md : this file
+   - license_1_0.txt : boost license
+   - documentation.docx : HcWpp documentation
+   - makefile.inc : add the settings for this library (for bmptk)
+   - Makefile.link : build dependemcies on other libraries and bmptk
+   - readme.md : this file
 
 -----------------------------------------------------------------------------
 
