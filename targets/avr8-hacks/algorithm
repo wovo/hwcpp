@@ -1,0 +1,15 @@
+// AVR has no <algoritm>
+
+namespace std {
+
+template< typename A, typename B >
+A max( A a, B b ){ 
+   return a > b ? a : b;
+};   
+
+template< typename A, typename B >
+A min( A a, B b ){ 
+   return a < b ? a : b;
+};   
+
+}; // namespace stdd

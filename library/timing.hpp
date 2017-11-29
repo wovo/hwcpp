@@ -4,15 +4,6 @@
 //
 // ============================================================================
 
-template< long long int f >
-using MHz = std::ratio< f * 1'000'000, 1 >;
-
-template< long long int f >
-using kHz = std::ratio< f * 1'000, 1 >;
-
-template< long long int f >
-using Hz = std::ratio< f * 1, 1 >;
-
 template< typename target, typename ticks_type, typename clock_frequency  >
 struct timing_waiting {
 
@@ -23,8 +14,7 @@ struct timing_waiting {
    }	
 
    static void wait_ticks( uint_fast64_t n ){
-      auto t = target::now_ticks() + n;
-      while( target::now_ticks() < t ){}   
+      target::wait_ticks( n ); 
    }   
 		 
    //========== wait a compile-time known amount of time =========

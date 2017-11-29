@@ -4,10 +4,6 @@
 //
 // ============================================================================
 
-void wait(){
-   for( volatile int i = 0; i < 200'000; i++ ){} 
-}
-
 template< typename pin, typename interval >
 void blink(){
    using led = hwcpp::pin_out< pin >;    
@@ -15,10 +11,25 @@ void blink(){
    interval::init();
    for(;;){    
       led::set( 1 );
-      //wait();
 	  interval::wait(); 
       led::set( 0 );
-	  //wait();
-      interval::wait(); 
+      interval::wait();  
    }
+}
+
+template< typename arg_port, typename interval >
+void kitt(){
+   using port = hwcpp::port_out< arg_port >;	
+   port::init();
+   interval::init();
+   for(;;){
+      for( uint_fast8_t  i = 0; i < port::n_pins; ++i ){
+         port::set_direct( 0x01 << i );      
+         interval::wait(); 
+      }
+      for( uint_fast8_t  i = port::n_pins - 2; i > 0; --i ){
+         port::set_direct( 0x01 << i );      
+         interval::wait(); 
+      }
+   }      
 }

@@ -1,2 +1,0 @@
-// AVR has no <climits>
-#include <limits.h>

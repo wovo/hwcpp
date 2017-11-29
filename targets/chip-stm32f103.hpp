@@ -111,6 +111,11 @@ static uint_fast64_t now_ticks(){
    return ( low | high ); 
 } 
 
+static void wait_ticks( uint_fast64_t n ){
+   auto t = now_ticks() + n;
+   while( now_ticks() < t ){}   
+}   
+
 }; // struct stm32f103
 
 }; // namespace hwcpp

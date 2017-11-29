@@ -40,32 +40,31 @@ Files:
 
 Notes & ToDo
 
+- avr8 limits corrcet & add
+- avr8 timing is now patched
+- avr8 timer-based wait
 - bmptk-build for demo (or even for all)
 - macro for one-time initialization? init(){ call_once< init_proper >(); }
-- port, kitt, I2C, PCF8574A
+- port, I2C, PCF8574A
 - graphics, name problem!, OLED, 84x48
-- AVR has problems with includes and int64? no libstdc++, hence not a valid target?
 - max toggle frequency, very short waits, busy waits
 - check blue pill default & fast clocks
 - SysTick use can be generalized
-- compile for uno
-- waiting for blue and uno
 - make HAL port/pin interfaces more regular, use mask in other targets
 - enumerate all pins
 - target frequencies
-- wait & delay, blink in demos.hpp
-- .lst is not automatically updated by bmptk
 - show code, dseg, dss sizes from bmptk
 - reinterpret a pin_in_out to something different (so only one to define)
 - add author info, history, copyright to each file
 - string! but be polite and print to cout too
-- get the bmptk intgeration stuff out of the main path
-- check xkcd license
 - buffer/direct decorators
-- add data type for easier decorators (needed for ports anyway)
-- remove AVR8 hacks from basics.hpp
 - compare code & size with OO-approach
 - document with standardese?
+- check the timing
+- error message is totally unfriendly
+- complete ports, direct/buffered 
+- HERADERS zijn geen dependencies in bmptk??
+- analog inputs
 
 
 -----------------------------------------------------------------------------

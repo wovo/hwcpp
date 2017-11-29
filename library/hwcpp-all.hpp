@@ -40,12 +40,14 @@
 #include <cstddef>
 #include <climits>
 #include <cstdint>
+#include <algorithm>
 #include <ratio>
 
 namespace hwcpp {
 
    #include "basics.hpp"
    #include "pins.hpp"
+   #include "ports.hpp"
    #include "invert.hpp"
    #include "timing.hpp"
    #include "demos.hpp"

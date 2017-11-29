@@ -3,7 +3,7 @@
 # makefile-include for bmptk: 
 # sets 
 # - CPP_LANGUAGE to C++ 17, and enables concepts
-# - the search path (the hwcpp/include and targets directories)
+# - the search path (the hwcpp/include, targets, and avr8-hacks)
 # - the dependencies (all hwlib source files)
 # 
 # (c) Wouter van Ooijen (wouter@voti.nl) 2017
@@ -16,21 +16,23 @@
 
 CPP_LANGUAGE      += -std=c++17 -fconcepts
 
-SEARCH            += $(HWCPP)/targets
 SEARCH            += $(HWCPP)/library
-SEARCH            += $(HWCPP)/avr8-hacks
+SEARCH            += $(HWCPP)/targets
+SEARCH            += $(HWCPP)/targets/avr8-hacks
 
-# HwCpp files
+# HwCpp core files
 
 HEADERS           += hwcpp.hpp
 HEADERS           += hwcpp-all.hpp
 HEADERS           += basics.hpp 
 HEADERS           += pins.hpp 
+HEADERS           += ports.hpp 
 HEADERS           += invert.hpp 
 HEADERS           += timing.hpp 
+HEADERS           += i2c.hpp 
 HEADERS           += demos.hpp 
 
-# HAL files
+# HwCpp HAL files
 
 HEADERS           += chip-sam3xa.hpp 
 HEADERS           += chip-sam3xa.inc

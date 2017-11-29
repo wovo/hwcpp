@@ -1,0 +1,5 @@
+// AVR has no <climits>
+#include <limits.h>
+
+#define ULLONG_MAX 1
+#define LLONG_MAX 1

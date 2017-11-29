@@ -6,6 +6,7 @@
 //
 // ============================================================================
 
+
 // ============================================================================
 //
 // markers that identify the four kinds of pin,
@@ -13,8 +14,18 @@
 //
 // ============================================================================
 
-struct pin_out_marker :
+// ========= common =========
+
+struct pin_common_marker :
    not_instantiable
+{
+   using value_type = bool;  
+};
+
+// ========= out =========
+
+struct pin_out_marker :
+   pin_common_marker
 {
    static constexpr bool is_pin_out = true;
 };
@@ -24,8 +35,10 @@ concept bool is_pin_out(){
    return T::is_pin_out;
 }
 
+// ========= in =========
+
 struct pin_in_marker :
-   not_instantiable
+   pin_common_marker
 {
    static constexpr bool is_pin_in = true;
 };
@@ -35,8 +48,10 @@ concept bool is_pin_in(){
    return T::is_pin_in;
 }
 
+// ========= in_out =========
+
 struct pin_in_out_marker :
-   not_instantiable
+   pin_common_marker
 {
    static constexpr bool is_pin_in_out = true;
 };
@@ -45,6 +60,8 @@ template< typename T >
 concept bool is_pin_in_out(){ 
    return T::is_pin_in_out;
 }
+
+// ========= oc =========
 
 struct pin_oc_marker :
    not_instantiable

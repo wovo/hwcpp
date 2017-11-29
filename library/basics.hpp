@@ -15,22 +15,6 @@ constexpr char version[] = "V0.1 2017-11-17 work-in-progress";
 
 // ============================================================================
 //
-// some convenient constants
-//
-// ============================================================================
-  
-// for expressing memory sizes
-//constexpr int Kib  = 1024;
-//constexpr int Mib  = 1024 * 1024;
-   
-// for expressing frequencies
-//constexpr int Hz   = 1;
-//constexpr int kHz  = 1000;
-//constexpr int MHz  = 1000 * 1000;
-   
-   
-// ============================================================================
-//
 // inline this function
 //
 // ============================================================================
@@ -40,9 +24,27 @@ constexpr char version[] = "V0.1 2017-11-17 work-in-progress";
 
 // ============================================================================
 //
+// some convenient constants
+//
+// ============================================================================
+  
+template< long long int f >
+using MHz = std::ratio< f * 1'000'000, 1 >;
+
+template< long long int f >
+using kHz = std::ratio< f * 1'000, 1 >;
+
+template< long long int f >
+using Hz = std::ratio< f * 1, 1 >;
+
+   
+// ============================================================================
+//
 // for use in static_assert
 //
 // ============================================================================
+
+struct unsupported {};
 
 template< typename T >
 struct always_false { 
