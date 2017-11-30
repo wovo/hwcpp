@@ -638,7 +638,7 @@ struct pin_oc< T > :
             
    static void HWLIB_INLINE init(){
 	  T::init(); 
-      T::set_direct( 0 );
+      T::direction_set_direct( direction::input );
    }
 };	
 

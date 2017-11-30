@@ -15,6 +15,8 @@ struct target_stm32f103 :
    chip_stm32f103    
 {       
 
+   using waiting = timing_waiting< chip_stm32f103, long long int, MHz< 8 > >;  
+
 }; // template<...> struct target_stm32f103
 	
 using target = target_stm32f103; 

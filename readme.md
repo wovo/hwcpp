@@ -47,9 +47,9 @@ The compilers I currently use are (gcc 7.2.0):
 -----------------------------------------------------------------------------
 
 Notes & ToDo
-- pcf8574a did work but no more??
+- stm full speed
 - pcf857a: needs create_a_port like for pins (check & extend)
-- to kitt this: needs port_out from port_oc (xcheck & extend)
+- to kitt this: needs port_out from port_oc (check & extend)
 - correct pin list for STM chip and for blue pill
 - avr8 limits correct & add
 - avr8 timing is now patched
@@ -72,14 +72,15 @@ Notes & ToDo
 - buffer/direct decorators
 - compare code & size with OO-approach
 - document with standardese?
-- check the timing
-- error message is totally unfriendly
+- check the timing, STM32 base is OK
+- error message are totally unfriendly
 - complete ports, direct/buffered 
 - HEADERS zijn geen dependencies in bmptk??
 - analog inputs
 - macro MAKE_MARKER ?
 - invert_value separate bool needed?
 - check https://os.mbed.com/users/hudakz/code/STM32F103C8T6_Hello/wiki/Homepage
+- can a use<> force the use of the arguments?
 
 
 -----------------------------------------------------------------------------

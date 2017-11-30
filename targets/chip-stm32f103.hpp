@@ -64,8 +64,9 @@ struct _pin_in_out {
 	     ( pin < 8 ) 
 		    ? port_block[ (int) p ]->CRL 
 			: port_block[ (int) p ]->CRH;	   
-      config_word &= ~( 0xF << config_offset );
-      config_word |= ( v << config_offset );  	   
+      config_word = 
+	     ( v << config_offset ) 
+		 | ( config_word & ~( 0xF << config_offset ));
    }	   
 	
    static void HWLIB_INLINE init(){

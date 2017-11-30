@@ -28,7 +28,7 @@ struct i2c_bus_scl_sda :
 {
    using scl = pin_oc< scl_arg >;
    using sda = pin_oc< sda_arg >;  
-   using delay = typename timing::template us< 2 >;
+   using delay = typename timing::template us< 1 >;
    
    static void write_bit( bool x ){
       scl::set( 0 );
