@@ -30,6 +30,10 @@ template< typename target, typename ticks_type, typename clock_frequency  >
 struct timing_waiting :
    timing_waiting_marker
 {
+	
+   static void init(){
+      target::init(); 
+   }	  
 
    //========== the number of ticks in an amount of time =========
 
@@ -52,7 +56,7 @@ struct timing_waiting :
    {
 	   
       static void init(){
-         target::init(); 
+         timing_waiting::init(); 
 	  }	   
 	   
       static void wait(){

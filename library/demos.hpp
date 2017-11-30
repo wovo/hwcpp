@@ -17,6 +17,20 @@ void blink(){
    }
 }
 
+template< typename pin, is_interval interval_high, is_interval interval_low >
+void blink(){
+   using led = hwcpp::pin_out< pin >;    
+   led::init();
+   interval_high::init();
+   interval_low::init();
+   for(;;){    
+      led::set( 1 );
+	  interval_high::wait(); 
+      led::set( 0 );
+      interval_low::wait();  
+   }
+}
+
 template< typename arg_port, is_interval interval >
 void kitt(){
    using port = hwcpp::port_out< arg_port >;	

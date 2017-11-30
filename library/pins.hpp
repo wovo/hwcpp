@@ -9,7 +9,6 @@
 
 // ============================================================================
 //
-// markers that identify the four kinds of pin,
 // and traits that test the presence of these markers
 //
 // ============================================================================
@@ -439,6 +438,14 @@ struct pass_pin_get {
    }
 }; 
 
+template< typename T >
+struct pass_init { 
+    
+   static void HWLIB_INLINE init(){ 
+      return T::init(); 
+   }     
+}; 
+
 
 // ============================================================================
 //
@@ -472,6 +479,7 @@ struct pin_out< T > :
 template< is_pin_oc T >
 struct pin_out< T > : 
    pin_out_marker,
+   pass_init< T >,
    pass_pin_set< T >  
 {};	
 
@@ -585,7 +593,7 @@ struct pin_oc {
       "that class can't be decorated to be a pin_oc" );
 };	
 
-// a pin_out can't be decorated to a pin_in
+// a pin_out can't be decorated to a pin_oc
 
 // a pin_in can't be decorated to a pin_in_out
 
@@ -600,6 +608,7 @@ struct pin_oc< T > :
        if( v ){
           T::direction_set( direction::input );   
        } else {
+          T::direction_set( direction::output );   
           T::set( 0 );
        }
    }
@@ -608,6 +617,7 @@ struct pin_oc< T > :
        if( v ){
           T::direction_set_direct( direction::input );   
        } else {
+          T::direction_set_direct( direction::output );   
           T::set_direct( 0 );
        }
    }
@@ -616,6 +626,7 @@ struct pin_oc< T > :
        if( v ){
           T::direction_set_buffered( direction::input );   
        } else {
+          T::direction_set_buffered( direction::output );   
           T::set_buffered( 0 );
        }
    }

@@ -28,9 +28,9 @@ struct i2c_bus_scl_sda :
 {
    using scl = pin_oc< scl_arg >;
    using sda = pin_oc< sda_arg >;  
-   using delay = typename timing::template us< 1 >;
+   using delay = typename timing::template us< 2 >;
    
-   void write_bit( bool x ){
+   static void write_bit( bool x ){
       scl::set( 0 );
       delay::wait();
       sda::set( x );
@@ -39,7 +39,7 @@ struct i2c_bus_scl_sda :
       delay::wait();
    }
    
-   bool read_bit(){         
+   static bool read_bit(){         
       scl::set( 0 );
       delay::wait();         
       sda::set( 1 );
@@ -50,7 +50,7 @@ struct i2c_bus_scl_sda :
       return result;
    }       
      
-   void write_start(){
+   static void write_start(){
       sda::set( 1 );
       scl::set( 1 );
       delay::wait();
@@ -59,7 +59,7 @@ struct i2c_bus_scl_sda :
       scl::set( 0 );
    }
 
-   void write_stop(){
+   static void write_stop(){
       scl::set( 0 );
       delay::wait();         
       sda::set( 0 );
@@ -70,26 +70,26 @@ struct i2c_bus_scl_sda :
       delay::wait();
    }
        
-   bool read_ack(){
+   static bool read_ack(){
       return ! read_bit(); 
    } 
    
-   void write_ack(){
+   static void write_ack(){
       write_bit( 0 );
    }
 
-   void write_nack(){
+   static void write_nack(){
       write_bit( 1 );
    }
    
-   void write_byte( uint8_t x ){
+   static void write_byte( uint8_t x ){
       for( int i = 0; i < 8; i++ ){
          write_bit( ( x & 0x80 ) != 0 );
          x = x << 1;
       }         
    }
 
-   uint8_t read_byte(){
+   static uint8_t read_byte(){
       uint8_t result = 0;
       for( int i = 0; i < 8; i++ ){
          result = result << 1;
@@ -102,7 +102,7 @@ struct i2c_bus_scl_sda :
    
 public:     
      
-   void init(){
+   static void init(){
       timing::init();
       scl::init();
       sda::init();
@@ -111,7 +111,7 @@ public:
       sda::set( 1 );
    }
    
-   void write( uint8_t address, const uint8_t data[], int n ){
+   static void write( uint8_t address, const uint8_t data[], int n ){
       write_start();
       write_byte( address << 1 );
       for( int i = 0; i < n; i++ ){
@@ -122,7 +122,7 @@ public:
       write_stop();
    }           
    
-   void read( uint8_t address, uint8_t data[], int n ){
+   static void read( uint8_t address, uint8_t data[], int n ){
       write_start();
       write_byte( ( address << 1 ) | 0x01 );    
       read_ack();

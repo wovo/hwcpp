@@ -50,8 +50,8 @@ namespace hwcpp {
    #include "ports.hpp"
    #include "invert.hpp"
    #include "timing.hpp"
-   #include "i2c.hpp"
    #include "demos.hpp"
+   #include "i2c.hpp"
 
    #include "pcf8574.hpp"
 

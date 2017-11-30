@@ -39,10 +39,17 @@ Files:
 
 -----------------------------------------------------------------------------
 
-Notes & ToDo
+The compilers I currently use are (gcc 7.2.0):
+   - for windows native : https://mingw-w64.org/doku.php/download/mingw-builds 
+   - for avr8 : http://blog.zakkemble.co.uk/avr-gcc-builds/ 
+   - for arm/cortex : http://gnutoolchains.com/arm-eabi/ 
 
-- pcf857a: needs create_a_port like for pins
-- to kitt this: needs port_out from port_oc
+-----------------------------------------------------------------------------
+
+Notes & ToDo
+- pcf8574a did work but no more??
+- pcf857a: needs create_a_port like for pins (check & extend)
+- to kitt this: needs port_out from port_oc (xcheck & extend)
 - correct pin list for STM chip and for blue pill
 - avr8 limits correct & add
 - avr8 timing is now patched
@@ -71,6 +78,8 @@ Notes & ToDo
 - HEADERS zijn geen dependencies in bmptk??
 - analog inputs
 - macro MAKE_MARKER ?
+- invert_value separate bool needed?
+- check https://os.mbed.com/users/hudakz/code/STM32F103C8T6_Hello/wiki/Homepage
 
 
 -----------------------------------------------------------------------------

@@ -151,6 +151,23 @@ struct port_out< port > :
 	
 };
    
+template< is_port_oc port > 
+struct port_out< port > :
+   port_out_marker< port::n_pins > 
+{
+   	
+   using value_type = typename port::value_type;
+   
+   static void init() { 
+      port::init();
+   }
+      
+   static void set_direct( value_type v ) {
+      port::set_direct( v );
+   }   
+	
+};
+   
    
 // ============================================================================
 //
@@ -225,8 +242,7 @@ struct port_in< port > :
 	
 };
 
-   
-   
+      
 // ============================================================================
 //
 // create a port_in_out
@@ -244,7 +260,7 @@ struct _port_in_out_implementation< n > :
 {
    using value_type = typename port_in_out_marker< n >::value_type;
    static void init() {}
-    static void direction_set_direct( direction d ) {}
+   static void direction_set_direct( direction d ) {}
    static void set_direct( value_type v ) {}
    static value_type get_direct(){ return 0; }
 };
@@ -287,3 +303,80 @@ struct port_in_out :
    _port_in_out_implementation< sizeof...( arguments ), arguments... >
 {};
    
+// ============================================================================
+//
+// create a port_oc
+//
+// ============================================================================
+
+// fallback, required but never used
+template< int n, typename... arg_tail >
+struct _port_oc_implementation {};
+
+// recursion endpoint
+template< int n > 
+struct _port_oc_implementation< n > : 
+   public port_oc_marker< n > 
+{
+   using value_type = typename port_oc_marker< n >::value_type;
+   static void init() {}
+   static void set_direct( value_type v ) {}
+   static value_type get_direct(){ return 0; }
+};
+
+// add first pin and recurse
+template< int n, typename arg_pin, typename... arg_tail >
+struct _port_oc_implementation<  n, arg_pin, arg_tail... > :
+   _port_oc_implementation< n, arg_tail... >
+{
+
+   using value_type = typename _port_oc_implementation< n, arg_tail... >::value_type;
+   using pin = pin_oc< arg_pin >;	
+      
+   static void init() { 
+      pin::init();
+      _port_oc_implementation< n, arg_tail... >::init(); 
+   }
+      
+   static void direction_set_direct( direction d ) {
+      pin::direction_set_direct( d );
+      _port_oc_implementation< n, arg_tail... >::direction_set_direct( d );
+   }
+   
+   static void set_direct( value_type v ) {
+      pin::set( ( v & 0x01 ) != 0 );
+      _port_oc_implementation< n, arg_tail... >::set_direct( v >> 1 );
+   }
+   
+   static value_type get_direct( value_type v ) {
+      return 
+	     ( pin::get_direct() ? 0x01 : 0x00 ) 
+	     | ( _port_oc_implementation< n, arg_tail... >::get_direct() << 1 );
+   }
+      
+};
+
+// determine the number of arguments and defer to the implementation
+template< typename... arguments > 
+struct port_oc :
+   _port_oc_implementation< sizeof...( arguments ), arguments... >
+{};
+
+template< typename base, int n >
+struct port_oc_buffered_base :
+   port_oc_marker< n >
+{
+   using value_type = typename port_oc_marker< n >::value_type;	
+   
+   static void init(){
+      base::init();	   
+   }	   
+	
+   // inherit the buffered ones
+   
+   static void set_direct( value_type v ){  	
+      base::set( v );
+      base::flush();     	   
+   }
+   
+};

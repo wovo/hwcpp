@@ -2,7 +2,7 @@
 //
 // file : stm32f103.hpp
 //
-// HAL for the stm32f103 AVR chip
+// HAL for the stm32f103 chip
 //
 // ============================================================================
 
@@ -31,7 +31,7 @@ static constexpr GPIO_TypeDef * port_block[] = {
    (GPIO_TypeDef *) GPIOD_BASE
 };
    
-static void HWLIB_INLINE init(){
+static void init(){
    static bool done = false;
    if( done ){
       return; 
@@ -80,13 +80,14 @@ struct _pin_in_out {
       port_block[ (int) p ]->BSRR = ( v ? mask : ( mask << 16 ));	   
    }
 
-   static int HWLIB_INLINE get_direct( bool v ){
+   static int HWLIB_INLINE get_direct(){
       return (( port_block[ (int) p ]->IDR & mask ) != 0 );   
    }
 };
 
 template< port p, uint32_t pin >
 using pin_in_out = pin_in_out_direct_base< _pin_in_out< p, pin > >;	
+
 
 // ========= SysTick ==========
 
@@ -115,6 +116,7 @@ static void wait_ticks( uint_fast64_t n ){
    auto t = now_ticks() + n;
    while( now_ticks() < t ){}   
 }   
+
 
 // ========= chip pins ==========
 
