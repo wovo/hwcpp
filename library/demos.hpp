@@ -4,7 +4,7 @@
 //
 // ============================================================================
 
-template< typename pin, typename interval >
+template< typename pin, is_interval interval >
 void blink(){
    using led = hwcpp::pin_out< pin >;    
    led::init();
@@ -17,7 +17,7 @@ void blink(){
    }
 }
 
-template< typename arg_port, typename interval >
+template< typename arg_port, is_interval interval >
 void kitt(){
    using port = hwcpp::port_out< arg_port >;	
    port::init();

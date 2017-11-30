@@ -25,6 +25,7 @@ boards.)
 
 Subdirectories:
    - attic : junk from that past that I might need one time
+   - library : the peripheral chips supported by the library
    - demo : demonstration projects, organized by target
    - library : the target and hardware independent parts of the library
    - targets : the HALs for the supported taregts
@@ -40,7 +41,10 @@ Files:
 
 Notes & ToDo
 
-- avr8 limits corrcet & add
+- pcf857a: needs create_a_port like for pins
+- to kitt this: needs port_out from port_oc
+- correct pin list for STM chip and for blue pill
+- avr8 limits correct & add
 - avr8 timing is now patched
 - avr8 timer-based wait
 - bmptk-build for demo (or even for all)
@@ -51,20 +55,22 @@ Notes & ToDo
 - check blue pill default & fast clocks
 - SysTick use can be generalized
 - make HAL port/pin interfaces more regular, use mask in other targets
-- enumerate all pins
+- enumerate more pins
 - target frequencies
 - show code, dseg, dss sizes from bmptk
 - reinterpret a pin_in_out to something different (so only one to define)
 - add author info, history, copyright to each file
-- string! but be polite and print to cout too
+- add header to demo's
+- string! but be polite and print to std::cout too
 - buffer/direct decorators
 - compare code & size with OO-approach
 - document with standardese?
 - check the timing
 - error message is totally unfriendly
 - complete ports, direct/buffered 
-- HERADERS zijn geen dependencies in bmptk??
+- HEADERS zijn geen dependencies in bmptk??
 - analog inputs
+- macro MAKE_MARKER ?
 
 
 -----------------------------------------------------------------------------

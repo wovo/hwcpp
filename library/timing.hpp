@@ -4,13 +4,40 @@
 //
 // ============================================================================
 
+struct timing_waiting_marker :
+   not_instantiable
+{
+   static constexpr bool has_waiting = true;
+};
+
+template< typename T >
+concept bool has_waiting(){ 
+   return T::has_waiting;
+}
+
+struct is_interval_marker :
+   not_instantiable
+{
+   static constexpr bool is_interval = true;
+};
+
+template< typename T >
+concept bool is_interval(){ 
+   return T::is_interval;
+}
+
 template< typename target, typename ticks_type, typename clock_frequency  >
-struct timing_waiting {
+struct timing_waiting :
+   timing_waiting_marker
+{
 
    //========== the number of ticks in an amount of time =========
 
    static constexpr ticks_type ticks( long long int n ){ 
-	  return ( n * clock_frequency::num ) / ( 1'000'000'000 * clock_frequency::den );
+	  return ( 
+	     n * clock_frequency::num ) 
+		 / ( 1'000'000'000 * clock_frequency::den 
+      );
    }	
 
    static void wait_ticks( uint_fast64_t n ){
@@ -20,7 +47,9 @@ struct timing_waiting {
    //========== wait a compile-time known amount of time =========
 
    template< long long n >
-   struct ns {
+   struct ns :
+      is_interval_marker
+   {
 	   
       static void init(){
          target::init(); 

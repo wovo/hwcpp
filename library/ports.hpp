@@ -131,7 +131,7 @@ struct port_out :
 template< is_port_out port > 
 struct port_out< port > :
    port
-{}
+{};
    
 template< is_port_in_out port > 
 struct port_out< port > :
@@ -205,10 +205,10 @@ struct port_in :
 template< is_port_in port > 
 struct port_in< port > :
    port
-{}
+{};
    
 template< is_port_in_out port > 
-struct port_out< port > :
+struct port_in< port > :
    port_in_marker< port::n_pins > 
 {
    	
@@ -216,7 +216,7 @@ struct port_out< port > :
    
    static void init() { 
       port::init();
-	  port::direction_set_direct( direction::output );
+	  port::direction_set_direct( direction::output ); 
    }
       
    static value_type set_direct( value_type v ) {
