@@ -19,7 +19,7 @@ CPP_LANGUAGE      += -std=c++17 -fconcepts
 SEARCH            += $(HWCPP)/library
 SEARCH            += $(HWCPP)/targets
 SEARCH            += $(HWCPP)/chips
-SEARCH            += $(HWCPP)/targets/avr8-hacks
+# SEARCH            += $(HWCPP)/targets/avr8-hacks
 
 # HwCpp core files
 
@@ -31,12 +31,16 @@ HEADERS           += ports.hpp
 HEADERS           += invert.hpp 
 HEADERS           += timing.hpp 
 HEADERS           += i2c.hpp 
+HEADERS           += console.hpp 
+HEADERS           += ostream.hpp 
+HEADERS           += string.hpp 
 HEADERS           += demos.hpp 
 
 
 # HwCpp supported external chips
 
 HEADERS           += pcf8574.hpp
+HEADERS           += hd44780.hpp 
 
 
 # HwCpp HAL files
@@ -53,5 +57,9 @@ HEADERS           += target-arduino-uno.hpp
 HEADERS           += chip-stm32f103.hpp 
 HEADERS           += target-stm32f103.hpp 
 HEADERS           += target-blue-pill.hpp 
+
+# add Catch
+# (used by some of the tests)
+SEARCH            += $(CATCH)/include
 
 

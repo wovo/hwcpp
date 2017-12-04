@@ -52,8 +52,12 @@ namespace hwcpp {
    #include "timing.hpp"
    #include "demos.hpp"
    #include "i2c.hpp"
+   #include "string.hpp"
+   #include "ostream.hpp"
+   #include "console.hpp"
 
    #include "pcf8574.hpp"
+   #include "hd44780.hpp"
 
    }; // namespace hwcpp
 

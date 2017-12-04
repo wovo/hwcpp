@@ -1,6 +1,10 @@
-**** THIS IS UNDER CONSTRUCTION, NOT FIT FOR USE RIGHT NOW ****
+**** THIS IS UNDER CONSTRUCTION, NOT FIT FOR COMMON USE RIGHT NOW ****
 
-HwCpp (Hardware-C++) is a heasder-only C++ close-to-the-hardware library 
+The parts that are working can be inferred from the demos.
+
+-----------------------------------------------------------------------------
+
+HwCpp (Hardware-C++) is a header-only C++ close-to-the-hardware library 
 for writing micro-controller applications. 
 It uses modern C++ features (C++17 and concepts) 
 to enable efficient code re-use. It relies heavily on unicorns.
@@ -29,6 +33,7 @@ Subdirectories:
    - demo : demonstration projects, organized by target
    - library : the target and hardware independent parts of the library
    - targets : the HALs for the supported taregts
+   - tests : tests, organized by target
    
 Files:
    - license_1_0.txt : boost license
@@ -47,6 +52,18 @@ The compilers I currently use are (gcc 7.2.0):
 -----------------------------------------------------------------------------
 
 Notes & ToDo
+- arduino uno pins
+- uno adc
+- arduino uno hd44780 shield => demo
+- 8574 / hd44780 interface
+- extend ostream (& tests)
+- extend string (& tests)
+- check everything for constexpr
+- string<> possible?
+- use a marker for string and reverse compare
+- put invert in the pin and port?
+- hwcpp::string
+- rewrite ostream tests to use string, and compare with std::ostream
 - stm full speed
 - pcf857a: needs create_a_port like for pins (check & extend)
 - to kitt this: needs port_out from port_oc (check & extend)
@@ -78,9 +95,17 @@ Notes & ToDo
 - HEADERS zijn geen dependencies in bmptk??
 - analog inputs
 - macro MAKE_MARKER ?
-- invert_value separate bool needed?
+- invert_value separate bool version needed?
 - check https://os.mbed.com/users/hudakz/code/STM32F103C8T6_Hello/wiki/Homepage
 - can a use<> force the use of the arguments?
+- i2c timing, should be part of the bus definition, check in the chip
+- handling of pull-up/pull-down (always direct...) disable always possible?
+- mention the paranoia-2 profiel
+- rename files to hwcpp- ??
+- avr8 hack conflicts with target-native
+- bmptk native does compile the fixed stack??
+- https://github.com/QQuick/Cantino
+- mine Quora for C++ small embedded proponents
 
 
 -----------------------------------------------------------------------------
