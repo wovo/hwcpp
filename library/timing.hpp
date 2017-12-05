@@ -38,7 +38,7 @@ struct timing_waiting :
    //========== the number of ticks in an amount of time =========
 
    static constexpr ticks_type ticks( long long int n ){ 
-	  return ( 
+	  return 1 + ( 
 	     n * clock_frequency::num ) 
 		 / ( 1'000'000'000 * clock_frequency::den 
       );

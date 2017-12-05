@@ -52,7 +52,10 @@ The compilers I currently use are (gcc 7.2.0):
 -----------------------------------------------------------------------------
 
 Notes & ToDo
-- port niow has only set_direct (used in hd44780)
+- ostream ipv make_ostream, console?? any order? or ostream_object<>? or object<>?
+- shield mollen om er andere LCDs op te zetten
+- sheild adc / buttons
+- port now has only set_direct (used in hd44780)
 - uno adc
 - arduino uno hd44780 shield => demo
 - 8574 / hd44780 interface

@@ -113,6 +113,10 @@ struct make_ostream :
 {
     
    T sink;    
+   
+   make_ostream(){
+      T::init();	   
+   }
 	
    make_ostream< T > & putc( char c ){
       sink.putc( c );  

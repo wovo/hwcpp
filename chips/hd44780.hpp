@@ -34,7 +34,7 @@ private:
    using port    = port_out< _port >;  
    using timing  = waiting< _timing >;
    
-   template< int n >
+   template< long long int n >
    static void wait_us(){
 	   timing:: template us< n >::wait();
    }	   
@@ -80,49 +80,8 @@ public:
       goto_xy( 0, 0 );
    }   
    
-   static void putc( char chr ){
-
-      if( size_y == 1 ){
-         if( cursor_x == 8 ){
-            goto_xy( cursor_x, cursor_y );
-         }
-      }   
-      
-      data( chr );
-	  ++cursor_x;
-   } 
-
-   static void init(){
-	  
-      // init the dependencies 
-	  rs::init();
-	  e:: init();
-      port::init();
-      timing::init(); 
-
-      // give LCD time to wake up
-      e::set( 0 );
-      rs::set( 0 );
-      wait_us< 100'000 >();
-
-      // interface initialisation: make sure the LCD is in 4 bit mode
-      // (magical sequence, taken from the HD44780 datasheet)
-      write4( 0x03 );
-      wait_us< 15'000 >();
-      write4( 0x03 );
-      wait_us< 100'000 >();
-      write4( 0x03 );
-      write4( 0x02 );     // now we are in 4 bit mode
-
-      // functional initialisation
-      command( 0x28 );    // 4 bit mode, 2 lines, 5x8 font
-      command( 0x0C );    // display on, no cursor, no blink
-      clear();            // clear display, 'cursor' home
-      goto_xy( 0, 0 );    // 'cursor' home    
-   }    
-   
    static void goto_xy( uint_fast8_t x, uint_fast8_t y ){
-      
+
       if( size_y == 1 ){
          if( x < 8 ){
             command( 0x80 + x );
@@ -154,6 +113,47 @@ public:
 	  
 	  cursor_x = x;
 	  cursor_y = y;
+   }
+
+   static void putc( char chr ){
+
+      if( size_y == 1 ){
+         if( cursor_x == 8 ){
+            goto_xy( cursor_x, cursor_y );
+         }
+      }   
+      
+      data( chr );
+	  ++cursor_x;
+   }     
+   
+   static void init(){
+	  
+      // init the dependencies 
+	  rs::init();
+	  e:: init();
+      port::init();
+      timing::init(); 
+
+      // give LCD time to wake up
+      e::set( 0 );
+      rs::set( 0 );
+      wait_us< 100'000 >();
+
+      // interface initialisation: make sure the LCD is in 4 bit mode
+      // (magical sequence, taken from the HD44780 datasheet)
+      write4( 0x03 );
+      wait_us< 15'000 >();
+      write4( 0x03 );
+      wait_us< 100'000 >();
+      write4( 0x03 );
+      write4( 0x02 );     // now we are in 4 bit mode
+
+      // functional initialisation
+      command( 0x28 );    // 4 bit mode, 2 lines, 5x8 font
+      command( 0x0C );    // display on, no cursor, no blink
+      clear();            // clear display, 'cursor' home
+      goto_xy( 0, 0 );    // 'cursor' home    
    }    
    
 }; // class _hd44780

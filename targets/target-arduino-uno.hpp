@@ -55,7 +55,7 @@ struct target_arduino_uno :
    
 }; // template<...> struct target_arduino_uno
 
-template< int clock = 100 >
+template< long long int clock = 100 >
 using target = target_arduino_uno< clock >; 
 	
 }; // namespace hwcpp
