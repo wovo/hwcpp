@@ -11,6 +11,7 @@ __codelite.workspace
 *.map
 *.lss
 *.lst
+*.md
 bmptk_*_stack.c
 _push.bat
 _pull.bat
