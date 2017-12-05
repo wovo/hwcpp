@@ -240,6 +240,7 @@ public:
 //  
 //============================================================================
 
+/*
 template< typename T >   
 typename std::enable_if < 
    ! std::is_base_of< string< 0 >, T >::value, bool >::type    
@@ -253,7 +254,7 @@ typename std::enable_if <
 operator!=( const T & lhs, const string< 0 > & rhs ){
    return rhs.operator!=( lhs );
 }
-
+*/
 
 //=============================================================================
 //

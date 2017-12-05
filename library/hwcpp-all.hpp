@@ -42,6 +42,9 @@
 #include <cstdint>
 #include <algorithm>
 #include <ratio>
+#include <type_traits>
+
+// #undef putc
 
 namespace hwcpp {
 

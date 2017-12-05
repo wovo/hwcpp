@@ -4,62 +4,115 @@
 //
 // ============================================================================
 
-class hd44780 : public console {
-private:
-   pin_out & pin_e;
-   pin_out & pin_rs;
-   port_out & port_data;
+template< typename T >
+struct waiting : T {};
+/*{
+   static void init(){
+      T::init();
+   }	
+	
+   template< int n >
+   struct us {
+      static void wait(){ 
+         T::us< n >::wait();   
+      }		 
+   };
+};*/   
+
+template< 
+   typename _rs,
+   typename _e,
+   typename _port,
+   int _size_x,
+   int _size_y,
+   typename _timing
+> class _hd44780_rs_e_d_x_y_timing {
+private:	
+	
+   using rs      = pin_out< _rs >;
+   using e       = pin_out< _e >;
+   using port    = port_out< _port >;  
+   using timing  = waiting< _timing >;
    
-   void write4( unsigned char n ){
-      wait_us( 10 );
-      port_data.set( n );
-      wait_us( 20 );
-      pin_e.set( 1 );
-      wait_us( 20 );
-      pin_e.set( 0 );
-      wait_us( 100 );  // enough for most instructions
+   template< int n >
+   static void wait_us(){
+	   timing:: template us< n >::wait();
+   }	   
+   
+   static inline uint_fast8_t cursor_x; 
+   static inline uint_fast8_t cursor_y;   
+   
+   static constexpr uint_fast8_t size_x = _size_x; 
+   static constexpr uint_fast8_t size_y = _size_y;   
+   
+   static void write4( uint_fast8_t d ){
+      wait_us< 10 >();
+      port::set_direct( d );
+      wait_us< 20 >();
+      e::set( 1 );
+      wait_us< 20 >();
+      e::set( 0 );
+	  
+	  // enough for most instructions
+	  // if an instrution needs more, that is his responsibilitty
+      wait_us< 100 >();
    }
 
-   void write8( bool is_data, unsigned char b ){
-      pin_rs.set( is_data );
-      write4( b >> 4 );
-      write4( b );
+   static void write8( bool is_data, uint_fast8_t d ){
+      rs::set( is_data );
+      write4( d >> 4 );
+      write4( d );
    }      
            
 public:
 
-   /// \brief
-   /// construct an interface to an hd44780 chip
-   /// \details
-   /// This constructor creates an interface to 
-   /// an hd44780 LCD controller from the RS and E pins, and the 4-bit port
-   /// to the D4..D8 pins, and the number of lines and characters per line,
-   /// and initializes the controller.
-   hd44780( 
-      pin_out & rs, 
-      pin_out & e, 
-      port_out & data, 
-      uint_fast8_t lines, 
-      uint_fast8_t columns
-    ):
-      console{ columns, lines },
-      pin_e( e ), 
-      pin_rs( rs ), 
-      port_data( data )
-   {
+   static void command( uint_fast8_t cmd ){
+      write8( 0, cmd );
+   }
+
+   static void data( uint_fast8_t chr ){
+      write8( 1, chr );
+   }
+
+   static void clear(){
+      command( 0x01 );
+      wait_us< 5'000 >();
+      goto_xy( 0, 0 );
+   }   
+   
+   static void putc( char chr ){
+
+      if( size_y == 1 ){
+         if( cursor_x == 8 ){
+            goto_xy( cursor_x, cursor_y );
+         }
+      }   
+      
+      data( chr );
+	  ++cursor_x;
+   } 
+
+   static void init(){
+	  
+      // init the dependencies 
+	  rs::init();
+	  e:: init();
+      port::init();
+      timing::init(); 
+
       // give LCD time to wake up
-      pin_e.set( 0 );
-      pin_rs.set( 0 );
-      wait_ms( 100  );
+      e::set( 0 );
+      rs::set( 0 );
+      wait_us< 100'000 >();
 
       // interface initialisation: make sure the LCD is in 4 bit mode
       // (magical sequence, taken from the HD44780 datasheet)
       write4( 0x03 );
-      wait_ms( 15 );
+      wait_us< 15'000 >();
       write4( 0x03 );
-      wait_us( 100 );
+      wait_us< 100'000 >();
       write4( 0x03 );
-      write4( 0x02 );     // 4 bit mode
+      write4( 0x02 );     // now we are in 4 bit mode
 
       // functional initialisation
       command( 0x28 );    // 4 bit mode, 2 lines, 5x8 font
@@ -68,45 +121,16 @@ public:
       goto_xy( 0, 0 );    // 'cursor' home    
    }    
    
-   /// \brief
-   /// write a command byte to the LCD
-   /// \details
-   /// Use this function only for features that are not 
-   /// provided by the console interface, like the definition
-   /// of the user-defined characters.
-   void command( unsigned char cmd ){
-      write8( 0, cmd );
-   }
-
-   /// \brief
-   /// write a data byte to the LCD
-   /// \details
-   /// Use this function only for features that are not 
-   /// provided by the console interface, like the definition
-   /// of the user-defined characters.
-   void data( unsigned char chr ){
-      write8( 1, chr );
-   }
-
-   void clear() override {
-      command( 0x01 );
-      wait_ms( 5 );
-      goto_xy( 0, 0 );
-   }   
-   
-private:
-
-   void goto_xy_implementation( uint_fast16_t new_x, uint_fast16_t new_y ) override {
-      // the NVI goto_xy() has already set the x and y variables
+   static void goto_xy( uint_fast8_t x, uint_fast8_t y ){
       
-      if( lines == 1 ){
+      if( size_y == 1 ){
          if( x < 8 ){
             command( 0x80 + x );
          } else {
             command( 0x80 + 0x40 + ( x - 8 ));
          }
       } else {
-         if( lines == 2 ){
+         if( size_y == 2 ){
             command( 
                0x80
                + (( y > 0 ) 
@@ -127,23 +151,19 @@ private:
              );              
          }
       }
-   }   
-
-   void putc_implementation( char chr ) override {
-      // the NVI putc() handles the x and y variables
-      
-      // handle the gap for 1-line displays
-      if( lines == 1 ){
-         if( x == 8 ){
-            goto_xy( x, y );
-         }
-      }   
-      
-      data( chr );
-   }  
+	  
+	  cursor_x = x;
+	  cursor_y = y;
+   }    
    
-}; // class hd44780
-   
-}; // namespace hwlib
+}; // class _hd44780
 
-#endif // HWLIB_HD44780_H
+template< 
+   typename rs,
+   typename e,
+   typename port,
+   int size_x,
+   int size_y,
+   typename timing
+> using hd44780_rs_e_d_x_y_timing = 
+   _hd44780_rs_e_d_x_y_timing< rs, e, port, size_x, size_y, timing >;
