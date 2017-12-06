@@ -93,6 +93,73 @@ using pin_in_out = pin_in_out_direct_base< _pin_in_out< P, pin > >;
 template< pio P, uint32_t pin >
 using pin_out = pin_out< pin_in_out< P, pin > >;	
 
+// ========= uart ==========
+
+struct uart {
+	
+static inline Uart * hw_uart = UART;
+	
+static void init(){
+   static bool init_done = false;
+   if( init_done ){
+      return;
+   }
+   init_done = true;
+
+   // enable the clock to port A
+   PMC->PMC_PCER0 = 1 << ID_PIOA;
+	
+   // disable PIO Control on PA9 and set up for Peripheral A
+   PIOA->PIO_PDR   = PIO_PA8; 
+   PIOA->PIO_ABSR &= ~PIO_PA8; 
+   PIOA->PIO_PDR   = PIO_PA9; 
+   PIOA->PIO_ABSR &= ~PIO_PA9; 
+
+	// enable the clock to the UART
+    PMC->PMC_PCER0 = ( 0x01 << ID_UART );
+
+    // Reset and disable receiver and transmitter.
+    hw_uart->UART_CR = UART_CR_RSTRX | UART_CR_RSTTX | UART_CR_RXDIS | UART_CR_TXDIS;
+
+    // Set the baudrate to 115200.
+    //hw_uart->UART_BRGR = 45; // MASTER_CLK_FREQ / (16 * 45) = 116666 (close enough).
+    //uart->UART_BRGR = 546; // For ~9600 baud.
+    hw_uart->UART_BRGR = 5241600 / BMPTK_BAUDRATE; 
+
+    // No parity, normal channel mode.
+    hw_uart->UART_MR = UART_MR_PAR_NO;
+
+    // Disable all interrupts.	  
+    hw_uart->UART_IDR = 0xFFFFFFFF;   
+
+    // Enable the receiver and thes trasmitter.
+    hw_uart->UART_CR = UART_CR_RXEN | UART_CR_TXEN;      
+}	
+
+static bool get_is_blocked(){
+   init();	
+   return ( hw_uart->UART_SR & 0x01 ) == 0;
+}
+
+static char get(){
+   // init() is not needed because get_is_blocked() does that
+   while( get_is_blocked() ){}
+   return hw_uart->UART_RHR; 
+}
+
+static bool put_isd_blocked(){
+   init();	
+   return ( hw_uart->UART_SR & 0x02 ) == 0;
+}
+
+static void put( char c ){
+   // init() is not needed because put_is_blocked() does that
+   while( put_isd_blocked() ){}
+   hw_uart->UART_THR = c;
+}
+   	
+};
+
 // ========= SysTick ==========
 
 static uint_fast64_t now_ticks(){

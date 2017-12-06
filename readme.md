@@ -52,6 +52,11 @@ The compilers I currently use are (gcc 7.2.0):
 -----------------------------------------------------------------------------
 
 Notes & ToDo
+- ostream only for a char-pipe (uart is a full pipe<char>)
+- chips -> peripherals?
+- directory shields?
+- make separate hardware entity for the shield, that requires a target as parameter
+- i2c timing profiles
 - ostream ipv make_ostream, console?? any order? or ostream_object<>? or object<>?
 - shield mollen om er andere LCDs op te zetten
 - sheild adc / buttons

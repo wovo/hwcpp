@@ -69,11 +69,41 @@ struct _pin_in_out {
       }
    }
 
-   static int HWLIB_INLINE get_direct( bool v ){
+   static bool HWLIB_INLINE get_direct(){
       return ( *port_data[ (int)p ] & ( 0x1U << pin ) ) != 0;
    }
    
 };
+
+
+// ========= pin_adc ==========
+
+template< uint32_t pin >
+struct pin_adc {
+	
+   static void init(){
+      hwcpp::chip_atmega328::init();
+	  
+      // Enable the ADC
+      ADCSRA |= _BV(ADEN);	  
+   }
+
+   static uint_fast16_t get(){
+	   
+      // select the ADC input pin 
+      ADMUX = pin | ( ADMUX & 0xF0 );
+
+      // start the conversion.
+      ADCSRA |= _BV(ADSC);
+
+      // wait for the conversion to finish
+      while ( (ADCSRA & _BV(ADSC)) );
+
+      return ADC;
+   }
+   
+};
+
 
 // ========= timing ==========
 

@@ -107,19 +107,19 @@ constexpr _numerical_radix hex( 16 );
 // ========== ostream decorator ==========
 
 template< typename T >
-struct make_ostream :
+struct ostream :
    ostream_marker,
    ostream_base
 {
     
    T sink;    
    
-   make_ostream(){
+   ostream(){
       T::init();	   
    }
 	
-   make_ostream< T > & putc( char c ){
-      sink.putc( c );  
+   ostream< T > & putc( char c ){
+      sink.put( c );  
       return *this;	  
    }  
    
@@ -131,7 +131,7 @@ struct make_ostream :
    }   
 
    template< typename lambda >
-   make_ostream & print_aligned( int_fast16_t field_len, lambda print_field ){	
+   ostream & print_aligned( int_fast16_t field_len, lambda print_field ){	
       fill( fill_count( true, field_len ));   
 	  print_field();
       fill( fill_count( false, field_len ));
@@ -145,7 +145,7 @@ struct make_ostream :
       return n;
    }
    
-   make_ostream & print_aligned( const char * s ){	
+   ostream & print_aligned( const char * s ){	
       return print_aligned( 
          strlen( s ), 
 	     [&](){ 
@@ -156,7 +156,7 @@ struct make_ostream :
       );  
    }
    
-   make_ostream & print_aligned( bool v ){	 
+   ostream & print_aligned( bool v ){	 
       return print_aligned( bool_rep( v ) );
    }   
 
