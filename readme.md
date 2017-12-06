@@ -52,6 +52,7 @@ The compilers I currently use are (gcc 7.2.0):
 -----------------------------------------------------------------------------
 
 Notes & ToDo
+- put all stream functionality in a class, using print(..), stream object is a shallow wrapper
 - ostream only for a char-pipe (uart is a full pipe<char>)
 - chips -> peripherals?
 - directory shields?
