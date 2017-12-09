@@ -1,0 +1,37 @@
+Summary of how features of the library have been tested 
+
+target arduino uno
+   overhead
+      demo/arduino-uno/empty
+	     ROM: RAM:
+   UART
+      demo/arduino-uno/hello
+	     shows that 
+      demo/arduino-uno/uart	  
+   GPIO's as pin-out
+      demo/arduino-uno/blink
+	  demo/arduino-uno/kitt
+	  test/arduino-uno/gpio-to-adc
+   A/D input
+      demo/arduino-uno/lcd-keypad-shield
+	  test/arduino-uno/gpio-to-adc
+	  
+target blue-pill
+
+target stm32f103	   
+
+target arduino-due
+	  
+target-sam3xa	
+
+hwcpp-string
+
+hwcpp-console
+
+hwcpp-pins
+
+
+
+  
+	  
+   

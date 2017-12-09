@@ -50,17 +50,26 @@ struct target_arduino_uno :
    make_pin_adc(    a4,  4 );
    make_pin_adc(    a5,  4 );
    
-   make_pin_in_out(   scl,  c,  5 );
-   make_pin_in_out(   sda,  c,  4 );
+   make_pin_in_out(  _scl,  c,  5 );
+   make_pin_in_out(  _sda,  c,  4 );
    make_pin_in_out(    tx,  d,  0 );
    make_pin_in_out(    rx,  d,  1 );
-   make_pin_in_out(   led,  b,  5 );
+   make_pin_in_out(  _led,  b,  5 );
   
-   make_pin_in_out(   sck,  b,  5 );
-   make_pin_in_out(  miso,  b,  4 );
-   make_pin_in_out(  mosi,  b,  3 );
-   make_pin_in_out(    ss,  b,  2 );
+   using scl = pin_oc< _scl >;
+   using sda = pin_oc< _sda >;
+   using led = pin_out< _led >;
    
+   make_pin_in_out(  _sck,  b,  5 );
+   make_pin_in_out( _miso,  b,  4 );
+   make_pin_in_out( _mosi,  b,  3 );
+   make_pin_in_out(   _ss,  b,  2 );
+
+   using sck  = pin_out< _sck >;
+   using miso = pin_in<  _miso >;
+   using mosi = pin_out< _mosi >;
+   using ss   = pin_out< _ss >;
+
 #undef make_pin_in_out   
 #undef make_pin_adc 
    

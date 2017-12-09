@@ -33,13 +33,15 @@ Subdirectories:
    - demo : demonstration projects, organized by target
    - library : the target and hardware independent parts of the library
    - targets : the HALs for the supported taregts
+   - shields : support for some arduino shields
+   - chips : support for chips external to the micro-controller
    - tests : tests, organized by target
    
 Files:
    - license_1_0.txt : boost license
    - documentation.docx : HwCpp documentation
    - makefile.inc : add the settings for this library (for bmptk)
-   - Makefile.link : build dependemcies on other libraries and bmptk
+   - Makefile.link : build dependencies on other libraries and bmptk
    - readme.md : this file
 
 -----------------------------------------------------------------------------
@@ -52,25 +54,46 @@ The compilers I currently use are (gcc 7.2.0):
 -----------------------------------------------------------------------------
 
 Notes & ToDo
+- joystick abstraction, scaling, run-time ratio
+- joystick-buttons shield
+- due ADC, test with DUAL potmeter (shield!)
+- root directory -> include?
+- demos -> examples
+- require only -I of the root directory
+- more port adapters
+- use loop instead of recursion for port creators
+- port dummies, port variables
+- re-organize lib directories: core, protocols, targets, shields, etc.
+- LED etc. in targets should be pin_out and active high
+- likewise for I2C and SPI pins: appropriate type
+- remove redundancy from pin concepts
+- push/pop strictest compiler settings possible
+- dac & adc buffering
+- never use int, long, etc.
+- chips (& other targets) must have a freq constant
+- check uno a/d conversion frequency
+- add a "blank the remainder of the line"
+- print other things (various ints), test
+- http://www.shieldlist.org/dfrobot/lcd
 - put all stream functionality in a class, using print(..), stream object is a shallow wrapper
 - ostream only for a char-pipe (uart is a full pipe<char>)
 - chips -> peripherals?
 - directory shields?
 - make separate hardware entity for the shield, that requires a target as parameter
-- i2c timing profiles
+- i2c timing profiles, should support narrowing
+- idem for SPI!
 - ostream ipv make_ostream, console?? any order? or ostream_object<>? or object<>?
 - shield mollen om er andere LCDs op te zetten
 - sheild adc / buttons
 - port now has only set_direct (used in hd44780)
-- uno adc
-- arduino uno hd44780 shield => demo
 - 8574 / hd44780 interface
 - extend ostream (& tests)
 - extend string (& tests)
 - check everything for constexpr
+- check everything for inline
 - string<> possible?
+- all BUT THE TOP functions in composed ports hould be HWLIB_INLINE 
 - use a marker for string and reverse compare
-- put invert in the pin and port?
 - hwcpp::string
 - rewrite ostream tests to use string, and compare with std::ostream
 - stm full speed

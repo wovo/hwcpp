@@ -17,6 +17,9 @@ struct target_arduino_due :
 
 #define make_pin_in_out( PORT, PIN, NAME ) \
    using NAME  = chip_sam3xa::pin_in_out< chip_sam3xa::pio::PORT, PIN >;
+   
+#define make_pin_adc( NAME, PORT, PIN ) \
+   using NAME  = chip_sam3xa::pin_adc< chip_sam3xa::adcp::PORT, PIN >;   
 
    make_pin_in_out(  a,  8,   d0 );
    make_pin_in_out(  a,  9,   d1 );
@@ -78,7 +81,7 @@ struct target_arduino_due :
    make_pin_in_out(  b, 21,  d52 );
    make_pin_in_out(  b, 14,  d53 );
    
-#undef make_pin_in_out   
+   make_pin_adc( a0, a, 16 );
 
 /*   
       { 0, 16 },  // a0
@@ -114,9 +117,12 @@ struct target_arduino_due :
       { 2, 29 },  // cs0
       { 2, 26 }   // cs1
 */
+   make_pin_in_out(  b, 27,  _led );
     
-   using led = chip_sam3xa::pin_in_out< chip_sam3xa::pio::b, 27 >;
+   using led = hwcpp::pin_out< _led >;
    
+#undef make_pin_in_out   
+
    using waiting = timing_waiting< chip_sam3xa, long long int, MHz< 84 > >;
    
 }; // template<...> struct target_arduino_due

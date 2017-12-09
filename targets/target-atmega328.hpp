@@ -17,6 +17,9 @@ struct target_atmega328 :
 
 #define make_pin_in_out( NAME, PORT, PIN ) \
    using NAME  = chip_atmega328::pin_in_out< chip_atmega328::port::PORT, PIN >;
+
+#define make_pin_adc( NAME, PIN ) \
+   using NAME  = chip_atmega328::pin_adc< PIN >;   
    
    make_pin_in_out(    b0,  b,  0 );
    make_pin_in_out(    b1,  b,  1 );
@@ -44,14 +47,13 @@ struct target_atmega328 :
    make_pin_in_out(    d6,  d,  6 );
    make_pin_in_out(    d7,  d,  7 );
   
-   make_pin_in_out(  adc0,  c,  0 );
-   make_pin_in_out(  adc1,  c,  1 );
-   make_pin_in_out(  adc2,  c,  2 );
-   make_pin_in_out(  adc3,  c,  3 );
-   make_pin_in_out(  adc4,  c,  4 );
-   make_pin_in_out(  adc5,  c,  5 );
+   make_pin_adc(    a0,  0 );
+   make_pin_adc(    a1,  1 );
+   make_pin_adc(    a2,  2 );
+   make_pin_adc(    a3,  3 );
+   make_pin_adc(    a4,  4 );
+   make_pin_adc(    a5,  4 );
 
-  
    make_pin_in_out(   sck,  b,  5 );
    make_pin_in_out(  miso,  b,  4 );
    make_pin_in_out(  mosi,  b,  3 );
@@ -64,6 +66,7 @@ struct target_atmega328 :
    
    
 #undef make_pin_in_out   
+#undef make_pin_adc 
 
    using waiting = timing_waiting< chip_atmega328, long long int, MHz< 1 > >;
     

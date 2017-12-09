@@ -50,18 +50,32 @@ namespace hwcpp {
 
    #include "basics.hpp"
    #include "pins.hpp"
+   #include "pin-adapters.hpp"
    #include "ports.hpp"
+   #include "port-adapters.hpp"
+   #include "adc.hpp"
+   #include "dac.hpp"
    #include "invert.hpp"
+   
    #include "timing.hpp"
-   #include "demos.hpp"
-   #include "i2c.hpp"
    #include "string.hpp"
+   #include "istream.hpp"
    #include "ostream.hpp"
    #include "console.hpp"
 
+   #include "i2c.hpp"
+   
+   #include "demos.hpp"
+   
    #include "pcf8574.hpp"
    #include "hd44780.hpp"
+   
+   namespace shields {   
 
-   }; // namespace hwcpp
+      #include "lcd-buttons.hpp"
+   
+   }; // namespace shields   
+
+}; // namespace hwcpp
 
 #endif // #ifndef HWCPP_ALL_INCLUDED

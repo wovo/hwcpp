@@ -23,6 +23,7 @@ CPP_LANGUAGE      += -std=c++17 -fconcepts
 SEARCH            += $(HWCPP)/library
 SEARCH            += $(HWCPP)/targets
 SEARCH            += $(HWCPP)/chips
+SEARCH            += $(HWCPP)/shields
 
 # dirty hack because the AVR8 compiler lacks certain files
 
@@ -42,11 +43,16 @@ HEADERS           += hwcpp.hpp
 HEADERS           += hwcpp-all.hpp
 HEADERS           += basics.hpp 
 HEADERS           += pins.hpp 
+HEADERS           += pin-adapters.hpp 
 HEADERS           += ports.hpp 
+HEADERS           += port-adapters.hpp 
+HEADERS           += adc.hpp 
+HEADERS           += dac.hpp 
 HEADERS           += invert.hpp 
 HEADERS           += timing.hpp 
 HEADERS           += i2c.hpp 
 HEADERS           += console.hpp 
+HEADERS           += istream.hpp 
 HEADERS           += ostream.hpp 
 HEADERS           += string.hpp 
 HEADERS           += demos.hpp 
@@ -56,6 +62,11 @@ HEADERS           += demos.hpp
 
 HEADERS           += pcf8574.hpp
 HEADERS           += hd44780.hpp 
+
+
+# HwCpp supported arduyino shields
+
+HEADERS           += lcd-buttons.hpp 
 
 
 # HwCpp HAL files

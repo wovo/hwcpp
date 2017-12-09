@@ -6,27 +6,33 @@
 
 // T must have:
 //    putc( c )
-//    x_size, y_size
+//    position_type
+//    size_x, size_y
 //    cursor_x , cursor_y
 //    goto_xy( x, y )
 //    flush()
 
 template< typename T >
-class console : public T {
-private:
-   static inline uint_fast8_t goto_xy_state = 0;
-
-public:
-
+struct console_add_clear : T {
+	
    static void clear(){
-      for( uint_fast8_t y = 0; y < T::n_lines; ++y ){
+      for( typename T::xy_t y = 0; y < T::size_y; ++y ){
          T::goto_xy( 0, y );
-         for( uint_fast8_t x = 0; x < T::n_columns; ++x ){
-            putc( ' ' );
+         for( typename T::xy_t x = 0; x < T::size_x; ++x ){
+            T::putc( ' ' );
          }
       }
       T::goto_xy( 0, 0 );
    }
+   
+}; // struct console_add_clear	
+
+template< typename T >
+struct console : T {
+private:
+   static inline uint_fast8_t goto_xy_state = 0;
+
+public:
 
    static void putc( char c ){
 
@@ -53,7 +59,7 @@ public:
          case 4 :
             T::cursor_y += c - '0' ;
             goto_xy_state = 0;
-            goto_xy( T::cursor_x, T::cursor_y );
+            T::goto_xy( T::cursor_x, T::cursor_y );
             return;
 
       }
@@ -68,10 +74,15 @@ public:
          T::goto_xy( 0, 0 );
 
       } else if( c == '\f' ){
-         clear();
+         T::clear();
 
       } else if( c == '\t' ){
          goto_xy_state = 1;
+
+      } else if( c == '\a' ){
+         while( T::cursor_x < T::size_x ){
+	        T::putc( ' ' );
+         }			
 
       } else if(
          ( T::cursor_x >= 0 )
@@ -84,4 +95,4 @@ public:
       }
    }
    
-}; // class console
+}; // struct console

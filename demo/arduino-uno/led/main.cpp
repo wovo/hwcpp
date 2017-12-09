@@ -1,6 +1,8 @@
 #include "hwcpp.hpp"
 
+using target = hwcpp::target<>;
+
 int main(){ 
-   hwcpp::target::led::init();
-   hwcpp::target::led::set( 1 );
+   target::led::init();
+   target::led::set( 1 );
 }

@@ -79,27 +79,32 @@ struct _pin_in_out {
 // ========= pin_adc ==========
 
 template< uint32_t pin >
-struct pin_adc {
+struct pin_adc : 
+   adc< 10 > 
+{
 	
    static void init(){
       hwcpp::chip_atmega328::init();
+      
+      // reference is AVCC
+      ADMUX = 0x01 << REFS0;
 	  
-      // Enable the ADC
-      ADCSRA |= _BV(ADEN);	  
+      // Enable the ADC and prescale
+      ADCSRA = 7 | ( 0x01 << ADEN );	  
    }
 
    static uint_fast16_t get(){
 	   
       // select the ADC input pin 
-      ADMUX = pin | ( ADMUX & 0xF0 );
+      ADMUX = ( 0x01 << REFS0 ) | pin;
 
       // start the conversion.
-      ADCSRA |= _BV(ADSC);
+      ADCSRA |= 0x01 << ADSC;
 
       // wait for the conversion to finish
-      while ( (ADCSRA & _BV(ADSC)) );
+      while ( (ADCSRA & ( 0x01 << ADSC )) != 0 ){}
 
-      return ADC;
+      return ADCW;
    }
    
 };

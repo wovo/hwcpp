@@ -20,30 +20,32 @@ struct waiting : T {};
 };*/   
 
 template< 
-   typename _rs,
-   typename _e,
-   typename _port,
-   int _size_x,
-   int _size_y,
-   typename _timing
+   typename  _rs,
+   typename  _e,
+   typename  _port,
+   uint32_t  _size_x,
+   uint32_t  _size_y,
+   typename  _timing
 > class _hd44780_rs_e_d_x_y_timing {
-private:	
+public:	
 	
    using rs      = pin_out< _rs >;
    using e       = pin_out< _e >;
    using port    = port_out< _port >;  
    using timing  = waiting< _timing >;
    
+   using xy_t    = uint_fast8_t;
+   
    template< long long int n >
    static void wait_us(){
 	   timing:: template us< n >::wait();
    }	   
    
-   static inline uint_fast8_t cursor_x; 
-   static inline uint_fast8_t cursor_y;   
+   static inline xy_t cursor_x; 
+   static inline xy_t cursor_y;   
    
-   static constexpr uint_fast8_t size_x = _size_x; 
-   static constexpr uint_fast8_t size_y = _size_y;   
+   static constexpr xy_t size_x = _size_x; 
+   static constexpr xy_t size_y = _size_y;   
    
    static void write4( uint_fast8_t d ){
       wait_us< 10 >();
@@ -80,7 +82,7 @@ public:
       goto_xy( 0, 0 );
    }   
    
-   static void goto_xy( uint_fast8_t x, uint_fast8_t y ){
+   static void goto_xy( xy_t x, xy_t y ){
 
       if( size_y == 1 ){
          if( x < 8 ){
@@ -162,8 +164,8 @@ template<
    typename rs,
    typename e,
    typename port,
-   int size_x,
-   int size_y,
+   uint32_t size_x,
+   uint32_t size_y,
    typename timing
-> using hd44780_rs_e_d_x_y_timing = 
-   _hd44780_rs_e_d_x_y_timing< rs, e, port, size_x, size_y, timing >;
+> using hd44780_rs_e_d_x_y_timing = console<
+   _hd44780_rs_e_d_x_y_timing< rs, e, port, size_x, size_y, timing >>;
