@@ -101,12 +101,11 @@ struct port_oc_root :
 template< typename T >
 concept bool is_port_out = requires {
    T::is_port_out;
-   
    { T::init() } -> void;
 	  
    { T::set( T::value_type ) } -> void;
-   { T::set_direct( T::value_type ) } -> void;
-   { T::set_buffered( T::value_type ) } -> void;
+//   { T::set_direct( T::value_type ) } -> void;
+//   { T::set_buffered( T::value_type ) } -> void;
    { T::flush() } -> void;
 };
 
@@ -185,7 +184,10 @@ struct _port_out_implementation< n > :
 {
    using value_type = typename port_out_root< n >::value_type;
    static void init(){}
+   static void set( value_type v ){}
    static void set_direct( value_type v ){}
+   static void set_buffered( value_type v ){}
+   static void flush(){}
 };
 
 // add first pin and recurse
@@ -194,7 +196,9 @@ struct _port_out_implementation<  n, arg_pin, arg_tail... > :
    _port_out_implementation< n, arg_tail... >
 {
 
-   using value_type = typename _port_out_implementation< n, arg_tail... >::value_type;
+   using value_type = typename 
+      _port_out_implementation< n, arg_tail... >::value_type;
+	  
    using pin = pin_out< arg_pin >;	
       
    static void init() { 
@@ -202,9 +206,24 @@ struct _port_out_implementation<  n, arg_pin, arg_tail... > :
       _port_out_implementation< n, arg_tail... >::init(); 
    }
       
-   static void set_direct( value_type v ) {
+   static void set( value_type v ) {
       pin::set( ( v & 0x01 ) != 0 );
+      _port_out_implementation< n, arg_tail... >::set( v >> 1 );
+   }
+      
+   static void set_direct( value_type v ) {
+      pin::set_direct( ( v & 0x01 ) != 0 );
       _port_out_implementation< n, arg_tail... >::set_direct( v >> 1 );
+   }
+      
+   static void set_buffered( value_type v ) {
+      pin::set_buffered( ( v & 0x01 ) != 0 );
+      _port_out_implementation< n, arg_tail... >::set_buffered( v >> 1 );
+   }
+      
+   static void flush() {
+      pin::flush();
+      _port_out_implementation< n, arg_tail... >::flush();
    }
       
 };

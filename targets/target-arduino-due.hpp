@@ -18,8 +18,8 @@ struct target_arduino_due :
 #define make_pin_in_out( PORT, PIN, NAME ) \
    using NAME  = chip_sam3xa::pin_in_out< chip_sam3xa::pio::PORT, PIN >;
    
-#define make_pin_adc( NAME, PORT, PIN ) \
-   using NAME  = chip_sam3xa::pin_adc< chip_sam3xa::adcp::PORT, PIN >;   
+#define make_pin_adc( NAME, CHANNEL ) \
+   using NAME  = chip_sam3xa::pin_adc< CHANNEL >;   
 
    make_pin_in_out(  a,  8,   d0 );
    make_pin_in_out(  a,  9,   d1 );
@@ -81,7 +81,8 @@ struct target_arduino_due :
    make_pin_in_out(  b, 21,  d52 );
    make_pin_in_out(  b, 14,  d53 );
    
-   make_pin_adc( a0, a, 16 );
+   make_pin_adc( a0, 7 );
+   make_pin_adc( a1, 7 );
 
 /*   
       { 0, 16 },  // a0

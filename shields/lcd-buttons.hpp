@@ -7,7 +7,7 @@
 template< typename target, typename waiting >
 struct lcd_buttons {
 	
-   // https://www.dfrobot.com/wiki/index.php/Arduino_LCD_KeyPad_Shield_(SKU:_DFR0009)
+   // www.dfrobot.com/wiki/index.php/Arduino_LCD_KeyPad_Shield_(SKU:_DFR0009)
 	
    using lcd = hwcpp::hd44780_rs_e_d_x_y_timing< 
       typename target::d8, 

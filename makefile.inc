@@ -67,6 +67,7 @@ HEADERS           += hd44780.hpp
 # HwCpp supported arduyino shields
 
 HEADERS           += lcd-buttons.hpp 
+HEADERS           += joystick-buttons.hpp 
 
 
 # HwCpp HAL files

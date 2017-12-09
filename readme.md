@@ -54,6 +54,12 @@ The compilers I currently use are (gcc 7.2.0):
 -----------------------------------------------------------------------------
 
 Notes & ToDo
+- put or putc ?
+- get from stream can use 'none' value, or maybe std::optional?
+- uno UART
+- due adc
+- due pin should disable adc of that pin
+- bmptk has a problem with G++ := as was used in arduino uno
 - joystick abstraction, scaling, run-time ratio
 - joystick-buttons shield
 - due ADC, test with DUAL potmeter (shield!)
@@ -72,7 +78,6 @@ Notes & ToDo
 - never use int, long, etc.
 - chips (& other targets) must have a freq constant
 - check uno a/d conversion frequency
-- add a "blank the remainder of the line"
 - print other things (various ints), test
 - http://www.shieldlist.org/dfrobot/lcd
 - put all stream functionality in a class, using print(..), stream object is a shallow wrapper

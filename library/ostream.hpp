@@ -157,7 +157,7 @@ struct ostream :
    }
 	
    ostream< T > & putc( char c ){
-      sink.putc( c );  
+      sink.put( c );  
       return *this;	  
    }  
    
@@ -228,12 +228,10 @@ struct ostream :
 
 // ========== worker functions ==========
 
-/*
 template< is_ostream ostream >
 auto & operator<<( ostream & stream, char c ){
    return stream.putc( c );     	      
 }
-*/
 
 template< is_ostream ostream >
 auto & operator<< ( ostream & stream, const char *s ){
@@ -246,6 +244,11 @@ auto & operator<< ( ostream & stream, bool v ){
    return stream.print_aligned( stream.bool_rep( v ) );
 }
 */
+
+template< is_ostream ostream >
+auto & operator<< ( ostream & stream, uint_fast16_t v ){   
+   return stream.print_int( v );
+}
 
 template< is_ostream ostream >
 auto & operator<< ( ostream & stream, int v ){   

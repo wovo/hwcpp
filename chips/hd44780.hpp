@@ -31,7 +31,7 @@ public:
 	
    using rs      = pin_out< _rs >;
    using e       = pin_out< _e >;
-   using port    = port_out< _port >;  
+   using port    = _port; // port_out< _port >;  
    using timing  = waiting< _timing >;
    
    using xy_t    = uint_fast8_t;

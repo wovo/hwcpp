@@ -73,6 +73,7 @@ namespace hwcpp {
    namespace shields {   
 
       #include "lcd-buttons.hpp"
+      #include "joystick-buttons.hpp"
    
    }; // namespace shields   
 

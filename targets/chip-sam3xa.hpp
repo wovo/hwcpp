@@ -86,7 +86,7 @@ template< pio P, uint32_t pin >
 using pin_in_out = _pin_in_out_from_direct< _pin_in_out< P, pin > >;	
 
 // ========= pin_adc ==========
-
+/*
 struct ad_seq_type {
    uint32_t seq1;
    uint32_t seq2;
@@ -124,37 +124,42 @@ enum class adcp {
    b = 0x400E1000U
 };
 
-template< adcp P, uint32_t channel >
+*/
+
+static void adc_init_common(){
+   hwcpp::chip_sam3xa::init();
+        
+   // enable the clock to the ADC (peripheral # 37, in then 2nd PCER)
+   PMC->PMC_PCER1 = ( 0x01 << ( 37 - 32 ) );
+         
+   // timing
+   ADC->ADC_MR = 0;
+		auto xx = 0 << 8    //  clock prescaler
+      |   15 << 16   // startup clocks
+      |    3 << 20   // settling clocks
+      |    3 << 24   // tracking clocks
+      |    3 << 28   // transfer
+      | 0x00 << 31;  // user sequence enabled  
+	  (void)xx;
+      
+   // disable all interrupts
+   ADC->ADC_IDR = 0x1FFF'FFFF;
+      
+   // set gains to 1, offsets to 0
+   ADC->ADC_CGR = 0;
+   ADC->ADC_COR = 0;
+}
+
+template< uint32_t channel >
 struct pin_adc : 
    adc< 12 > 
 {
 	
    static void init(){
-      hwcpp::chip_sam3xa::init();
-        
-      // enable the clock to the ADC (peripheral # 37)
-      PMC->PMC_PCER1 = ( 0x01 << ( 37 - 32 ) );
-      
-      // enable this one channel
+	  adc_init_common(); 
+	   
+      // enable this specific channel
       ADC->ADC_CHER = 0x01 << channel;      
-   
-      // timing
-      ADC->ADC_MR = 0;
-      /*
-              0 << 8    //  clock prescaler
-         |   15 << 16   // startup clocks
-         |    3 << 20   // settling clocks
-         |    3 << 24   // tracking clocks
-         |    3 << 28   // transfer
-         | 0x00 << 31;  // user sequence enabled  
-      */
-      
-      // disable all interrupts
-      ADC->ADC_IDR = 0x1FFF'FFFF;
-      
-      // set gains to 1, offsets to 0
-      ADC->ADC_CGR = 0;
-      ADC->ADC_COR = 0;
    }
 
    static uint_fast16_t get(){
