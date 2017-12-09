@@ -9,6 +9,7 @@ __codelite.workspace
 *.elf
 *.ld
 *.map
+*.hex
 *.lss
 *.lst
 *.md
