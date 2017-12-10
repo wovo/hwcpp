@@ -110,9 +110,9 @@ concept bool _has_port_out_functions = requires(
 
 template< typename T >
 concept bool _has_port_in_functions = requires {  
-   { T::get() } -> bool;
-   { T::get_direct() } -> bool;
-   { T::get_buffered() } -> bool;
+   { T::get() } -> typename T::value_type;
+   { T::get_direct() } -> typename T::value_type;
+   { T::get_buffered() } -> typename T::value_type;
    { T::invalidate() } -> void;   
 };
 
