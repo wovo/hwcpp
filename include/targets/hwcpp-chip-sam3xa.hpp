@@ -14,7 +14,7 @@
 #undef register
 
 // the implementation of CPU clock speed switching
-#include "chip-sam3xa.inc"
+#include "targets/hwcpp-chip-sam3xa.inc"
 
 namespace hwcpp {
     

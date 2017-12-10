@@ -1,6 +1,6 @@
 // ============================================================================
 //
-// file : ports.hpp
+// file : hwcpp-ports.hpp
 //
 // declarations for out, in, in_out and oc ports
 //

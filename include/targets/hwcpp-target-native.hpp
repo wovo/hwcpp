@@ -1,6 +1,6 @@
 // ============================================================================
 //
-// file : target-native.hpp
+// file : hwcpp-target-native.hpp
 //
 // HAL for native target
 //

@@ -6,7 +6,7 @@
       <Project Name="blink" ConfigName="Release"/>
     </WorkspaceConfiguration>
   </BuildMatrix>
-  <Project Name="hello" Path="hello/_codelite.project" Active="No"/>
+  <Project Name="hello" Path="hello/_codelite.project" Active="Yes"/>
   <BuildMatrix>
     <WorkspaceConfiguration Name="Release" Selected="yes">
       <Project Name="hello" ConfigName="Release"/>
@@ -30,7 +30,7 @@
       <Project Name="lcd-keypad-shield" ConfigName="Release"/>
     </WorkspaceConfiguration>
   </BuildMatrix>
-  <Project Name="potmeter" Path="potmeter/_codelite.project" Active="Yes"/>
+  <Project Name="potmeter" Path="potmeter/_codelite.project" Active="No"/>
   <BuildMatrix>
     <WorkspaceConfiguration Name="Release" Selected="yes">
       <Project Name="potmeter" ConfigName="Release"/>

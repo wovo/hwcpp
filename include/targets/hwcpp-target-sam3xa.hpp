@@ -1,12 +1,12 @@
 // ============================================================================
 //
-// file : target-sam3xa.hpp
+// file : hwcpp-target-sam3xa.hpp
 //
 // HAL for atsam3x chip target
 //
 // ============================================================================
 
-#include "chip-sam3xa.hpp"
+#include "hwcpp-chip-sam3xa.hpp"
 
 namespace hwcpp {
     

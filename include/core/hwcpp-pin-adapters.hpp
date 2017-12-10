@@ -1,6 +1,6 @@
 // ============================================================================
 //
-// file : pin-adapters.hpp
+// file : hwcpp-pin-adapters.hpp
 //
 // adapters that transform a pin to another kind of pin
 //

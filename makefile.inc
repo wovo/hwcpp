@@ -41,49 +41,49 @@ endif
 
 HEADERS           += hwcpp.hpp
 HEADERS           += hwcpp-all.hpp
-HEADERS           += basics.hpp 
-HEADERS           += pins.hpp 
-HEADERS           += pin-adapters.hpp 
-HEADERS           += ports.hpp 
-HEADERS           += port-adapters.hpp 
-HEADERS           += adc.hpp 
-HEADERS           += dac.hpp 
-HEADERS           += invert.hpp 
-HEADERS           += timing.hpp 
-HEADERS           += i2c.hpp 
-HEADERS           += console.hpp 
-HEADERS           += istream.hpp 
-HEADERS           += ostream.hpp 
-HEADERS           += string.hpp 
-HEADERS           += demos.hpp 
+HEADERS           += hwcpp-basics.hpp 
+HEADERS           += hwcpp-pins.hpp 
+HEADERS           += hwcpp-pin-adapters.hpp 
+HEADERS           += hwcpp-ports.hpp 
+HEADERS           += hwcpp-port-adapters.hpp 
+HEADERS           += hwcpp-adc.hpp 
+HEADERS           += hwcpp-dac.hpp 
+HEADERS           += hwcpp-invert.hpp 
+HEADERS           += hwcpp-timing.hpp 
+HEADERS           += hwcpp-i2c.hpp 
+HEADERS           += hwcpp-console.hpp 
+HEADERS           += hwcpp-istream.hpp 
+HEADERS           += hwcpp-ostream.hpp 
+HEADERS           += hwcpp-string.hpp 
+HEADERS           += hwcpp-demos.hpp 
 
 
 # HwCpp supported external chips
 
-HEADERS           += pcf8574.hpp
-HEADERS           += hd44780.hpp 
+HEADERS           += hwcpp-pcf8574.hpp
+HEADERS           += hwcpp-hd44780.hpp 
 
 
 # HwCpp supported arduyino shields
 
-HEADERS           += lcd-buttons.hpp 
-HEADERS           += joystick-buttons.hpp 
+HEADERS           += hwcpp-lcd-buttons.hpp 
+HEADERS           += hwcpp-joystick-buttons.hpp 
 
 
 # HwCpp HAL files
 
-HEADERS           += chip-sam3xa.hpp 
-HEADERS           += chip-sam3xa.inc
-HEADERS           += target-sam3xa.hpp 
-HEADERS           += target-arduino-due.hpp 
+HEADERS           += hwcpp-chip-sam3xa.hpp 
+HEADERS           += hwcpp-chip-sam3xa.inc
+HEADERS           += hwcpp-target-sam3xa.hpp 
+HEADERS           += hwcpp-target-arduino-due.hpp 
 
-HEADERS           += chip-atmega328.hpp 
-HEADERS           += target-atmega328.hpp 
-HEADERS           += target-arduino-uno.hpp 
+HEADERS           += hwcpp-chip-atmega328.hpp 
+HEADERS           += hwcpp-target-atmega328.hpp 
+HEADERS           += hwcpp-target-arduino-uno.hpp 
 
-HEADERS           += chip-stm32f103.hpp 
-HEADERS           += target-stm32f103.hpp 
-HEADERS           += target-blue-pill.hpp 
+HEADERS           += hwcpp-chip-stm32f103.hpp 
+HEADERS           += hwcpp-target-stm32f103.hpp 
+HEADERS           += hwcpp-target-blue-pill.hpp 
 
 # add Catch
 # (used by some of the tests)

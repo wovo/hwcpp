@@ -1,12 +1,12 @@
 // ============================================================================
 //
-// file : target-arduino-due.hpp
+// file : hwcpp-target-arduino-due.hpp
 //
 // HAL for the arduino due board target
 //
 // ============================================================================
 
-#include "chip-sam3xa.hpp"
+#include "hwcpp-chip-sam3xa.hpp"
 
 namespace hwcpp {
     
@@ -112,33 +112,45 @@ struct target_arduino_due :
    make_pin_adc( a10, 12 );
    make_pin_adc( a11, 13 );
 
-/*   
-   
+/*     
       { 1, 15 },  // dac0
       { 1, 16 },  // dac1
       { 0,  1 },  // cantx
       { 0,  0 },  // canrx
+*/ 
    
-      { 1, 13 },  // scl
-      { 1, 12 },  // sda
-      { 0, 18 },  // scl1
-      { 0, 17 },  // sda1
+   make_pin_in_out(  _scl,  b, 13 );
+   make_pin_in_out(  _sda,  b, 12 );
+   make_pin_in_out( _scl1,  a, 18 );
+   make_pin_in_out( _sda1,  a, 17 );
 
-      { 0, 27 },  // sck
-      { 0, 25 },  // miso
-      { 0, 26 },  // mosi
-      { 2, 29 },  // cs0
-      { 2, 26 }   // cs1
-*/
-   make_pin_in_out(  _ltx,  a,  9 );
-   make_pin_in_out(  _lrx,  a,  8 );
+   using  scl = hwcpp::pin_oc<  _scl >;
+   using  sda = hwcpp::pin_oc<  _sda >;
+   using scl1 = hwcpp::pin_oc< _scl1 >;
+   using sda1 = hwcpp::pin_oc< _sda1 >;
+
+   make_pin_in_out(  _sck,  a, 27 );
+   make_pin_in_out( _miso,  a, 25 );
+   make_pin_in_out( _mosi,  a, 26 );
+   make_pin_in_out(  _cs0,  c, 29 );
+   make_pin_in_out(  _cs1,  c, 26 );
+
+   using  sck = hwcpp::pin_out<  _sck >;
+   using miso = hwcpp::pin_out< _miso >;
+   using mosi = hwcpp::pin_in<  _mosi >;
+   using  cs0 = hwcpp::pin_out<  _cs0 >;
+   using  cs1 = hwcpp::pin_out<  _cs1 >;
+
+   make_pin_in_out(   _tx,  a,  9 );
+   make_pin_in_out(   _rx,  a,  8 );
    make_pin_in_out(  _led,  b, 27 );
     
    using  tx = hwcpp::pin_out< _tx >;
-   using  rx = hwcpp::pin_out< _rx >;
+   using  rx = hwcpp::pin_in<  _rx >;
    using led = hwcpp::pin_out< _led >;
    
 #undef make_pin_in_out   
+#undef make_pin_adc
 
    using waiting = timing_waiting< chip_sam3xa, long long int, MHz< 84 > >;
    

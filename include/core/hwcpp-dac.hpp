@@ -1,11 +1,11 @@
 // ============================================================================
 //
-// file : adc.hpp
+// file : hwcpp-dac.hpp
 //
 // ============================================================================
 
 template< uint32_t _n_bits >
-struct adc :
+struct dac :
    not_instantiable
 {
    static constexpr bool is_adc = true;		
@@ -15,11 +15,12 @@ struct adc :
 }; // struct adc   
    
 template< typename T >
-concept bool is_adc(){ 
+concept bool is_dac(){ 
    return T::is_adc;
 }   
 
-template< is_adc T >
-struct test_adc {
+template< is_dac T >
+struct test_dac {
        
 };
+

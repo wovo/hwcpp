@@ -1,6 +1,6 @@
 // ============================================================================
 //
-// file : port-adapters.hpp
+// file : hwcpp-port-adapters.hpp
 //
 // adapters that transform a port to another kind of port
 //

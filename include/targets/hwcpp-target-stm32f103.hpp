@@ -6,7 +6,7 @@
 //
 // ============================================================================
 
-#include "chip-stm32f103.hpp"
+#include "hwcpp-chip-stm32f103.hpp"
 
 namespace hwcpp {
     

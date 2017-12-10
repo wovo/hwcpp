@@ -1,6 +1,6 @@
 // ============================================================================
 //
-// file : pins.hpp
+// file : hwcpp-pins.hpp
 //
 // declarations for out, in, in_out and oc pins
 //

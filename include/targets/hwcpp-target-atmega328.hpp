@@ -1,12 +1,12 @@
 // ============================================================================
 //
-// file : target-atmega328.hpp
+// file : hwcpp-target-atmega328.hpp
 //
 // HAL for the arduino uno board target
 //
 // ============================================================================
 
-#include "chip-atmega328.hpp"
+#include "hwcpp-chip-atmega328.hpp"
 
 namespace hwcpp {
     

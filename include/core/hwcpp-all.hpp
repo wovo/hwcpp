@@ -1,6 +1,6 @@
 // ============================================================================
 //
-// file : hwcpp.hpp
+// file : hwcpp-hwcpp.hpp
 //
 // The hwcpp files are meant to be included via this file only. 
 //
@@ -48,32 +48,32 @@
 
 namespace hwcpp {
 
-   #include "core/basics.hpp"
-   #include "core/pins.hpp"
-   #include "core/pin-adapters.hpp"
-   #include "core/ports.hpp"
-   #include "core/port-adapters.hpp"
-   #include "core/adc.hpp"
-   #include "core/dac.hpp"
-   #include "core/invert.hpp"
+   #include "core/hwcpp-basics.hpp"
+   #include "core/hwcpp-pins.hpp"
+   #include "core/hwcpp-pin-adapters.hpp"
+   #include "core/hwcpp-ports.hpp"
+   #include "core/hwcpp-port-adapters.hpp"
+   #include "core/hwcpp-adc.hpp"
+   #include "core/hwcpp-dac.hpp"
+   #include "core/hwcpp-invert.hpp"
    
-   #include "core/timing.hpp"
-   #include "core/string.hpp"
-   #include "core/istream.hpp"
-   #include "core/ostream.hpp"
-   #include "core/console.hpp"
+   #include "core/hwcpp-timing.hpp"
+   #include "core/hwcpp-string.hpp"
+   #include "core/hwcpp-istream.hpp"
+   #include "core/hwcpp-ostream.hpp"
+   #include "core/hwcpp-console.hpp"
 
-   #include "core/i2c.hpp"
+   #include "core/hwcpp-i2c.hpp"
    
-   #include "core/demos.hpp"
+   #include "core/hwcpp-demos.hpp"
    
-   #include "chips/pcf8574.hpp"
-   #include "chips/hd44780.hpp"
+   #include "chips/hwcpp-pcf8574.hpp"
+   #include "chips/hwcpp-hd44780.hpp"
    
    namespace shields {   
 
-      #include "lcd-buttons.hpp"
-      #include "joystick-buttons.hpp"
+      #include "shields/hwcpp-lcd-buttons.hpp"
+      #include "shields/hwcpp-joystick-buttons.hpp"
    
    }; // namespace shields   
 

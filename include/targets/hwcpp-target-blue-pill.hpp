@@ -1,12 +1,12 @@
 // ============================================================================
 //
-// file : target-blue-pill.hpp
+// file : hwcpp-target-blue-pill.hpp
 //
 // HAL for the blue pill board target
 //
 // ============================================================================
 
-#include "chip-stm32f103.hpp"
+#include "hwcpp-chip-stm32f103.hpp"
 
 namespace hwcpp {
     

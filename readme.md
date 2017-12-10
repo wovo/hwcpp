@@ -28,18 +28,14 @@ boards.)
 -----------------------------------------------------------------------------
 
 Subdirectories:
-   - attic : junk from that past that I might need one time
-   - library : the peripheral chips supported by the library
-   - demo : demonstration projects, organized by target
-   - library : the target and hardware independent parts of the library
-   - targets : the HALs for the supported taregts
-   - shields : support for some arduino shields
-   - chips : support for chips external to the micro-controller
-   - tests : tests, organized by target
+   - attic   : junk from that past that I might need one time
+   - demo    : demonstration projects, organized by target
+   - include : the peripheral chips supported by the library
+   - tests   : tests, organized by target
    
 Files:
    - license_1_0.txt : boost license
-   - documentation.docx : HwCpp documentation
+   - hwcpp-documentation.docx : HwCpp documentation
    - makefile.inc : add the settings for this library (for bmptk)
    - Makefile.link : build dependencies on other libraries and bmptk
    - readme.md : this file
@@ -54,28 +50,27 @@ The compilers I currently use are (gcc 7.2.0):
 -----------------------------------------------------------------------------
 
 Notes & ToDo
+- max toggle tests, document freq
+- invert port(blue pill) doesn't work
 - fixed-out pins/ports to hwcpp
 - // #undef putc in hwcpp-all.hpp
 - .md should reflect new structure
 - remove redundancy from port concepts => ask Chiel
-- due adc not linear?
 - due adc read should be one function shared by all adcs (flyweight)
 - a way to bundle pins without making the object? (for optional parts like on the JS shield)
 - switch to other joystick shield, needs more distinctive name
 - put or putc ?
 - get from stream can use 'none' value, or maybe std::optional?
 - uno UART
-- due adc
 - due pin should disable adc of that pin
 - bmptk has a problem with G++ := as was used in arduino uno
 - joystick abstraction, scaling, run-time ratio
 - new joystick-buttons shield
-- demos -> examples
+- demos -> examples?
 - more port adapters
 - use loop instead of recursion for port creators
 - port dummies, port variables
-- re-organize lib directories: core, protocols, targets, shields, etc.
-- LED etc. in targets should be pin_out and active high
+- LED etc. in targets should be pin_out and active high => check uno, due, blue
 - likewise for I2C and SPI pins: appropriate type
 - push/pop strictest compiler settings possible
 - dac & adc buffering
@@ -86,14 +81,9 @@ Notes & ToDo
 - http://www.shieldlist.org/dfrobot/lcd
 - put all stream functionality in a class, using print(..), stream object is a shallow wrapper
 - ostream only for a char-pipe (uart is a full pipe<char>)
-- chips -> peripherals?
-- directory shields?
-- make separate hardware entity for the shield, that requires a target as parameter
 - i2c timing profiles, should support narrowing
 - idem for SPI!
 - ostream ipv make_ostream, console?? any order? or ostream_object<>? or object<>?
-- shield mollen om er andere LCDs op te zetten
-- sheild adc / buttons
 - port now has only set_direct (used in hd44780)
 - 8574 / hd44780 interface
 - extend ostream (& tests)
@@ -143,7 +133,6 @@ Notes & ToDo
 - handling of pull-up/pull-down (always direct...) disable always possible?
 - mention the paranoia-2 profiel
 - rename files to hwcpp- ??
-- avr8 hack conflicts with target-native
 - bmptk native does compile the fixed stack??
 - https://github.com/QQuick/Cantino
 - mine Quora for C++ small embedded proponents
