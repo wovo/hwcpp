@@ -84,6 +84,52 @@ struct port_oc_root :
 
 // ============================================================================
 //
+// FILE-INTERNAL
+//
+// concepts that check for the port function categories
+//
+// These concepts are used to build the concpets that check for the 
+// four types of ports.
+//
+// ============================================================================
+
+template< typename T >
+concept bool _has_port_init_function = requires {  
+   { T::init() } -> void; 
+};
+
+template< typename T >
+concept bool _has_port_out_functions = requires( 
+   typename T::value_type v 
+){  
+   { T::set( v ) } -> void;
+   { T::set_direct( v ) } -> void;
+   { T::set_buffered( v ) } -> void;
+   { T::flush() } -> void;
+};
+
+template< typename T >
+concept bool _has_port_in_functions = requires {  
+   { T::get() } -> bool;
+   { T::get_direct() } -> bool;
+   { T::get_buffered() } -> bool;
+   { T::invalidate() } -> void;   
+};
+
+template< typename T >
+concept bool _has_port_direction_functions = requires( 
+   typename T::value_type v, 
+   direction d 
+){   
+   { T::direction_set( d ) } -> void;
+   { T::direction_set_direct( d ) } -> void;
+   { T::direction_set_buffered( d ) } -> void;
+   { T::direction_flush() } -> void;
+}; 
+
+
+// ============================================================================
+//
 // PUBLIC
 //
 // port concepts : is_port_ [ in | out | in_out ]
@@ -101,12 +147,8 @@ struct port_oc_root :
 template< typename T >
 concept bool is_port_out = requires {
    T::is_port_out;
-   { T::init() } -> void;
-	  
-   { T::set( T::value_type ) } -> void;
-//   { T::set_direct( T::value_type ) } -> void;
-//   { T::set_buffered( T::value_type ) } -> void;
-   { T::flush() } -> void;
+   _has_port_init_function< T >;
+   _has_port_out_functions< T >;
 };
 
 // ========= in =========
@@ -114,37 +156,19 @@ concept bool is_port_out = requires {
 template< typename T >
 concept bool is_port_in = requires {
    T::is_port_in;
-  
-   { T::init() } -> void;
-	  
-   { T::get() } -> typename T::value_type;
-   { T::get_direct() } -> typename T::value_type;
-   { T::get_buffered() } -> typename T::value_type;
-   { T::invalidate() } -> typename T::value_type; 
+   _has_port_init_function< T >;
+   _has_port_in_functions< T >; 
 };
 
 // ========= in_out =========
 
 template< typename T >
-concept bool is_port_in_out = requires( direction d ) {
+concept bool is_port_in_out = requires {
    T::is_port_in_out;
-  
-   { T::init() } -> void;
-   
-   { T::direction_set( d ) } -> void;
-   { T::direction_set_direct( d ) } -> void;
-   { T::direction_set_buffered( d ) } -> void;
-   { T::direction_flush() } -> void;   
-   
-   { T::set( T::value_type ) } -> void;
-   { T::set_direct( T::value_type ) } -> void;
-   { T::set_buffered( T::value_type ) } -> void;
-   { T::flush() } -> void;   
-	  
-   { T::get() } -> typename T::value_type;
-   { T::get_direct() } -> typename T::value_type;
-   { T::get_buffered() } -> typename T::value_type;
-   { T::invalidate() } -> typename T::value_type; 
+   _has_port_init_function< T >;
+   _has_port_out_functions< T >;
+   _has_port_in_functions< T >;
+   _has_port_direction_functions< T >;
 };
 
 // ========= oc =========
@@ -152,18 +176,9 @@ concept bool is_port_in_out = requires( direction d ) {
 template< typename T >
 concept bool is_port_oc = requires {
    T::is_port_in_out;
-  
-   { T::init() } -> void; 
-   
-   { T::set( T::value_type ) } -> void;
-   { T::set_direct( T::value_type ) } -> void;
-   { T::set_buffered( T::value_type ) } -> void;
-   { T::flush() } -> void;   
-	  
-   { T::get() } -> typename T::value_type;
-   { T::get_direct() } -> typename T::value_type;
-   { T::get_buffered() } -> typename T::value_type;
-   { T::invalidate() } -> typename T::value_type; 
+   _has_port_init_function< T >;
+   _has_port_out_functions< T >;
+   _has_port_in_functions< T >;
 };
 
 
@@ -233,6 +248,21 @@ template< typename... arguments >
 struct port_out :
    _port_out_implementation< sizeof...( arguments ), arguments... >
 {};
+
+/*
+template< typename... arguments > 
+struct xx_port_out :
+   port_out_root< sizeof...( arguments ) >
+{
+   	
+   static void init() { 
+      pin::init();
+      _port_out_implementation< n, arg_tail... >::init(); 
+   }
+	
+};
+
+*/
   
    
 // ============================================================================

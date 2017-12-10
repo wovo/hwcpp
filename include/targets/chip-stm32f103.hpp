@@ -87,7 +87,7 @@ struct _pin_in_out {
 };
 
 template< port p, uint32_t pin >
-using pin_in_out = pin_in_out_direct_base< _pin_in_out< p, pin > >;	
+using pin_in_out = _pin_in_out_from_direct< _pin_in_out< p, pin > >;	
 
 
 // ========= SysTick ==========

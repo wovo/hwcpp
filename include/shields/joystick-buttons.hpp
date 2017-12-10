@@ -21,23 +21,25 @@ struct joystick {
 template< typename target >
 struct joystick_buttons {
 	
-   // https://www.allaboutcircuits.com/projects/level-up-arduino-joystick-shield-v2.4/
+   // www.allaboutcircuits.com/projects/level-up-arduino-joystick-shield-v2.4
 	  
-   using js = joystick< 
-      typename target::a1, 
-	  typename target::a0 >;
-   
    using n = pin_in< typename target::d6 >;
    using e = pin_in< typename target::d4 >;
    using s = pin_in< typename target::d3 >;
    using w = pin_in< typename target::d5 >;
+   using f = pin_in< typename target::d2 >;
+   
+   using js = joystick< 
+      typename target::a1, 
+	  typename target::a0 >;
    
    static void init(){
-      js::init();
       n::init();
       e::init();
       s::init();
       w::init();   	   
+      f::init();   	   
+      js::init();
    }	
 	
 }; // class joystick_buttons

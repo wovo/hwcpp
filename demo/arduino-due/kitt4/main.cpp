@@ -10,11 +10,6 @@ using pins = hwcpp::port_out<
    target::d7
 >;
 
-// using p = hwcpp::port_out< pins >;
-
 int main(){ 
-   //hwcpp::kitt< pins, timing::ms< 100 > >();
-   // p::init();
-   pins::init();
-   pins::set( 1 );
+   hwcpp::kitt< pins, timing::ms< 100 > >();
 }

@@ -17,6 +17,38 @@
 //
 // ============================================================================
 
+
+// ============================================================================
+//
+// PUBLIC
+//
+// concepts that decide whether a port can be converted to the requested port
+//
+// ============================================================================
+
+template< typename T >
+concept bool can_port_out =  
+      is_port_out< T >
+   || is_port_in_out< T >
+   || is_port_oc< T >;
+
+template< typename T >
+concept bool can_port_in =  
+      is_port_in< T >
+   || is_port_in_out< T >
+   || is_port_oc< T >;
+
+template< typename T >
+concept bool can_port_in_out =  
+      is_port_in_out< T >
+   || is_port_oc< T >;
+
+template< typename T >
+concept bool can_port_oc =  
+      is_port_in_out< T >
+   || is_port_oc< T >;
+
+
 // ============================================================================
 //
 // adapter that creates a port out from another port

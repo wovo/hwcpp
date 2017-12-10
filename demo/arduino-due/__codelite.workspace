@@ -24,10 +24,16 @@
       <Project Name="kitt4" ConfigName="Release"/>
     </WorkspaceConfiguration>
   </BuildMatrix>
-  <Project Name="lcd-keypad-shield" Path="lcd-keypad-shield/_codelite.project" Active="Yes"/>
+  <Project Name="lcd-keypad-shield" Path="lcd-keypad-shield/_codelite.project" Active="No"/>
   <BuildMatrix>
     <WorkspaceConfiguration Name="Release" Selected="yes">
       <Project Name="lcd-keypad-shield" ConfigName="Release"/>
+    </WorkspaceConfiguration>
+  </BuildMatrix>
+  <Project Name="potmeter" Path="potmeter/_codelite.project" Active="Yes"/>
+  <BuildMatrix>
+    <WorkspaceConfiguration Name="Release" Selected="yes">
+      <Project Name="potmeter" ConfigName="Release"/>
     </WorkspaceConfiguration>
   </BuildMatrix>
 </CodeLite_Workspace>

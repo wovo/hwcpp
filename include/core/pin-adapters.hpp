@@ -20,6 +20,37 @@
 
 // ============================================================================
 //
+// PUBLIC
+//
+// concepts that decide whether a pin can be converted to the requested pin
+//
+// ============================================================================
+
+template< typename T >
+concept bool can_pin_out =  
+      is_pin_out< T >
+   || is_pin_in_out< T >
+   || is_pin_oc< T >;
+
+template< typename T >
+concept bool can_pin_in =  
+      is_pin_in< T >
+   || is_pin_in_out< T >
+   || is_pin_oc< T >;
+
+template< typename T >
+concept bool can_pin_in_out =  
+     is_pin_in_out< T >
+   || is_pin_oc< T >;
+
+template< typename T >
+concept bool can_pin_oc =  
+      is_pin_in_out< T >
+   || is_pin_oc< T >;
+
+
+// ============================================================================
+//
 // FILE-INTERNAL
 //
 // pass (only) certain pin functions
@@ -93,11 +124,7 @@ struct _pass_init {
 
 // ========== base template ==========
 
-template< typename T > requires 
-      is_pin_out< T >
-   || is_pin_in_out< T >
-   || is_pin_oc< T >
-struct pin_out;
+template< can_pin_out T > struct pin_out;
 
 // ========== adapt a pin out ==========
 
@@ -143,11 +170,7 @@ struct pin_out< T > :
 
 // ========== base template ==========
 
-template< typename T > requires 
-      is_pin_in< T >
-   || is_pin_in_out< T >
-   || is_pin_oc< T >
-struct pin_in;
+template< can_pin_in T > struct pin_in;
 
 // ========== adapt a pin out ==========
 
@@ -197,10 +220,7 @@ struct pin_in< T > :
 
 // ========== base template ==========
 
-template< typename T > requires 
-      is_pin_in_out< T >
-   || is_pin_oc< T >
-struct pin_in_out;
+template< can_pin_in_out T > struct pin_in_out;
 
 // ========== adapt a pin out ==========
 
@@ -264,10 +284,7 @@ struct pin_in_out< T > :
 
 // ========== base template ==========
 
-template< typename T > requires 
-      is_pin_in_out< T >
-   || is_pin_oc< T >
-struct pin_oc;
+template< can_pin_oc T > struct pin_oc;
 
 // ========== adapt a pin out ==========
 

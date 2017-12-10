@@ -20,18 +20,18 @@ CPP_LANGUAGE      += -std=c++17 -fconcepts
 
 # the HwCPP file locations
 
-SEARCH            += $(HWCPP)/library
-SEARCH            += $(HWCPP)/targets
-SEARCH            += $(HWCPP)/chips
-SEARCH            += $(HWCPP)/shields
+SEARCH            += $(HWCPP)/include
+SEARCH            += $(HWCPP)/include/core
+SEARCH            += $(HWCPP)/include/targets
+SEARCH            += $(HWCPP)/include/chips
+SEARCH            += $(HWCPP)/include/shields
 
 # dirty hack because the AVR8 compiler lacks certain files
 
 # https://github.com/maniacbug/StandardCplusplus
 
 ifeq ($(TARGET),arduino_uno)
-   CPP_LANGUAGE      += -I $(HWCPP)/targets/avr8-hacks
-   # CPP_LANGUAGE      += -I $(HWCPP)/targets/avr8-hacks/inc
+   CPP_LANGUAGE      += -I $(HWCPP)/include/targets/avr8-hacks
    #CPP_LANGUAGE      += -isystem C:/avr-gcc-7.2.0-x86-mingw/avr/include
    #CPP_LANGUAGE      += -isystem C:/SysGCC/arm-eabi/arm-eabi/include/c++/7.2.0/arm-eabi
    #CPP_LANGUAGE      += -isystem C:/SysGCC/arm-eabi/arm-eabi/include/c++/7.2.0

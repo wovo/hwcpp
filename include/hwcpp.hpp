@@ -16,27 +16,27 @@
 #define HWCPP_INCLUDED
 
 #ifdef HWCPP_TARGET_samx3a
-   #include "target-samx3a.hpp"
+   #include "targets/target-samx3a.hpp"
 #endif
 
 #ifdef HWCPP_TARGET_arduino_uno
-   #include "target-arduino-uno.hpp"
+   #include "targets/target-arduino-uno.hpp"
 #endif
 
 #ifdef HWCPP_TARGET_arduino_due
-   #include "target-arduino-due.hpp"
+   #include "targets/target-arduino-due.hpp"
 #endif
 
 #ifdef HWCPP_TARGET_blue_pill
-   #include "target-blue-pill.hpp"
+   #include "targets/target-blue-pill.hpp"
 #endif
 
 #ifdef HWCPP_TARGET_native
-   #include "target-native.hpp"
+   #include "targets/target-native.hpp"
 #endif
 
 #ifndef HWCPP_TARGET
-   #include "hwcpp-all.hpp"
+   #include "core/hwcpp-all.hpp"
 #endif
 
 #endif // #ifndef HWCPP_INCLUDED

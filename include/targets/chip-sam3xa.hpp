@@ -86,61 +86,16 @@ template< pio P, uint32_t pin >
 using pin_in_out = _pin_in_out_from_direct< _pin_in_out< P, pin > >;	
 
 // ========= pin_adc ==========
-/*
-struct ad_seq_type {
-   uint32_t seq1;
-   uint32_t seq2;
-};
-
-const ad_seq_type & ad_seq_info( uint32_t channel ){
-    
-   static constexpr uint32_t n_seq = 14;
-    
-   static const ad_seq_type ad_seq_array[ n_seq ] = {
-      {  0xFFFF'FFF0, 0xFFFF'FFFF },   // 0
-      {  0xFFFF'FF1F, 0xFFFF'FFFF },   // 1
-      {  0xFFFF'F2FF, 0xFFFF'FFFF },   // 2
-      {  0xFFFF'3FFF, 0xFFFF'FFFF },   // 3
-      {  0xFFF4'FFFF, 0xFFFF'FFFF },   // 4
-      {  0xFF5F'FFFF, 0xFFFF'FFFF },   // 5
-      {  0xF6FF'FFFF, 0xFFFF'FFFF },   // 6
-      {  0x7FFF'FFFF, 0xFFFF'FFFF },   // 7
-      {  0xFFFF'FFFF, 0xFFFF'FFF8 },   // 8
-      {  0xFFFF'FFFF, 0xFFFF'FF9F },   // 9
-      {  0xFFFF'FFFF, 0xFFFF'FAFF },   // 10
-      {  0xFFFF'FFFF, 0xFFFF'BFFF },   // 11
-      {  0xFFFF'FFFF, 0xFFFC'FFFF },   // 12   
-      {  0xFFFF'FFFF, 0xFFDF'FFFF }    // 13  
-   };
-   
-   if( channel >= n_seq ){
-      HWLIB_PANIC_WITH_LOCATION;
-   }   
-   return ad_seq_array[ channel ];
-} 
-
-enum class adcp {
-   a = 0x400E0E00U,
-   b = 0x400E1000U
-};
-
-*/
 
 static void adc_init_common(){
+    
    hwcpp::chip_sam3xa::init();
         
    // enable the clock to the ADC (peripheral # 37, in then 2nd PCER)
    PMC->PMC_PCER1 = ( 0x01 << ( 37 - 32 ) );
          
-   // timing
+   // timing: use defaults
    ADC->ADC_MR = 0;
-		auto xx = 0 << 8    //  clock prescaler
-      |   15 << 16   // startup clocks
-      |    3 << 20   // settling clocks
-      |    3 << 24   // tracking clocks
-      |    3 << 28   // transfer
-      | 0x00 << 31;  // user sequence enabled  
-	  (void)xx;
       
    // disable all interrupts
    ADC->ADC_IDR = 0x1FFF'FFFF;
@@ -157,23 +112,32 @@ struct pin_adc :
 	
    static void init(){
 	  adc_init_common(); 
-	   
-      // enable this specific channel
-      ADC->ADC_CHER = 0x01 << channel;      
    }
 
    static uint_fast16_t get(){
+       
+      // enable the channel
+      ADC->ADC_CHER = ( 0x01 << channel );         
+
+      // dummy conversion - can this be avoided?
+      ADC->ADC_CR = 0x0000'0002;
+      while( ( ADC->ADC_ISR & ( 0x01 << channel )) == 0 ){}
+      (void)ADC->ADC_CDR[ channel ];
 
       // start the conversion 
       ADC->ADC_CR = 0x0000'0002;
       
       // wait for the conversion to complete
-      // should wait on some flag!!
-      //hwlib::wait_us( 100 );   
-for( volatile int i = 0; i < 1'000; ++i )  {}
+      while( ( ADC->ADC_ISR & ( 0x01 << channel )) == 0 ){}
+
+      // auto x = ADC->ADC_LCDR & 0x0000'0FFF; 
+      auto x = ADC->ADC_CDR[ channel ] & 0x0000'0FFF;
  
+      // disable the channel - doesn't work??
+      ADC->ADC_CHDR = 0x01 << channel;   
+      
       // return the conversion result
-      return ADC->ADC_CDR[ channel ] & 0x0000'0FFF;
+      return x;
    }
    
 };

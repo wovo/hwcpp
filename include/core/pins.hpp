@@ -78,6 +78,52 @@ struct pin_oc_root :
 
 // ============================================================================
 //
+// FILE-INTERNAL
+//
+// concepts that check for the pin function categories
+//
+// These concepts are used to build the concpets that check for the 
+// four types of pins.
+//
+// ============================================================================
+
+template< typename T >
+concept bool _has_pin_init_function = requires {  
+   { T::init() } -> void; 
+};
+
+template< typename T >
+concept bool _has_pin_out_functions = requires( 
+   bool v 
+){  
+   { T::set( v ) } -> void;
+   { T::set_direct( v ) } -> void;
+   { T::set_buffered( v ) } -> void;
+   { T::flush() } -> void;
+};
+
+template< typename T >
+concept bool _has_pin_in_functions = requires {  
+   { T::get() } -> bool;
+   { T::get_direct() } -> bool;
+   { T::get_buffered() } -> bool;
+   { T::invalidate() } -> void;   
+};
+
+template< typename T >
+concept bool _has_pin_direction_functions = requires( 
+   bool v, 
+   direction d 
+){   
+   { T::direction_set( d ) } -> void;
+   { T::direction_set_direct( d ) } -> void;
+   { T::direction_set_buffered( d ) } -> void;
+   { T::direction_flush() } -> void;
+};   
+
+
+// ============================================================================
+//
 // PUBLIC
 //
 // pin concepts : is_pin_ [ in | out | in_out ]
@@ -87,21 +133,16 @@ struct pin_oc_root :
 // These concepts define the required interface elements of each pin class,
 // and can be used to verify that a class does provide these.
 //
-// ============================================================================
+// ============================================================================  
 
 
 // ========= pin out =========
 
 template< typename T >
-concept bool is_pin_out = requires( bool v ){
+concept bool is_pin_out = requires {
    T::is_pin_out;
-   
-   { T::init() } -> void;
-	  
-   { T::set( v ) } -> void;
-   { T::set_direct( v ) } -> void;
-   { T::set_buffered( v ) } -> void;
-   { T::flush() } -> void;
+   _has_pin_init_function< T >;
+   _has_pin_out_functions< T >;
 };
 
 // ========= pin in =========
@@ -109,56 +150,29 @@ concept bool is_pin_out = requires( bool v ){
 template< typename T >
 concept bool is_pin_in = requires {
    T::is_pin_in;
-   
-   { T::init() } -> void;
-	  
-   { T::get() } -> bool;
-   { T::get_direct() } -> bool;
-   { T::get_buffered() } -> bool;
-   { T::invalidate() } -> void;   
+   _has_pin_init_function< T >;
+   _has_pin_in_functions< T >;  
 };
 
 // ========= pin in out =========
 
 template< typename T >
-concept bool is_pin_in_out = requires( bool v, direction d ){   
+concept bool is_pin_in_out = requires {   
    T::is_pin_in_out;
-
-   { T::init() } -> void;
-
-   { T::direction_set( d ) } -> void;
-   { T::direction_set_direct( d ) } -> void;
-   { T::direction_set_buffered( d ) } -> void;
-   { T::direction_flush() } -> void;
-     
-   { T::set( v ) } -> void;
-   { T::set_direct( v ) } -> void;
-   { T::set_buffered( v ) } -> void;
-   { T::flush() } -> void;
-	  
-   { T::get() } -> bool;
-   { T::get_direct() } -> bool;
-   { T::get_buffered() } -> bool;
-   { T::invalidate() } -> void;    
+   _has_pin_init_function< T >;
+   _has_pin_direction_functions< T >;    
+   _has_pin_out_functions< T >;    
+   _has_pin_in_functions< T >;    
 };
 
 // ========= pin oc =========
 
 template< typename T >
-concept bool is_pin_oc = requires( bool v ){
+concept bool is_pin_oc = requires {
    T::is_pin_oc;
-   
-   { T::init() } -> void;
-   
-   { T::set( v ) } -> void;
-   { T::set_direct( v ) } -> void;
-   { T::set_buffered( v ) } -> void;
-   { T::flush() } -> void;
-	  
-   { T::get() } -> bool;
-   { T::get_direct() } -> bool;
-   { T::get_buffered() } -> bool;
-   { T::invalidate() } -> void; 	  
+   _has_pin_init_function< T >;  
+   _has_pin_out_functions< T >;    
+   _has_pin_in_functions< T >;  	  
 };
 
 
@@ -185,7 +199,7 @@ concept bool is_pin_oc = requires( bool v ){
 // ============================================================================
 
 
-// ========== add pin out buffere ==========
+// ========== add pin out buffered ==========
 
 template< typename T >
 struct _add_pin_out_buffered_functions : T {

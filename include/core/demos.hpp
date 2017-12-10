@@ -4,9 +4,9 @@
 //
 // ============================================================================
 
-template< typename pin, is_interval interval >
+template< can_pin_out pin, is_interval interval >
 void blink(){
-   using led = hwcpp::pin_out< pin >;    
+   using led = pin_out< pin >;    
    led::init();
    interval::init();
    for(;;){    
@@ -17,9 +17,9 @@ void blink(){
    }
 }
 
-template< typename pin, is_interval interval_high, is_interval interval_low >
+template< can_pin_out pin, is_interval interval_high, is_interval interval_low >
 void blink(){
-   using led = hwcpp::pin_out< pin >;    
+   using led = pin_out< pin >;    
    led::init();
    interval_high::init();
    interval_low::init();
@@ -31,9 +31,9 @@ void blink(){
    }
 }
 
-template< typename arg_port, is_interval interval >
+template< can_port_out _port, is_interval interval >
 void kitt(){
-   using port = hwcpp::port_out< arg_port >;	
+   using port = hwcpp::port_out< _port >;	
    port::init();
    interval::init();
    for(;;){

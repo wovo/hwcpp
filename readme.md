@@ -54,6 +54,14 @@ The compilers I currently use are (gcc 7.2.0):
 -----------------------------------------------------------------------------
 
 Notes & ToDo
+- fixed-out pins/ports to hwcpp
+- // #undef putc in hwcpp-all.hpp
+- .md should reflect new structure
+- remove redundancy from port concepts => ask Chiel
+- due adc not linear?
+- due adc read should be one function shared by all adcs (flyweight)
+- a way to bundle pins without making the object? (for optional parts like on the JS shield)
+- switch to other joystick shield, needs more distinctive name
 - put or putc ?
 - get from stream can use 'none' value, or maybe std::optional?
 - uno UART
@@ -61,18 +69,14 @@ Notes & ToDo
 - due pin should disable adc of that pin
 - bmptk has a problem with G++ := as was used in arduino uno
 - joystick abstraction, scaling, run-time ratio
-- joystick-buttons shield
-- due ADC, test with DUAL potmeter (shield!)
-- root directory -> include?
+- new joystick-buttons shield
 - demos -> examples
-- require only -I of the root directory
 - more port adapters
 - use loop instead of recursion for port creators
 - port dummies, port variables
 - re-organize lib directories: core, protocols, targets, shields, etc.
 - LED etc. in targets should be pin_out and active high
 - likewise for I2C and SPI pins: appropriate type
-- remove redundancy from pin concepts
 - push/pop strictest compiler settings possible
 - dac & adc buffering
 - never use int, long, etc.

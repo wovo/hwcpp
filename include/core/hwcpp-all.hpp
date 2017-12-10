@@ -48,27 +48,27 @@
 
 namespace hwcpp {
 
-   #include "basics.hpp"
-   #include "pins.hpp"
-   #include "pin-adapters.hpp"
-   #include "ports.hpp"
-   #include "port-adapters.hpp"
-   #include "adc.hpp"
-   #include "dac.hpp"
-   #include "invert.hpp"
+   #include "core/basics.hpp"
+   #include "core/pins.hpp"
+   #include "core/pin-adapters.hpp"
+   #include "core/ports.hpp"
+   #include "core/port-adapters.hpp"
+   #include "core/adc.hpp"
+   #include "core/dac.hpp"
+   #include "core/invert.hpp"
    
-   #include "timing.hpp"
-   #include "string.hpp"
-   #include "istream.hpp"
-   #include "ostream.hpp"
-   #include "console.hpp"
+   #include "core/timing.hpp"
+   #include "core/string.hpp"
+   #include "core/istream.hpp"
+   #include "core/ostream.hpp"
+   #include "core/console.hpp"
 
-   #include "i2c.hpp"
+   #include "core/i2c.hpp"
    
-   #include "demos.hpp"
+   #include "core/demos.hpp"
    
-   #include "pcf8574.hpp"
-   #include "hd44780.hpp"
+   #include "chips/pcf8574.hpp"
+   #include "chips/hd44780.hpp"
    
    namespace shields {   
 
