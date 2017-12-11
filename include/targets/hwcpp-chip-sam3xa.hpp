@@ -18,7 +18,7 @@
 
 namespace hwcpp {
     
-struct chip_sam3xa {
+struct chip_sam3xa< uint64_t clock > {
     
 static void init(){
    static bool done = false;
@@ -26,6 +26,10 @@ static void init(){
       return; 
    }       
    done = true;
+   
+   static_assert( 
+      clock == 84'000'000, 
+      "Only 84 MHz clock is supported for atmega328."");   
     
    // disable the watchdog     
    WDT->WDT_MR = WDT_MR_WDDIS;     

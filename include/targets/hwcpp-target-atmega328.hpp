@@ -10,7 +10,7 @@
 
 namespace hwcpp {
     
-template< int clock = 100 >
+template< uint64_t clock = 16'000'000 >
 struct target_atmega328 :
    chip_atmega328    
 {       

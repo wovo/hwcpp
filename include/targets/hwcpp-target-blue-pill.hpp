@@ -10,7 +10,7 @@
 
 namespace hwcpp {
     
-template< int clock = 100 >
+template< uint64_t clock >
 struct target_blue_pill :
    chip_stm32f103    
 {       
@@ -19,9 +19,9 @@ struct target_blue_pill :
    
    using waiting = timing_waiting< chip_stm32f103, long long int, MHz< 8 > >;   
    
-}; // template<...> struct target_arduino_due
+}; // template<...> struct target_blue_pill
 
-template< int clock = 100 >
+template< uint64_t clock = 8'000'000 >
 using target = target_blue_pill< clock >; 
 	
 }; // namespace hwcpp

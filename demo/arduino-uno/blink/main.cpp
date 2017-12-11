@@ -8,5 +8,5 @@ using y = hwcpp::pin_out< x >;
 
 int main(){ 
    y::set( 1 );
-   hwcpp::blink< target::led, timing::ms< 200 > >();
+   hwcpp::blink< target::led, timing::ms< 2 > >();
 }

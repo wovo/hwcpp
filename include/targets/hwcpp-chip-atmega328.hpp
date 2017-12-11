@@ -15,6 +15,7 @@
 
 namespace hwcpp {
     
+template< uint64_t clock >	
 struct chip_atmega328 {
 	
 enum class port {
@@ -41,6 +42,20 @@ static constexpr regs * port_direction[] = {
 };
 
 static void HWLIB_INLINE init(){
+/*
+   if constexpr ( clock == 8'000'000 ){
+      // default: run from internal RC oscillator
+	  
+   } else if constexpr ( clock == 16'000'000 ){
+      // switch to external crystal oscillator	   
+	  
+   } else {
+      static_assert( 
+         clock == 0, 
+         "Only 8 MHz (intenal) 16 MHz (crystal) "
+		 "clock is supported for atmega328.");
+   }		 
+*/
 }
    
 
@@ -50,7 +65,7 @@ template< port p, uint32_t pin >
 struct _pin_in_out {
 	
    static void HWLIB_INLINE init(){
-      hwcpp::chip_atmega328::init();
+      hwcpp::chip_atmega328< clock >::init();
    }
    
    static void HWLIB_INLINE direction_set_direct( direction d ){
@@ -75,16 +90,17 @@ struct _pin_in_out {
    
 };
 
+template< port p, uint32_t pin >
+using pin_in_out = _pin_in_out_from_direct< _pin_in_out< p, pin > >;	
+
 
 // ========= pin_adc ==========
 
 template< uint32_t pin >
-struct pin_adc : 
-   adc< 10 > 
-{
+struct _pin_adc {
 	
    static void init(){
-      hwcpp::chip_atmega328::init();
+      hwcpp::chip_atmega328< clock >::init();
       
       // reference is AVCC
       ADMUX = 0x01 << REFS0;
@@ -93,7 +109,7 @@ struct pin_adc :
       ADCSRA = 7 | ( 0x01 << ADEN );	  
    }
 
-   static uint_fast16_t get(){
+   static uint_fast16_t get_direct(){
 	   
       // select the ADC input pin 
       ADMUX = ( 0x01 << REFS0 ) | pin;
@@ -107,6 +123,53 @@ struct pin_adc :
       return ADCW;
    }
    
+};
+
+template< uint64_t pin >
+using pin_adc = _adc_from_direct< _pin_adc< pin >, 10 > ;
+
+struct uart {
+	
+   static void init(){
+      static bool init_done = false;
+      if( init_done ){
+         return;
+      }
+      init_done = true;	   
+	   
+      // set baudrate	   
+      uint64_t UBRR_VALUE = ((( clock / ( BMPTK_BAUDRATE * 16UL ))) - 1 );
+      UBRR0H = (uint8_t) (UBRR_VALUE>>8);
+      UBRR0L = (uint8_t) UBRR_VALUE;
+	  
+	  // Set frame format to 8 data bits, no parity, 1 stop bit
+      UCSR0C = 0x60;
+	  
+	  // enable rx and tx
+	  UCSR0B = (1<<RXEN0)|(1<<TXEN0);
+   }	
+
+   static bool get_is_blocked(){
+      init();	
+      return !( UCSR0A & ( 0x01<<RXC0 ));
+   }
+
+   static char get(){
+      // init() is not needed because get_is_blocked() does that
+      while( get_is_blocked() ){}
+      return UDR0; 
+   }
+
+   static bool put_is_blocked(){
+      init();	
+      return !( UCSR0A & ( 0x01 << UDRE0 ));
+   }
+
+   static void put( char c ){
+      // init() is not needed because put_is_blocked() does that
+      //while( put_is_blocked() ){}
+      UDR0 = c;
+   }   
 };
 
 
@@ -143,9 +206,6 @@ static void wait_ticks( uint_fast64_t n ){
       n -= t;  
  }
 }  
-   
-template< port p, uint32_t pin >
-using pin_in_out = pin_in_out_direct_base< _pin_in_out< p, pin > >;	
 
 }; // struct atmega328
 

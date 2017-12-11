@@ -9,8 +9,8 @@
 #include "hwcpp-chip-sam3xa.hpp"
 
 namespace hwcpp {
-    
-template< int clock = 100 >
+   
+template< uint64_t clock >
 struct target_arduino_due :
    chip_sam3xa    
 {       
@@ -156,7 +156,7 @@ struct target_arduino_due :
    
 }; // template<...> struct target_arduino_due
 
-template< int clock = 100 >
+template< uint64_t 84'000'000 >
 using target = target_arduino_due< clock >; 
 	
 }; // namespace hwcpp

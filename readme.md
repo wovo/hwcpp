@@ -50,6 +50,8 @@ The compilers I currently use are (gcc 7.2.0):
 -----------------------------------------------------------------------------
 
 Notes & ToDo
+- arduino uno timing overflow??
+- uart now has init-on-use, should not be needed: when cout is created -> init
 - max toggle tests, document freq
 - invert port(blue pill) doesn't work
 - fixed-out pins/ports to hwcpp

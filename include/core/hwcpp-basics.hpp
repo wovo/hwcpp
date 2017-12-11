@@ -10,7 +10,7 @@
 //
 // ============================================================================
    
-constexpr char version[] = "V0.1 2017-11-17 work-in-progress";
+constexpr char version[] = "V0.1 2017-12-11 work-in-progress";
 
 
 // ============================================================================
@@ -28,14 +28,14 @@ constexpr char version[] = "V0.1 2017-11-17 work-in-progress";
 //
 // ============================================================================
   
-template< long long int f >
-using MHz = std::ratio< f * 1'000'000, 1 >;
+template< uint64_t f, uint64_t d = 1 >
+using MHz = std::ratio< f * 1'000'000, d >;
 
-template< long long int f >
-using kHz = std::ratio< f * 1'000, 1 >;
+template< uint64_t f, uint64_t d = 1 >
+using kHz = std::ratio< f * 1'000, d >;
 
-template< long long int f >
-using Hz = std::ratio< f * 1, 1 >;
+template< uint64_t f, uint64_t d = 1 >
+using Hz = std::ratio< f * 1, d >;
 
    
 // ============================================================================

@@ -10,7 +10,7 @@
 
 namespace hwcpp {
     
-template< int clock = 100 >
+template< uint64_t 84'000'000 >
 struct target_sam3xa :
    chip_sam3xa    
 {       

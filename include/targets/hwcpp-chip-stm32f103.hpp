@@ -15,7 +15,7 @@
 
 namespace hwcpp {
     
-struct chip_stm32f103 {
+struct chip_stm32f103< uint64_t clock >{
 	
 enum class port {
    a,
@@ -37,6 +37,10 @@ static void init(){
       return; 
    }       
    done = true;	
+   
+   static_assert( 
+      clock == 8'000'000, 
+      "Only 8 MHz clock is supported for stm32f103."");   
 	
    // enable the clock to all GPIO ports	
    RCC->APB2ENR |= 

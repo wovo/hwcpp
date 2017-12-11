@@ -10,16 +10,18 @@
 
 namespace hwcpp {
     
-template< int clock = 100 >
+template< uint64_t clock >
 struct target_arduino_uno :
-   chip_atmega328    
+   chip_atmega328< clock >    
 {       
+	
+using chip = chip_atmega328< clock >;	
 
 #define make_pin_in_out( NAME, PORT, PIN ) \
-   using NAME  = chip_atmega328::pin_in_out< chip_atmega328::port::PORT, PIN >;
+   using NAME = typename chip:: template pin_in_out< chip::port::PORT, PIN >;
    
 #define make_pin_adc( NAME, PIN ) \
-   using NAME  = chip_atmega328::pin_adc< PIN >;
+   using NAME = typename chip:: template pin_adc< PIN >;
    
    make_pin_in_out(    d0,  d,  0 );
    make_pin_in_out(    d1,  d,  1 );
@@ -65,19 +67,22 @@ struct target_arduino_uno :
    make_pin_in_out( _mosi,  b,  3 );
    make_pin_in_out(   _ss,  b,  2 );
 
-   using sck  = pin_out< _sck >;
+   using sck  = pin_out<  _sck >;
    using miso = pin_in<  _miso >;
    using mosi = pin_out< _mosi >;
-   using ss   = pin_out< _ss >;
+   using ss   = pin_out<  _ss >;
 
 #undef make_pin_in_out   
 #undef make_pin_adc 
    
-   using waiting = timing_waiting< chip_atmega328, long long int, MHz< 1 > >;   
+   using waiting = timing_waiting< 
+      chip_atmega328< clock >, 
+	  long long int, 
+      std::ratio< clock, 16 > >;   
    
 }; // template<...> struct target_arduino_uno
 
-template< long long int clock = 100 >
+template< uint64_t clock = 8'000'000 >
 using target = target_arduino_uno< clock >; 
 	
 }; // namespace hwcpp
