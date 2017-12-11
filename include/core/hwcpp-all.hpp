@@ -49,13 +49,16 @@
 namespace hwcpp {
 
    #include "core/hwcpp-basics.hpp"
+   
+   #include "core/hwcpp-box.hpp"
+   #include "core/hwcpp-box-invert.hpp"
+
    #include "core/hwcpp-pins.hpp"
    #include "core/hwcpp-pin-adapters.hpp"
    #include "core/hwcpp-ports.hpp"
    #include "core/hwcpp-port-adapters.hpp"
    #include "core/hwcpp-adc.hpp"
    #include "core/hwcpp-dac.hpp"
-   #include "core/hwcpp-invert.hpp"
    
    #include "core/hwcpp-timing.hpp"
    #include "core/hwcpp-string.hpp"

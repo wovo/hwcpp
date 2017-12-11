@@ -113,7 +113,7 @@ concept bool _has_pin_in_functions = requires {
 template< typename T >
 concept bool _has_pin_direction_functions = requires( 
    bool v, 
-   direction d 
+   pin_direction d 
 ){   
    { T::direction_set( d ) } -> void;
    { T::direction_set_direct( d ) } -> void;
@@ -239,16 +239,16 @@ struct _add_pin_out_direct_functions : T {
 
 // ========== add pin in buffered ==========
 
-template< typename T >
+template< typename T, typename value_type = typename T::value_type >
 struct _add_pin_in_buffered_functions : T {
    
-   static bool HWLIB_INLINE get(){
+   static value_type HWLIB_INLINE get(){
       return T::get_direct();
    }       
    
   // get_direct provided by T
    
-   static bool HWLIB_INLINE get_buffered(){
+   static value_type HWLIB_INLINE get_buffered(){
       return T::get_direct();
    }       
    
@@ -280,7 +280,7 @@ struct _add_pin_in_direct_functions : T {
 template< typename T >
 struct _add_pin_in_out_buffered_functions : 
    _add_pin_out_buffered_functions< 
-      _add_pin_in_buffered_functions< T > > 
+      _add_pin_in_buffered_functions< T, bool >> 
 {};
 
 
@@ -363,13 +363,13 @@ struct _pin_in_out_from_direct :
    _add_pin_in_out_buffered_functions< T > 
 {
    
-   static void HWLIB_INLINE direction_set( direction d ){
+   static void HWLIB_INLINE direction_set( pin_direction d ){
       T::direction_set_direct( d );       
    }    
    
    // direction_set_direct() provided by T
 
-   static void HWLIB_INLINE direction_set_buffered( direction d ){
+   static void HWLIB_INLINE direction_set_buffered( pin_direction d ){
       T::direction_set_direct( d );       
    }    
    
@@ -385,12 +385,12 @@ struct _pin_in_out_from_buffered :
    _add_pin_in_out_buffered_functions< T > 
 {
      
-   static void HWLIB_INLINE direction_set( direction d ){
+   static void HWLIB_INLINE direction_set( pin_direction d ){
       T::direction_set_buffered( d ); 
       T::direction_flush();
    }    
    
-   static void HWLIB_INLINE direction_set_direct( direction d ){
+   static void HWLIB_INLINE direction_set_direct( pin_direction d ){
       T::direction_set_buffered( d );       
       T::direction_flush();
    }    
@@ -440,7 +440,7 @@ struct _pin_in_out_dummy :
    _pin_out_dummy,
    _pin_in_dummy
 {    
-   static void HWLIB_INLINE direction_set_direct( direction d ){}
+   static void HWLIB_INLINE direction_set_direct( pin_direction d ){}
 };
 
 // ========== basic dummy pin oc ==========
@@ -497,17 +497,17 @@ struct pin_in_value :
 
 // ========== pin in out ==========
 
-template< bool & value, direction direction_value >
+template< bool & value, pin_direction direction_value >
 struct _pin_in_out_value : 
    _pin_out_value< value >,
    _pin_in_value< value >
 {    
-   static void HWLIB_INLINE direction_set_direct( direction d ){
+   static void HWLIB_INLINE direction_set_direct( pin_direction d ){
       direction_value = d;
    }
 };
 
-template< bool & value, direction & direction_value >
+template< bool & value, pin_direction & direction_value >
 struct pin_in_out_value :
    _pin_in_out_from_direct< _pin_in_out_value< value, direction_value > >
 {};   
@@ -524,3 +524,5 @@ template< bool & value >
 struct pin_oc_value :
    _pin_oc_from_direct< _pin_oc_value< value > >
 {};   
+
+

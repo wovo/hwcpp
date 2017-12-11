@@ -68,7 +68,10 @@ struct target_atmega328 :
 #undef make_pin_in_out   
 #undef make_pin_adc 
 
-   using waiting = timing_waiting< chip_atmega328, long long int, MHz< 1 > >;
+   using waiting = timing_waiting< 
+      chip_atmega328< clock >, 
+	  uint_fast32_t, 
+      std::ratio< clock, 16 > >;   
     
 }; // template<...> struct target_atmega328
 	

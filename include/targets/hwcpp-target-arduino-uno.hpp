@@ -77,12 +77,12 @@ using chip = chip_atmega328< clock >;
    
    using waiting = timing_waiting< 
       chip_atmega328< clock >, 
-	  long long int, 
+	  uint_fast32_t, 
       std::ratio< clock, 16 > >;   
    
 }; // template<...> struct target_arduino_uno
 
-template< uint64_t clock = 8'000'000 >
+template< uint64_t clock = 16'000'000 >
 using target = target_arduino_uno< clock >; 
 	
 }; // namespace hwcpp

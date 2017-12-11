@@ -12,14 +12,16 @@ namespace hwcpp {
    
 template< uint64_t clock >
 struct target_arduino_due :
-   chip_sam3xa    
+   chip_sam3xa< clock >    
 {       
+    
+using chip = chip_sam3xa< clock >;
 
 #define make_pin_in_out( NAME, PORT, PIN) \
-   using NAME  = chip_sam3xa::pin_in_out< chip_sam3xa::pio::PORT, PIN >;
+   using NAME  = typename chip:: template pin_in_out< chip::pio::PORT, PIN >;
    
 #define make_pin_adc( NAME, CHANNEL ) \
-   using NAME  = chip_sam3xa::pin_adc< CHANNEL >;   
+   using NAME  = typename chip:: template pin_adc< CHANNEL >;   
 
    make_pin_in_out(   d0,  a,  8 );
    make_pin_in_out(   d1,  a,  9 );
@@ -152,11 +154,14 @@ struct target_arduino_due :
 #undef make_pin_in_out   
 #undef make_pin_adc
 
-   using waiting = timing_waiting< chip_sam3xa, long long int, MHz< 84 > >;
+   using waiting = timing_waiting< 
+      chip_sam3xa< clock >,
+      int_fast64_t, 
+      std::ratio< clock, 16 > >;
    
 }; // template<...> struct target_arduino_due
 
-template< uint64_t 84'000'000 >
+template< uint64_t clock = 84'000'000 >
 using target = target_arduino_due< clock >; 
 	
 }; // namespace hwcpp

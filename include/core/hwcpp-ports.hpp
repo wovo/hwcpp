@@ -119,7 +119,7 @@ concept bool _has_port_in_functions = requires {
 template< typename T >
 concept bool _has_port_direction_functions = requires( 
    typename T::value_type v, 
-   direction d 
+   pin_direction d 
 ){   
    { T::direction_set( d ) } -> void;
    { T::direction_set_direct( d ) } -> void;
@@ -222,8 +222,9 @@ struct _port_out_implementation<  n, arg_pin, arg_tail... > :
    }
       
    static void set( value_type v ) {
-      pin::set( ( v & 0x01 ) != 0 );
-      _port_out_implementation< n, arg_tail... >::set( v >> 1 );
+      pin::set_buffered( ( v & 0x01 ) != 0 );
+      _port_out_implementation< n, arg_tail... >::set_buffered( v >> 1 );
+	  flush();
    }
       
    static void set_direct( value_type v ) {
@@ -331,7 +332,7 @@ struct _port_in_out_implementation< n > :
 {
    using value_type = typename port_in_out_root< n >::value_type;
    static void init() {}
-   static void direction_set_direct( direction d ) {}
+   static void direction_set_direct( pin_direction d ) {}
    static void set_direct( value_type v ) {}
    static value_type get_direct(){ return 0; }
 };
@@ -350,7 +351,7 @@ struct _port_in_out_implementation<  n, arg_pin, arg_tail... > :
       _port_in_out_implementation< n, arg_tail... >::init(); 
    }
       
-   static void direction_set_direct( direction d ) {
+   static void direction_set_direct( pin_direction d ) {
       pin::direction_set_direct( d );
       _port_in_out_implementation< n, arg_tail... >::direction_set_direct( d );
    }
@@ -409,7 +410,7 @@ struct _port_oc_implementation<  n, arg_pin, arg_tail... > :
       _port_oc_implementation< n, arg_tail... >::init(); 
    }
       
-   static void direction_set_direct( direction d ) {
+   static void direction_set_direct( pin_direction d ) {
       pin::direction_set_direct( d );
       _port_oc_implementation< n, arg_tail... >::direction_set_direct( d );
    }

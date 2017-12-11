@@ -90,8 +90,7 @@ public:
          && ( T::cursor_y >= 0 )
          && ( T::cursor_y < T::size_y )
       ){
-          T::putc( c );
-          ++T::cursor_x;
+         T::putc( c );
       }
    }
    

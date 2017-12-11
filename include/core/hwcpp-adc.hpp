@@ -29,7 +29,7 @@ concept bool is_adc = requires {
 template< typename T, uint64_t n_bits >
 struct _adc_from_direct : 
    adc_root< n_bits >,
-   _add_pin_in_buffered_functions< T >  
+   _add_pin_in_buffered_functions< T, typename adc_root< n_bits >::value_type  >  
 {};
 
 template< typename T, uint64_t _n_bits >

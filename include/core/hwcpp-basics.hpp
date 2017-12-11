@@ -3,6 +3,18 @@
 // file : hwcpp-basics.hpp
 //
 // ============================================================================
+//
+// This file is part of HwCpp, 
+// a C++ library for close-to-the-hardware programming.
+//
+// Copyright Wouter van Ooijen 2017
+// 
+// Distributed under the Boost Software License, Version 1.0.
+// (See the accompanying LICENSE_1_0.txt in the root directory of this
+// library, or a copy at http://www.boost.org/LICENSE_1_0.txt)
+//
+// ============================================================================
+
 
 // ============================================================================
 //
@@ -28,13 +40,13 @@ constexpr char version[] = "V0.1 2017-12-11 work-in-progress";
 //
 // ============================================================================
   
-template< uint64_t f, uint64_t d = 1 >
+template< uint_fast64_t f, uint_fast64_t d = 1 >
 using MHz = std::ratio< f * 1'000'000, d >;
 
-template< uint64_t f, uint64_t d = 1 >
+template< uint_fast64_t f, uint_fast64_t d = 1 >
 using kHz = std::ratio< f * 1'000, d >;
 
-template< uint64_t f, uint64_t d = 1 >
+template< uint_fast64_t f, uint_fast64_t d = 1 >
 using Hz = std::ratio< f * 1, d >;
 
    
@@ -58,7 +70,7 @@ struct always_false {
 //
 // ============================================================================
 
-enum class direction { 
+enum class pin_direction { 
    input, 
    output 
 };
@@ -105,9 +117,7 @@ template<> struct uint_t< 8 * sizeof( unsigned long long int ) > {
 // ============================================================================   
   
 template< class base >
-struct int_info {
-    
-};
+struct int_info {};
 
 template<> struct int_info< unsigned long long int > {
    static constexpr unsigned long long int max = ULLONG_MAX;
@@ -132,6 +142,18 @@ template<> struct int_info< int > {
 class not_instantiable {
 private:
    not_instantiable();
+};
+
+
+// ============================================================================
+//
+// Concept that requires a static init() function
+//
+// ============================================================================
+
+template< typename T >
+concept bool _has_init_function = requires {  
+   { T::init() } -> void; 
 };
    
    

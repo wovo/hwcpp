@@ -145,7 +145,7 @@ struct pin_out< T > :
     
    static void HWLIB_INLINE init(){
 	  T::init(); 
-      T::direction_set( direction::output );
+      T::direction_set( pin_direction::output );
    }	
 };
 
@@ -191,7 +191,7 @@ struct pin_in< T > :
     
    static void HWLIB_INLINE init(){
 	  T::init(); 
-      T::direction_set( direction::input );
+      T::direction_set( pin_direction::input );
    }	
 };
 
@@ -244,20 +244,20 @@ struct pin_in_out< T > :
    _pass_pin_get< T >  
 {
     
-   static void HWLIB_INLINE direction_set( direction d ){
-      if( d == direction::input ){
+   static void HWLIB_INLINE direction_set( pin_direction d ){
+      if( d == pin_direction::input ){
          T::set( 1 );
       }   
    }    
    
-   static void HWLIB_INLINE direction_direct( direction d ){
-      if( d == direction::input ){
+   static void HWLIB_INLINE direction_direct( pin_direction d ){
+      if( d == pin_direction::input ){
          T::set_direct( 1 );
       }       
    }    
 
-   static void HWLIB_INLINE direction_set_buffered( direction d ){
-      if( d == direction::input ){
+   static void HWLIB_INLINE direction_set_buffered( pin_direction d ){
+      if( d == pin_direction::input ){
          T::set_buffered( 1 );
       }         
    }    
@@ -305,27 +305,27 @@ struct pin_oc< T > :
     
    static void HWLIB_INLINE set( bool v ){
        if( v ){
-          T::direction_set( direction::input );   
+          T::direction_set( pin_direction::input );   
        } else {
-          T::direction_set( direction::output );   
+          T::direction_set( pin_direction::output );   
           T::set( 0 );
        }
    }
    
    static void HWLIB_INLINE set_direct( bool v ){
        if( v ){
-          T::direction_set_direct( direction::input );   
+          T::direction_set_direct( pin_direction::input );   
        } else {
-          T::direction_set_direct( direction::output );   
+          T::direction_set_direct( pin_direction::output );   
           T::set_direct( 0 );
        }
    }
    
    static void HWLIB_INLINE set_buffered( bool v ){
        if( v ){
-          T::direction_set_buffered( direction::input );   
+          T::direction_set_buffered( pin_direction::input );   
        } else {
-          T::direction_set_buffered( direction::output );   
+          T::direction_set_buffered( pin_direction::output );   
           T::set_buffered( 0 );
        }
    }
@@ -337,7 +337,7 @@ struct pin_oc< T > :
             
    static void HWLIB_INLINE init(){
 	  T::init(); 
-      T::direction_set_direct( direction::input );
+      T::direction_set_direct( pin_direction::input );
    }
 };	
 
@@ -345,3 +345,24 @@ struct pin_oc< T > :
 
 template< is_pin_oc T >
 struct pin_oc< T > : T {};
+
+
+// ============================================================================
+//
+// fixed-value output pins
+//
+// ============================================================================
+
+template< can_pin_out pin, bool v >
+struct pin_fixed : pin_out< pin > {
+   static void init(){
+      pin_out< pin >::init();
+      pin_out< pin >::set( v );
+   }
+};
+   
+template< can_pin_out pin >
+using pin_low = pin_fixed< pin, 0 >;
+   
+template< can_pin_out pin >
+using pin_high = pin_fixed< pin, 1 >;

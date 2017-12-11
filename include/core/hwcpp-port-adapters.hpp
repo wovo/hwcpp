@@ -69,7 +69,7 @@ struct port_out< port > :
    
    static void init() { 
       port::init();
-	  port::direction_set_direct( direction::output );
+	  port::direction_set_direct( pin_direction::output );
    }
       
    static void set_direct( value_type v ) {
@@ -117,7 +117,7 @@ struct port_in< port > :
    
    static void init() { 
       port::init();
-	  port::direction_set_direct( direction::output ); 
+	  port::direction_set_direct( pin_direction::output ); 
    }
       
    static value_type set_direct( value_type v ) {

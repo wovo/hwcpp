@@ -12,4 +12,4 @@ A min( A a, B b ){
    return a < b ? a : b;
 };   
 
-}; // namespace stdd
+}; // namespace std

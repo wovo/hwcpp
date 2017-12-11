@@ -42,13 +42,16 @@ endif
 HEADERS           += hwcpp.hpp
 HEADERS           += hwcpp-all.hpp
 HEADERS           += hwcpp-basics.hpp 
+
+HEADERS           += hwcpp-box.hpp 
+HEADERS           += hwcpp-box-invert.hpp 
+
 HEADERS           += hwcpp-pins.hpp 
 HEADERS           += hwcpp-pin-adapters.hpp 
 HEADERS           += hwcpp-ports.hpp 
 HEADERS           += hwcpp-port-adapters.hpp 
 HEADERS           += hwcpp-adc.hpp 
 HEADERS           += hwcpp-dac.hpp 
-HEADERS           += hwcpp-invert.hpp 
 HEADERS           += hwcpp-timing.hpp 
 HEADERS           += hwcpp-i2c.hpp 
 HEADERS           += hwcpp-console.hpp 

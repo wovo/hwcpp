@@ -42,20 +42,16 @@ static constexpr regs * port_direction[] = {
 };
 
 static void HWLIB_INLINE init(){
-/*
-   if constexpr ( clock == 8'000'000 ){
-      // default: run from internal RC oscillator
-	  
-   } else if constexpr ( clock == 16'000'000 ){
-      // switch to external crystal oscillator	   
+    
+   if constexpr ( clock == 16'000'000 ){
+      // 16 MHz crystal	   
 	  
    } else {
       static_assert( 
          clock == 0, 
-         "Only 8 MHz (intenal) 16 MHz (crystal) "
+         "Only 16 MHz (crystal) "
 		 "clock is supported for atmega328.");
    }		 
-*/
 }
    
 
@@ -96,7 +92,7 @@ using pin_in_out = _pin_in_out_from_direct< _pin_in_out< p, pin > >;
 
 // ========= pin_adc ==========
 
-template< uint32_t pin >
+template< uint_fast64_t pin >
 struct _pin_adc {
 	
    static void init(){
@@ -125,8 +121,11 @@ struct _pin_adc {
    
 };
 
-template< uint64_t pin >
+template< uint_fast64_t pin >
 using pin_adc = _adc_from_direct< _pin_adc< pin >, 10 > ;
+
+
+// ========= uart ==========
 
 struct uart {
 	
@@ -142,8 +141,8 @@ struct uart {
       UBRR0H = (uint8_t) (UBRR_VALUE>>8);
       UBRR0L = (uint8_t) UBRR_VALUE;
 	  
-	  // Set frame format to 8 data bits, no parity, 1 stop bit
-      UCSR0C = 0x60;
+	  // format : 8 data bits, no parity, 1 stop bit
+      UCSR0C = 0x06;
 	  
 	  // enable rx and tx
 	  UCSR0B = (1<<RXEN0)|(1<<TXEN0);
@@ -167,7 +166,7 @@ struct uart {
 
    static void put( char c ){
       // init() is not needed because put_is_blocked() does that
-      //while( put_is_blocked() ){}
+      while( put_is_blocked() ){}
       UDR0 = c;
    }   
 };
@@ -186,25 +185,27 @@ static void wait_us_asm( int n ){
        "2:  sbiw  r24, 0x01   \t\n"   // 2
        "    rjmp  1b          \t\n"   // 2
        "3:                    \t\n"   // 16 total
+       : : "r" ( n )                  // reads n
    ); 
-    
 }
 
-static void wait_ticks( uint_fast64_t n ){
-//   n = 17'000ULL;	
-   while( n > 0 ){
-      wait_us_asm( 1 );
-      n--;  
- }
+static void wait_ticks( uint_fast32_t n ){
 
-   // this doesn't work. Why??
+/* doesn't work, why?? 
    while( n > 0 ){
-      //int t = std::min( (uint_fast64_t)n, 10'000ULL );
-	  unsigned int t = 10'000;
-	  if( t > n ){ t = n; }
+      int t = std::min( n, 1024U );
       wait_us_asm( t );
       n -= t;  
- }
+   } 
+*/
+   const auto chunk = 8192;
+   while( n > chunk ){
+      wait_us_asm( chunk );
+      n -= chunk;  
+   }
+   if( n > 0 ){
+       wait_us_asm( n );
+   }
 }  
 
 }; // struct atmega328

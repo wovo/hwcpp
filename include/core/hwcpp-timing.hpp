@@ -37,7 +37,7 @@ struct timing_waiting :
 
    //========== the number of ticks in an amount of time =========
 
-   static constexpr ticks_type ticks( long long int n ){ 
+   static constexpr ticks_type ticks( uint64_t n ){ 
 	  return 1 + ( 
 	     n * clock_frequency::num ) 
 		 / ( 1'000'000'000 * clock_frequency::den 
@@ -50,7 +50,7 @@ struct timing_waiting :
 		 
    //========== wait a compile-time known amount of time =========
 
-   template< long long n >
+   template< uint_fast64_t n >
    struct ns :
       is_interval_marker
    {
@@ -64,31 +64,31 @@ struct timing_waiting :
 	  }		  
    };
    
-   template< long long n >
-   using us = ns< n * 1'000 >;
+   template< uint_fast64_t n >
+   using us = ns< n * 1'000ULL >;
 
-   template< long long n >
-   using ms = ns< n * 1'000'000 >;
+   template< uint_fast64_t n >
+   using ms = ns< n * 1'000'000ULL >;
 
-   template< long long n >
-   using s = ns< n * 1'000'000'000 >;
+   template< uint_fast64_t n >
+   using s = ns< n * 1'000'000'000ULL >;
    
    // ========== wait a run-time known amount of time =========
    
-   void wait_ns( long long n ){
+   void wait_ns( uint_fast64_t n ){
       target::wait_ticks( ticks( n ) );	    	   
    }
 
-   void wait_us( long long n ){
-      target::wait_ticks( ticks( n * 1'000 ) );	    	   
+   void wait_us( uint_fast64_t n ){
+      target::wait_ticks( ticks( n * 1'000ULL ) );	    	   
    }
 
-   void wait_ms( long long n ){
-      target::wait_ticks( ticks( n * 1'000'000 ) );	    	   
+   void wait_ms( uint_fast64_t n ){
+      target::wait_ticks( ticks( n * 1'000'000ULL ) );	    	   
    }
 
-   void wait_s( long long n ){
-      target::wait_ticks( ticks( n * 1'000'000'000 ) );	    	   
+   void wait_s( uint_fast64_t n ){
+      target::wait_ticks( ticks( n * 1'000'000'000ULL ) );	    	   
    }
 
 };

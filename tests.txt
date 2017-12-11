@@ -4,23 +4,43 @@ target arduino uno
    overhead
       demo/arduino-uno/empty
 	     ROM: RAM:
+      demo/arduino-uno/fast-toggle
+	     375 ns @ 16 MHz
    UART
-      demo/arduino-uno/hello
-	     shows that 
-      demo/arduino-uno/uart	  
+      demo/arduino-uno/hello 
    GPIO's as pin-out
       demo/arduino-uno/blink
-	  demo/arduino-uno/kitt
-	  test/arduino-uno/gpio-to-adc
+	  demo/arduino-uno/kitt4
+	  //test/arduino-uno/gpio-to-adc
+   LED (active high)
+      demo/arduino-uno/led   
    A/D input
+      demo/arduino-uno/potmeter
       demo/arduino-uno/lcd-keypad-shield
-	  test/arduino-uno/gpio-to-adc
+	  //test/arduino-uno/gpio-to-adc	  
 	  
 target blue-pill
 
 target stm32f103	   
 
 target arduino-due
+   overhead
+      demo/arduino-uno/empty
+	     ROM: RAM:
+      demo/arduino-uno/fast-toggle
+	     60 ns, 16.8 MHz @ 84 MHz
+	     1.35 us, 750 kHz @ 4 MHz
+   UART
+      demo/arduino-duo/hello 
+   GPIO's as pin-out
+      demo/arduino-duo/blink
+	  demo/arduino-duo/kitt4
+	  //test/arduino-duo/gpio-to-adc
+   LED (active high)
+      demo/arduino-duo/led 	  
+   A/D input
+      demo/arduino-duo/potmeter
+      demo/arduino-duo/lcd-keypad-shield	  
 	  
 target-sam3xa	
 
@@ -29,6 +49,12 @@ hwcpp-string
 hwcpp-console
 
 hwcpp-pins
+
+hd44780
+   demo/arduino-duo/lcd-keypad-shield
+   demo/arduino-uno/lcd-keypad-shield
+   demo/arduino-uno/lcd-16x1
+   demo/arduino-uno/lcd-40x2
 
 
 

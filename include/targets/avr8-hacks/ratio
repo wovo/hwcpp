@@ -2,10 +2,10 @@
 
 namespace std {
 
-template< long long int n, long long int d >
+template< int_fast64_t n, int_fast64_t d >
 struct ratio {
-   static constexpr long long int num = n;
-   static constexpr long long int den = d;
+   static constexpr int_fast64_t num = n;
+   static constexpr int_fast64_t den = d;
 };   
 
 }; // namespace std

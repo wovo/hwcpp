@@ -1,6 +1,7 @@
 #include "hwcpp.hpp"
 
-using target = hwcpp::target<>;
+// using target = hwcpp::target<>;
+using target = hwcpp::target< 58'000'000 >;
 using timing = target::waiting;
 using uart   = target::uart;
 

@@ -50,36 +50,34 @@ The compilers I currently use are (gcc 7.2.0):
 -----------------------------------------------------------------------------
 
 Notes & ToDo
-- arduino uno timing overflow??
-- uart now has init-on-use, should not be needed: when cout is created -> init
+- HWLIB_TRACE : hwlib::cout :(
+- tests demos should be moved to test?
+- avr8 64 bit not to be trusted?
 - max toggle tests, document freq
+- what is the due start-up frequency?
 - invert port(blue pill) doesn't work
 - fixed-out pins/ports to hwcpp
 - // #undef putc in hwcpp-all.hpp
-- .md should reflect new structure
 - remove redundancy from port concepts => ask Chiel
 - due adc read should be one function shared by all adcs (flyweight)
 - a way to bundle pins without making the object? (for optional parts like on the JS shield)
 - switch to other joystick shield, needs more distinctive name
 - put or putc ?
 - get from stream can use 'none' value, or maybe std::optional?
-- uno UART
 - due pin should disable adc of that pin
 - bmptk has a problem with G++ := as was used in arduino uno
 - joystick abstraction, scaling, run-time ratio
-- new joystick-buttons shield
-- demos -> examples?
 - more port adapters
 - use loop instead of recursion for port creators
 - port dummies, port variables
-- LED etc. in targets should be pin_out and active high => check uno, due, blue
+- LED etc. in targets should be pin_out and active high => check blue
 - likewise for I2C and SPI pins: appropriate type
 - push/pop strictest compiler settings possible
 - dac & adc buffering
 - never use int, long, etc.
 - chips (& other targets) must have a freq constant
-- check uno a/d conversion frequency
-- print other things (various ints), test
+- check uno a/d conversion frequency -> document
+- print other things (various ints), test (ostream)
 - http://www.shieldlist.org/dfrobot/lcd
 - put all stream functionality in a class, using print(..), stream object is a shallow wrapper
 - ostream only for a char-pipe (uart is a full pipe<char>)
@@ -95,14 +93,12 @@ Notes & ToDo
 - string<> possible?
 - all BUT THE TOP functions in composed ports hould be HWLIB_INLINE 
 - use a marker for string and reverse compare
-- hwcpp::string
 - rewrite ostream tests to use string, and compare with std::ostream
 - stm full speed
 - pcf857a: needs create_a_port like for pins (check & extend)
 - to kitt this: needs port_out from port_oc (check & extend)
 - correct pin list for STM chip and for blue pill
 - avr8 limits correct & add
-- avr8 timing is now patched
 - avr8 timer-based wait
 - bmptk-build for demo (or even for all)
 - macro for one-time initialization? init(){ call_once< init_proper >(); }
@@ -112,8 +108,8 @@ Notes & ToDo
 - check blue pill default & fast clocks
 - SysTick use can be generalized
 - make HAL port/pin interfaces more regular, use mask in other targets
-- enumerate more pins
-- target frequencies
+- enumerate more pins (uno & due OK)
+- target frequencies => due startup??
 - show code, dseg, dss sizes from bmptk
 - reinterpret a pin_in_out to something different (so only one to define)
 - add author info, history, copyright to each file
