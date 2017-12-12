@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CodeLite_Workspace Name="example code" Database="" Version="10.0.0">
-  <Project Name="blink" Path="blink/_codelite.project" Active="Yes"/>
+  <Project Name="blink" Path="blink/_codelite.project" Active="No"/>
   <BuildMatrix>
     <WorkspaceConfiguration Name="Release" Selected="yes">
       <Project Name="blink" ConfigName="Release"/>
@@ -40,6 +40,12 @@
   <BuildMatrix>
     <WorkspaceConfiguration Name="Release" Selected="yes">
       <Project Name="led" ConfigName="Release"/>
+    </WorkspaceConfiguration>
+  </BuildMatrix>
+  <Project Name="patterns4" Path="patterns4/_codelite.project" Active="Yes"/>
+  <BuildMatrix>
+    <WorkspaceConfiguration Name="Release" Selected="yes">
+      <Project Name="patterns4" ConfigName="Release"/>
     </WorkspaceConfiguration>
   </BuildMatrix>
   <Project Name="potmeter" Path="potmeter/_codelite.project" Active="No"/>

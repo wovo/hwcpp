@@ -147,8 +147,8 @@ using chip = chip_sam3xa< clock >;
    make_pin_in_out(   _rx,  a,  8 );
    make_pin_in_out(  _led,  b, 27 );
     
-   using  tx = hwcpp::pin_out< _tx >;
-   using  rx = hwcpp::pin_in<  _rx >;
+   using  tx = hwcpp::pin_out<  _tx >;
+   using  rx = hwcpp::pin_in<   _rx >;
    using led = hwcpp::pin_out< _led >;
    
 #undef make_pin_in_out   
@@ -157,7 +157,7 @@ using chip = chip_sam3xa< clock >;
    using waiting = timing_waiting< 
       chip_sam3xa< clock >,
       int_fast64_t, 
-      std::ratio< clock, 16 > >;
+      std::ratio< clock, 1 > >;
    
 }; // template<...> struct target_arduino_due
 

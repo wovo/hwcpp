@@ -40,7 +40,7 @@ static void init(){
    SysTick->VAL   = 0;         // clear the timer
    SysTick->CTRL  = 5;         // start the timer, 1:1   
    
-   if constexpr ( clock > 8'000'000 ){
+   if constexpr ( clock == 8'000'000 ){
 	   
       // this is the default	   
 	   

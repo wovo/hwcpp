@@ -32,9 +32,6 @@
 template< typename T >
 struct invertible {
    static constexpr bool is_invertible = true;
-   
-   // a box can override this to have its own invert_value() function
-   auto HWLIB_INLINE invert_value( auto v ){ return ~ v; }
 };
 
 template< typename T >
@@ -42,50 +39,58 @@ concept bool is_invertible = requires {
    T::is_invertible; 
 };
 
+template< typename T >
+struct invertible_bitwise :
+   invertible< T >
+{ 
+   static bool HWLIB_INLINE invert_value( bool v ){ return ! v; }
+   static auto HWLIB_INLINE invert_value( auto v ){ return ~ v; }
+};
+
 
 // ============================================================================
 //
-// pass everything, but invert the set functions when present
+// filter tat inverts the set functions (when present)
 //
 // ============================================================================
 
-template< typename T > struct _invert_set : T {};
+template< typename T > struct _filter_invert_set : T {};
 
 template< _has_box_sink_functions T >
-struct _invert_set< T > : T {
+struct _filter_invert_set< T > : T {
 	
 	using value_type = typename T::value_type;
     
    	static void HWLIB_INLINE set( value_type v ){ 
-       T::set( invert_value( v ) ); }
+       T::set( T::invert_value( v ) ); }
        
    	static void HWLIB_INLINE set_direct( value_type v ){ 
-       T::set_direct( invert_value( v ) ); }
+       T::set_direct( T::invert_value( v ) ); }
        
    	static void HWLIB_INLINE set_buffered( value_type v ){ 
-       T::set_buffered( invert_value( v ) ); }
+       T::set_buffered( T::invert_value( v ) ); }
 };	
 
 
 // ============================================================================
 //
-// pass everything, but invert the get functions when present
+// filter that inverts the get functions (when present)
 //
 // ============================================================================
 
-template< typename T > struct _invert_get : T {};
+template< typename T > struct _filter_invert_get : T {};
 
 template< _has_box_source_functions T >
-struct _invert_get< T > : T {
+struct _filter_invert_get< T > : T {
     
    	static auto HWLIB_INLINE get(){ 
-       return invert_value( T::get() ); }
+       return T::invert_value( T::get() ); }
        
    	static auto HWLIB_INLINE get_direct(){ 
-       return invert_value( T::get_direct() ); }
+       return T::invert_value( T::get_direct() ); }
 	   
    	static auto HWLIB_INLINE get_buffered(){ 
-       return invert_value( T::get_buffered() ); }
+       return T::invert_value( T::get_buffered() ); }
 };	
 
 
@@ -96,4 +101,4 @@ struct _invert_get< T > : T {
 // ============================================================================
 
 template< is_invertible T > 
-struct invert : _invert_get< _invert_set< T > > {};
+struct invert : _filter_invert_get< _filter_invert_set< T > > {};

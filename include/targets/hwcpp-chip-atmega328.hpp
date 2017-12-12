@@ -64,8 +64,8 @@ struct _pin_in_out {
       hwcpp::chip_atmega328< clock >::init();
    }
    
-   static void HWLIB_INLINE direction_set_direct( direction d ){
-      if( d == direction::input ){
+   static void HWLIB_INLINE direction_set_direct( pin_direction d ){
+      if( d == pin_direction::input ){
          *port_direction[ (int)p ] &= ~ ( 0x1U << pin );
       } else {
          *port_direction[ (int)p ] |= ( 0x1U << pin );

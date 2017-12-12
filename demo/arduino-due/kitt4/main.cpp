@@ -10,6 +10,6 @@ using pins = hwcpp::port_out<
    target::d7
 >;
 
-int main(){ 
-   hwcpp::kitt< pins, timing::ms< 100 > >();
+int main(){ 	
+   hwcpp::kitt< pins, timing::ms< 200 > >();
 }

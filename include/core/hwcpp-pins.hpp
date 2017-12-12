@@ -38,7 +38,8 @@
 // ========= common =========
 
 struct pin_common_root :
-   not_instantiable
+   not_instantiable,
+   invertible_bitwise< bool >
 {
    using value_type = bool;  
 };
