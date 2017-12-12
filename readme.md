@@ -50,6 +50,7 @@ The compilers I currently use are (gcc 7.2.0):
 -----------------------------------------------------------------------------
 
 Notes & ToDo
+- pcf8591 => test with resistors
 - adc, joystick, joystick-button, => xy buttons
 - adc ==> subrange input box => can invert!
 - concepts should also test for the static const members
