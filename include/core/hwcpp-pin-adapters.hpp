@@ -368,61 +368,15 @@ template< can_pin_out pin >
 using pin_high = pin_fixed< pin, 1 >;
 
 
-
 // ============================================================================
 //
 // fanout
 //
 // ============================================================================
 
-// base, never used
 template< can_pin_out... pins >
-struct fanout;
+struct fanout :
+   pin_out_root,
+   box_fanout< bool, pin_out, pins... >
+{};   
 
-// recursion endpoint
-template<> 
-struct fanout<> : 
-   pin_out_root 
-{
-   static void init(){}
-   static void set( bool v ){}
-   static void set_direct( bool v ){}
-   static void set_buffered( bool v ){}
-   static void flush(){}
-};
-
-// add first pin and recurse
-template< can_pin_out _pin, can_pin_out... tail >
-struct fanout< _pin, tail... > :
-   fanout< tail... >
-{
-	
-   using pin = hwcpp::pin_out< _pin >;	
-	
-   static void init() { 
-      pin::init();
-      fanout< tail... >::init(); 
-   }
-      
-   static void set( bool v ) {
-      pin::set_buffered( v );
-      fanout< tail... >::set_buffered( v );
-	  flush();
-   }
-      
-   static void set_direct( bool v ) {
-      pin::set_direct( v );
-      fanout< tail... >::set_direct( v  );
-   }
-      
-   static void set_buffered( bool v ) {
-      pin::set_buffered( v );
-      fanout< tail... >::set_buffered( v );
-   }
-      
-   static void flush() {
-      pin::flush();
-      fanout< tail... >::flush();
-   }
-   
-};

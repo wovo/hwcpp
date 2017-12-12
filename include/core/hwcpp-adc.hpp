@@ -6,17 +6,20 @@
 
 template< uint64_t _n_bits >
 struct adc_root :
-   not_instantiable
+   box_source_root< 
+      typename uint_t< _n_bits >::fast
+   >
 {
    static constexpr bool is_adc = true;		
-   static constexpr uint32_t n_pbits = _n_bits;
-   using value_type = typename uint_t< _n_bits >::fast;  
-   
+   static constexpr uint64_t n_bits = _n_bits;
+   static constexpr uint64_t value_min = 0;
+   static constexpr uint64_t value_max = ( 1ULL << _n_bits ) - 1;
 }; // struct adc_root  
 
 template< typename T >
 concept bool is_adc = requires {  
    T::is_adc;
+   
    { T::init() } -> void; 
    { T::get() } -> typename T::value_type;
    { T::get_direct() } -> typename T::value_type;

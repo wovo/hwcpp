@@ -52,6 +52,7 @@ namespace hwcpp {
    
    #include "core/hwcpp-box.hpp"
    #include "core/hwcpp-box-invert.hpp"
+   #include "core/hwcpp-box-fanout.hpp"
 
    #include "core/hwcpp-pins.hpp"
    #include "core/hwcpp-pin-adapters.hpp"

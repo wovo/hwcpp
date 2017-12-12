@@ -45,6 +45,7 @@ HEADERS           += hwcpp-basics.hpp
 
 HEADERS           += hwcpp-box.hpp 
 HEADERS           += hwcpp-box-invert.hpp 
+HEADERS           += hwcpp-box-fanout.hpp 
 
 HEADERS           += hwcpp-pins.hpp 
 HEADERS           += hwcpp-pin-adapters.hpp 

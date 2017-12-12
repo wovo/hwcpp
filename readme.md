@@ -50,6 +50,10 @@ The compilers I currently use are (gcc 7.2.0):
 -----------------------------------------------------------------------------
 
 Notes & ToDo
+- adc, joystick, joystick-button, => xy buttons
+- adc ==> subrange input box => can invert!
+- concepts should also test for the static const members
+- atmega328 test with LCDs
 - HWLIB_TRACE : hwlib::cout :(
 - tests demos should be moved to test?
 - avr8 64 bit not to be trusted?
@@ -62,7 +66,7 @@ Notes & ToDo
 - due adc read should be one function shared by all adcs (flyweight)
 - a way to bundle pins without making the object? (for optional parts like on the JS shield)
 - switch to other joystick shield, needs more distinctive name
-- put or putc ?
+- put or putc ? => write
 - get from stream can use 'none' value, or maybe std::optional?
 - due pin should disable adc of that pin
 - bmptk has a problem with G++ := as was used in arduino uno

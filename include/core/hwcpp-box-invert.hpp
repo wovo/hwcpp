@@ -2,7 +2,9 @@
 //
 // file : hwcpp-box-invert.hpp
 //
-// inverting service for box classes
+// inverting functionality for box classes
+//
+// An inverted box reads or writes the inverted value.
 //
 // ============================================================================
 //
