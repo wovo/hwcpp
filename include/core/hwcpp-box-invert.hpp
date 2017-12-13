@@ -49,6 +49,13 @@ struct invertible_bitwise :
    static auto HWLIB_INLINE invert_value( auto v ){ return ~ v; }
 };
 
+template< typename T >
+struct invertible_interval :
+   invertible< T >
+{ 
+   static auto invert_value( auto v ){ return lowest + ( highest - v ); }
+};
+
 
 // ============================================================================
 //

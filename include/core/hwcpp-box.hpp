@@ -54,6 +54,16 @@ struct box_source_sink_root :
    static constexpr bool is_box_source_sink = true;
 };
 
+template< typename T, T _lowest, T _highest >
+struct box_interval :
+   box_root< T >
+{
+   static constexpr is_interval = true;
+   static constexpr bool is_box_source_sink = true;
+   static constexpr T lowest  = _lowest;
+   static constexpr T highest = _ highest;
+};
+
 
 // ============================================================================
 //
@@ -93,8 +103,6 @@ concept bool _has_box_direction_functions = requires(
 }; 
 
 
-
-
 // ============================================================================
 //
 // LIBRARY-INTERNAL
@@ -129,6 +137,8 @@ add
 multiply
 
 scale
+
+linear_transform
 
 - must indicate whether it is numeric or bitwise => can invert!
 */	

@@ -4,17 +4,20 @@
 //
 // ============================================================================
 
-template< uint64_t _n_bits >
+template< 
+   uint64_t _n_bits,
+   uint64_t value_min = 0,
+   uint64_t value_max = ( 1ULL << _n_bits ) - 1
+>
 struct adc_root :
    box_source_root< 
-      typename uint_t< _n_bits >::fast
+      typename uint_t< _n_bits >::fast,
+	  value_min,
+	  value_max
    >
 {
    static constexpr bool is_adc = true;		
-   static constexpr uint64_t n_bits = _n_bits;
-   static constexpr uint64_t value_min = 0;
-   static constexpr uint64_t value_max = ( 1ULL << _n_bits ) - 1;
-}; // struct adc_root  
+}; 
 
 template< typename T >
 concept bool is_adc = requires {  
@@ -32,11 +35,11 @@ concept bool is_adc = requires {
 template< typename T, uint64_t n_bits >
 struct _adc_from_direct : 
    adc_root< n_bits >,
-   _add_pin_in_buffered_functions< T, typename adc_root< n_bits >::value_type  >  
+   _add_pin_in_buffered_functions< T, typename adc_root< n_bits >::value_type >  
 {};
 
 template< typename T, uint64_t _n_bits >
 struct _adc_from_buffered : 
    adc_root< _n_bits >,
-   _add_pin_in_direct_functions< T > 
+   _add_pin_in_direct_functions< T, typename adc_root< n_bits >::value_type > 
 {};
