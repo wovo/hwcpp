@@ -50,6 +50,7 @@ The compilers I currently use are (gcc 7.2.0):
 -----------------------------------------------------------------------------
 
 Notes & ToDo
+- target at328p should use usbaspd
 - need a reverse-invert for non-reversible ones?
 - pcf8591 => test with resistors
 - adc, joystick, joystick-button, => xy buttons

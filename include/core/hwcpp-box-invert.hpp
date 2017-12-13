@@ -53,7 +53,7 @@ template< typename T >
 struct invertible_interval :
    invertible< T >
 { 
-   static auto invert_value( auto v ){ return lowest + ( highest - v ); }
+   static auto invert_value( auto v ){ return T::lowest + ( T::highest - v ); }
 };
 
 

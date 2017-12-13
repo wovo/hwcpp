@@ -55,13 +55,13 @@ struct box_source_sink_root :
 };
 
 template< typename T, T _lowest, T _highest >
-struct box_interval :
+struct box_interval_root :
    box_root< T >
 {
-   static constexpr is_interval = true;
+   static constexpr bool is_interval = true;
    static constexpr bool is_box_source_sink = true;
    static constexpr T lowest  = _lowest;
-   static constexpr T highest = _ highest;
+   static constexpr T highest = _highest;
 };
 
 

@@ -10,7 +10,7 @@ template<
    uint64_t value_max = ( 1ULL << _n_bits ) - 1
 >
 struct adc_root :
-   box_source_root< 
+   box_interval_root< 
       typename uint_t< _n_bits >::fast,
 	  value_min,
 	  value_max
@@ -41,5 +41,5 @@ struct _adc_from_direct :
 template< typename T, uint64_t _n_bits >
 struct _adc_from_buffered : 
    adc_root< _n_bits >,
-   _add_pin_in_direct_functions< T, typename adc_root< n_bits >::value_type > 
+   _add_pin_in_direct_functions< T, typename adc_root< T::n_bits >::value_type > 
 {};
