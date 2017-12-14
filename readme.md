@@ -50,6 +50,12 @@ The compilers I currently use are (gcc 7.2.0):
 -----------------------------------------------------------------------------
 
 Notes & ToDo
+- source/sink => in/out
+- verder met box-adapters (welke precies mogen blijft aan de concrete boxes)
+- file pin-utilities for things that trivally inherit from box
+- file hwcpp-port-from-pins
+- dummies now need the pin adapters (or make that box adapters??)
+- likewise for var-store
 - target at328p should use usbaspd
 - need a reverse-invert for non-reversible ones?
 - pcf8591 => test with resistors

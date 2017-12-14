@@ -1,4 +1,4 @@
-// ============================================================================
+// ==========================================================================
 //
 // file : hwcpp-box-invert.hpp
 //
@@ -6,7 +6,7 @@
 //
 // An inverted box reads or writes the inverted value.
 //
-// ============================================================================
+// ==========================================================================
 //
 // This file is part of HwCpp, 
 // a C++ library for close-to-the-hardware programming.
@@ -17,19 +17,20 @@
 // (See the accompanying LICENSE_1_0.txt in the root directory of this
 // library, or a copy at http://www.boost.org/LICENSE_1_0.txt)
 //
-// ============================================================================
+// ==========================================================================
 
 
-// ============================================================================
+// ==========================================================================
 //
-// PUBLIC
+// LIBRARY-INTERNAL
 //
 // mixin class and concept for invertible boxes
 //
-// a class T must be a box and inherit from invertible 
-// to be accepted by invert< T >
+// a class T must be a box and inherit from invertible (for bitwise inversion)
+// or invertible_interval (for numeric interval inversion) to be accepted 
+// by invert< T >
 //
-// ============================================================================
+// ==========================================================================
 
 template< typename T >
 struct invertible {
@@ -41,27 +42,40 @@ concept bool is_invertible = requires {
    T::is_invertible; 
 };
 
+// ========== mixin class for bitwise inverible boxes
+
 template< typename T >
 struct invertible_bitwise :
    invertible< T >
 { 
-   static bool HWLIB_INLINE invert_value( bool v ){ return ! v; }
-   static auto HWLIB_INLINE invert_value( auto v ){ return ~ v; }
+   static bool HWLIB_INLINE invert_value( bool v ){ 
+      return ! v; 
+   }
+   
+   static auto HWLIB_INLINE invert_value( auto v ){ 
+      return ~ v; 
+   }
 };
+
+// ========= mixin class for numeric-range invertible boxes
 
 template< typename T >
 struct invertible_interval :
    invertible< T >
 { 
-   static auto invert_value( auto v ){ return T::lowest + ( T::highest - v ); }
+   static auto invert_value( auto v ){ 
+      return T::lowest + ( T::highest - v ); 
+   }
 };
 
 
-// ============================================================================
+// ==========================================================================
 //
-// filter tat inverts the set functions (when present)
+// FILE-INTERNAL
 //
-// ============================================================================
+// class filter that inverts the set functions (when present)
+//
+// ==========================================================================
 
 template< typename T > struct _filter_invert_set : T {};
 
@@ -81,11 +95,13 @@ struct _filter_invert_set< T > : T {
 };	
 
 
-// ============================================================================
+// ==========================================================================
 //
-// filter that inverts the get functions (when present)
+// FILE-INTERNAL
 //
-// ============================================================================
+// class filter that inverts the get functions (when present)
+//
+// ==========================================================================
 
 template< typename T > struct _filter_invert_get : T {};
 
@@ -103,11 +119,13 @@ struct _filter_invert_get< T > : T {
 };	
 
 
-// ============================================================================
+// ==========================================================================
+//
+// PUBLIC
 //
 // invert decorator
 //
-// ============================================================================
+// ==========================================================================
 
 template< is_invertible T > 
 struct invert : _filter_invert_get< _filter_invert_set< T > > {};

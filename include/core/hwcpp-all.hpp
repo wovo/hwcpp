@@ -1,10 +1,10 @@
-// ============================================================================
+// ==========================================================================
 //
 // file : hwcpp-hwcpp.hpp
 //
 // The hwcpp files are meant to be included via this file only. 
 //
-// ============================================================================
+// ==========================================================================
 //
 // Notes & ToDo
 //
@@ -20,9 +20,9 @@
 // hwcpp.hpp should include the correct HAL, which includes the hwcpp-all.hpp
 // show code & data & bss sizes in bmptk
 //
-// ============================================================================
+// ==========================================================================
 
-// ============================================================================
+// ==========================================================================
 //
 // file : hwcpp-all.hpp
 //
@@ -32,7 +32,7 @@
 // or through hwcpp.hpp and a command-line defined HWCPP_TARGET), which 
 // includes this hwcpp-all.hpp file.  
 //
-// ============================================================================
+// ==========================================================================
 
 #ifndef HWCPP_ALL_INCLUDED
 #define HWCPP_ALL_INCLUDED
@@ -51,6 +51,7 @@ namespace hwcpp {
    #include "core/hwcpp-basics.hpp"
    
    #include "core/hwcpp-box.hpp"
+   #include "core/hwcpp-box-creator.hpp"
    #include "core/hwcpp-box-invert.hpp"
    #include "core/hwcpp-box-fanout.hpp"
 

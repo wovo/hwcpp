@@ -1,10 +1,10 @@
-// ============================================================================
+// ==========================================================================
 //
 // file : hwcpp-target-arduino-due.hpp
 //
 // HAL for the arduino due board target
 //
-// ============================================================================
+// ==========================================================================
 
 #include "hwcpp-chip-sam3xa.hpp"
 
@@ -126,6 +126,7 @@ using chip = chip_sam3xa< clock >;
    make_pin_in_out( _scl1,  a, 18 );
    make_pin_in_out( _sda1,  a, 17 );
 
+/*
    using  scl = hwcpp::pin_oc<  _scl >;
    using  sda = hwcpp::pin_oc<  _sda >;
    using scl1 = hwcpp::pin_oc< _scl1 >;
@@ -150,6 +151,7 @@ using chip = chip_sam3xa< clock >;
    using  tx = hwcpp::pin_out<  _tx >;
    using  rx = hwcpp::pin_in<   _rx >;
    using led = hwcpp::pin_out< _led >;
+*/
    
 #undef make_pin_in_out   
 #undef make_pin_adc

@@ -1,4 +1,4 @@
-// ============================================================================
+// ==========================================================================
 //
 // file : hwcpp-box-fanout.hpp
 //
@@ -7,7 +7,7 @@
 // The fanout combination of output boxes writes the same value
 // to all combined boxes.
 //
-// ============================================================================
+// ==========================================================================
 //
 // This file is part of HwCpp, 
 // a C++ library for close-to-the-hardware programming.
@@ -18,7 +18,7 @@
 // (See the accompanying LICENSE_1_0.txt in the root directory of this
 // library, or a copy at http://www.boost.org/LICENSE_1_0.txt)
 //
-// ============================================================================
+// ==========================================================================
 
 
 // base, never used

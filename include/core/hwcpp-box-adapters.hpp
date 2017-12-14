@@ -1,8 +1,8 @@
 // ==========================================================================
 //
-// file : hwcpp-pin-adapters.hpp
+// file : hwcpp-box-adapers.hpp
 //
-// adapters that transform a pin to another kind of pin
+// adapters that transform a box to another kind of box
 //
 // ==========================================================================
 //
@@ -20,40 +20,9 @@
 
 // ==========================================================================
 //
-// PUBLIC
-//
-// concepts that decide whether a pin can be converted to the requested pin
-//
-// ==========================================================================
-
-template< typename T >
-concept bool can_pin_out =  
-      is_pin_out< T >
-   || is_pin_in_out< T >
-   || is_pin_oc< T >;
-
-template< typename T >
-concept bool can_pin_in =  
-      is_pin_in< T >
-   || is_pin_in_out< T >
-   || is_pin_oc< T >;
-
-template< typename T >
-concept bool can_pin_in_out =  
-     is_pin_in_out< T >
-   || is_pin_oc< T >;
-
-template< typename T >
-concept bool can_pin_oc =  
-      is_pin_in_out< T >
-   || is_pin_oc< T >;
-
-
-// ==========================================================================
-//
 // FILE-INTERNAL
 //
-// pass (only) certain pin functions
+// filters that pass (only) certain functions
 // 
 // This takes the repetition out of the adapters.
 //
@@ -63,16 +32,18 @@ concept bool can_pin_oc =
 // ========== pass the set functions ==========
 
 template< typename T >
-struct _pass_pin_set { 
+struct _pass_box_set { 
+
+   using value_type = typename port::value_type;
     
-   static void HWLIB_INLINE set( bool v ){ 
+   static void HWLIB_INLINE set( value_type v ){ 
       T::set( v ); 
    }
-   static void HWLIB_INLINE set_direct( bool v ){ 
+   static void HWLIB_INLINE set_direct( value_type v ){ 
       T::set_direct( v ); 
    }
    
-   static void HWLIB_INLINE set_buffered( bool v ){ 
+   static void HWLIB_INLINE set_buffered( value_type v ){ 
       T::set_buffered( v ); 
    }
    
@@ -85,20 +56,22 @@ struct _pass_pin_set {
 
 template< typename T >
 struct _pass_pin_get { 
+
+   using value_type = typename port::value_type;
     
-   static bool HWLIB_INLINE get(){ 
+   static value_type HWLIB_INLINE get(){ 
       return T::get(); 
    }
-   static bool HWLIB_INLINE get_direct(){ 
+   static value_type HWLIB_INLINE get_direct(){ 
       return T::get_direct(); 
    }
    
-   static bool HWLIB_INLINE get_buffered( bool v ){ 
+   static value_type HWLIB_INLINE get_buffered( value_type v ){ 
       return T::get_buffered( v ); 
    }
    
-   static void HWLIB_INLINE invalidate(){ 
-      T::invalidate(); 
+   static void HWLIB_INLINE refresh(){ 
+      T::refresh(); 
    }
 }; 
 
@@ -115,48 +88,32 @@ struct _pass_init {
 
 // ==========================================================================
 //
-// PUBLIC
+// LIBRARY-INTERNAL
 //
-// adapt to a pin_out
+// adapt to an out box
 //
 // ==========================================================================
 
 
 // ========== base template ==========
 
-template< can_pin_out T > struct pin_out;
+template< template T > struct box_out;
 
-// ========== adapt a pin out ==========
+// ========== adapt a box out ==========
 
-template< is_pin_out T >
-struct pin_out< T > : T {};	
+template< _has_box_sink_functions T >
+struct box_out< T > : T {};	
 
-// ========== adapt a pin in ==========
+// ========== adapt a box in out ==========
 
-// not possible
-
-// ========== adapt a pin in out ==========
-
-template< is_pin_in_out T >
-struct pin_out< T > : 
-   pin_out_root,
-   _pass_pin_set< T > 
-{
+template< _has_box_source_sink_functions T >
+struct box_out< T > {
     
    static void HWLIB_INLINE init(){
 	  T::init(); 
       T::direction_set( pin_direction::output );
    }	
 };
-
-// ========== adapt a pin oc ==========
-
-template< is_pin_oc T >
-struct pin_out< T > : 
-   pin_out_root,
-   _pass_init< T >,
-   _pass_pin_set< T >  
-{};	
 
 
 // ==========================================================================
@@ -303,7 +260,7 @@ struct pin_oc< T > :
    _pass_pin_get< T >  
 {
     
-   static void HWLIB_INLINE set( bool v ){
+   static void HWLIB_INLINE set( value_type v ){
        if( v ){
           T::direction_set( pin_direction::input );   
        } else {
@@ -312,7 +269,7 @@ struct pin_oc< T > :
        }
    }
    
-   static void HWLIB_INLINE set_direct( bool v ){
+   static void HWLIB_INLINE set_direct( value_type v ){
        if( v ){
           T::direction_set_direct( pin_direction::input );   
        } else {
@@ -321,7 +278,7 @@ struct pin_oc< T > :
        }
    }
    
-   static void HWLIB_INLINE set_buffered( bool v ){
+   static void HWLIB_INLINE set_buffered( value_type v ){
        if( v ){
           T::direction_set_buffered( pin_direction::input );   
        } else {
@@ -353,7 +310,7 @@ struct pin_oc< T > : T {};
 //
 // ==========================================================================
 
-template< can_pin_out pin, bool v >
+template< can_pin_out pin, value_type v >
 struct pin_fixed : pin_out< pin > {
    static void init(){
       pin_out< pin >::init();
@@ -377,6 +334,6 @@ using pin_high = pin_fixed< pin, 1 >;
 template< can_pin_out... pins >
 struct fanout :
    pin_out_root,
-   box_fanout< bool, pin_out, pins... >
+   box_fanout< value_type, pin_out, pins... >
 {};   
 

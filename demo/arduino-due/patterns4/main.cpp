@@ -27,5 +27,5 @@ using leds3 = hwcpp::fanout<
 >;
 
 int main(){ 
-   hwcpp::blink< leds3, timing::ms< 500 > >();
+   hwcpp::blink< leds2, timing::ms< 500 > >();
 }

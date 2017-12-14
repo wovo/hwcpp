@@ -1,10 +1,10 @@
-// ============================================================================
+// ==========================================================================
 //
 // file : target-sam3xa-chip.hpp
 //
 // HAL for atsam3x, common for the bare chip and the arduino due
 //
-// ============================================================================
+// ==========================================================================
 
 #include "hwcpp-all.hpp"
 
@@ -72,7 +72,7 @@ enum class pio {
 // ========= pin_in_out ==========
 
 template< pio P, uint32_t pin >
-struct _pin_in_out {
+struct _pin_in_out : pin_in_out_root {
 	
    static void HWLIB_INLINE init(){
       hwcpp::chip_sam3xa< clock >::init();
@@ -80,15 +80,15 @@ struct _pin_in_out {
    
    static void HWLIB_INLINE direction_set_direct( pin_direction d ){
       ( ( d == pin_direction::input )
-         ?  ((Pio*)P)->PIO_ODR 
-         :  ((Pio*)P)->PIO_OER 
+         ? ((Pio*)P)->PIO_ODR 
+         : ((Pio*)P)->PIO_OER 
       )  = ( 0x1U << pin );
    }
    
    static void HWLIB_INLINE set_direct( bool v ){
       ( v 
-         ?  ((Pio*)P)->PIO_SODR 
-         :  ((Pio*)P)->PIO_CODR 
+         ? ((Pio*)P)->PIO_SODR 
+         : ((Pio*)P)->PIO_CODR 
       )  = ( 0x1U << pin );	   
    }
 
@@ -98,7 +98,7 @@ struct _pin_in_out {
 };
 
 template< pio P, uint32_t pin >
-using pin_in_out = _pin_in_out_from_direct< _pin_in_out< P, pin > >;	
+using pin_in_out = _box_creator< _pin_in_out< P, pin > >;	
 
 // ========= pin_adc ==========
 
@@ -106,7 +106,7 @@ static void adc_init_common(){
     
    hwcpp::chip_sam3xa< clock >::init();
         
-   // enable the clock to the ADC (peripheral # 37, in then 2nd PCER)
+   // enable the clock to the ADC (peripheral # 37, in the 2nd PCER)
    PMC->PMC_PCER1 = ( 0x01 << ( 37 - 32 ) );
          
    // timing: use defaults
@@ -156,7 +156,7 @@ struct _pin_adc {
 };
 
 template< uint_fast64_t pin >
-using pin_adc = _adc_from_direct< _pin_adc< pin >, 12 > ;
+using pin_adc = _adc_creator< _pin_adc< pin >, 12 > ;
 
 // ========= uart ==========
 

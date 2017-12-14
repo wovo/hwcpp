@@ -1,8 +1,8 @@
-// ============================================================================
+// ==========================================================================
 //
 // file : hwcpp-adc.hpp
 //
-// ============================================================================
+// ==========================================================================
 
 template< 
    uint64_t _n_bits,
@@ -33,13 +33,15 @@ concept bool is_adc = requires {
 // can re-use some pin adapters here, maybe they should be renamed
 
 template< typename T, uint64_t n_bits >
-struct _adc_from_direct : 
+struct _adc_creator : 
    adc_root< n_bits >,
-   _add_pin_in_buffered_functions< T, typename adc_root< n_bits >::value_type >  
+   _box_creator< T >  
 {};
 
+/*
 template< typename T, uint64_t _n_bits >
 struct _adc_from_buffered : 
    adc_root< _n_bits >,
    _add_pin_in_direct_functions< T, typename adc_root< T::n_bits >::value_type > 
 {};
+*/
