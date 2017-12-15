@@ -50,7 +50,12 @@ The compilers I currently use are (gcc 7.2.0):
 -----------------------------------------------------------------------------
 
 Notes & ToDo
-- source/sink => in/out
+- box : fixed value, variable / reference ?, select, combine, moving_average
+- box : average, limit, add, multiply, scale, linear_transform
+- invert heeft nix met box te maken ;)
+- tabs => spaces
+- thing that you decorate => minion
+- use MHz etc for target frequencies?
 - verder met box-adapters (welke precies mogen blijft aan de concrete boxes)
 - file pin-utilities for things that trivally inherit from box
 - file hwcpp-port-from-pins

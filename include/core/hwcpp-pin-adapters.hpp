@@ -22,7 +22,7 @@
 //
 // PUBLIC
 //
-// concepts that decide whether a pin can be converted to the requested pin
+// concepts that tell whether a pin can be converted to the requested pin
 //
 // ==========================================================================
 
@@ -51,111 +51,27 @@ concept bool can_pin_oc =
 
 // ==========================================================================
 //
-// FILE-INTERNAL
-//
-// pass (only) certain pin functions
-// 
-// This takes the repetition out of the adapters.
-//
-// ==========================================================================
-
-
-// ========== pass the set functions ==========
-
-template< typename T >
-struct _pass_pin_set { 
-    
-   static void HWLIB_INLINE set( bool v ){ 
-      T::set( v ); 
-   }
-   static void HWLIB_INLINE set_direct( bool v ){ 
-      T::set_direct( v ); 
-   }
-   
-   static void HWLIB_INLINE set_buffered( bool v ){ 
-      T::set_buffered( v ); 
-   }
-   
-   static void HWLIB_INLINE flush(){ 
-      T::flush(); 
-   }
-};    
-
-// ========== pass the get functions ==========
-
-template< typename T >
-struct _pass_pin_get { 
-    
-   static bool HWLIB_INLINE get(){ 
-      return T::get(); 
-   }
-   static bool HWLIB_INLINE get_direct(){ 
-      return T::get_direct(); 
-   }
-   
-   static bool HWLIB_INLINE get_buffered( bool v ){ 
-      return T::get_buffered( v ); 
-   }
-   
-   static void HWLIB_INLINE invalidate(){ 
-      T::invalidate(); 
-   }
-}; 
-
-// ========== pass the init function ==========
-
-template< typename T >
-struct _pass_init { 
-    
-   static void HWLIB_INLINE init(){ 
-      return T::init(); 
-   }     
-}; 
-
-
-// ==========================================================================
-//
 // PUBLIC
 //
 // adapt to a pin_out
 //
 // ==========================================================================
 
+// ========== base case : let box do the work 
 
-// ========== base template ==========
+template< can_pin_out T > 
+struct pin_out :
+   _pin_out_root,
+   _box_out< T >
+{};   
 
-template< can_pin_out T > struct pin_out;
-
-// ========== adapt a pin out ==========
-
-template< is_pin_out T >
-struct pin_out< T > : T {};	
-
-// ========== adapt a pin in ==========
-
-// not possible
-
-// ========== adapt a pin in out ==========
-
-template< is_pin_in_out T >
-struct pin_out< T > : 
-   pin_out_root,
-   _pass_pin_set< T > 
-{
-    
-   static void HWLIB_INLINE init(){
-	  T::init(); 
-      T::direction_set( pin_direction::output );
-   }	
-};
-
-// ========== adapt a pin oc ==========
+// ========== adapt a pin oc
 
 template< is_pin_oc T >
 struct pin_out< T > : 
-   pin_out_root,
+   _pin_out_root,
    _pass_init< T >,
-   _pass_pin_set< T >  
+   _pass_box_set< T >  
 {};	
 
 
@@ -167,45 +83,26 @@ struct pin_out< T > :
 //
 // ==========================================================================
 
+// ========== base case : let box do the work 
 
-// ========== base template ==========
+template< can_pin_in T > 
+struct pin_in :
+   _pin_in_root,
+   _box_in< T >
+{};   
 
-template< can_pin_in T > struct pin_in;
+// ========== adapt a pin oc 
 
-// ========== adapt a pin out ==========
-
-// not possible
-
-// ========== adapt a pin in ==========
-
-template< is_pin_in T >
-struct pin_in< T > : T {};	
-
-// ========== adapt a pin in out ==========
-
-template< is_pin_in_out T >
+template< is_pin_oc T >
 struct pin_in< T > : 
-   pin_in_root,
-   _pass_pin_get< T > 
+   _pin_in_root,
+   _pass_init< T >,
+   _pass_box_set< T >  
 {
     
    static void HWLIB_INLINE init(){
 	  T::init(); 
-      T::direction_set( pin_direction::input );
-   }	
-};
-
-// ========== adapt a pin oc ==========
-
-template< is_pin_oc T >
-struct pin_in< T > : 
-   pin_in_root,
-   _pass_pin_set< T >  
-{
-        
-   static void HWLIB_INLINE init(){
-	  T::init(); 
-      T::set_direct( 0 );
+      T::set_direct( 1 );
    }
 };	
 
@@ -218,30 +115,21 @@ struct pin_in< T > :
 //
 // ==========================================================================
 
-// ========== base template ==========
+// ========== base case : let box do the work 
 
-template< can_pin_in_out T > struct pin_in_out;
+template< can_pin_in_out T > 
+struct pin_in_out :
+   _pin_in_out_root,
+   _box_in_out< T >
+{};  
 
-// ========== adapt a pin out ==========
-
-// not possible
-
-// ========== adapt a pin in ==========
-
-// not possible
-
-// ========== adapt a pin in out ==========
-
-template< is_pin_in_out T >
-struct pin_in_out< T > : T {};
-
-// ========== adapt a pin oc ==========
+// ========== adapt a pin oc 
 
 template< is_pin_oc T >
 struct pin_in_out< T > : 
-   pin_in_out_root,
-   _pass_pin_set< T >,  
-   _pass_pin_get< T >  
+   _pin_in_out_root,
+   _pass_box_set< T >,  
+   _pass_box_get< T >  
 {
     
    static void HWLIB_INLINE direction_set( pin_direction d ){
@@ -281,26 +169,25 @@ struct pin_in_out< T > :
 //
 // ==========================================================================
 
-
-// ========== base template ==========
+// ========== base template 
 
 template< can_pin_oc T > struct pin_oc;
 
-// ========== adapt a pin out ==========
+// ========== adapt a pin out 
 
 // not possible
 
-// ========== adapt a pin in ==========
+// ========== adapt a pin in 
 
 // not possible
 
-// ========== adapt a pin in out ==========
+// ========== adapt a pin in out 
 
 template< is_pin_in_out T >
 struct pin_oc< T > : 
-   pin_oc_root,
-   _pass_pin_set< T >,  
-   _pass_pin_get< T >  
+   _pin_oc_root,
+   _pass_box_set< T >,  
+   _pass_box_get< T >  
 {
     
    static void HWLIB_INLINE set( bool v ){
@@ -341,42 +228,12 @@ struct pin_oc< T > :
    }
 };	
 
-// ========== adapt a pin oc ==========
+// ========== adapt a pin oc 
 
 template< is_pin_oc T >
 struct pin_oc< T > : T {};
 
 
-// ==========================================================================
-//
-// fixed-value output pins
-//
-// ==========================================================================
 
-template< can_pin_out pin, bool v >
-struct pin_fixed : pin_out< pin > {
-   static void init(){
-      pin_out< pin >::init();
-      pin_out< pin >::set( v );
-   }
-};
-   
-template< can_pin_out pin >
-using pin_low = pin_fixed< pin, 0 >;
-   
-template< can_pin_out pin >
-using pin_high = pin_fixed< pin, 1 >;
-
-
-// ==========================================================================
-//
-// fanout
-//
-// ==========================================================================
-
-template< can_pin_out... pins >
-struct fanout :
-   pin_out_root,
-   box_fanout< bool, pin_out, pins... >
-{};   
+ 
 

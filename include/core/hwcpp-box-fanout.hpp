@@ -4,8 +4,14 @@
 //
 // fanout behaviour for box classes
 //
-// The fanout combination of output boxes writes the same value
-// to all combined boxes.
+// A fanout combination of output boxes writes the same value
+// to all boxes.
+// 
+// Fanout functionality for a specific type is provided
+// by that type by deferring to _box_fanout< adapter, list... >,
+// check the pins for an example.
+//
+// LIBRARY-INTERNAL
 //
 // ==========================================================================
 //
@@ -21,56 +27,59 @@
 // ==========================================================================
 
 
-// base, never used
+// ========== base, not implemented, never used
+
 template< 
-   typename value_type, 
    template< typename > class adapt, 
    typename... pins 
-> struct box_fanout;
+> struct _box_fanout;
 
-// recursion endpoint
+
+// ========== recursion endpoint
+
 template< 
-   typename value_type, 
    template< typename > class adapt 
-> struct box_fanout< value_type, adapt > {
+> struct _box_fanout< adapt > {
+   
    static void init(){}
-   static void set( value_type v ){}
-   static void set_direct( value_type v ){}
-   static void set_buffered( value_type v ){}
+   static void set( auto v ){}
+   static void set_direct( auto v ){}
+   static void set_buffered( auto v ){}
    static void flush(){}
 };
 
-// handle one box and recurse
-template< 
-   typename value_type, 
+// ========== handle one box and recurse
+
+template<  
    template< typename > class adapt, 
    typename _box, 
    typename... tail >
-struct box_fanout< value_type, adapt, _box, tail... > :
-   box_fanout< value_type, adapt, tail... >
+struct _box_fanout< adapt, _box, tail... > :
+   _box_fanout< adapt, tail... >
 {
 	
+   using value_type = typename _box::value_type;	
    using box = adapt< _box >;	
-   using tail_boxes = box_fanout< value_type, adapt, tail... >;
+   using tail_boxes = _box_fanout< adapt, tail... >;
 	
    static void init() { 
       box::init();
       tail_boxes::init(); 
    }
       
-   static void set( bool v ) {
+   static void set( value_type v ) {
       box::set_buffered( v );
       tail_boxes::set_buffered( v );
 	  flush();
    }
       
-   static void set_direct( bool v ) {
+   static void set_direct( value_type v ) {
       box::set_buffered( v );
       tail_boxes::set_buffered( v );
 	  flush();
    }
       
-   static void set_buffered( bool v ) {
+   static void set_buffered( value_type v ) {
       box::set_buffered( v );
       tail_boxes::set_buffered( v );
    }

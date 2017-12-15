@@ -8,15 +8,15 @@
 // provide a value. The declarations in this file are used by the library
 // to create concrete boxes.
 //
-// Exaples are a GPIO pin, a port, an ADC, a DAC, a PWM.
+// Exaples of concrete boxes are a GPIO pin, a port, an ADC, a DAC, a PWM.
 //
-// An sink box has set functions, an source box has get functions.
+// An in box has set functions, an out box has get functions.
 // For these functions, there are default, buffered and direct versions,
 // and flush (for set) and/or refresh (for get) functions that work with
 // the buffered versions. 
 //
-// When a box is both sink and source, it has functions for switching
-// bewteen source (input) mode and sink (output) mode.
+// When a box is both in and out, it can have direction functions 
+// for switching between in mode and out mode.
 //
 // ==========================================================================
 //
@@ -40,32 +40,40 @@
 //
 // ==========================================================================
 
+// ========= common root
+
 template< typename T >
-struct box_root :
+struct _box_root :
    not_instantiable
 {
    using value_type = T;  
 };
 
-template< typename T >
-struct box_source_root :
-   box_root< T >
-{
-   static constexpr bool is_box_source_tag = true;
-};
+// ========= box out
 
 template< typename T >
-struct box_sink_root :
-   box_root< T >
+struct _box_out_root :
+   _box_root< T >
 {
-   static constexpr bool is_box_sink_tag = true;
+   static constexpr bool is_box_out_tag = true;
 };
 
+// ========= box in
+
 template< typename T >
-struct box_source_sink_root :
-   box_root< T >
+struct _box_in_root :
+   _box_root< T >
 {
-   static constexpr bool is_box_source_sink_tag = true;
+   static constexpr bool is_box_in_tag = true;
+};
+
+// ========= box in out
+
+template< typename T >
+struct _box_in_out_root :
+   _box_root< T >
+{
+   static constexpr bool is_box_in_out_tag = true;
 };
 
 
@@ -73,15 +81,15 @@ struct box_source_sink_root :
 //
 // LIBRARY-INTERNAL
 //
-// box concepts
+// box functionality concepts
 //
-// these concepts are used in box filters, 
+// these concepts are used in box filters 
 // that decorate specific fubnctions when present
 //
 // ==========================================================================
 
 template< typename T >
-concept bool _has_box_sink_functions = requires( 
+concept bool _has_box_out_functions = requires( 
    typename T::value_type v
 ){  
    { T::set( v ) } -> void;
@@ -91,7 +99,7 @@ concept bool _has_box_sink_functions = requires(
 };
 
 template< typename T >
-concept bool _has_box_source_functions = requires {  
+concept bool _has_box_in_functions = requires {  
    { T::get() } -> typename T::value_type;
    { T::get_direct() } -> typename T::value_type;
    { T::get_buffered() } -> typename T::value_type;
@@ -114,6 +122,44 @@ concept bool _has_box_direction_functions = requires(
 //
 // LIBRARY-INTERNAL
 //
+// box concepts
+//
+// ==========================================================================
+
+// ========= box out
+
+template< typename T >
+concept bool _is_box_out = requires {
+   T::is_box_out_tag;
+   _has_init_function< T >;
+   _has_box_out_functions< T >;
+};
+
+// ========= box in 
+
+template< typename T >
+concept bool _is_box_in = requires {
+   T::is_box_in_tag;
+   _has_init_function< T >;
+   _has_box_in_functions< T >;  
+};
+
+// ========= box in out 
+
+template< typename T >
+concept bool _is_box_in_out = requires {   
+   T::is_box_in_out_tag;
+   _has_init_function< T >;
+   _has_box_direction_functions< T >;    
+   _has_box_out_functions< T >;    
+   _has_box_in_functions< T >;    
+};
+
+
+// ==========================================================================
+//
+// LIBRARY-INTERNAL
+//
 // interval box root classes
 //
 // An interval box is a subtype of box, where the value
@@ -123,28 +169,28 @@ concept bool _has_box_direction_functions = requires(
 // ==========================================================================
 
 template< typename T, T _lowest, T _highest >
-struct box_interval_root {
+struct _box_interval_root {
    static constexpr bool is_interval_tag = true;
    static constexpr T lowest  = _lowest;
    static constexpr T highest = _highest;
 };
 
 template< typename T, T _lowest, T _highest >
-struct box_source_interval_root :
-   box_source_root< T >, 
-   box_interval_root< T, _lowest, _highest >
+struct _box_in_interval_root :
+   _box_in_root< T >, 
+   _box_interval_root< T, _lowest, _highest >
 {};
 
 template< typename T, T _lowest, T _highest >
-struct box_sink_interval_root :
-   box_sink_root< T >, 
-   box_interval_root< T, _lowest, _highest >
+struct _box_out_interval_root :
+   _box_out_root< T >, 
+   _box_interval_root< T, _lowest, _highest >
 {};
 
 template< typename T, T _lowest, T _highest >
-struct box_source_sink_interval_root :
-   box_source_sink_root< T >, 
-   box_interval_root< T, _lowest, _highest >
+struct box_in_out_interval_root :
+   _box_in_out_root< T >, 
+   _box_interval_root< T, _lowest, _highest >
 {};
 
 
@@ -152,38 +198,65 @@ struct box_source_sink_interval_root :
 //
 // LIBRARY-INTERNAL
 //
-// buffer 
+// pass (only) certain box functions
+// 
+// This takes the repetition out of adapters.
 //
 // ==========================================================================
 
-/*
-direct
 
-sink only
+// ========== pass the init function ==========
 
-source only
+template< typename T >
+struct _pass_init { 
+    
+   static void HWLIB_INLINE init(){ 
+      return T::init(); 
+   }     
+}; 
 
-fixed value
+// ========== pass the set functions
 
-variable / reference ?
+template< typename T >
+struct _pass_box_set { 
 
-select
+   using _value_type = typename T::value_type;
+    
+   static void HWLIB_INLINE set( _value_type v ){ 
+      T::set( v ); 
+   }
+   static void HWLIB_INLINE set_direct( _value_type v ){ 
+      T::set_direct( v ); 
+   }
+   
+   static void HWLIB_INLINE set_buffered( _value_type v ){ 
+      T::set_buffered( v ); 
+   }
+   
+   static void HWLIB_INLINE flush(){ 
+      T::flush(); 
+   }
+};    
 
-combine
+// ========== pass the get functions ==========
 
-moving_average
+template< typename T >
+struct _pass_box_get { 
 
-average
-
-limit
-
-add
-
-multiply
-
-scale
-
-linear_transform
-
-- must indicate whether it is numeric or bitwise => can invert!
-*/	
+   using _value_type = typename T::value_type;
+    
+   static _value_type HWLIB_INLINE get(){ 
+      return T::get(); 
+   }
+   static _value_type HWLIB_INLINE get_direct(){ 
+      return T::get_direct(); 
+   }
+   
+   static _value_type HWLIB_INLINE get_buffered(){ 
+      return T::get_buffered(); 
+   }
+   
+   static void HWLIB_INLINE invalidate(){ 
+      T::invalidate(); 
+   }
+}; 

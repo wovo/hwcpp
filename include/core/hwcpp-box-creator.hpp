@@ -44,20 +44,19 @@ struct _box_creator_add_out_buffered : T {};
 template< _box_has_out_direct T >
 struct _box_creator_add_out_buffered< T > : T {
 	
-   using value_type = typename T::value_type;
+   using _value_type = typename T::value_type;
 	
-   static void HWLIB_INLINE set( value_type v ){
+   static void HWLIB_INLINE set( _value_type v ){
        T::set_direct( v );
    }
    
    // set_direct provided by T
    
-   static void HWLIB_INLINE set_buffered( value_type v ){
+   static void HWLIB_INLINE set_buffered( _value_type v ){
        T::set_direct( v );
    }
    
    static void HWLIB_INLINE flush(){}	
-	
 };
 
 
@@ -82,14 +81,14 @@ struct _box_creator_add_out_direct : T {};
 template< _box_has_out_buffered T >
 struct _box_creator_add_out_direct< T > : T {
 	
-   using value_type = typename T::value_type;	
+   using _value_type = typename T::value_type;	
    
-   static void HWLIB_INLINE set( value_type v ){
+   static void HWLIB_INLINE set( _value_type v ){
        T::set_buffered( v );
        T::flush();
    }
    
-   static void HWLIB_INLINE set_direct( value_type v ){
+   static void HWLIB_INLINE set_direct( _value_type v ){
        T::set_buffered( v );
        T::flush();
    }
@@ -121,20 +120,19 @@ struct _box_creator_add_in_buffered : T {};
 template< _box_has_in_direct T >
 struct _box_creator_add_in_buffered< T > : T {
 	
-   using value_type = typename T::value_type;	
+   using _value_type = typename T::value_type;	
 	
-   static value_type HWLIB_INLINE get(){
+   static _value_type HWLIB_INLINE get(){
       return T::get_direct();
    }       
    
   // get_direct provided by T
    
-   static value_type HWLIB_INLINE get_buffered(){
+   static _value_type HWLIB_INLINE get_buffered(){
       return T::get_direct();
    }       
    
    static void HWLIB_INLINE refresh(){}	
-	
 };
 
 
@@ -159,14 +157,14 @@ struct _box_creator_add_in_direct : T {};
 template< _box_has_in_buffered T >
 struct _box_creator_add_in_direct< T > : T {
 	
-   using value_type = typename T::value_type;	
+   using _value_type = typename T::value_type;	
    
-   static value_type HWLIB_INLINE get(){
+   static _value_type HWLIB_INLINE get(){
       T::invalidate();       
       return T::get_buffered();
    }      
    
-   static value_type HWLIB_INLINE get_direct(){
+   static _value_type HWLIB_INLINE get_direct(){
       T::invalidate();       
       return T::get_buffered();
    }      
@@ -209,7 +207,6 @@ struct _box_creator_add_direction_buffered< T > : T {
    }    
    
    static void HWLIB_INLINE direction_flush(){}
-	
 };
 
 
@@ -254,7 +251,7 @@ struct _box_creator_add_direction_direct< T > : T {
 //
 // LIBRARY-INTERNAL
 //
-// box creator that creats a full box from an minimal one
+// creats a full box from an minimal one (only direct, or only buffered)
 //
 // ==========================================================================
 

@@ -51,11 +51,14 @@ HEADERS           += hwcpp-basics.hpp
 
 HEADERS           += hwcpp-box.hpp 
 HEADERS           += hwcpp-box-creator.hpp 
+HEADERS           += hwcpp-box-adapters.hpp 
+HEADERS           += hwcpp-box-buffering.hpp 
 HEADERS           += hwcpp-box-invert.hpp 
 HEADERS           += hwcpp-box-fanout.hpp 
 
 HEADERS           += hwcpp-pins.hpp 
 HEADERS           += hwcpp-pin-adapters.hpp 
+HEADERS           += hwcpp-pin-utilities.hpp 
 
 HEADERS           += hwcpp-ports.hpp 
 HEADERS           += hwcpp-port-adapters.hpp 

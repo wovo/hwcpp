@@ -72,7 +72,9 @@ enum class pio {
 // ========= pin_in_out ==========
 
 template< pio P, uint32_t pin >
-struct _pin_in_out : pin_in_out_root {
+struct _pin_in_out : 
+   _pin_in_out_root 
+{
 	
    static void HWLIB_INLINE init(){
       hwcpp::chip_sam3xa< clock >::init();

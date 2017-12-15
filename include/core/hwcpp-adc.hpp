@@ -10,7 +10,7 @@ template<
    uint64_t value_max = ( 1ULL << _n_bits ) - 1
 >
 struct adc_root :
-   box_interval_root< 
+   _box_interval_root< 
       typename uint_t< _n_bits >::fast,
 	  value_min,
 	  value_max

@@ -52,11 +52,15 @@ namespace hwcpp {
    
    #include "core/hwcpp-box.hpp"
    #include "core/hwcpp-box-creator.hpp"
+   #include "core/hwcpp-box-adapters.hpp"
+   #include "core/hwcpp-box-buffering.hpp"
    #include "core/hwcpp-box-invert.hpp"
    #include "core/hwcpp-box-fanout.hpp"
 
    #include "core/hwcpp-pins.hpp"
    #include "core/hwcpp-pin-adapters.hpp"
+   #include "core/hwcpp-pin-utilities.hpp"
+   
    #include "core/hwcpp-ports.hpp"
    #include "core/hwcpp-port-adapters.hpp"
    #include "core/hwcpp-adc.hpp"

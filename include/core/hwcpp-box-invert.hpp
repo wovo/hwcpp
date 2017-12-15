@@ -42,7 +42,7 @@ concept bool is_invertible = requires {
    T::is_invertible; 
 };
 
-// ========== mixin class for bitwise inverible boxes
+// ========== mixin class for bitwise invertible boxes
 
 template< typename T >
 struct invertible_bitwise :
@@ -79,19 +79,19 @@ struct invertible_interval :
 
 template< typename T > struct _filter_invert_set : T {};
 
-template< _has_box_sink_functions T >
+template< _has_box_out_functions T >
 struct _filter_invert_set< T > : T {
 	
-	using value_type = typename T::value_type;
+   using value_type = typename T::value_type;
     
-   	static void HWLIB_INLINE set( value_type v ){ 
-       T::set( T::invert_value( v ) ); }
+   static void HWLIB_INLINE set( value_type v ){ 
+      T::set( T::invert_value( v ) ); }
        
-   	static void HWLIB_INLINE set_direct( value_type v ){ 
-       T::set_direct( T::invert_value( v ) ); }
-       
-   	static void HWLIB_INLINE set_buffered( value_type v ){ 
-       T::set_buffered( T::invert_value( v ) ); }
+   static void HWLIB_INLINE set_direct( value_type v ){ 
+      T::set_direct( T::invert_value( v ) ); }
+      
+   static void HWLIB_INLINE set_buffered( value_type v ){ 
+      T::set_buffered( T::invert_value( v ) ); }
 };	
 
 
@@ -105,7 +105,7 @@ struct _filter_invert_set< T > : T {
 
 template< typename T > struct _filter_invert_get : T {};
 
-template< _has_box_source_functions T >
+template< _has_box_in_functions T >
 struct _filter_invert_get< T > : T {
     
    	static auto HWLIB_INLINE get(){ 
