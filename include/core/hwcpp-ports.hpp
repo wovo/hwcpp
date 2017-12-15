@@ -292,7 +292,8 @@ struct _port_in_implementation<  n, arg_pin, arg_tail... > :
    _port_in_implementation< n, arg_tail... >
 {
 
-   using value_type = typename _port_in_implementation< n, arg_tail... >::value_type;
+   using value_type = 
+      typename _port_in_implementation< n, arg_tail... >::value_type;
    using pin = pin_in< arg_pin >;	
       
    static void init() { 
@@ -343,7 +344,8 @@ struct _port_in_out_implementation<  n, arg_pin, arg_tail... > :
    _port_in_out_implementation< n, arg_tail... >
 {
 
-   using value_type = typename _port_in_out_implementation< n, arg_tail... >::value_type;
+   using value_type = 
+      typename _port_in_out_implementation< n, arg_tail... >::value_type;
    using pin = pin_in_out< arg_pin >;	
       
    static void init() { 
@@ -402,7 +404,8 @@ struct _port_oc_implementation<  n, arg_pin, arg_tail... > :
    _port_oc_implementation< n, arg_tail... >
 {
 
-   using value_type = typename _port_oc_implementation< n, arg_tail... >::value_type;
+   using value_type = 
+      typename _port_oc_implementation< n, arg_tail... >::value_type;
    using pin = pin_oc< arg_pin >;	
       
    static void init() { 

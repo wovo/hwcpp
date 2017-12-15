@@ -58,7 +58,7 @@ struct _box_fanout< adapt, _box, tail... > :
    _box_fanout< adapt, tail... >
 {
 	
-   using value_type = typename _box::value_type;	
+   using _value_type = typename _box::value_type;	
    using box = adapt< _box >;	
    using tail_boxes = _box_fanout< adapt, tail... >;
 	
@@ -67,19 +67,19 @@ struct _box_fanout< adapt, _box, tail... > :
       tail_boxes::init(); 
    }
       
-   static void set( value_type v ) {
+   static void set( _value_type v ) {
       box::set_buffered( v );
       tail_boxes::set_buffered( v );
 	  flush();
    }
       
-   static void set_direct( value_type v ) {
+   static void set_direct( _value_type v ) {
       box::set_buffered( v );
       tail_boxes::set_buffered( v );
 	  flush();
    }
       
-   static void set_buffered( value_type v ) {
+   static void set_buffered( _value_type v ) {
       box::set_buffered( v );
       tail_boxes::set_buffered( v );
    }

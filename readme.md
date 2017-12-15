@@ -50,6 +50,8 @@ The compilers I currently use are (gcc 7.2.0):
 -----------------------------------------------------------------------------
 
 Notes & ToDo
+- re-rechk INLINE
+- box buffered/direct : can't be done on top of each other....
 - box : fixed value, variable / reference ?, select, combine, moving_average
 - box : average, limit, add, multiply, scale, linear_transform
 - invert heeft nix met box te maken ;)
@@ -88,7 +90,6 @@ Notes & ToDo
 - more port adapters
 - use loop instead of recursion for port creators
 - port dummies, port variables
-- LED etc. in targets should be pin_out and active high => check blue
 - likewise for I2C and SPI pins: appropriate type
 - push/pop strictest compiler settings possible
 - dac & adc buffering

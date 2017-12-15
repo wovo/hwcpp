@@ -15,7 +15,8 @@
 
 namespace hwcpp {
     
-struct chip_stm32f103< uint64_t clock >{
+template< uint64_t clock >
+struct chip_stm32f103 {
 	
 enum class port {
    a,
@@ -40,7 +41,7 @@ static void init(){
    
    static_assert( 
       clock == 8'000'000, 
-      "Only 8 MHz clock is supported for stm32f103."");   
+      "Only 8 MHz clock is supported for stm32f103." );   
 	
    // enable the clock to all GPIO ports	
    RCC->APB2ENR |= 
@@ -58,7 +59,9 @@ static void init(){
 // ========= pin_in_out ==========
 
 template< port p, uint32_t pin >
-struct _pin_in_out {
+struct _pin_in_out : 
+   _pin_in_out_root 
+{
 	
    static constexpr auto mask           = 0x01 << pin;
    static constexpr auto config_offset  = 4 * ( pin % 8 );
@@ -74,11 +77,11 @@ struct _pin_in_out {
    }	   
 	
    static void HWLIB_INLINE init(){
-      hwcpp::chip_stm32f103::init();   
+      hwcpp::chip_stm32f103< clock >::init();   
    }
   
-   static void HWLIB_INLINE direction_set_direct( direction d ){
-      config( ( d == direction::input ) ? 0x08 : 0x03 );
+   static void HWLIB_INLINE direction_set_direct( pin_direction d ){
+      config( ( d == pin_direction::input ) ? 0x08 : 0x03 );
    }
    
    static void HWLIB_INLINE set_direct( bool v ){
@@ -91,7 +94,7 @@ struct _pin_in_out {
 };
 
 template< port p, uint32_t pin >
-using pin_in_out = _pin_in_out_from_direct< _pin_in_out< p, pin > >;	
+using pin_in_out = _box_creator< _pin_in_out< p, pin > >;	
 
 
 // ========= SysTick ==========
@@ -121,43 +124,6 @@ static void wait_ticks( uint_fast64_t n ){
    auto t = now_ticks() + n;
    while( now_ticks() < t ){}   
 }   
-
-
-// ========= chip pins ==========
-
-#define make_pin_in_out( NAME, PORT, PIN ) \
-   using NAME  = pin_in_out< port::PORT, PIN >;
-
-   make_pin_in_out(   a0,  a,   0 );
-   make_pin_in_out(   a1,  a,   1 );
-   make_pin_in_out(   a2,  a,   2 );
-   make_pin_in_out(   a3,  a,   3 );
-   make_pin_in_out(   a4,  a,   4 );
-   make_pin_in_out(   a5,  a,   5 );
-   make_pin_in_out(   a6,  a,   6 );
-   make_pin_in_out(   a7,  a,   7 );
-   make_pin_in_out(   a8,  a,   6 );
-   make_pin_in_out(   a9,  a,   7 );
-   make_pin_in_out(  a10,  a,  10 );
-   make_pin_in_out(  a11,  a,  11 );
-
-   make_pin_in_out(   b0,  b,   0 );
-   make_pin_in_out(   b1,  b,   1 );
-   make_pin_in_out(   b2,  b,   2 );
-   make_pin_in_out(   b3,  b,   3 );
-   make_pin_in_out(   b4,  b,   4 );
-   make_pin_in_out(   b5,  b,   5 );
-   make_pin_in_out(   b6,  b,   6 );
-   make_pin_in_out(   b7,  b,   7 );
-   make_pin_in_out(   b8,  b,   5 );
-   make_pin_in_out(   b9,  b,   6 );
-   make_pin_in_out(  b10,  b,  10 );
-   make_pin_in_out(  b11,  b,  11 );
-   make_pin_in_out(  b12,  b,  12 );
-   make_pin_in_out(  b13,  b,  13 );
-   make_pin_in_out(  b14,  b,  14 );
-   make_pin_in_out(  b15,  b,  15 );
-
 
 }; // struct stm32f103
 
