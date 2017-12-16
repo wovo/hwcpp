@@ -4,12 +4,6 @@
 //
 // declarations for out, in, in_out and oc ports
 //
-// root classes : what every port inhertits from
-// concepts     : to constrain template parameters
-// decorators   : to complete a partial implementation
-// dummies      : do-nothing ports
-// variables    : ports that write to or read from a variable
-//
 // ==========================================================================
 //
 // This file is part of HwCpp, 
@@ -26,106 +20,64 @@
 
 // ==========================================================================
 //
-// PUBLIC
+// LIBRARY-INTERNAL
 //
 // port root class templates : port_ [ in | out | in_out ] _root
 //
-// pin classes derive from these root classes
+// port classes derive from these root classes
 //
 // ==========================================================================
 
 
-// ========= common =========
+// ========= common 
 
 template< int n >
-struct port_common_root :
-   not_instantiable
+struct _port_common_root :
+   invertible_bitwise
 {
    static constexpr int n_pins = n;
-   using value_type = typename uint_t< n >::fast;  
 };
 
-// ========= out =========
+// ========= out 
 
 template< int n >
-struct port_out_root :
-   port_common_root< n >
+struct _port_out_root :
+   _port_common_root< n >,
+   _box_out_root< typename uint_t< n >::fast >
 {
-   static constexpr bool is_port_out = true;
+   static constexpr bool is_port_out_tag = true;
 };
 
-// ========= in =========
+// ========= in 
 
 template< int n >
-struct port_in_root :
-   port_common_root< n >
+struct _port_in_root :
+   _port_common_root< n >,
+   _box_in_root< typename uint_t< n >::fast >
 {
-   static constexpr bool is_port_in = true;    
+   static constexpr bool is_port_in_tag = true;    
 };
 
-// ========= in_out =========
+// ========= in_out
 
 template< int n >
-struct port_in_out_root :
-   port_common_root< n >
+struct _port_in_out_root :
+   _port_common_root< n >,
+   _box_in_out_root< typename uint_t< n >::fast >
 {
-   static constexpr bool is_port_in_out = true;
+   static constexpr bool is_port_in_out_tag = true;
 };
 
-// ========= oc =========
+// ========= oc 
 
 template< int n >
-struct port_oc_root :
-   port_common_root< n >
+struct _port_oc_root :
+   _port_common_root< n >,
+   _box_in_root< typename uint_t< n >::fast >,
+   _box_out_root< typename uint_t< n >::fast >
 {
-   static constexpr bool is_port_oc = true;
+   static constexpr bool is_port_oc_tag = true;
 };
-
-
-// ==========================================================================
-//
-// FILE-INTERNAL
-//
-// concepts that check for the port function categories
-//
-// These concepts are used to build the concpets that check for the 
-// four types of ports.
-//
-// ==========================================================================
-
-template< typename T >
-concept bool _has_port_init_function = requires {  
-   { T::init() } -> void; 
-};
-
-template< typename T >
-concept bool _has_port_out_functions = requires( 
-   typename T::value_type v 
-){  
-   { T::set( v ) } -> void;
-   { T::set_direct( v ) } -> void;
-   { T::set_buffered( v ) } -> void;
-   { T::flush() } -> void;
-};
-
-template< typename T >
-concept bool _has_port_in_functions = requires {  
-   { T::get() } -> typename T::value_type;
-   { T::get_direct() } -> typename T::value_type;
-   { T::get_buffered() } -> typename T::value_type;
-   { T::invalidate() } -> void;   
-};
-
-template< typename T >
-concept bool _has_port_direction_functions = requires( 
-   typename T::value_type v, 
-   pin_direction d 
-){   
-   { T::direction_set( d ) } -> void;
-   { T::direction_set_direct( d ) } -> void;
-   { T::direction_set_buffered( d ) } -> void;
-   { T::direction_flush() } -> void;
-}; 
 
 
 // ==========================================================================
@@ -139,319 +91,112 @@ concept bool _has_port_direction_functions = requires(
 // These concepts define the required interface elements of each port class,
 // and can be used to verify that a class does provide these.
 //
-// ==========================================================================
+// ==========================================================================  
 
-
-// ========= out =========
+// ========= port out 
 
 template< typename T >
 concept bool is_port_out = requires {
-   T::is_port_out;
-   _has_port_init_function< T >;
-   _has_port_out_functions< T >;
+   T::is_port_out_tag;
+   _has_init_function< T >;
+   _has_box_out_functions< T >;
 };
 
-// ========= in =========
+// ========= port in 
 
 template< typename T >
 concept bool is_port_in = requires {
-   T::is_port_in;
-   _has_port_init_function< T >;
-   _has_port_in_functions< T >; 
+   T::is_port_in_tag;
+   _has_init_function< T >;
+   _has_box_in_functions< T >;  
 };
 
-// ========= in_out =========
+// ========= port in out 
 
 template< typename T >
-concept bool is_port_in_out = requires {
-   T::is_port_in_out;
-   _has_port_init_function< T >;
-   _has_port_out_functions< T >;
-   _has_port_in_functions< T >;
-   _has_port_direction_functions< T >;
+concept bool is_port_in_out = requires {   
+   T::is_port_in_out_tag;
+   _has_init_function< T >;
+   _has_box_direction_functions< T >;    
+   _has_box_out_functions< T >;    
+   _has_box_in_functions< T >;    
 };
 
-// ========= oc =========
+// ========= port oc 
 
 template< typename T >
 concept bool is_port_oc = requires {
-   T::is_port_in_out;
-   _has_port_init_function< T >;
-   _has_port_out_functions< T >;
-   _has_port_in_functions< T >;
+   T::is_port_oc_tag;
+   _has_init_function< T >;  
+   _has_box_out_functions< T >;    
+   _has_box_in_functions< T >;  	  
 };
 
 
 // ==========================================================================
 //
-// create a port_out
+// PUBLIC
+//
+// concepts that decide whether a port can be converted 
+// to the requested port
 //
 // ==========================================================================
 
-// fallback, required but never used
-template< int n, typename... arg_tail >
-struct _port_out_implementation {};
+template< typename T >
+concept bool can_port_out =  
+      is_port_out< T >
+   || is_port_in_out< T >
+   || is_port_oc< T >;
 
-// recursion endpoint
-template< int n > 
-struct _port_out_implementation< n > : 
-   port_out_root< n > 
-{
-   using value_type = typename port_out_root< n >::value_type;
-   static void init(){}
-   static void set( value_type v ){}
-   static void set_direct( value_type v ){}
-   static void set_buffered( value_type v ){}
-   static void flush(){}
-};
+template< typename T >
+concept bool can_port_in =  
+      is_port_in< T >
+   || is_port_in_out< T >
+   || is_port_oc< T >;
 
-// add first pin and recurse
-template< int n, typename arg_pin, typename... arg_tail >
-struct _port_out_implementation<  n, arg_pin, arg_tail... > :
-   _port_out_implementation< n, arg_tail... >
-{
+template< typename T >
+concept bool can_port_in_out =  
+      is_port_in_out< T >
+   || is_port_oc< T >;
 
-   using value_type = typename 
-      _port_out_implementation< n, arg_tail... >::value_type;
-	  
-   using pin = pin_out< arg_pin >;	
-      
-   static void init() { 
-      pin::init();
-      _port_out_implementation< n, arg_tail... >::init(); 
-   }
-      
-   static void set( value_type v ) {
-      pin::set_buffered( ( v & 0x01 ) != 0 );
-      _port_out_implementation< n, arg_tail... >::set_buffered( v >> 1 );
-	  flush();
-   }
-      
-   static void set_direct( value_type v ) {
-      pin::set_direct( ( v & 0x01 ) != 0 );
-      _port_out_implementation< n, arg_tail... >::set_direct( v >> 1 );
-   }
-      
-   static void set_buffered( value_type v ) {
-      pin::set_buffered( ( v & 0x01 ) != 0 );
-      _port_out_implementation< n, arg_tail... >::set_buffered( v >> 1 );
-   }
-      
-   static void flush() {
-      pin::flush();
-      _port_out_implementation< n, arg_tail... >::flush();
-   }
-      
-};
+template< typename T >
+concept bool can_port_oc =  
+   // a port_in_out is NOT acceptable
+   is_port_oc< T >;
 
-// determine the number of arguments and defer to the implementation
-template< typename... arguments > 
-struct port_out :
-   _port_out_implementation< sizeof...( arguments ), arguments... >
-{};
 
-/*
-template< typename... arguments > 
-struct xx_port_out :
-   port_out_root< sizeof...( arguments ) >
-{
-   	
-   static void init() { 
-      pin::init();
-      _port_out_implementation< n, arg_tail... >::init(); 
-   }
-	
-};
-
-*/
-  
-   
 // ==========================================================================
 //
-// create a port_in
+// PUBLIC
+//
+// The 'fallback, never use' class templates that decide whether a list
+// of things can be converted to the requested port type. This is the case
+// when it is either one port that can be converted, or a list of pins
+// that can each be converted to a suitable pin.
 //
 // ==========================================================================
 
-// fallback, required but never used
-template< int n, typename... arg_tail >
-struct _port_in_implementation {};
+template< typename... Ts >
+requires 
+   _can_pin_out_list< Ts...> 
+   || sizeof...( Ts ) == 1 && ( can_port_out< Ts > && ... )
+struct port_out;
 
-// recursion endpoint
-template< int n > 
-struct _port_in_implementation< n > : 
-   public port_in_root< n > 
-{
-   using value_type = typename port_in_root< n >::value_type;
-   static void init(){}
-   static value_type get_direct(){ return 0; }
-};
+template< typename... Ts >
+requires 
+   _can_pin_in_list< Ts...> 
+   || sizeof...( Ts ) == 1 && ( can_port_in< Ts > && ... )
+struct port_in;
 
-// add first pin and recurse
-template< int n, typename arg_pin, typename... arg_tail >
-struct _port_in_implementation<  n, arg_pin, arg_tail... > :
-   _port_in_implementation< n, arg_tail... >
-{
+template< typename... Ts >
+requires 
+   _can_pin_in_out_list< Ts...> 
+   || sizeof...( Ts ) == 1 && ( can_port_in_out< Ts > && ... )
+struct port_in_out;
 
-   using value_type = 
-      typename _port_in_implementation< n, arg_tail... >::value_type;
-   using pin = pin_in< arg_pin >;	
-      
-   static void init() { 
-      pin::init();
-      _port_in_implementation< n, arg_tail... >::init(); 
-   }
-      
-   static value_type get_direct( value_type v ) {
-      return 
-	     ( pin::get_direct() ? 0x01 : 0x00 ) 
-	     | ( _port_in_implementation< n, arg_tail... >::get_direct() << 1 );
-   }
-      
-};
+template< typename... Ts >
+requires 
+   _can_pin_oc_list< Ts...> 
+   || sizeof...( Ts ) == 1 && ( can_port_oc< Ts > && ... )
+struct port_oc;
 
-// determine the number of arguments and defer to the implementation
-template< typename... arguments > 
-struct port_in :
-   _port_in_implementation< sizeof...( arguments ), arguments... >
-{};
-
-      
-// ==========================================================================
-//
-// create a port_in_out
-//
-// ==========================================================================
-
-// fallback, required but never used
-template< int n, typename... arg_tail >
-struct _port_in_out_implementation {};
-
-// recursion endpoint
-template< int n > 
-struct _port_in_out_implementation< n > : 
-   public port_in_out_root< n > 
-{
-   using value_type = typename port_in_out_root< n >::value_type;
-   static void init() {}
-   static void direction_set_direct( pin_direction d ) {}
-   static void set_direct( value_type v ) {}
-   static value_type get_direct(){ return 0; }
-};
-
-// add first pin and recurse
-template< int n, typename arg_pin, typename... arg_tail >
-struct _port_in_out_implementation<  n, arg_pin, arg_tail... > :
-   _port_in_out_implementation< n, arg_tail... >
-{
-
-   using value_type = 
-      typename _port_in_out_implementation< n, arg_tail... >::value_type;
-   using pin = pin_in_out< arg_pin >;	
-      
-   static void init() { 
-      pin::init();
-      _port_in_out_implementation< n, arg_tail... >::init(); 
-   }
-      
-   static void direction_set_direct( pin_direction d ) {
-      pin::direction_set_direct( d );
-      _port_in_out_implementation< n, arg_tail... >::direction_set_direct( d );
-   }
-   
-   static void set_direct( value_type v ) {
-      pin::set( ( v & 0x01 ) != 0 );
-      _port_in_out_implementation< n, arg_tail... >::set_direct( v >> 1 );
-   }
-   
-   static value_type get_direct( value_type v ) {
-      return 
-	     ( pin::get_direct() ? 0x01 : 0x00 ) 
-	     | ( _port_in_out_implementation< n, arg_tail... >::get_direct() << 1 );
-   }
-      
-};
-
-// determine the number of arguments and defer to the implementation
-template< typename... arguments > 
-struct port_in_out :
-   _port_in_out_implementation< sizeof...( arguments ), arguments... >
-{};
-   
-// ==========================================================================
-//
-// create a port_oc
-//
-// ==========================================================================
-
-// fallback, required but never used
-template< int n, typename... arg_tail >
-struct _port_oc_implementation {};
-
-// recursion endpoint
-template< int n > 
-struct _port_oc_implementation< n > : 
-   public port_oc_root< n > 
-{
-   using value_type = typename port_oc_root< n >::value_type;
-   static void init() {}
-   static void set_direct( value_type v ) {}
-   static value_type get_direct(){ return 0; }
-};
-
-// add first pin and recurse
-template< int n, typename arg_pin, typename... arg_tail >
-struct _port_oc_implementation<  n, arg_pin, arg_tail... > :
-   _port_oc_implementation< n, arg_tail... >
-{
-
-   using value_type = 
-      typename _port_oc_implementation< n, arg_tail... >::value_type;
-   using pin = pin_oc< arg_pin >;	
-      
-   static void init() { 
-      pin::init();
-      _port_oc_implementation< n, arg_tail... >::init(); 
-   }
-      
-   static void direction_set_direct( pin_direction d ) {
-      pin::direction_set_direct( d );
-      _port_oc_implementation< n, arg_tail... >::direction_set_direct( d );
-   }
-   
-   static void set_direct( value_type v ) {
-      pin::set( ( v & 0x01 ) != 0 );
-      _port_oc_implementation< n, arg_tail... >::set_direct( v >> 1 );
-   }
-   
-   static value_type get_direct( value_type v ) {
-      return 
-	     ( pin::get_direct() ? 0x01 : 0x00 ) 
-	     | ( _port_oc_implementation< n, arg_tail... >::get_direct() << 1 );
-   }
-      
-};
-
-// determine the number of arguments and defer to the implementation
-template< typename... arguments > 
-struct port_oc :
-   _port_oc_implementation< sizeof...( arguments ), arguments... >
-{};
-
-template< typename base, int n >
-struct port_oc_buffered_base :
-   port_oc_root< n >
-{
-   using value_type = typename port_oc_root< n >::value_type;	
-   
-   static void init(){
-      base::init();	   
-   }	   
-	
-   // inherit the buffered ones
-   
-   static void set_direct( value_type v ){  	
-      base::set( v );
-      base::flush();     	   
-   }
-   
-};

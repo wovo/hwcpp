@@ -26,27 +26,28 @@
 //
 // mixin class and concept for invertible boxes
 //
-// a class T must be a box and inherit from invertible (for bitwise inversion)
-// or invertible_interval (for numeric interval inversion) to be accepted 
-// by invert< T >
+// a class T must be a box and inherit from 
+// invertible (for bitwise inversion) or from
+// invertible_interval (for numeric interval inversion) 
+// to be accepted by invert< T >. 
+// It is the responsibility of the using class to do both.
 //
 // ==========================================================================
 
-template< typename T >
 struct invertible {
    static constexpr bool is_invertible = true;
 };
 
 template< typename T >
 concept bool is_invertible = requires {  
+   T::is_box_tag;
    T::is_invertible; 
 };
 
 // ========== mixin class for bitwise invertible boxes
 
-template< typename T >
 struct invertible_bitwise :
-   invertible< T >
+   invertible
 { 
    static bool HWLIB_INLINE invert_value( bool v ){ 
       return ! v; 
@@ -61,9 +62,9 @@ struct invertible_bitwise :
 
 template< typename T >
 struct invertible_interval :
-   invertible< T >
+   invertible
 { 
-   static auto invert_value( auto v ){ 
+   static auto HWLIB_INLINE invert_value( auto v ){ 
       return T::lowest + ( T::highest - v ); 
    }
 };

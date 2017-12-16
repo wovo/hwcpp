@@ -22,7 +22,8 @@
 //
 // PUBLIC
 //
-// concepts that tell whether a pin can be converted to the requested pin
+// concepts that tell whether a thing 
+// can be converted to the requested pin
 //
 // ==========================================================================
 
@@ -47,6 +48,28 @@ template< typename T >
 concept bool can_pin_oc =  
       is_pin_in_out< T >
    || is_pin_oc< T >;
+   
+   
+// ==========================================================================
+//
+// LIBRARY-INTERNAL
+//
+// concepts that tell whether a kist of things
+// can be converted to the requested pin
+//
+// ==========================================================================
+
+template< typename... Ts >
+concept bool _can_pin_out_list = ( can_pin_out< Ts > && ... );
+
+template< typename... Ts >
+concept bool _can_pin_in_list = ( can_pin_in< Ts > && ... );
+
+template< typename... Ts >
+concept bool _can_pin_in_out_list = ( can_pin_in_out< Ts > && ... );
+
+template< typename... Ts >
+concept bool _can_pin_oc_list = ( can_pin_oc< Ts > && ... );
 
 
 // ==========================================================================
@@ -169,7 +192,7 @@ struct pin_in_out< T > :
 //
 // ==========================================================================
 
-// ========== base template 
+// ========== base template, not defined, never used 
 
 template< can_pin_oc T > struct pin_oc;
 

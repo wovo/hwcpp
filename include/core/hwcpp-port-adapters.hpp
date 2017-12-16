@@ -20,37 +20,6 @@
 
 // ==========================================================================
 //
-// PUBLIC
-//
-// concepts that decide whether a port can be converted to the requested port
-//
-// ==========================================================================
-
-template< typename T >
-concept bool can_port_out =  
-      is_port_out< T >
-   || is_port_in_out< T >
-   || is_port_oc< T >;
-
-template< typename T >
-concept bool can_port_in =  
-      is_port_in< T >
-   || is_port_in_out< T >
-   || is_port_oc< T >;
-
-template< typename T >
-concept bool can_port_in_out =  
-      is_port_in_out< T >
-   || is_port_oc< T >;
-
-template< typename T >
-concept bool can_port_oc =  
-      is_port_in_out< T >
-   || is_port_oc< T >;
-
-
-// ==========================================================================
-//
 // adapter that creates a port out from another port
 //
 // ==========================================================================
@@ -62,17 +31,17 @@ struct port_out< port > :
    
 template< is_port_in_out port > 
 struct port_out< port > :
-   port_out_root< port::n_pins > 
+   _port_out_root< port::n_pins > 
 {
    	
-   using value_type = typename port::value_type;
+   using _value_type = typename port::value_type;
    
    static void init() { 
       port::init();
 	  port::direction_set_direct( pin_direction::output );
    }
       
-   static void set_direct( value_type v ) {
+   static void set_direct( _value_type v ) {
       port::set_direct( v );
    }   
 	
@@ -80,22 +49,22 @@ struct port_out< port > :
    
 template< is_port_oc port > 
 struct port_out< port > :
-   port_out_root< port::n_pins > 
+   _port_out_root< port::n_pins > 
 {
    	
-   using value_type = typename port::value_type;
+   using _value_type = typename port::value_type;
    
    static void init() { 
       port::init();
    }
       
-   static void set_direct( value_type v ) {
+   static void set_direct( _value_type v ) {
       port::set_direct( v );
    }   
 	
 };
    
-   
+/*   
 // ==========================================================================
 //
 // adapter that creates a port in from another port
@@ -141,3 +110,4 @@ struct port_in< port > :
 //
 // ==========================================================================
 
+*/

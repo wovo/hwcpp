@@ -16,7 +16,8 @@
 // the buffered versions. 
 //
 // When a box is both in and out, it can have direction functions 
-// for switching between in mode and out mode.
+// for switching between in mode and out mode, which also exist
+// in default, direct and buffered versions.
 //
 // ==========================================================================
 //
@@ -40,13 +41,14 @@
 //
 // ==========================================================================
 
-// ========= common root
+// ========= common
 
 template< typename T >
 struct _box_root :
    not_instantiable
 {
    using value_type = T;  
+   static constexpr bool is_box_tag = true;
 };
 
 // ========= box out
@@ -211,7 +213,7 @@ template< typename T >
 struct _pass_init { 
     
    static void HWLIB_INLINE init(){ 
-      return T::init(); 
+      T::init(); 
    }     
 }; 
 

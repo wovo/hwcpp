@@ -11,6 +11,10 @@
 // by that type by deferring to _box_fanout< adapter, list... >,
 // check the pins for an example.
 //
+// It is the responsibility of that specific type to provide only
+// pins that are valid for the adapt<>, and to break the HWLIB_INLINE 
+// chain by using _box_no_inline<>.
+//
 // LIBRARY-INTERNAL
 //
 // ==========================================================================
@@ -41,11 +45,11 @@ template<
    template< typename > class adapt 
 > struct _box_fanout< adapt > {
    
-   static void init(){}
-   static void set( auto v ){}
-   static void set_direct( auto v ){}
-   static void set_buffered( auto v ){}
-   static void flush(){}
+   static void HWLIB_INLINE init(){}
+   static void HWLIB_INLINE set( auto v ){}
+   static void HWLIB_INLINE set_direct( auto v ){}
+   static void HWLIB_INLINE set_buffered( auto v ){}
+   static void HWLIB_INLINE flush(){}
 };
 
 // ========== handle one box and recurse
@@ -62,29 +66,29 @@ struct _box_fanout< adapt, _box, tail... > :
    using box = adapt< _box >;	
    using tail_boxes = _box_fanout< adapt, tail... >;
 	
-   static void init() { 
+   static void HWLIB_INLINE init() { 
       box::init();
       tail_boxes::init(); 
    }
       
-   static void set( _value_type v ) {
+   static void HWLIB_INLINE set( _value_type v ) {
       box::set_buffered( v );
       tail_boxes::set_buffered( v );
 	  flush();
    }
       
-   static void set_direct( _value_type v ) {
+   static void HWLIB_INLINE set_direct( _value_type v ) {
       box::set_buffered( v );
       tail_boxes::set_buffered( v );
 	  flush();
    }
       
-   static void set_buffered( _value_type v ) {
+   static void HWLIB_INLINE set_buffered( _value_type v ) {
       box::set_buffered( v );
       tail_boxes::set_buffered( v );
    }
       
-   static void flush() {
+   static void HWLIB_INLINE flush() {
       box::flush();
       tail_boxes::flush();
    }

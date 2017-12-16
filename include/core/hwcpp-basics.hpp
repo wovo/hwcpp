@@ -26,12 +26,12 @@
 //
 // ==========================================================================
    
-constexpr char version[] = "V0.1 2017-12-11 work-in-progress";
+constexpr char version[] = "V0.1 2017-12-16 work-in-progress";
 
 
 // ==========================================================================
 //
-// // LIBRARY-INTERNAL
+// LIBRARY-INTERNAL
 //
 // inline this function
 //

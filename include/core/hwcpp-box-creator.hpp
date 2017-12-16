@@ -6,8 +6,8 @@
 //
 // A box creator adds the missing functions to a box that has 
 // either only direct functions, or only buffered functions.
-// This is used (indirectly) by for instance the HALs 
-// to create a full GPIO pin or an ADC from a minimal one.
+// This is used by for instance the HALs 
+// to create a full GPIO pin or ADC from a minimal one.
 //
 // ==========================================================================
 //

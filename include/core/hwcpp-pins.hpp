@@ -31,7 +31,7 @@
 // ========= common 
 
 struct _pin_common_root :
-   invertible_bitwise< bool >
+   invertible_bitwise
 {};
 
 // ========= pin out 

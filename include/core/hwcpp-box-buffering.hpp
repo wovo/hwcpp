@@ -23,6 +23,11 @@
 // FILE-INTERNAL
 //
 // class filters that enable or disable buffering
+// by re-directing the default set, get and direction_set functions
+// (when present) to the requested (*_buffered or *_direct) versions.
+//
+// The flush and refresh functions are not affected.
+// Using buffered< T > on a non-buffered T will not introduce buffering.
 //
 // ==========================================================================
 
@@ -36,7 +41,7 @@ struct _buffered_out_filter< T > : T {
 	
    using _value_type = typename T::value_type;	
    
-   static void set( _value_type v ){
+   static void HWLIB_INLINE set( _value_type v ){
       T::set_buffered( v );
    }	  
 };
@@ -51,8 +56,8 @@ struct _direct_out_filter< T > : T {
 	
    using _value_type = typename T::value_type;	
    
-   static void set( _value_type v ){
-      T::set_buffered( v );
+   static void HWLIB_INLINE set( _value_type v ){
+      T::set_direct( v );
    }	  
 };
 
@@ -66,7 +71,7 @@ struct _buffered_in_filter< T > : T {
 	
    using _value_type = typename T::value_type;	
    
-   static _value_type get(){
+   static _value_type HWLIB_INLINE get(){
       return T::get_buffered();
    }	  
 };
@@ -81,7 +86,7 @@ struct _direct_in_filter< T > : T {
 	
    using _value_type = typename T::value_type;	
    
-   static _value_type get(){
+   static _value_type HWLIB_INLINE get(){
       return T::get_direct();
    }  
 };
@@ -94,7 +99,7 @@ struct _buffered_direction_filter : T {};
 template< _has_box_direction_functions T >
 struct _buffered_direction_filter< T > : T {
 	
-   static void direction_set( pin_direction d ){
+   static void HWLIB_INLINE direction_set( pin_direction d ){
       T::direction_set_buffered( d );
    }	  
 };
@@ -107,7 +112,7 @@ struct _direct_direction_filter : T {};
 template< _has_box_direction_functions T >
 struct _direct_direction_filter< T > : T {
 	
-   static void direction_set( pin_direction d ){
+   static void HWLIB_INLINE direction_set( pin_direction d ){
       T::direction_set_direct( d );
    }
 };

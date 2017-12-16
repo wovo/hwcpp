@@ -3,7 +3,7 @@
 using target = hwcpp::target<>;
 using timing = target::waiting;
 
-using pins = hwcpp::port_in_out< 
+using pins = hwcpp::port_out< 
    target::b11,
    target::b10,
    target::b1,

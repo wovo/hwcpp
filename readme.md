@@ -50,7 +50,12 @@ The compilers I currently use are (gcc 7.2.0):
 -----------------------------------------------------------------------------
 
 Notes & ToDo
-- re-rechk INLINE
+- port dummies (utilities) should derive from dummy boxes
+- even polling needs mutexes...
+- tests for non-existing-ness
+- class template tasking
+- test LCD 2x8
+- re-rechk INLINE, should inits be ALWAYS_INLINE at all (meybe never)?
 - box buffered/direct : can't be done on top of each other....
 - box : fixed value, variable / reference ?, select, combine, moving_average
 - box : average, limit, add, multiply, scale, linear_transform

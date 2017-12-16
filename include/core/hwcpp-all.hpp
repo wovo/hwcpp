@@ -51,6 +51,7 @@ namespace hwcpp {
    #include "core/hwcpp-basics.hpp"
    
    #include "core/hwcpp-box.hpp"
+   #include "core/hwcpp-box-no-inline.hpp"
    #include "core/hwcpp-box-creator.hpp"
    #include "core/hwcpp-box-adapters.hpp"
    #include "core/hwcpp-box-buffering.hpp"
@@ -62,7 +63,10 @@ namespace hwcpp {
    #include "core/hwcpp-pin-utilities.hpp"
    
    #include "core/hwcpp-ports.hpp"
+   #include "core/hwcpp-port-utilities.hpp"
+   #include "core/hwcpp-port-from-pins.hpp"
    #include "core/hwcpp-port-adapters.hpp"
+   
    #include "core/hwcpp-adc.hpp"
    #include "core/hwcpp-dac.hpp"
    
@@ -76,13 +80,13 @@ namespace hwcpp {
    
    #include "core/hwcpp-demos.hpp"
    
-   #include "chips/hwcpp-pcf8574.hpp"
-   #include "chips/hwcpp-hd44780.hpp"
+   //#include "chips/hwcpp-pcf8574.hpp"
+   //#include "chips/hwcpp-hd44780.hpp"
    
    namespace shields {   
 
-      #include "shields/hwcpp-lcd-buttons.hpp"
-      #include "shields/hwcpp-joystick-buttons.hpp"
+//      #include "shields/hwcpp-lcd-buttons.hpp"
+//      #include "shields/hwcpp-joystick-buttons.hpp"
    
    }; // namespace shields   
 

@@ -53,7 +53,7 @@ concept bool _can_box_in_out =
 // ==========================================================================
 
 
-// ========== base template 
+// ========== base template, not defined, never used  
 
 template< _can_box_out T > struct _box_out;
 
@@ -73,7 +73,7 @@ struct _box_out< T > :
 {
     
    static void HWLIB_INLINE init(){
-	  T::init(); 
+      T::init(); 
       T::direction_set( pin_direction::output );
    }	
 };
@@ -88,7 +88,7 @@ struct _box_out< T > :
 // ==========================================================================
 
 
-// ========== base template 
+// ========== base template, not defined, never used  
 
 template< _can_box_in T > struct _box_in;
 
@@ -112,7 +112,7 @@ struct _box_in< T > :
 {
     
    static void HWLIB_INLINE init(){
-	  T::init(); 
+      T::init(); 
       T::direction_set( pin_direction::input );
    }	
 };
