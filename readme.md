@@ -50,6 +50,11 @@ The compilers I currently use are (gcc 7.2.0):
 -----------------------------------------------------------------------------
 
 Notes & ToDo
+- box creator 149 unneedeed
+- adapt oc pin to in-out
+- flatten == inline *inside* a function
+- port_in_out => port_out doesn't work, does it work for pins?
+- the box adapters (in_out => out) set the dircetion, but NOT DIRECT
 - port dummies (utilities) should derive from dummy boxes
 - even polling needs mutexes...
 - tests for non-existing-ness
@@ -59,17 +64,16 @@ Notes & ToDo
 - box buffered/direct : can't be done on top of each other....
 - box : fixed value, variable / reference ?, select, combine, moving_average
 - box : average, limit, add, multiply, scale, linear_transform
-- invert heeft nix met box te maken ;)
+- invert heeft nix met box te maken, kan ook voor stream ;)
 - tabs => spaces
 - thing that you decorate => minion
 - use MHz etc for target frequencies?
 - verder met box-adapters (welke precies mogen blijft aan de concrete boxes)
 - file pin-utilities for things that trivally inherit from box
-- file hwcpp-port-from-pins
 - dummies now need the pin adapters (or make that box adapters??)
 - likewise for var-store
 - target at328p should use usbaspd
-- need a reverse-invert for non-reversible ones?
+- need a reverse-invert for non-idem-reversible ones?
 - pcf8591 => test with resistors
 - adc, joystick, joystick-button, => xy buttons
 - adc ==> subrange input box => can invert!
@@ -80,7 +84,6 @@ Notes & ToDo
 - avr8 64 bit not to be trusted?
 - max toggle tests, document freq
 - what is the due start-up frequency?
-- invert port(blue pill) doesn't work
 - fixed-out pins/ports to hwcpp
 - // #undef putc in hwcpp-all.hpp
 - remove redundancy from port concepts => ask Chiel

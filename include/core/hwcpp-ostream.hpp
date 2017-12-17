@@ -72,7 +72,7 @@ template< is_ostream ostream >                              \
 ostream & operator<<( ostream & lhs, const NAME & rhs ){    \
    lhs.FIELD = rhs.v;	                                    \
    return lhs;                                              \
-};   
+}   
 
 HWCPP_MANIPULATOR( bool,           align_right,      _align_right      )
 HWCPP_MANIPULATOR( bool,           bool_alpha,       _boolalpha        )
@@ -123,9 +123,9 @@ constexpr _numerical_radix hex( 16 );
          
          void add_digit( char c, char hex_base ){
             if( c > 9 ){
-               c += ( hex_base - 10 );
+               c = (char) ( c + ( hex_base - 10 ));
             } else {
-               c += '0';
+               c = (char) ( c + '0' );
             } 
             add_char( c );
          }

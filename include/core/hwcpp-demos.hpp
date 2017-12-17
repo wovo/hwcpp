@@ -5,7 +5,7 @@
 // ==========================================================================
 
 template< can_pin_out pin, is_interval interval >
-void blink(){
+[[noreturn]] void blink(){
    using led = pin_out< pin >;    
    led::init();
    interval::init();
@@ -18,7 +18,7 @@ void blink(){
 }
 
 template< can_pin_out pin, is_interval interval_high, is_interval interval_low >
-void blink(){
+[[noreturn]] void blink(){
    using led = pin_out< pin >;    
    led::init();
    interval_high::init();
@@ -32,17 +32,17 @@ void blink(){
 }
 
 template< can_port_out _port, is_interval interval >
-void kitt(){
+[[noreturn]] void kitt(){
    using port = hwcpp::port_out< _port >;	
    port::init();
    interval::init();
    for(;;){
       for( uint_fast8_t  i = 0; i < port::n_pins; ++i ){
-         port::set_direct( 0x01 << i );      
+         port::set_direct( (typename port::value_type) ( 0x01 << i ) );      
          interval::wait(); 
       }
       for( uint_fast8_t  i = port::n_pins - 2; i > 0; --i ){
-         port::set_direct( 0x01 << i );      
+         port::set_direct( (typename port::value_type) ( 0x01 << i ) );      
          interval::wait(); 
       }
    }      

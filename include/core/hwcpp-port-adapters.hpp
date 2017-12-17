@@ -20,52 +20,24 @@
 
 // ==========================================================================
 //
+// PUBLIC
+//
 // adapter that creates a port out from another port
 //
 // ==========================================================================
 
-template< is_port_out port > 
+template< can_port_out port > 
 struct port_out< port > :
-   port
+   _port_out_root< port::n_pins >,
+   _box_out< port >
 {};
+  
    
-template< is_port_in_out port > 
-struct port_out< port > :
-   _port_out_root< port::n_pins > 
-{
-   	
-   using _value_type = typename port::value_type;
    
-   static void init() { 
-      port::init();
-	  port::direction_set_direct( pin_direction::output );
-   }
-      
-   static void set_direct( _value_type v ) {
-      port::set_direct( v );
-   }   
-	
-};
-   
-template< is_port_oc port > 
-struct port_out< port > :
-   _port_out_root< port::n_pins > 
-{
-   	
-   using _value_type = typename port::value_type;
-   
-   static void init() { 
-      port::init();
-   }
-      
-   static void set_direct( _value_type v ) {
-      port::set_direct( v );
-   }   
-	
-};
-   
-/*   
+/* 
 // ==========================================================================
+//
+// PUBLIC
 //
 // adapter that creates a port in from another port
 //
@@ -98,6 +70,8 @@ struct port_in< port > :
       
 // ==========================================================================
 //
+// PUBLIC
+//
 // adapter that creates a port in out from another port
 //
 // ==========================================================================
@@ -105,6 +79,8 @@ struct port_in< port > :
 
    
 // ==========================================================================
+//
+// PUBLIC
 //
 // adapter that creates a port oc from another port
 //

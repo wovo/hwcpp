@@ -36,9 +36,9 @@ struct port_out_dummy:
    
    static void init(){}
    
-   static void set( _value_type v ){}
-   static void set_direct( _value_type v ){}
-   static void set_buffered( _value_type v ){}
+   static void set( _value_type v ){ (void) v; }
+   static void set_direct( _value_type v ){ (void) v; }
+   static void set_buffered( _value_type v ){ (void) v; }
    static void flush(){}
 };
 
@@ -68,9 +68,9 @@ struct port_in_out_dummy :
    
    static void init(){}
    
-   static void set( _value_type v ){}
-   static void set_direct( _value_type v ){}
-   static void set_buffered( _value_type v ){}
+   static void set( _value_type v ){  (void) v; }
+   static void set_direct( _value_type v ){  (void) v; }
+   static void set_buffered( _value_type v ){  (void) v; }
    static void flush(){}
 
    static _value_type get(){ return 0; }
@@ -78,9 +78,9 @@ struct port_in_out_dummy :
    static _value_type get_buffereh(){ return 0; }
    static void refresh(){}
    
-   static void direction_set( pin_direction d ) {}
-   static void direction_set_direct( pin_direction d ) {}
-   static void direction_set_buffered( pin_direction d ) {}
+   static void direction_set( pin_direction d ) { (void) d; }
+   static void direction_set_direct( pin_direction d ) {  (void) d; }
+   static void direction_set_buffered( pin_direction d ) {  (void) d; }
    static void direction_flush() {}
 };
 
@@ -94,9 +94,9 @@ struct port_oc_dummy :
    
    static void init(){}
    
-   static void set( _value_type v ){}
-   static void set_direct( _value_type v ){}
-   static void set_buffered( _value_type v ){}
+   static void set( _value_type v ){ (void) v; }
+   static void set_direct( _value_type v ){ (void) v; }
+   static void set_buffered( _value_type v ){ (void) v; }
    static void flush(){}
 
    static _value_type get(){ return 0; }

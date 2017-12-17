@@ -48,12 +48,12 @@ public:
 // ==========================================================================  
 
 template< is_i2c_bus bus, int address = 0 >
-using pcf8574 = port_oc_buffered_base< 	
+using pcf8574 = _port_oc_buffered_base< 	
    pcf8574_generic< bus, 0x20 + address >, 
    8 >;
 
 template< is_i2c_bus bus, int address = 0 >
-using pcf8574a = port_oc_buffered_base< 	
+using pcf8574a = _port_oc_buffered_base< 	
    pcf8574_generic< bus, 0x38 + address >, 
    8 >;
 

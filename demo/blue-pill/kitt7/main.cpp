@@ -3,7 +3,7 @@
 using target = hwcpp::target<>;
 using timing = target::waiting;
 
-using pins = hwcpp::port_out< 
+using pins = hwcpp::port_in_out< 
    target::b11,
    target::b10,
    target::b1,
@@ -14,5 +14,6 @@ using pins = hwcpp::port_out<
 >;
 
 int main(){ 
+   (void)hwcpp::pin_in_out< target::b10 >::get_buffered();
    hwcpp::kitt< pins, timing::ms< 50 > >();
 }

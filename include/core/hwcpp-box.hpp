@@ -258,7 +258,29 @@ struct _pass_box_get {
       return T::get_buffered(); 
    }
    
-   static void HWLIB_INLINE invalidate(){ 
-      T::invalidate(); 
+   static void HWLIB_INLINE refresh(){ 
+      T::refresh(); 
+   }
+}; 
+
+// ========== pass the direction functions ==========
+
+template< typename T >
+struct _pass_box_direction { 
+   
+   static void HWLIB_INLINE direction_set( pin_direction d ){ 
+      T::direction_set( d ); 
+   }
+   
+   static void HWLIB_INLINE direction_set_direct( pin_direction d ){ 
+      T::direction_set_direct( d ); 
+   }
+   
+   static void HWLIB_INLINE direction_set_buffered( pin_direction d ){ 
+      T::direction_set_buffered( d ); 
+   }
+   
+   static void HWLIB_INLINE direction_flush(){ 
+      T::direction_flush(); 
    }
 }; 

@@ -130,5 +130,6 @@ template< _is_box_in_out T >
 struct _box_in_out : 
    _pass_init< T >, 	
    _pass_box_get< T >, 	
-   _pass_box_set< T > 	
+   _pass_box_set< T >,	
+   _pass_box_direction< T > 	
 {};

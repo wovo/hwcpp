@@ -108,10 +108,8 @@ struct _box_creator_add_out_direct< T > : T {
 // ==========================================================================
 
 template< typename T >
-concept bool _box_has_in_direct = requires( 
-   typename T::value_type v 
-){  
-   { T::get_direct( v ) } -> void;
+concept bool _box_has_in_direct = requires {  
+   { T::get_direct() } -> typename T::value_type;
 };   
 
 template< typename T >
@@ -148,7 +146,7 @@ template< typename T >
 concept bool _box_has_in_buffered = requires( 
    typename T::value_type v 
 ){  
-   { T::get_buffered( v ) } -> void;
+   { T::get_buffered() } -> typename T::value_type;
 };   
 
 template< typename T >

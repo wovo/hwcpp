@@ -122,7 +122,7 @@ using Hz = std::ratio< f * 1, d >;
 // ==========================================================================
    
 // if no exact match, get something bigger
-template< unsigned int n > struct uint_t {
+template< uint64_t n > struct uint_t {
    // but we have to draw a line somewhere
    static_assert( 
       n < 130,

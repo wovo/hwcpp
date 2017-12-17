@@ -119,7 +119,7 @@ struct _no_inline_direction< T > : T {
 //
 // break the chain of HWLIB_INLINE for a box class
 // 
-// usage example: _box_fanout
+// usage examples: _box_fanout, port-from-pins
 //
 // ==========================================================================
 

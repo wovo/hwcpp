@@ -2,7 +2,7 @@
 //
 // file : hwcpp-port-from-pins.hpp
 //
-// create deiffrent kinds of port from appropriate pins
+// create different kinds of ports from appropriate pins
 //
 // ==========================================================================
 //
@@ -20,6 +20,117 @@
 
 // ==========================================================================
 //
+// FILE-INTERNAL
+//
+// filters that adds the various function groups
+//
+// ==========================================================================
+
+// ========== add init
+
+template< typename pin, typename tail >
+struct _port_recurse_init : tail {
+	
+  static void HWLIB_INLINE init() { 
+      pin::init();
+      tail::init(); 
+  }	
+};
+
+// ========= add the output (set) functions
+
+template< typename pin, typename tail >
+struct _port_recurse_set : tail {
+	
+   using _value_type = typename tail::value_type;
+	
+   static void HWLIB_INLINE set( _value_type v ) {
+      pin::set_buffered( ( v & 0x01 ) != 0 );
+      tail::set_buffered( (_value_type) ( v >> 1 ) );
+	  pin::flush();
+   }
+      
+   static void HWLIB_INLINE set_direct( _value_type v ) {
+      pin::set_direct( ( v & 0x01 ) != 0 );
+      tail::set_direct( (_value_type) ( v >> 1 ) );
+   }
+      
+   static void HWLIB_INLINE set_buffered( _value_type v ) {
+      pin::set_buffered( ( v & 0x01 ) != 0 );
+      tail::set_buffered( (_value_type) ( v >> 1 ) );
+   }
+      
+   static void HWLIB_INLINE flush() {
+      pin::flush();
+      tail::flush();
+   }
+};
+
+
+// ========= add the input (get) functions
+
+template< typename pin, typename tail >
+struct _port_recurse_get : tail {
+	
+   using _value_type = typename tail::value_type;
+	
+   static _value_type HWLIB_INLINE set() {
+      pin::refresh();	    
+      return (_value_type)
+	     pin::get_buffered()
+         | ( tail::get_buffered() << 1 );
+   }
+      
+   static _value_type HWLIB_INLINE get_direct() {
+      return (_value_type)
+	     ( pin::get_direct()
+            | ( tail::get_direct() << 1 ) );
+   }
+      
+   static _value_type HWLIB_INLINE get_buffered() {
+      return (_value_type)
+	     ( pin::get_buffered()
+            | ( tail::get_buffered() << 1 ) );
+   }
+      
+   static void HWLIB_INLINE refresh() {
+      pin::refresh();
+      tail::refresh();
+   }
+};
+
+// ========= add the direction  functions
+
+template< typename pin, typename tail >
+struct _port_recurse_direction : tail {
+	
+   static void HWLIB_INLINE direction_set( pin_direction d ){
+      pin::direction_set_buffered( d );
+      tail::direction_set_buffered( d ); 
+      pin::direction_flush();
+   }    
+   
+   static void HWLIB_INLINE direction_direct( pin_direction d ){
+      pin::direction_set_direct( d );
+      tail::direction_set_direct( d );         
+   }    
+
+   static void HWLIB_INLINE direction_set_buffered( pin_direction d ){
+      pin::direction_set_buffered( d );
+      tail::direction_set_buffered( d );    
+   }    
+   
+   static void HWLIB_INLINE direction_flush(){
+      pin::direction_flush();
+      tail::direction_flush();   
+   } 
+};
+
+
+// ==========================================================================
+//
+// PUBLIC
+//
 // create a port_out from pins
 //
 // ==========================================================================
@@ -34,52 +145,26 @@ struct _port_out_from_pins< n > :
    port_out_dummy< n >
 {};
     
-// add first pin and recurse
-template< int n, typename arg_pin, typename... arg_tail >
-struct _port_out_from_pins< n, arg_pin, arg_tail... > :
-   _port_out_from_pins< n, arg_tail... >
-{
+// add one pin and recurse
+template< int n, typename pin, typename... tail >
+struct _port_out_from_pins< n, pin, tail... > :
+   _port_recurse_set< pin_out< pin >, 
+   _port_recurse_init< pin_out< pin >, 
+      _port_out_from_pins< n, tail... > > >
+{};
 
-   using _value_type = typename 
-      _port_out_from_pins< n, arg_tail... >::value_type;
-	  
-   using pin = pin_out< arg_pin >;	
-      
-   static void init() { 
-      pin::init();
-      _port_out_from_pins< n, arg_tail... >::init(); 
-   }
-      
-   static void set( _value_type v ) {
-      pin::set_buffered( ( v & 0x01 ) != 0 );
-      _port_out_from_pins< n, arg_tail... >::set_buffered( v >> 1 );
-	  flush();
-   }
-      
-   static void set_direct( _value_type v ) {
-      pin::set_direct( ( v & 0x01 ) != 0 );
-      _port_out_from_pins< n, arg_tail... >::set_direct( v >> 1 );
-   }
-      
-   static void set_buffered( _value_type v ) {
-      pin::set_buffered( ( v & 0x01 ) != 0 );
-      _port_out_from_pins< n, arg_tail... >::set_buffered( v >> 1 );
-   }
-      
-   static void flush() {
-      pin::flush();
-      _port_out_from_pins< n, arg_tail... >::flush();
-   }
-};
-
-// determine the number of arguments and defer to the implementation
+// determine the number of arguments, break the forced inlining, 
+// and defer to the recursive template
 template< _can_pin_out_list... Ts > 
 struct port_out< Ts... > :
-   _port_out_from_pins< sizeof...( Ts ), Ts... >
+   _box_no_inline<
+      _port_out_from_pins< sizeof...( Ts ), Ts... > >
 {};
 
 
 // ==========================================================================
+//
+// PUBLIC
 //
 // create a port_in from pins
 //
@@ -95,38 +180,26 @@ struct _port_in_from_pins< n > :
    port_in_dummy< n >
 {};
     
+// add one pin and recurse
+template< int n, typename pin, typename... tail >
+struct _port_in_from_pins< n, pin, tail... > :
+   _port_recurse_get< pin_in< pin >, 
+   _port_recurse_init< pin_in< pin >, 
+      _port_in_from_pins< n, tail... > > >
+{};
 
-// add first pin and recurse
-template< int n, typename arg_pin, typename... arg_tail >
-struct _port_in_from_pins<  n, arg_pin, arg_tail... > :
-   _port_in_from_pins< n, arg_tail... >
-{
-
-   using value_type = 
-      typename _port_in_from_pins< n, arg_tail... >::value_type;
-   using pin = pin_in< arg_pin >;	
-      
-   static void init() { 
-      pin::init();
-      _port_in_from_pins< n, arg_tail... >::init(); 
-   }
-      
-   static value_type get_direct( value_type v ) {
-      return 
-	     ( pin::get_direct() ? 0x01 : 0x00 ) 
-	     | ( _port_in_from_pins< n, arg_tail... >::get_direct() << 1 );
-   }
-      
-};
-
-// determine the number of arguments and defer to the implementation
+// determine the number of arguments, break the forced inlining, 
+// and defer to the recursive template
 template< _can_pin_in_list... Ts > 
 struct port_in< Ts... > :
-   _port_in_from_pins< sizeof...( Ts ), Ts... >
+   _box_no_inline<
+      _port_in_from_pins< sizeof...( Ts ), Ts... > >
 {};
 
       
 // ==========================================================================
+//
+// PUBLIC
 //
 // create a port_in_out from pins
 //
@@ -142,47 +215,28 @@ struct _port_in_out_from_pins< n > :
    port_in_out_dummy< n >
 {};
     
-// add first pin and recurse
-template< int n, typename arg_pin, typename... arg_tail >
-struct _port_in_out_from_pins<  n, arg_pin, arg_tail... > :
-   _port_in_out_from_pins< n, arg_tail... >
-{
+// add one pin and recurse
+template< int n, typename pin, typename... tail >
+struct _port_in_out_from_pins< n, pin, tail... > :
+   _port_recurse_set< pin_in_out< pin >, 
+   _port_recurse_get< pin_in_out< pin >, 
+   _port_recurse_direction< pin_in_out< pin >, 
+   _port_recurse_init< pin_in_out< pin >, 
+      _port_in_out_from_pins< n, tail... > > > > >
+{};
 
-   using value_type = 
-      typename _port_in_out_from_pins< n, arg_tail... >::value_type;
-   using pin = pin_in_out< arg_pin >;	
-      
-   static void init() { 
-      pin::init();
-      _port_in_out_from_pins< n, arg_tail... >::init(); 
-   }
-      
-   static void direction_set_direct( pin_direction d ) {
-      pin::direction_set_direct( d );
-      _port_in_out_from_pins< n, arg_tail... >::direction_set_direct( d );
-   }
-   
-   static void set_direct( value_type v ) {
-      pin::set( ( v & 0x01 ) != 0 );
-      _port_in_out_from_pins< n, arg_tail... >::set_direct( v >> 1 );
-   }
-   
-   static value_type get_direct( value_type v ) {
-      return 
-	     ( pin::get_direct() ? 0x01 : 0x00 ) 
-	     | ( _port_in_out_from_pins< n, arg_tail... >::get_direct() << 1 );
-   }
-      
-};
-
-// determine the number of arguments and defer to the implementation
+// determine the number of arguments, break the forced inlining, 
+// and defer to the recursive template
 template< _can_pin_in_out_list... Ts > 
 struct port_in_out< Ts... > :
-   _port_in_out_from_pins< sizeof...( Ts ), Ts... >
+   _box_no_inline<
+      _port_in_out_from_pins< sizeof...( Ts ), Ts... > >
 {};
    
    
 // ==========================================================================
+//
+// PUBLIC
 //
 // create a port_oc from pins
 //
@@ -198,41 +252,19 @@ struct _port_oc_from_pins< n > :
    port_oc_dummy< n >
 {};
     
-// add first pin and recurse
-template< int n, typename arg_pin, typename... arg_tail >
-struct _port_oc_from_pins<  n, arg_pin, arg_tail... > :
-   _port_oc_from_pins< n, arg_tail... >
-{
+// add one pin and recurse
+template< int n, typename pin, typename... tail >
+struct _port_oc_from_pins< n, pin, tail... > :
+   _port_recurse_set< pin_oc< pin >, 
+   _port_recurse_get< pin_oc< pin >, 
+   _port_recurse_init< pin_oc< pin >, 
+      _port_oc_from_pins< n, tail... > > > >
+{};
 
-   using value_type = 
-      typename _port_oc_from_pins< n, arg_tail... >::value_type;
-   using pin = pin_oc< arg_pin >;	
-      
-   static void init() { 
-      pin::init();
-      _port_oc_from_pins< n, arg_tail... >::init(); 
-   }
-      
-   static void direction_set_direct( pin_direction d ) {
-      pin::direction_set_direct( d );
-      _port_oc_from_pins< n, arg_tail... >::direction_set_direct( d );
-   }
-   
-   static void set_direct( value_type v ) {
-      pin::set( ( v & 0x01 ) != 0 );
-      _port_oc_from_pins< n, arg_tail... >::set_direct( v >> 1 );
-   }
-   
-   static value_type get_direct( value_type v ) {
-      return 
-	     ( pin::get_direct() ? 0x01 : 0x00 ) 
-	     | ( _port_oc_from_pins< n, arg_tail... >::get_direct() << 1 );
-   }
-      
-};
-
-// determine the number of arguments and defer to the implementation
+// determine the number of arguments, break the forced inlining, 
+// and defer to the recursive template
 template< _can_pin_oc_list... Ts > 
 struct port_oc< Ts... > :
-   _port_oc_from_pins< sizeof...( Ts ), Ts... >
+   _box_no_inline<
+      _port_oc_from_pins< sizeof...( Ts ), Ts... > >
 {};

@@ -66,9 +66,14 @@ struct fanout :
 struct _pin_in_out_dummy : 
    _pin_in_out_root 
 {   
-   static void HWLIB_INLINE set_direct( bool v ){}      
-   static bool HWLIB_INLINE get_direct(){ return 0; }      
-   static void HWLIB_INLINE direction_set_direct( pin_direction d ){}
+   static void HWLIB_INLINE set_direct( bool v ){ 
+      (void) v; }      
+	  
+   static bool HWLIB_INLINE get_direct(){ 
+      return 0; }      
+	  
+   static void HWLIB_INLINE direction_set_direct( pin_direction d ){
+      (void) d; }
 };
 
 using pin_out_dummy     = pin_out<     _box_creator< _pin_in_out_dummy > >;

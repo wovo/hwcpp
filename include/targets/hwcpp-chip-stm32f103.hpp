@@ -88,7 +88,7 @@ struct _pin_in_out :
       port_block[ (int) p ]->BSRR = ( v ? mask : ( mask << 16 ));	   
    }
 
-   static int HWLIB_INLINE get_direct(){
+   static bool HWLIB_INLINE get_direct(){
       return (( port_block[ (int) p ]->IDR & mask ) != 0 );   
    }
 };
