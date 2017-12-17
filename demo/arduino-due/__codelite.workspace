@@ -6,6 +6,12 @@
       <Project Name="blink" ConfigName="Release"/>
     </WorkspaceConfiguration>
   </BuildMatrix>
+  <Project Name="blink-task" Path="blink-task/_codelite.project" Active="Yes"/>
+  <BuildMatrix>
+    <WorkspaceConfiguration Name="Release" Selected="yes">
+      <Project Name="blink-task" ConfigName="Release"/>
+    </WorkspaceConfiguration>
+  </BuildMatrix>
   <Project Name="fast-toggle" Path="fast-toggle/_codelite.project" Active="No"/>
   <BuildMatrix>
     <WorkspaceConfiguration Name="Release" Selected="yes">
@@ -24,7 +30,7 @@
       <Project Name="joystick-buttons-shield" ConfigName="Release"/>
     </WorkspaceConfiguration>
   </BuildMatrix>
-  <Project Name="kitt4" Path="kitt4/_codelite.project" Active="Yes"/>
+  <Project Name="kitt4" Path="kitt4/_codelite.project" Active="No"/>
   <BuildMatrix>
     <WorkspaceConfiguration Name="Release" Selected="yes">
       <Project Name="kitt4" ConfigName="Release"/>
