@@ -7,33 +7,28 @@ namespace hwcpp {
 	
 struct threading {
 
-   template< void ( * main )() >
+   template< typename T >
    struct thread {
       static void init(){
-         main();		  
+         T::main();		  
       }
    };	   
 	
 };	
 
+
 template< can_pin_out _led, typename threading >
-struct blinker {
-   
-   static void fmain();
-   
-   //using thread = typename threading::thread< main >;
-   
-   static void fmain(){
+struct blinker : threading:: template thread< struct blinker< _led, threading > > {
+    
+   static void main(){
       using led = pin_out< _led >; 	    
-      for(;;){
-		  
+      for(;;){		  
       }		  
    }
-   
-   static void init(){
-     //thread::init();
-   }	  
-};      
+   	  
+};   
+
+     
 
 };
 
