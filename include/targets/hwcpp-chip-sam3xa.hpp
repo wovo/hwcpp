@@ -69,7 +69,7 @@ enum class pio {
    d = 0x400E1400U
 };
 
-// ========= pin_in_out ==========
+// ========= pin_in_out
 
 template< pio P, uint32_t pin >
 struct _pin_in_out : 
@@ -102,7 +102,7 @@ struct _pin_in_out :
 template< pio P, uint32_t pin >
 using pin_in_out = _box_creator< _pin_in_out< P, pin > >;	
 
-// ========= pin_adc ==========
+// ========= pin_adc 
 
 static void adc_init_common(){
     
@@ -122,45 +122,55 @@ static void adc_init_common(){
    ADC->ADC_COR = 0;
 }
 
+static uint_fast16_t adc_get_common( 
+   uint_fast8_t channel, 
+   uint_fast32_t mask 
+){
+	
+   // enable the channel
+   ADC->ADC_CHER = mask;         
+
+   // dummy conversion - can this be avoided?
+   ADC->ADC_CR = 0x0000'0002;
+   while( ( ADC->ADC_ISR & mask ) == 0 ){}
+   (void)ADC->ADC_CDR[ channel ];
+
+   // start the conversion 
+   ADC->ADC_CR = 0x0000'0002;
+      
+   // wait for the conversion to complete
+   while( ( ADC->ADC_ISR & mask ) == 0 ){}
+
+   // get conversion results
+   auto x = ADC->ADC_CDR[ channel ] & 0x0000'0FFF;
+ 
+   // disable the channel - doesn't work??
+   ADC->ADC_CHDR = 0x01 << channel;   
+      
+   // return the conversion result
+   return x;	
+}
+
 template< uint_fast64_t channel >
-struct _pin_adc {
+struct _pin_adc :
+   _adc_root< 12 >
+{
+	
+   using _value_type = typename _adc_root< 12 >::value_type;
 	
    static void init(){
 	  adc_init_common(); 
    }
 
-   static uint_fast16_t get_direct(){
-       
-      // enable the channel
-      ADC->ADC_CHER = ( 0x01 << channel );         
-
-      // dummy conversion - can this be avoided?
-      ADC->ADC_CR = 0x0000'0002;
-      while( ( ADC->ADC_ISR & ( 0x01 << channel )) == 0 ){}
-      (void)ADC->ADC_CDR[ channel ];
-
-      // start the conversion 
-      ADC->ADC_CR = 0x0000'0002;
-      
-      // wait for the conversion to complete
-      while( ( ADC->ADC_ISR & ( 0x01 << channel )) == 0 ){}
-
-      // auto x = ADC->ADC_LCDR & 0x0000'0FFF; 
-      auto x = ADC->ADC_CDR[ channel ] & 0x0000'0FFF;
- 
-      // disable the channel - doesn't work??
-      ADC->ADC_CHDR = 0x01 << channel;   
-      
-      // return the conversion result
-      return x;
-   }
-   
+   static _value_type get_direct(){
+      return adc_get_common( channel, 0x01 << channel );
+   }	      
 };
 
 template< uint_fast64_t pin >
-using pin_adc = _adc_creator< _pin_adc< pin >, 12 > ;
+using pin_adc = _adc_creator< _pin_adc< pin > >;
 
-// ========= uart ==========
+// ========= uart 
 
 struct uart {
 	
@@ -220,7 +230,7 @@ struct uart {
    	
 };
 
-// ========= SysTick ==========
+// ========= SysTick 
 
 static uint_fast64_t now_ticks(){
 	

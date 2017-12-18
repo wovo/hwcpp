@@ -3,29 +3,6 @@
 // file : hwcpp-hwcpp.hpp
 //
 // The hwcpp files are meant to be included via this file only. 
-//
-// ==========================================================================
-//
-// Notes & ToDo
-//
-// derive pin::direction_set_output() ?
-// pull-ups & pull-downs
-// maybe make a 'believe me this is a pin-out' decorator, 
-//    which does *not* set direction (reinterpret?)
-// ports
-// invert -> needs bitwise_invert
-// pull-up & pull-down? => must be present for some purposes!
-//    .pull( up/down/none ), pull_up<>, pull_down<> with resistance?
-// how to do logging without a lambda-like thing?
-// hwcpp.hpp should include the correct HAL, which includes the hwcpp-all.hpp
-// show code & data & bss sizes in bmptk
-//
-// ==========================================================================
-
-// ==========================================================================
-//
-// file : hwcpp-all.hpp
-//
 // This file includes all hwcpp files, except for the target HAL file(s).
 //
 // In normal use the user would include the target HAL file (either directly 
@@ -33,11 +10,20 @@
 // includes this hwcpp-all.hpp file.  
 //
 // ==========================================================================
+//
+// This file is part of HwCpp, 
+// a C++ library for close-to-the-hardware programming.
+//
+// Copyright Wouter van Ooijen 2017
+// 
+// Distributed under the Boost Software License, Version 1.0.
+// (See the accompanying LICENSE_1_0.txt in the root directory of this
+// library, or a copy at http://www.boost.org/LICENSE_1_0.txt)
+//
+// ==========================================================================
 
 #ifndef HWCPP_ALL_INCLUDED
 #define HWCPP_ALL_INCLUDED
-
-
 
 #include <cstddef>
 #include <climits>
@@ -88,6 +74,9 @@
 #pragma GCC diagnostic error "-Wlogical-op"
 #pragma GCC diagnostic error "-Winline"
 
+#pragma GCC diagnostic ignored "-Wstrict-overflow"
+#pragma GCC diagnostic ignored "-Wconversion"
+
 // -Wno-long-long.
 
 namespace hwcpp {
@@ -104,20 +93,26 @@ namespace hwcpp {
 
    #include "core/hwcpp-pins.hpp"
    #include "core/hwcpp-pin-adapters.hpp"
+   #include "core/hwcpp-pin-dummies.hpp"
+   #include "core/hwcpp-pin-fixed.hpp"
+   #include "core/hwcpp-pin-fanout.hpp"
    #include "core/hwcpp-pin-utilities.hpp"
    
    #include "core/hwcpp-ports.hpp"
-   #include "core/hwcpp-port-utilities.hpp"
+   #include "core/hwcpp-port-dummies.hpp"
    #include "core/hwcpp-port-from-pins.hpp"
    #include "core/hwcpp-port-adapters.hpp"
+   #include "core/hwcpp-port-utilities.hpp"
    
    #include "core/hwcpp-adc.hpp"
    #include "core/hwcpp-dac.hpp"
    
    #include "core/hwcpp-timing.hpp"
    #include "core/hwcpp-string.hpp"
-   #include "core/hwcpp-istream.hpp"
-   #include "core/hwcpp-ostream.hpp"
+   
+   #include "core/hwcpp-stream.hpp"
+   #include "core/hwcpp-stream-out-formatting.hpp"
+   
    #include "core/hwcpp-console.hpp"
 
    #include "core/hwcpp-i2c.hpp"

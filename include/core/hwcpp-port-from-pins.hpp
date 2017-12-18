@@ -99,7 +99,7 @@ struct _port_recurse_get : tail {
    }
 };
 
-// ========= add the direction  functions
+// ========= add the direction functions
 
 template< typename pin, typename tail >
 struct _port_recurse_direction : tail {

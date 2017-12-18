@@ -242,7 +242,7 @@ struct pin_oc< T > :
    
    static void HWLIB_INLINE flush(){
       T::direction_flush();
-      T:flush();
+      T::flush();
    }       
             
    static void HWLIB_INLINE init(){

@@ -35,7 +35,7 @@ struct timing_waiting :
       target::init(); 
    }	  
 
-   //========== the number of ticks in an amount of time =========
+   //========== the number of ticks in an amount of time
 
    static constexpr ticks_type ticks( uint64_t n ){ 
 	  return 1 + ( 
@@ -48,7 +48,11 @@ struct timing_waiting :
       target::wait_ticks( n ); 
    }   
 		 
-   //========== wait a compile-time known amount of time =========
+   static auto now_ticks(){
+      return target::now_ticks(); 
+   }   
+		 
+   //========== wait a compile-time known amount of time 
 
    template< uint_fast64_t n >
    struct ns :
@@ -73,7 +77,7 @@ struct timing_waiting :
    template< uint_fast64_t n >
    using s = ns< n * 1'000'000'000ULL >;
    
-   // ========== wait a run-time known amount of time =========
+   // ========== wait a run-time known amount of time 
    
    void wait_ns( uint_fast64_t n ){
       target::wait_ticks( ticks( n ) );	    	   

@@ -59,21 +59,26 @@ HEADERS           += hwcpp-box-fanout.hpp
 
 HEADERS           += hwcpp-pins.hpp 
 HEADERS           += hwcpp-pin-adapters.hpp 
+HEADERS           += hwcpp-pin-fixed.hpp 
+HEADERS           += hwcpp-pin-fanout.hpp 
+HEADERS           += hwcpp-pin-dummies.hpp 
 HEADERS           += hwcpp-pin-utilities.hpp 
 
 HEADERS           += hwcpp-ports.hpp 
-HEADERS           += hwcpp-port-utilities.hpp 
+HEADERS           += hwcpp-port-dummies.hpp 
 HEADERS           += hwcpp-port-from-pins.hpp 
 HEADERS           += hwcpp-port-adapters.hpp 
+HEADERS           += hwcpp-port-utilities.hpp 
 
 HEADERS           += hwcpp-adc.hpp 
 HEADERS           += hwcpp-dac.hpp 
 
+HEADERS           += hwcpp-stream.hpp 
+HEADERS           += hwcpp-stream-out-formatting.hpp 
+
 HEADERS           += hwcpp-timing.hpp 
 HEADERS           += hwcpp-i2c.hpp 
 HEADERS           += hwcpp-console.hpp 
-HEADERS           += hwcpp-istream.hpp 
-HEADERS           += hwcpp-ostream.hpp 
 HEADERS           += hwcpp-string.hpp 
 HEADERS           += hwcpp-demos.hpp 
 

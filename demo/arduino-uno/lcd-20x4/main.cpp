@@ -11,7 +11,7 @@ using lcd = hwcpp::hd44780_rs_e_d_x_y_timing<
 	  target::d5, 
       target::d6, 
       target::d7 >,
-   40, 2,
+   40, 4,
    timing >; 	
 
 int main( void ){
@@ -19,6 +19,8 @@ int main( void ){
    hwcpp::ostream< lcd > cout;	
 
    cout
-      << "\fThis is the top line, 40 is quite wide!.\n"
-      <<   "And of course line 2 is just as long.\n"
+      << "\fLine 1 ======== end.\n"
+      <<   "And line 2 likewise.\n"
+      <<   "This is line 3;\n"
+      <<   "And finally line 4!\n";
 }

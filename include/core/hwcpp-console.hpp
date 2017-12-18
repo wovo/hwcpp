@@ -39,6 +39,7 @@ public:
       switch( goto_xy_state ){
 
          case 0 :
+		 default :
             break;
 
          case 1 :

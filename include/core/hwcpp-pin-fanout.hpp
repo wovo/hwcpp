@@ -1,8 +1,12 @@
 // ==========================================================================
 //
-// file : hwcpp-port-utilities.hpp
+// file : hwcpp-pin-fanout.hpp
 //
-// some port stuff
+// create one pin that rules them all: 
+// an operation on this pin will perform that operation 
+// on all the subject pins.
+//
+// PUBLIC
 //
 // ==========================================================================
 //
@@ -16,4 +20,10 @@
 // library, or a copy at http://www.boost.org/LICENSE_1_0.txt)
 //
 // ==========================================================================
+
+template< can_pin_out... pins >
+struct fanout :
+   _pin_out_root,
+   _box_no_inline< _box_fanout< pin_out, pins... > >
+{}; 
 

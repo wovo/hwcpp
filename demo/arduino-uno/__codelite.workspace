@@ -6,7 +6,7 @@
       <Project Name="blink" ConfigName="Release"/>
     </WorkspaceConfiguration>
   </BuildMatrix>
-  <Project Name="fast-toggle" Path="fast-toggle/_codelite.project" Active="Yes"/>
+  <Project Name="fast-toggle" Path="fast-toggle/_codelite.project" Active="No"/>
   <BuildMatrix>
     <WorkspaceConfiguration Name="Release" Selected="yes">
       <Project Name="fast-toggle" ConfigName="Release"/>
@@ -24,10 +24,22 @@
       <Project Name="lcd-16x1" ConfigName="Release"/>
     </WorkspaceConfiguration>
   </BuildMatrix>
+  <Project Name="lcd-20x4" Path="lcd-20x4/_codelite.project" Active="Yes"/>
+  <BuildMatrix>
+    <WorkspaceConfiguration Name="Release" Selected="yes">
+      <Project Name="lcd-20x4" ConfigName="Release"/>
+    </WorkspaceConfiguration>
+  </BuildMatrix>
   <Project Name="lcd-40x2" Path="lcd-40x2/_codelite.project" Active="No"/>
   <BuildMatrix>
     <WorkspaceConfiguration Name="Release" Selected="yes">
       <Project Name="lcd-40x2" ConfigName="Release"/>
+    </WorkspaceConfiguration>
+  </BuildMatrix>
+  <Project Name="lcd-8x2" Path="lcd-8x2/_codelite.project" Active="No"/>
+  <BuildMatrix>
+    <WorkspaceConfiguration Name="Release" Selected="yes">
+      <Project Name="lcd-8x2" ConfigName="Release"/>
     </WorkspaceConfiguration>
   </BuildMatrix>
   <Project Name="lcd-keypad-shield" Path="lcd-keypad-shield/_codelite.project" Active="No"/>

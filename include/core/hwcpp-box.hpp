@@ -86,7 +86,7 @@ struct _box_in_out_root :
 // box functionality concepts
 //
 // these concepts are used in box filters 
-// that decorate specific fubnctions when present
+// that decorate specific functions when present
 //
 // ==========================================================================
 
@@ -207,7 +207,7 @@ struct box_in_out_interval_root :
 // ==========================================================================
 
 
-// ========== pass the init function ==========
+// ========== pass the init function
 
 template< typename T >
 struct _pass_init { 
@@ -240,7 +240,7 @@ struct _pass_box_set {
    }
 };    
 
-// ========== pass the get functions ==========
+// ========== pass the get functions 
 
 template< typename T >
 struct _pass_box_get { 
@@ -263,7 +263,7 @@ struct _pass_box_get {
    }
 }; 
 
-// ========== pass the direction functions ==========
+// ========== pass the direction functions 
 
 template< typename T >
 struct _pass_box_direction { 

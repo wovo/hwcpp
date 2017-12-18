@@ -2,6 +2,21 @@
 //
 // file : hwcpp-adc.hpp
 //
+// declarations for anlog-to-digital conversion inputs
+//
+// LIBRARY-INTERNAL
+//
+// ==========================================================================
+//
+// This file is part of HwCpp, 
+// a C++ library for close-to-the-hardware programming.
+//
+// Copyright Wouter van Ooijen 2017
+// 
+// Distributed under the Boost Software License, Version 1.0.
+// (See the accompanying LICENSE_1_0.txt in the root directory of this
+// library, or a copy at http://www.boost.org/LICENSE_1_0.txt)
+//
 // ==========================================================================
 
 template< 
@@ -9,8 +24,8 @@ template<
    uint64_t value_min = 0,
    uint64_t value_max = ( 1ULL << _n_bits ) - 1
 >
-struct adc_root :
-   _box_interval_root< 
+struct _adc_root :
+   _box_in_interval_root< 
       typename uint_t< _n_bits >::fast,
 	  value_min,
 	  value_max
@@ -30,18 +45,7 @@ concept bool is_adc = requires {
    { T::invalidate() } -> void;    
 };
 
-// can re-use some pin adapters here, maybe they should be renamed
-
-template< typename T, uint64_t n_bits >
+template< typename T >
 struct _adc_creator : 
-   adc_root< n_bits >,
    _box_creator< T >  
 {};
-
-/*
-template< typename T, uint64_t _n_bits >
-struct _adc_from_buffered : 
-   adc_root< _n_bits >,
-   _add_pin_in_direct_functions< T, typename adc_root< T::n_bits >::value_type > 
-{};
-*/

@@ -30,7 +30,7 @@
       <Project Name="joystick-buttons-shield" ConfigName="Release"/>
     </WorkspaceConfiguration>
   </BuildMatrix>
-  <Project Name="kitt4" Path="kitt4/_codelite.project" Active="Yes"/>
+  <Project Name="kitt4" Path="kitt4/_codelite.project" Active="No"/>
   <BuildMatrix>
     <WorkspaceConfiguration Name="Release" Selected="yes">
       <Project Name="kitt4" ConfigName="Release"/>
@@ -52,6 +52,12 @@
   <BuildMatrix>
     <WorkspaceConfiguration Name="Release" Selected="yes">
       <Project Name="patterns4" ConfigName="Release"/>
+    </WorkspaceConfiguration>
+  </BuildMatrix>
+  <Project Name="performance" Path="performance/_codelite.project" Active="Yes"/>
+  <BuildMatrix>
+    <WorkspaceConfiguration Name="Release" Selected="yes">
+      <Project Name="performance" ConfigName="Release"/>
     </WorkspaceConfiguration>
   </BuildMatrix>
   <Project Name="potmeter" Path="potmeter/_codelite.project" Active="No"/>

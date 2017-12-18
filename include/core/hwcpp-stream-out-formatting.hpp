@@ -1,8 +1,59 @@
 // ==========================================================================
 //
-// file : hwcpp-ostream.hpp
+// file : hwcpp-stream-out-formatting.hpp
+//
+// std:ostream (cout) - like formatting 
 //
 // ==========================================================================
+//
+// This file is part of HwCpp, 
+// a C++ library for close-to-the-hardware programming.
+//
+// Copyright Wouter van Ooijen 2017
+// 
+// Distributed under the Boost Software License, Version 1.0.
+// (See the accompanying LICENSE_1_0.txt in the root directory of this
+// library, or a copy at http://www.boost.org/LICENSE_1_0.txt)
+//
+// ==========================================================================
+
+      struct _print_reverse {
+         static constexpr uint_fast16_t length = 70;
+         char body[ length ];
+         char *content;
+         
+         print_reverse(){
+            body[ length - 1 ] = '\0';
+            content = & body[ length - 1 ];
+         }
+         
+         void add_char( char c ){
+            content--;
+            *content = c;
+         }
+         
+         void add_digit( char c, char hex_base ){
+            if( c > 9 ){
+               c = (char) ( c + ( hex_base - 10 ));
+            } else {
+               c = (char) ( c + '0' );
+            } 
+            add_char( c );
+         }
+         
+         void add_prefix( const ostream_base & s ){
+            if( s.show_base ){
+               switch( s.numerical_radix ){
+                  case 2  : add_char( 'b' ); break;
+                  case 8  : add_char( 'o' ); break;
+                  case 10 : return;
+                  case 16 : add_char( 'x' ); break;
+                  default : add_char( '?' ); break; 
+               }
+               add_char( '0' );
+            }
+         }          
+      };
 
 
 // ========== ostream marker and concept ==========
@@ -106,43 +157,7 @@ constexpr _numerical_radix hex( 16 );
 
 // ========== ostream decorator ==========
 
-      struct reverse {
-         static constexpr uint_fast16_t length = 70;
-         char body[ length ];
-         char *content;
-         
-         reverse(){
-            body[ length - 1 ] = '\0';
-            content = & body[ length - 1 ];
-         }
-         
-         void add_char( char c ){
-            content--;
-            *content = c;
-         }
-         
-         void add_digit( char c, char hex_base ){
-            if( c > 9 ){
-               c = (char) ( c + ( hex_base - 10 ));
-            } else {
-               c = (char) ( c + '0' );
-            } 
-            add_char( c );
-         }
-         
-         void add_prefix( const ostream_base & s ){
-            if( s.show_base ){
-               switch( s.numerical_radix ){
-                  case 2  : add_char( 'b' ); break;
-                  case 8  : add_char( 'o' ); break;
-                  case 10 : return;
-                  case 16 : add_char( 'x' ); break;
-                  default : add_char( '?' ); break; 
-               }
-               add_char( '0' );
-            }
-         }          
-      };
+
 
 template< typename T >
 struct ostream :
@@ -157,7 +172,7 @@ struct ostream :
    }
 	
    ostream< T > & putc( char c ){
-      sink.put( c );  
+      sink.putc( c );  
       return *this;	  
    }  
    
@@ -177,7 +192,7 @@ struct ostream :
       return *this;	  
    }
    
-   uint_fast16_t strlen( const char *s ){
+   uint_fast16_t __attribute__ ((pure)) strlen( const char *s ){
       uint_fast16_t n = 0;
       while( *s++ ){ ++n; }
       return n;
@@ -202,16 +217,17 @@ struct ostream :
          reverse s;
          
          bool minus = ( x < 0 );
-         if( x < 0 ){ x = -x; }
+         if( x > 0 ){ x = -x; }
        
          if( x == 0 ){
             s.add_digit( 0, hex_base );
          }
-         while( x > 0 ){
-            s.add_digit( x % numerical_radix, hex_base );
-            x = x / numerical_radix;
-//T::putc( '0' + x % numerical_radix );
+		 
+         while( x != 0 ){
+            s.add_digit( (char) ( ( - x ) % numerical_radix ), hex_base );
+            x = - ( - x / numerical_radix );
          }
+		 
          s.add_prefix( *this );
          
          if( minus ){

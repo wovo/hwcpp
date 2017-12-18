@@ -50,6 +50,9 @@ The compilers I currently use are (gcc 7.2.0):
 -----------------------------------------------------------------------------
 
 Notes & ToDo
+- ostream negative int formatting is weird (neg / %)
+- pull-up / pull-down < resistance? >
+- rescale an interval box to a new scale
 - box creator 149 unneedeed
 - adapt oc pin to in-out
 - flatten == inline *inside* a function
@@ -87,7 +90,6 @@ Notes & ToDo
 - fixed-out pins/ports to hwcpp
 - // #undef putc in hwcpp-all.hpp
 - remove redundancy from port concepts => ask Chiel
-- due adc read should be one function shared by all adcs (flyweight)
 - a way to bundle pins without making the object? (for optional parts like on the JS shield)
 - switch to other joystick shield, needs more distinctive name
 - put or putc ? => write
@@ -95,11 +97,9 @@ Notes & ToDo
 - due pin should disable adc of that pin
 - bmptk has a problem with G++ := as was used in arduino uno
 - joystick abstraction, scaling, run-time ratio
-- more port adapters
 - use loop instead of recursion for port creators
-- port dummies, port variables
+- port variables
 - likewise for I2C and SPI pins: appropriate type
-- push/pop strictest compiler settings possible
 - dac & adc buffering
 - never use int, long, etc.
 - chips (& other targets) must have a freq constant
@@ -148,7 +148,6 @@ Notes & ToDo
 - check the timing, STM32 base is OK
 - error message are totally unfriendly
 - complete ports, direct/buffered 
-- HEADERS zijn geen dependencies in bmptk??
 - analog inputs
 - macro MAKE_MARKER ?
 - invert_value separate bool version needed?

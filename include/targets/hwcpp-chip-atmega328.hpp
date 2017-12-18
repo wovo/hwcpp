@@ -58,7 +58,9 @@ static void HWLIB_INLINE init(){
 // ========= pin_in_out ==========
 
 template< port p, uint32_t pin >
-struct _pin_in_out {
+struct _pin_in_out : 
+   _pin_in_out_root 
+{
 	
    static void HWLIB_INLINE init(){
       hwcpp::chip_atmega328< clock >::init();
@@ -87,13 +89,15 @@ struct _pin_in_out {
 };
 
 template< port p, uint32_t pin >
-using pin_in_out = _pin_in_out_from_direct< _pin_in_out< p, pin > >;	
+using pin_in_out = _box_creator< _pin_in_out< p, pin > >;	
 
 
 // ========= pin_adc ==========
 
 template< uint_fast64_t pin >
-struct _pin_adc {
+struct _pin_adc :
+   _adc_root< 10 >
+{
 	
    static void init(){
       hwcpp::chip_atmega328< clock >::init();
@@ -122,7 +126,7 @@ struct _pin_adc {
 };
 
 template< uint_fast64_t pin >
-using pin_adc = _adc_from_direct< _pin_adc< pin >, 10 > ;
+using pin_adc = _adc_creator< _pin_adc< pin > > ;
 
 
 // ========= uart ==========
