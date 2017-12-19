@@ -17,15 +17,16 @@ struct blinker :
    static void init(){
       led::init();
       interval::init();
+      timing::init();
 	  timing::callback< struct blinker< _led, interval > >::callback::init();
    }	  
    
    static void main(){
-   *cp << "4 Hello world nt = " << (int) next_toggle << "\n";	   
+   //*cp << "4 Hello world nt = " << next_toggle << "\n";	   
        auto t = timing::now_ns();
-   *cp << "5 Hello world t = " << (int) t << "\n";	   
+   //*cp << "5 Hello world t = " << t << "\n";	   
       if( t > next_toggle ){
-   *cp << "6 Hello world\n";			  
+   //*cp << "================ 6 Hello world\n";			  
          led_state = ! led_state;
          led::set( led_state );		  
          next_toggle = t + interval::n;		  
@@ -40,11 +41,11 @@ int main(){
    cp = &cout;
    
       // wait for the console on the PC to start
-   timing::ms< 2'000 >::wait();
+   //timing::ms< 1'000 >::wait();
    
-   *cp << "1 Hello world\n";
+   //*cp << "1 Hello world\n";
    blink::init();
-   *cp << "2 Hello world\n";
+   //*cp << "2 Hello world\n";
    timing::polling::run();
-   *cp << "3 Hello world\n";
+   //*cp << "3 Hello world\n";
 }

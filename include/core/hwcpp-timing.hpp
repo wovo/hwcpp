@@ -45,8 +45,8 @@ struct timing_waiting :
 
    static constexpr uint_fast64_t ns_from_ticks( uint64_t n ){ 
 	  return 1 + ( 
-	     ( 1'000'000'000 * clock_frequency::den )
-	     / ( n * clock_frequency::num ));
+	     ( n* 1'000'000'000 * clock_frequency::den )
+	     / ( clock_frequency::num ));
    }	
 
    static void wait_ticks( uint_fast64_t n ){

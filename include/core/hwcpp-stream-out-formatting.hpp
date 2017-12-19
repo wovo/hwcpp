@@ -242,6 +242,33 @@ struct ostream :
          return *this;
       }   
 
+   ostream & print_int( int64_t x ){
+         _print_reverse s;
+         
+         bool minus = ( x < 0 );
+         if( x > 0 ){ x = -x; }
+       
+         if( x == 0 ){
+            s.add_digit( 0, hex_base );
+         }
+		 
+         while( x != 0 ){
+            s.add_digit( (char) ( ( - x ) % numerical_radix ), hex_base );
+            x = - ( - x / numerical_radix );
+         }
+		 
+         s.add_prefix( *this );
+         
+         if( minus ){
+            s.add_char( '-' );
+         } else if( show_pos ){
+            s.add_char( '+' );
+         }        
+         
+         print_aligned( s.content );
+         return *this;
+      }   
+
 };
 
 // ========== worker functions ==========
@@ -270,6 +297,11 @@ auto & operator<< ( ostream & stream, uint_fast16_t v ){
 
 template< is_ostream ostream >
 auto & operator<< ( ostream & stream, int v ){   
+   return stream.print_int( v );
+}
+ 
+template< is_ostream ostream >
+auto & operator<< ( ostream & stream, int64_t v ){   
    return stream.print_int( v );
 }
  
