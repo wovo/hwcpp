@@ -20,5 +20,5 @@ int main( void ){
 
    cout
       << "\fThis is the top line, 40 is quite wide!.\n"
-      <<   "And of course line 2 is just as long.\n"
+      <<   "And of course line 2 is just as long.\n";
 }

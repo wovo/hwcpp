@@ -17,64 +17,6 @@
 //
 // ==========================================================================
 
-      struct _print_reverse {
-         static constexpr uint_fast16_t length = 70;
-         char body[ length ];
-         char *content;
-         
-         print_reverse(){
-            body[ length - 1 ] = '\0';
-            content = & body[ length - 1 ];
-         }
-         
-         void add_char( char c ){
-            content--;
-            *content = c;
-         }
-         
-         void add_digit( char c, char hex_base ){
-            if( c > 9 ){
-               c = (char) ( c + ( hex_base - 10 ));
-            } else {
-               c = (char) ( c + '0' );
-            } 
-            add_char( c );
-         }
-         
-         void add_prefix( const ostream_base & s ){
-            if( s.show_base ){
-               switch( s.numerical_radix ){
-                  case 2  : add_char( 'b' ); break;
-                  case 8  : add_char( 'o' ); break;
-                  case 10 : return;
-                  case 16 : add_char( 'x' ); break;
-                  default : add_char( '?' ); break; 
-               }
-               add_char( '0' );
-            }
-         }          
-      };
-
-
-// ========== ostream marker and concept ==========
-
-struct ostream_marker {
-   static constexpr bool is_ostream = true;
-};
-
-template< typename T >
-concept bool is_ostream(){ 
-   return T::is_ostream;
-}
-
-// ========== ostream base and associated functions ==========
-
-/// end-of-line constant
-constexpr char endl = '\n';
-   
-/// 0-character constant
-constexpr char ends = '\0';
-
 struct ostream_base {
 	
    bool align_right;
@@ -111,6 +53,66 @@ struct ostream_base {
 		 : ( v ? "1"    : "0"     ); 
    }     
 };
+
+struct _print_reverse {
+   static constexpr uint_fast16_t length = 70;
+   char body[ length ];
+   char *content;
+         
+   _print_reverse(){
+      body[ length - 1 ] = '\0';
+      content = & body[ length - 1 ];
+   }
+         
+   void add_char( char c ){
+      content--;
+      *content = c;
+   }
+         
+   void add_digit( char c, char hex_base ){
+      if( c > 9 ){
+         c = (char) ( c + ( hex_base - 10 ));
+      } else {
+         c = (char) ( c + '0' );
+      } 
+      add_char( c );
+   }
+         
+   void add_prefix( const ostream_base & s ){
+      if( s.show_base ){
+         switch( s.numerical_radix ){
+            case 2  : add_char( 'b' ); break;
+            case 8  : add_char( 'o' ); break;
+            case 10 : return;
+            case 16 : add_char( 'x' ); break;
+            default : add_char( '?' ); break; 
+         }
+         add_char( '0' );
+      }
+   }          
+};
+
+
+// ========== ostream marker and concept ==========
+
+struct ostream_marker {
+   static constexpr bool is_ostream = true;
+};
+
+template< typename T >
+concept bool is_ostream(){ 
+   return T::is_ostream;
+}
+
+// ========== ostream base and associated functions ==========
+
+/// end-of-line constant
+constexpr char endl = '\n';
+   
+/// 0-character constant
+constexpr char ends = '\0';
+
+
 
 #define HWCPP_MANIPULATOR( TYPE, FIELD, NAME )              \
                                                             \
@@ -214,7 +216,7 @@ struct ostream :
    }   
       
    ostream & print_int( int x ){
-         reverse s;
+         _print_reverse s;
          
          bool minus = ( x < 0 );
          if( x > 0 ){ x = -x; }
