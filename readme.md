@@ -50,6 +50,7 @@ The compilers I currently use are (gcc 7.2.0):
 -----------------------------------------------------------------------------
 
 Notes & ToDo
+- lcd 16x2 separate test
 - ostream negative int formatting is weird (neg / %)
 - pull-up / pull-down < resistance? >
 - rescale an interval box to a new scale
@@ -62,7 +63,6 @@ Notes & ToDo
 - even polling needs mutexes...
 - tests for non-existing-ness
 - class template tasking
-- test LCD 2x8
 - re-rechk INLINE, should inits be ALWAYS_INLINE at all (meybe never)?
 - box buffered/direct : can't be done on top of each other....
 - box : fixed value, variable / reference ?, select, combine, moving_average

@@ -55,6 +55,8 @@ hd44780
    demo/arduino-uno/lcd-keypad-shield
    demo/arduino-uno/lcd-16x1
    demo/arduino-uno/lcd-40x2
+   demo/arduino-uno/lcd-12x2
+   demo/arduino-uno/lcd-20x4
 
 
 

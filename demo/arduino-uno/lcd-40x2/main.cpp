@@ -19,6 +19,6 @@ int main( void ){
    hwcpp::ostream< lcd > cout;	
 
    cout
-      << "\fThis is the top line, 40 is quite wide!.\n"
-      <<   "And of course line 2 is just as long.\n";
+      << "\fThis is the top line, 40 is quite wide !\n"
+      <<   "And of course line two is just as long.\n";
 }

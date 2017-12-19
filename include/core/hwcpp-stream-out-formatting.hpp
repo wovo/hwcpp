@@ -174,7 +174,7 @@ struct ostream :
    }
 	
    ostream< T > & putc( char c ){
-      sink.putc( c );  
+      sink.put( c );  
       return *this;	  
    }  
    

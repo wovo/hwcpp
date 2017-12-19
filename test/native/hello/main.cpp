@@ -1,5 +1,13 @@
-#include "hwcpp.hpp"
+//#include "hwcpp.hpp"
+
+sum( int x){ return x; }
 
 int main(){
-   hwlib::cout << "Hello world\n"	;
+   int y = sum( 12 );
+(void)y;	
 }
+
+
+//int xmain(){
+   //hwlib::cout << "Hello world\n"	;
+//}

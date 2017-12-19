@@ -158,6 +158,8 @@ using chip = chip_sam3xa< clock >;
       chip_sam3xa< clock >,
       int_fast64_t, 
       std::ratio< clock, 1 > >;
+	  
+   using timing = waiting;	  
    
 }; // template<...> struct target_arduino_due
 

@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CodeLite_Workspace Name="example code" Database="" Version="10.0.0">
   <Project Name="blink" Path="blink/_codelite.project" Active="No"/>
+  <Project Name="blink-poll" Path="blink-poll/_codelite.project" Active="Yes"/>
   <BuildMatrix>
     <WorkspaceConfiguration Name="Release" Selected="yes">
-      <Project Name="blink" ConfigName="Release"/>
+      <Project Name="blink-poll" ConfigName="Release"/>
     </WorkspaceConfiguration>
   </BuildMatrix>
   <Project Name="blink-task" Path="blink-task/_codelite.project" Active="No"/>
@@ -54,7 +55,7 @@
       <Project Name="patterns4" ConfigName="Release"/>
     </WorkspaceConfiguration>
   </BuildMatrix>
-  <Project Name="performance" Path="performance/_codelite.project" Active="Yes"/>
+  <Project Name="performance" Path="performance/_codelite.project" Active="No"/>
   <BuildMatrix>
     <WorkspaceConfiguration Name="Release" Selected="yes">
       <Project Name="performance" ConfigName="Release"/>
@@ -64,6 +65,14 @@
   <BuildMatrix>
     <WorkspaceConfiguration Name="Release" Selected="yes">
       <Project Name="potmeter" ConfigName="Release"/>
+    </WorkspaceConfiguration>
+  </BuildMatrix>
+  <Project Name="jorn" Path="jorn/jorn.project" Active="No"/>
+  <BuildMatrix>
+    <WorkspaceConfiguration Name="Release" Selected="yes">
+      <Environment/>
+      <Project Name="blink" ConfigName="Release"/>
+      <Project Name="jorn" ConfigName="Release"/>
     </WorkspaceConfiguration>
   </BuildMatrix>
 </CodeLite_Workspace>

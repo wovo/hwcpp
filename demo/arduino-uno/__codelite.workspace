@@ -30,13 +30,13 @@
       <Project Name="lcd-20x4" ConfigName="Release"/>
     </WorkspaceConfiguration>
   </BuildMatrix>
-  <Project Name="lcd-40x2" Path="lcd-40x2/_codelite.project" Active="Yes"/>
+  <Project Name="lcd-40x2" Path="lcd-40x2/_codelite.project" Active="No"/>
   <BuildMatrix>
     <WorkspaceConfiguration Name="Release" Selected="yes">
       <Project Name="lcd-40x2" ConfigName="Release"/>
     </WorkspaceConfiguration>
   </BuildMatrix>
-  <Project Name="lcd-8x2" Path="lcd-8x2/_codelite.project" Active="No"/>
+  <Project Name="lcd-8x2" Path="lcd-8x2/_codelite.project" Active="Yes"/>
   <BuildMatrix>
     <WorkspaceConfiguration Name="Release" Selected="yes">
       <Project Name="lcd-8x2" ConfigName="Release"/>
