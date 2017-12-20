@@ -4,6 +4,76 @@
 //
 // ==========================================================================
 
+
+// ==========================================================================
+//
+// PUBLIC
+//
+// clock service
+//
+// ==========================================================================
+
+template< typename T >
+struct _clock_root_marker :
+   not_instantiable
+{
+   static constexpr bool is_clock = true;
+   using time_type = T;
+};
+
+template< typename T >
+concept bool is_clock = requires {  
+   T::is_clock_tag;
+   { T::init() } -> void;
+   
+   { T::now_ticks( v ) } -> typename T::ticks_type;
+   { T::wait_ticks( v ) } -> typename T::ticks_type;
+
+   { T::now( v ) } -> typename T::time_type;   
+   { T::wait v ) } -> typename T::time_type;
+   
+   // much more ...
+};
+
+
+// ==========================================================================
+//
+// LIBRARY-INTERNAL
+//
+// the ticks type is what can be provided by a HAL
+// as the base for a clock service
+//
+// ==========================================================================
+
+template< typename T >
+struct _ticks_root_marker :
+   not_instantiable
+{
+   static constexpr bool is_ticks_tag = true;
+   using ticks_type = T;
+};
+
+template< typename T >
+concept bool _is_ticks = requires {  
+   T::is_ticks_tag;
+   { T::init() } -> void;
+   { T::now_ticks( v ) } -> typename T::ticks_type;
+};
+
+
+
+// ==========================================================================
+//
+// LIBRARY-INTERNAL
+//
+// adapter for a ticks type to full timing functionality
+//
+// ==========================================================================
+
+template< _is_ticks T >
+
+// ==========
+
 struct timing_waiting_marker :
    not_instantiable
 {
