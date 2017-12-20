@@ -74,9 +74,13 @@ HEADERS           += hwcpp-adc.hpp
 HEADERS           += hwcpp-dac.hpp 
 
 HEADERS           += hwcpp-stream.hpp 
+HEADERS           += hwcpp-stream-creator.hpp 
 HEADERS           += hwcpp-stream-out-formatting.hpp 
 
 HEADERS           += hwcpp-timing.hpp 
+HEADERS           += hwcpp-timing-ticker.hpp 
+
+
 HEADERS           += hwcpp-i2c.hpp 
 HEADERS           += hwcpp-console.hpp 
 HEADERS           += hwcpp-string.hpp 

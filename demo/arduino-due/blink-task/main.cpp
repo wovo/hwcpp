@@ -33,7 +33,6 @@ struct blinker : threading:: template thread< struct blinker< _led, threading > 
 };
 
 using blink = hwcpp::blinker< target::led, hwcpp::threading >;
-//timing::ms< 200 > >;
 
 int main(){ 
    blink::init();

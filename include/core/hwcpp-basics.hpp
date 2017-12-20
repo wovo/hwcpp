@@ -96,7 +96,7 @@ enum class pin_direction {
 
 // ==========================================================================
 //
-// LIBRARY-INTERNAL
+// PUBLIC
 //
 // some convenient constants
 //
@@ -110,6 +110,23 @@ using kHz = std::ratio< f * 1'000, d >;
 
 template< uint_fast64_t f, uint_fast64_t d = 1 >
 using Hz = std::ratio< f * 1, d >;
+
+
+// ==========================================================================
+//
+// PUBLIC
+//
+// macro that causes a (void) function to be run only once
+//
+// ==========================================================================
+  
+#define HWCPP_RUN_ONCE {	           \
+   static bool _done = false;          \
+   if( _done ){                        \
+      return;                          \
+   }                                   \
+   _done = true;                       \
+}   
 
    
 // ==========================================================================

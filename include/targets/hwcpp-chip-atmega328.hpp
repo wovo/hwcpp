@@ -1,6 +1,6 @@
 // ==========================================================================
 //
-// file : atmega328.hpp
+// file : hwcpp-chipo-atmega328.hpp
 //
 // HAL for the atmega328 AVR chip
 //
@@ -18,7 +18,38 @@ namespace hwcpp {
 template< uint64_t clock >	
 struct chip_atmega328 {
 	
-enum class port {
+
+// ==========================================================================
+//
+// PUBLIC
+//
+// chip initialization
+//
+// ==========================================================================	
+
+static void HWLIB_INLINE init(){
+    
+   if constexpr ( clock == 16'000'000 ){
+      // 16 MHz crystal	   
+	  
+   } else {
+      static_assert( 
+         clock == 0, 
+         "Only 16 MHz (crystal) "
+		 "clock is supported for atmega328.");
+   }		 
+}
+   
+   
+// ==========================================================================
+//
+// LIBRARY-INTERNAL
+//
+// GPIO
+//
+// ==========================================================================
+
+enum class _port {
 //   a,
    b, 
    c, 
@@ -41,23 +72,7 @@ static constexpr regs * port_direction[] = {
    &DDRD
 };
 
-static void HWLIB_INLINE init(){
-    
-   if constexpr ( clock == 16'000'000 ){
-      // 16 MHz crystal	   
-	  
-   } else {
-      static_assert( 
-         clock == 0, 
-         "Only 16 MHz (crystal) "
-		 "clock is supported for atmega328.");
-   }		 
-}
-   
-
-// ========= pin_in_out ==========
-
-template< port p, uint32_t pin >
+template< _port p, uint32_t pin >
 struct _pin_in_out : 
    _pin_in_out_root 
 {
@@ -88,11 +103,19 @@ struct _pin_in_out :
    
 };
 
-template< port p, uint32_t pin >
+// ========= GPIO constructor used in the actual targets
+
+template< _port p, uint32_t pin >
 using pin_in_out = _box_creator< _pin_in_out< p, pin > >;	
 
 
-// ========= pin_adc ==========
+// ==========================================================================
+//
+// LIBRARY-INTERNAL
+//
+// ADC
+//
+// ==========================================================================
 
 template< uint_fast64_t pin >
 struct _pin_adc :
@@ -125,20 +148,27 @@ struct _pin_adc :
    
 };
 
+// ========= ADC pin constructor used in the actual targets
+
 template< uint_fast64_t pin >
 using pin_adc = _adc_creator< _pin_adc< pin > > ;
 
 
-// ========= uart ==========
+// ==========================================================================
+//
+// LIBRARY-INTERNAL
+//
+// UART
+//
+// ==========================================================================
 
-struct uart {
+
+struct _uart :
+   _stream_out_root< char >,
+   _stream_in_root< char >
+{
 	
-   static void init(){
-      static bool init_done = false;
-      if( init_done ){
-         return;
-      }
-      init_done = true;	   
+   static void init(){   
 	   
       // set baudrate	   
       uint64_t UBRR_VALUE = ((( clock / ( BMPTK_BAUDRATE * 16UL ))) - 1 );
@@ -152,65 +182,67 @@ struct uart {
 	  UCSR0B = (1<<RXEN0)|(1<<TXEN0);
    }	
 
-   static bool get_is_blocked(){
-      init();	
+   static bool HWLIB_INLINE read_blocks(){
       return !( UCSR0A & ( 0x01<<RXC0 ));
    }
 
-   static char get(){
-      // init() is not needed because get_is_blocked() does that
-      while( get_is_blocked() ){}
+   static char HWLIB_INLINE read_direct_unchecked(){
       return UDR0; 
    }
 
-   static bool put_is_blocked(){
-      init();	
+   static bool HWLIB_INLINE write_blocks(){
       return !( UCSR0A & ( 0x01 << UDRE0 ));
    }
 
-   static void put( char c ){
-      // init() is not needed because put_is_blocked() does that
-      while( put_is_blocked() ){}
+   static void HWLIB_INLINE write_direct_unchecked( char c ){
       UDR0 = c;
    }   
 };
 
+using uart = _stream_creator< _uart >;
 
-// ========= timing ==========
 
-static void wait_us_asm( int n ){ 
-    // first int parameter is passd in r24/r25
-    __asm volatile(                   // clocks
-       "1:  cp    r1, r24     \t\n"   // 1
-       "    cpc   r1, r25     \t\n"   // 1
-       "    brge  3f          \t\n"   // 1
-       "    rcall 3f          \t\n"   // 7
-       "    rjmp  2f          \t\n"   // 2
-       "2:  sbiw  r24, 0x01   \t\n"   // 2
-       "    rjmp  1b          \t\n"   // 2
-       "3:                    \t\n"   // 16 total
-       : : "r" ( n )                  // reads n
-   ); 
-}
+// ==========================================================================
+//
+// LIBRARY-INTERNAL
+//
+// timing
+//
+// ==========================================================================
 
-static void wait_ticks( uint_fast32_t n ){
+struct _waiting :
+   _waiting_root< uint_fast32_t, std::ratio< clock, 16 > >
+{
 
-/* doesn't work, why?? 
-   while( n > 0 ){
-      int t = std::min( n, 1024U );
-      wait_us_asm( t );
-      n -= t;  
-   } 
-*/
-   const auto chunk = 8192;
-   while( n > chunk ){
-      wait_us_asm( chunk );
-      n -= chunk;  
+   static void wait_us_asm( int n ){ 
+       // first int parameter is passd in r24/r25
+       __asm volatile(                   // clocks
+          "1:  cp    r1, r24     \t\n"   // 1
+          "    cpc   r1, r25     \t\n"   // 1
+          "    brge  3f          \t\n"   // 1
+          "    rcall 3f          \t\n"   // 7
+          "    rjmp  2f          \t\n"   // 2
+          "2:  sbiw  r24, 0x01   \t\n"   // 2
+          "    rjmp  1b          \t\n"   // 2
+          "3:                    \t\n"   // 16 total
+          : : "r" ( n )                  // reads n
+      ); 
    }
-   if( n > 0 ){
-       wait_us_asm( n );
-   }
-}  
+
+   static void wait_ticks( uint_fast32_t n ){
+
+      const auto chunk = 8192;
+      while( n > chunk ){
+         wait_us_asm( chunk );
+         n -= chunk;  
+      }
+      if( n > 0 ){
+         wait_us_asm( n );
+      }
+   }  
+};
+
+using waiting = _waiting_creator< _waiting >;   
 
 }; // struct atmega328
 

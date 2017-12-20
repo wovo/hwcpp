@@ -15,13 +15,14 @@ struct target_arduino_uno :
    chip_atmega328< clock >    
 {       
 	
-using chip = chip_atmega328< clock >;	
+   using chip = chip_atmega328< clock >;	
 
-#define make_pin_in_out( NAME, PORT, PIN ) \
-   using NAME = typename chip:: template pin_in_out< chip::port::PORT, PIN >;
+   #define make_pin_in_out( NAME, PORT, PIN )                  \
+      using NAME = typename chip::                             \
+	     template pin_in_out< chip::_dport::PORT, PIN >;       \
    
-#define make_pin_adc( NAME, PIN ) \
-   using NAME = typename chip:: template pin_adc< PIN >;
+   #define make_pin_adc( NAME, PIN )                           \
+      using NAME = typename chip:: template pin_adc< PIN >;    \
    
    make_pin_in_out(    d0,  d,  0 );
    make_pin_in_out(    d1,  d,  1 );
@@ -72,13 +73,11 @@ using chip = chip_atmega328< clock >;
    using mosi = pin_out< _mosi >;
    using ss   = pin_out<  _ss >;
 
-#undef make_pin_in_out   
-#undef make_pin_adc 
-   
-   using waiting = timing_waiting< 
-      chip_atmega328< clock >, 
-	  uint_fast32_t, 
-      std::ratio< clock, 16 > >;   
+   #undef make_pin_in_out   
+   #undef make_pin_adc 
+
+   using waiting = typename chip::waiting;	  
+   using timing = waiting;	  	  
    
 }; // template<...> struct target_arduino_uno
 

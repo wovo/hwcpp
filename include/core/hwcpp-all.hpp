@@ -107,15 +107,18 @@ namespace hwcpp {
    #include "core/hwcpp-adc.hpp"
    #include "core/hwcpp-dac.hpp"
    
-   #include "core/hwcpp-timing.hpp"
-   #include "core/hwcpp-string.hpp"
+   //#include "core/hwcpp-timing.hpp"
+   #include "core/hwcpp-timing-waiting.hpp"
+   #include "core/hwcpp-timing-clock.hpp"
+   
    
    #include "core/hwcpp-stream.hpp"
+   #include "core/hwcpp-stream-creator.hpp"
    #include "core/hwcpp-stream-out-formatting.hpp"
    
-   #include "core/hwcpp-console.hpp"
-
    #include "core/hwcpp-i2c.hpp"
+   #include "core/hwcpp-console.hpp"
+   #include "core/hwcpp-string.hpp"
    
    #include "core/hwcpp-demos.hpp"
    
@@ -125,7 +128,7 @@ namespace hwcpp {
    namespace shields {   
 
       #include "shields/hwcpp-lcd-buttons.hpp"
-      #include "shields/hwcpp-joystick-buttons.hpp"
+      //#include "shields/hwcpp-joystick-buttons.hpp"
    
    } // namespace shields   
 

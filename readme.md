@@ -50,6 +50,10 @@ The compilers I currently use are (gcc 7.2.0):
 -----------------------------------------------------------------------------
 
 Notes & ToDo
+- automagic run at end of main
+- allocate list of callbacks
+- time in ns is now always uint64d
+- what does refresh() mean for a stream?
 - lcd 16x2 separate test
 - ostream negative int formatting is weird (neg / %)
 - pull-up / pull-down < resistance? >
@@ -57,7 +61,6 @@ Notes & ToDo
 - box creator 149 unneedeed
 - adapt oc pin to in-out
 - flatten == inline *inside* a function
-- port_in_out => port_out doesn't work, does it work for pins?
 - the box adapters (in_out => out) set the dircetion, but NOT DIRECT
 - port dummies (utilities) should derive from dummy boxes
 - even polling needs mutexes...

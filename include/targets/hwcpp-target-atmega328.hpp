@@ -16,7 +16,7 @@ struct target_atmega328 :
 {       
 
 #define make_pin_in_out( NAME, PORT, PIN ) \
-   using NAME  = chip_atmega328::pin_in_out< chip_atmega328::port::PORT, PIN >;
+   using NAME  = chip_atmega328::pin_in_out< chip_atmega328::_port::PORT, PIN >;
 
 #define make_pin_adc( NAME, PIN ) \
    using NAME  = chip_atmega328::pin_adc< PIN >;   

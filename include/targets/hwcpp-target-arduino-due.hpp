@@ -17,8 +17,9 @@ struct target_arduino_due :
     
 using chip = chip_sam3xa< clock >;
 
-#define make_pin_in_out( NAME, PORT, PIN) \
-   using NAME  = typename chip:: template pin_in_out< chip::pio::PORT, PIN >;
+#define make_pin_in_out( NAME, PORT, PIN)      \
+   using NAME  = typename chip:: template      \
+      _pin_in_out< chip::_port::PORT, PIN >;   \
    
 #define make_pin_adc( NAME, CHANNEL ) \
    using NAME  = typename chip:: template pin_adc< CHANNEL >;   
@@ -154,12 +155,8 @@ using chip = chip_sam3xa< clock >;
 #undef make_pin_in_out   
 #undef make_pin_adc
 
-   using waiting = timing_waiting< 
-      chip_sam3xa< clock >,
-      int_fast64_t, 
-      std::ratio< clock, 1 > >;
-	  
-   using timing = waiting;	  
+   using ticker = typename chip::ticker;	  
+   using timing = ticker;	  
    
 }; // template<...> struct target_arduino_due
 

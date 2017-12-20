@@ -1,4 +1,3 @@
-/*
 #include "hwcpp.hpp"
 
 using target = hwcpp::target<>;
@@ -12,12 +11,4 @@ int main(){
       cout << "Hello world!\n";
 	  timing::ms< 1'000 >::wait();
    }	  
-}
-*/
-
-sum( int x){ return x; }
-
-int main(){
-   int y = sum( 12 );
-(void)y;	
 }

@@ -158,18 +158,18 @@ struct _box_creator_add_in_direct< T > : T {
    using _value_type = typename T::value_type;	
    
    static _value_type HWLIB_INLINE get(){
-      T::invalidate();       
+      T::refresh();       
       return T::get_buffered();
    }      
    
    static _value_type HWLIB_INLINE get_direct(){
-      T::invalidate();       
+      T::refresh();       
       return T::get_buffered();
    }      
    
    // get_buffered() provided by T
    
-   // invalidate() provided by T
+   // refresh() provided by T
 };
 
 

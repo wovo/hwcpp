@@ -166,15 +166,13 @@ struct ostream :
    ostream_marker,
    ostream_base
 {
-    
-   T sink;    
    
    ostream(){
       T::init();	   
    }
 	
    ostream< T > & putc( char c ){
-      sink.put( c );  
+      T::write( c );  
       return *this;	  
    }  
    
