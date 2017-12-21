@@ -1,6 +1,6 @@
 // ==========================================================================
 //
-// file : hwcpp-timing-busy.hpp
+// file : hwcpp-timing-wait-creator.hpp
 //
 // ==========================================================================
 //
@@ -15,15 +15,25 @@
 //
 // ==========================================================================
 
-struct timing_waiting_root :
+
+
+// ==========================================================================
+//
+// PUBLIC
+//
+// root class and concept for the wait timing service
+//
+// ==========================================================================
+
+struct timing_wait_root :
    not_instantiable
 {
-   static constexpr bool has_waiting_marker = true;
+   static constexpr bool is_timing_wait_marker = true;
 };
 
 template< typename T >
-concept bool has_waiting(){ 
-   return T::has_waiting;
+concept bool has_wait(){ 
+   return T::has_timing_wait_marker;
 }
 
 
@@ -32,37 +42,24 @@ concept bool has_waiting(){
 // LIBRARY-INTERNAL
 //
 // the busy type is what can be provided by a HAL
-// as the base for a clock service
+// as the base for a wait service
 //
 // ==========================================================================
 
-template< typename T, typename _ticks_frequency >
-struct _ticker_root :
+template< typename typename _tick_frequency >
+struct timing_wait_seed :
    not_instantiable
 {
-   static constexpr bool is_ticker_tag = true;
-   using ticks_type       = T;
-   using ticks_frequency  =  _ticks_frequency;
+   static constexpr bool has_timing_wait_seed_marker = true;
+   
+   using tick_frequency = _tick_frequency;
 };
 
 template< typename T >
-concept bool _is_ticker = requires {  
-   T::is_ticker_tag;
-   { T::init() } -> void;
-   { T::now_ticks() } -> typename T::ticks_type;
-};
-
-
-
-struct is_interval_marker :
-   not_instantiable
-{
-   static constexpr bool is_interval = true;
-};
-
-template< typename T >
-concept bool is_interval(){ 
-   return T::is_interval;
+concept bool has_timing_wait_seed(){ 
+   return T::has_timing_wait_seed_marker;
+   
+   
 }
 
 
@@ -70,13 +67,16 @@ concept bool is_interval(){
 //
 // LIBRARY-INTERNAL
 //
-// decorate a minimal ticker to full functionality
+// decorate a seed wait to full functionality
 //
 // ==========================================================================
 
 
-template< typename T >
-struct _ticker_creator : T, timing_waiting_root {
+template< has_timing_wait_seed T >
+struct _ticker_creator : 
+   T, 
+   timing_wait_root 
+{
 	
    using ticks_type       = typename T::ticks_type;	
    using ticks_frequency  = typename T::ticks_frequency;	

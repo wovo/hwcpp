@@ -11,16 +11,19 @@
 //
 // duration class
 //
-// This is the most basic duration: it offers only waiting
+// The most basic duration: offers only waiting
 //
 // ==========================================================================
 
-struct is_duration_root< typename T > :
+struct is_duration_root< 
+   typename _ticks_type, 
+   typename _ticks_frequency 
+ > :
    not_instantiable
 {
    static constexpr bool is_duration_tag = true;
-   
-   using ticks_type = T;
+   using ticks_type       = _ticks_type;
+   using ticks_frequency  = _ticks_frequency;   
 };
 
 template< typename T >

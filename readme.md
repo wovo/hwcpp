@@ -50,6 +50,7 @@ The compilers I currently use are (gcc 7.2.0):
 -----------------------------------------------------------------------------
 
 Notes & ToDo
+- strakkere naamgeving voor is_*, roots, larva's, creators
 - automagic run at end of main
 - allocate list of callbacks
 - time in ns is now always uint64d
