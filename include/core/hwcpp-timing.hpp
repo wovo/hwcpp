@@ -11,23 +11,93 @@
 //
 // duration class
 //
+// This is the most basic duration: it offers only waiting
+//
 // ==========================================================================
 
-struct is_duration_marker :
+struct is_duration_root< typename T > :
    not_instantiable
 {
-   static constexpr bool is_duration = true;
+   static constexpr bool is_duration_tag = true;
+   
+   using ticks_type = T;
 };
 
 template< typename T >
-concept bool is_duration(){ 
-   return T::is_duration;
+concept bool is_duration() = requires { 
+   return T::is_duration_tag;
+   
+   { T::ticks } -> typename T::ticks_type;
    
    { T::init() } -> void;
    
    { T::wait() } -> void;   
+   
 }
 
+
+// ==========================================================================
+//
+// PUBLIC
+//
+// duration with polling class
+//
+// This is duration extended with polling
+//
+// ==========================================================================
+
+< typename T >
+struct is_duration_with_polling_root :
+   is_duration_root< T >
+{
+   static constexpr bool is_duration_with_polling_tag = true;
+};
+
+template< T > concept has_main = {
+   { T::main() ) -> void;	
+}	
+
+template< typename T >
+concept bool is_duration_with_polling() = requires (
+   has_main m
+){ 
+   return is__duration< T >;
+   
+   { template callback< m >::init() } -> void
+}
+
+
+// ==========================================================================
+//
+// PUBLIC
+//
+// basic timing: busy wait
+//
+// ==========================================================================
+
+< typename T >
+struct is_timing_busy :
+   is_timing_busy_root< T >
+{
+   static constexpr bool is_duration_with_polling_tag = true;
+};
+
+template< T > concept has_main = {
+   { T::main() ) -> void;	
+}	
+
+template< typename T >
+concept bool is_duration_with_polling() = requires (
+   has_main m
+){ 
+   return is__duration< T >;
+   
+   { template callback< m >::init() } -> void
+}
+
+
+
+/*
 
 // ==========================================================================
 //
@@ -287,3 +357,5 @@ struct timing_waiting :
    }
 
 };
+
+*/
