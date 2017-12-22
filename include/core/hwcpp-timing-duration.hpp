@@ -15,8 +15,6 @@
 //
 // ==========================================================================
 
-//using ticks_type  = uint_fast64_t;
-//using ns_type     = uint_fast64_t;
 
 // ==========================================================================
 //
@@ -24,7 +22,8 @@
 //
 // duration class
 //
-// The most basic duration: offers only wait()
+// The most basic duration: offers only wait() 
+// and, of course, a (dummy) exclusive<>
 //
 // ==========================================================================
 
@@ -49,10 +48,15 @@ struct duration :
    static void wait(){
       timing::wait< ticks >();
    }	  
+   
+   template< typename T >
+   struct exclusive {};
 };
 
 template< typename T >
-concept bool is_duration() = requires { 
+concept bool is_duration() = requires (
+   typename V
+){ 
 
    return T::is_duration_tag;
    
@@ -61,6 +65,8 @@ concept bool is_duration() = requires {
    { T::init() } -> void;
    
    { T::wait() } -> void;   
+   
+   { exclusive< V > }
    
 }
 
@@ -71,7 +77,8 @@ concept bool is_duration() = requires {
 //
 // duration with polling class
 //
-// Duration extended with registering a callback
+// Duration extended with registering a callback,
+// and a real exclusive<>.
 //
 // ==========================================================================
 
@@ -96,4 +103,14 @@ concept bool is_duration_with_polling() = requires (
    return is_duration< T >;
    
    { template callback< m >::init() } -> void
+   
+   template< typename T >
+   struct exclusive {
+      exclusive(){
+         ++exclusion_count;
+      }
+      ~exclusive(){
+         --exclusion_count;
+	  }		  
+   };   
 }

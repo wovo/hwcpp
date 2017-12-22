@@ -249,7 +249,7 @@ struct _box_creator_add_direction_direct< T > : T {
 //
 // LIBRARY-INTERNAL
 //
-// creats a full box from an minimal one (only direct, or only buffered)
+// creates a full box from an minimal one (only direct, or only buffered)
 //
 // ==========================================================================
 
