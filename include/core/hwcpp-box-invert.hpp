@@ -83,15 +83,15 @@ template< typename T > struct _filter_invert_set : T {};
 template< _has_box_out_functions T >
 struct _filter_invert_set< T > : T {
 	
-   using value_type = typename T::value_type;
+   using _vt = typename T::value_type;
     
-   static void HWLIB_INLINE set( value_type v ){ 
+   static void HWLIB_INLINE set( _vt v ){ 
       T::set( T::invert_value( v ) ); }
        
-   static void HWLIB_INLINE set_direct( value_type v ){ 
+   static void HWLIB_INLINE set_direct( _vt v ){ 
       T::set_direct( T::invert_value( v ) ); }
       
-   static void HWLIB_INLINE set_buffered( value_type v ){ 
+   static void HWLIB_INLINE set_buffered( _vt v ){ 
       T::set_buffered( T::invert_value( v ) ); }
 };	
 
@@ -129,4 +129,6 @@ struct _filter_invert_get< T > : T {
 // ==========================================================================
 
 template< is_invertible T > 
-struct invert : _filter_invert_get< _filter_invert_set< T > > {};
+using invert =
+   _filter_invert_get< 
+   _filter_invert_set< T > > {};

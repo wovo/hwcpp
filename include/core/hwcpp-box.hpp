@@ -15,10 +15,6 @@
 // and flush (for set) and/or refresh (for get) functions that work with
 // the buffered versions. 
 //
-// When a box is both in and out, it can have direction functions 
-// for switching between in mode and out mode, which also exist
-// in default, direct and buffered versions.
-//
 // ==========================================================================
 //
 // This file is part of HwCpp, 
@@ -48,7 +44,7 @@ struct _box_root :
    not_instantiable
 {
    using value_type = T;  
-   static constexpr bool is_box_tag = true;
+   static constexpr bool _is_box_tag = true;
 };
 
 // ========= box out
@@ -57,7 +53,7 @@ template< typename T >
 struct _box_out_root :
    _box_root< T >
 {
-   static constexpr bool is_box_out_tag = true;
+   static constexpr bool _is_box_out_tag = true;
 };
 
 // ========= box in
@@ -66,7 +62,7 @@ template< typename T >
 struct _box_in_root :
    _box_root< T >
 {
-   static constexpr bool is_box_in_tag = true;
+   static constexpr bool _is_box_in_tag = true;
 };
 
 // ========= box in out
@@ -75,7 +71,7 @@ template< typename T >
 struct _box_in_out_root :
    _box_root< T >
 {
-   static constexpr bool is_box_in_out_tag = true;
+   static constexpr bool _is_box_in_out_tag = true;
 };
 
 
@@ -132,7 +128,7 @@ concept bool _has_box_direction_functions = requires(
 
 template< typename T >
 concept bool _is_box_out = requires {
-   T::is_box_out_tag;
+   T::_is_box_out_tag;
    _has_init_function< T >;
    _has_box_out_functions< T >;
 };
@@ -141,7 +137,7 @@ concept bool _is_box_out = requires {
 
 template< typename T >
 concept bool _is_box_in = requires {
-   T::is_box_in_tag;
+   T::_is_box_in_tag;
    _has_init_function< T >;
    _has_box_in_functions< T >;  
 };
@@ -150,7 +146,7 @@ concept bool _is_box_in = requires {
 
 template< typename T >
 concept bool _is_box_in_out = requires {   
-   T::is_box_in_out_tag;
+   T::_is_box_in_out_tag;
    _has_init_function< T >;
    _has_box_direction_functions< T >;    
    _has_box_out_functions< T >;    
@@ -166,13 +162,13 @@ concept bool _is_box_in_out = requires {
 //
 // An interval box is a subtype of box, where the value
 // is numeric and limited to a subrange of the values 
-// allowed by the datatype.
+// allowed by the data type.
 //
 // ==========================================================================
 
 template< typename T, T _lowest, T _highest >
 struct _box_interval_root {
-   static constexpr bool is_interval_tag = true;
+   static constexpr bool _is_box_interval_tag = true;
    static constexpr T lowest  = _lowest;
    static constexpr T highest = _highest;
 };
@@ -190,7 +186,7 @@ struct _box_out_interval_root :
 {};
 
 template< typename T, T _lowest, T _highest >
-struct box_in_out_interval_root :
+struct _box_in_out_interval_root :
    _box_in_out_root< T >, 
    _box_interval_root< T, _lowest, _highest >
 {};
@@ -200,7 +196,45 @@ struct box_in_out_interval_root :
 //
 // LIBRARY-INTERNAL
 //
-// pass (only) certain box functions
+// box interval concepts
+//
+// ==========================================================================
+
+// ========= box out interval
+
+template< typename T >
+concept bool _is_box_interval_out = requires {
+   T::_is_box_out_interval_tag;
+   _has_init_function< T >;
+   _has_box_out_functions< T >;
+};
+
+// ========= box in interval 
+
+template< typename T >
+concept bool _is_box_in_interval = requires {
+   T::_is_box_in_interval_tag;
+   _has_init_function< T >;
+   _has_box_in_functions< T >;  
+};
+
+// ========= box in out interval 
+
+template< typename T >
+concept bool _is_box_in_out = requires {   
+   T::_is_box_in_out_interval_tag;
+   _has_init_function< T >;
+   _has_box_direction_functions< T >;    
+   _has_box_out_functions< T >;    
+   _has_box_in_functions< T >;    
+};
+
+
+// ==========================================================================
+//
+// LIBRARY-INTERNAL
+//
+// filters that pass (only) certain box functions
 // 
 // This takes the repetition out of adapters.
 //
@@ -210,7 +244,7 @@ struct box_in_out_interval_root :
 // ========== pass the init function
 
 template< typename T >
-struct _pass_init { 
+struct _init_filter { 
     
    static void HWLIB_INLINE init(){ 
       T::init(); 
@@ -220,7 +254,7 @@ struct _pass_init {
 // ========== pass the set functions
 
 template< typename T >
-struct _pass_box_set { 
+struct _box_set_filter { 
 
    using _value_type = typename T::value_type;
     
@@ -243,7 +277,7 @@ struct _pass_box_set {
 // ========== pass the get functions 
 
 template< typename T >
-struct _pass_box_get { 
+struct _box_get_filter { 
 
    using _value_type = typename T::value_type;
     
@@ -266,7 +300,7 @@ struct _pass_box_get {
 // ========== pass the direction functions 
 
 template< typename T >
-struct _pass_box_direction { 
+struct _box_direction_filter { 
    
    static void HWLIB_INLINE direction_set( pin_direction d ){ 
       T::direction_set( d ); 

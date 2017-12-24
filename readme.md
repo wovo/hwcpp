@@ -50,6 +50,9 @@ The compilers I currently use are (gcc 7.2.0):
 -----------------------------------------------------------------------------
 
 Notes & ToDo
+- relation between blocking and buffering?
+- macro for the no-inline specializations? also for buffering, invert
+- targets should have multiple-inclusion guards?
 - strakkere naamgeving voor is_*, roots, larva's, creators
 - automagic run at end of main
 - allocate list of callbacks

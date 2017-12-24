@@ -50,10 +50,13 @@ HEADERS           += hwcpp-all.hpp
 HEADERS           += hwcpp-basics.hpp 
 
 HEADERS           += hwcpp-box.hpp 
-HEADERS           += hwcpp-box-no-inline.hpp 
+HEADERS           += hwcpp-stream.hpp 
+HEADERS           += hwcpp-no-inline.hpp 
+HEADERS           += hwcpp-buffering.hpp 
+
+
 HEADERS           += hwcpp-box-creator.hpp 
 HEADERS           += hwcpp-box-adapters.hpp 
-HEADERS           += hwcpp-box-buffering.hpp 
 HEADERS           += hwcpp-box-invert.hpp 
 HEADERS           += hwcpp-box-fanout.hpp 
 
@@ -73,7 +76,6 @@ HEADERS           += hwcpp-port-utilities.hpp
 HEADERS           += hwcpp-adc.hpp 
 HEADERS           += hwcpp-dac.hpp 
 
-HEADERS           += hwcpp-stream.hpp 
 HEADERS           += hwcpp-stream-creator.hpp 
 HEADERS           += hwcpp-stream-out-formatting.hpp 
 

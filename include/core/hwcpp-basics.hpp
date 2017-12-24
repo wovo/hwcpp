@@ -2,7 +2,7 @@
 //
 // file : hwcpp-basics.hpp
 // 
-// stuff that it so basic that it doesn't belong somwehere else
+// stuff that it so basic that it doesn't belong anywhere else
 //
 // ==========================================================================
 //
@@ -26,7 +26,7 @@
 //
 // ==========================================================================
    
-constexpr char version[] = "V0.1 2017-12-16 work-in-progress";
+constexpr char version[] = "V0.1 2017-12-23 work-in-progress";
 
 
 // ==========================================================================
@@ -91,14 +91,14 @@ enum class pin_direction {
 #define HWCPP_HERE2( F, L ) ( "\n" F ":" HARDWARE_HERE_STR( L ) " " )
 #define HWCPP_HERE HWCPP_HERE2( __FILE__, __LINE__ )
 
-#define HWCPP_TRACE ( hwcpp::cout << HWCPP_HERE << " " << hwcpp::io::flush )   
+#define HWCPP_TRACE ( hwcpp::cout << HWCPP_HERE << " " << hwcpp::flush )   
 
 
 // ==========================================================================
 //
 // PUBLIC
 //
-// some convenient constants
+// some convenient constants for clock frequencies
 //
 // ==========================================================================
   
@@ -114,13 +114,13 @@ using Hz = std::ratio< f * 1, d >;
 
 // ==========================================================================
 //
-// PUBLIC
+// LIBRARY-INTERNAL
 //
 // macro that causes a (void) function to be run only once
 //
 // ==========================================================================
   
-#define HWCPP_RUN_ONCE {	           \
+#define _HWCPP_RUN_ONCE {	           \
    static bool _done = false;          \
    if( _done ){                        \
       return;                          \
@@ -133,8 +133,10 @@ using Hz = std::ratio< f * 1, d >;
 //
 // LIBRARY-INTERNAL
 //
-// determine the (unsigend) integer needed to hold n bits
-// and fast to use
+// determine the smallest (unsigned) integer that holds n bits
+// and is fast to use
+//
+// The #if's handle the possibility that some int variants are the same
 //
 // ==========================================================================
    
@@ -152,17 +154,29 @@ template<> struct uint_t< 8 * sizeof( unsigned char ) > {
    typedef unsigned char fast;
 };   
 
-//template<> struct uint_t< 8 * sizeof( unsigned short ) > {
-//   typedef unsigned short fast;
-//};   
+#if sizeof( unsigned short ) > sizeof( unsigned char )
+template<> struct uint_t< 8 * sizeof( unsigned short ) > {
+   typedef unsigned short fast;
+};
+#endif   
 
+#if sizeof( unsigned int ) > sizeof( unsigned short )
 template<> struct uint_t< 8 * sizeof( unsigned int ) > {
    typedef unsigned int fast;
-};   
+}; 
+#endif  
 
+#if sizeof( unsigned long int ) > sizeof( unsigned int )
+template<> struct uint_t< 8 * sizeof( unsigned long int ) > {
+   typedef unsigned long int fast;
+}; 
+#endif  
+
+#if sizeof( unsigned long long int ) > sizeof( unsigned long int )
 template<> struct uint_t< 8 * sizeof( unsigned long long int ) > {
    typedef unsigned long long int fast;
 };  
+#endif
 
 
 // ==========================================================================
@@ -217,4 +231,3 @@ concept bool _has_init_function = requires {
    { T::init() } -> void; 
 };
    
-

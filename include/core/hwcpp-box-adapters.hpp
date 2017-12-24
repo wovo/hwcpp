@@ -4,6 +4,9 @@
 //
 // adapters that transform a box to another kind of box
 //
+// To avoid ambiguity for the user code, only functions pass the filters.
+// The tag and other info is lost, it is up to the using code to restore it.
+//
 // ==========================================================================
 //
 // This file is part of HwCpp, 
@@ -47,9 +50,6 @@ concept bool _can_box_in_out =
 //
 // adapt to an out box
 //
-// Note that to avoid ambiguity, only functions pass the filters.
-// The tag and other info is lost, it is up to the using code to restore it.
-//
 // ==========================================================================
 
 
@@ -60,21 +60,21 @@ template< _can_box_out T > struct _box_out;
 // ========== adapt an out box
 
 template< _is_box_out T >
-struct _box_out< T > :
-   _pass_init< T >, 	
-   _pass_box_set< T >	
+struct _box_out_filter< T > :
+   _box_init_filter< T >, 	
+   _box_set_filter< T >	
 {};	
 
 // ========== adapt an in out box
 
 template< _is_box_in_out T >
 struct _box_out< T > :
-   _pass_box_set< T >
+   _box_set_filter< T >
 {
     
-   static void HWLIB_INLINE init(){
+   static void init(){
       T::init(); 
-      T::direction_set( pin_direction::output );
+      T::direction_set_direct( pin_direction::output );
    }	
 };
 
@@ -100,15 +100,15 @@ template< _can_box_in T > struct _box_in;
 
 template< _is_box_in T >
 struct _box_in< T > :
-   _pass_init< T >, 	
-   _pass_box_get< T >		
+   _box_init_filter< T >, 	
+   _box_get_filter< T >		
 {};	
 
 // ========== adapt an in out box
 
 template< _is_box_in_out T >
 struct _box_in< T > : 
-   _pass_box_get< T > 
+   _box_get_filter< T > 
 {
     
    static void HWLIB_INLINE init(){
@@ -128,8 +128,8 @@ struct _box_in< T > :
 
 template< _is_box_in_out T >
 struct _box_in_out : 
-   _pass_init< T >, 	
-   _pass_box_get< T >, 	
-   _pass_box_set< T >,	
-   _pass_box_direction< T > 	
+   _init_filter< T >, 	
+   _box_get_filter< T >, 	
+   _box_set_filter< T >,	
+   _box_direction_filter< T > 	
 {};

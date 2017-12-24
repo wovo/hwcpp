@@ -62,7 +62,7 @@ struct _box_fanout< adapt, _box, tail... > :
    _box_fanout< adapt, tail... >
 {
 	
-   using _value_type = typename _box::value_type;	
+   using _vt = typename _box::value_type;	
    using box = adapt< _box >;	
    using tail_boxes = _box_fanout< adapt, tail... >;
 	
@@ -71,19 +71,19 @@ struct _box_fanout< adapt, _box, tail... > :
       tail_boxes::init(); 
    }
       
-   static void HWLIB_INLINE set( _value_type v ) {
+   static void HWLIB_INLINE set( _vt v ) {
       box::set_buffered( v );
       tail_boxes::set_buffered( v );
 	  flush();
    }
       
-   static void HWLIB_INLINE set_direct( _value_type v ) {
+   static void HWLIB_INLINE set_direct( _vt v ) {
       box::set_buffered( v );
       tail_boxes::set_buffered( v );
 	  flush();
    }
       
-   static void HWLIB_INLINE set_buffered( _value_type v ) {
+   static void HWLIB_INLINE set_buffered( _vt v ) {
       box::set_buffered( v );
       tail_boxes::set_buffered( v );
    }

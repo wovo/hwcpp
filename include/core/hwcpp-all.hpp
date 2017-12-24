@@ -25,6 +25,14 @@
 #ifndef HWCPP_ALL_INCLUDED
 #define HWCPP_ALL_INCLUDED
 
+
+// ==========================================================================
+//
+// The library headers we need are included here rather than in the files
+// that need them. 
+//
+// ==========================================================================
+
 #include <cstddef>
 #include <climits>
 #include <cstdint>
@@ -32,12 +40,18 @@
 #include <ratio>
 #include <type_traits>
 
-// #undef putc
+
+// ==========================================================================
+//
+// This is a (greedy) selection from
+// https://gcc.gnu.org/onlinedocs/gcc-7.2.0/gcc/Warning-Options.html
+//
+// For the library code a few false alarms are worth even a single error
+// that is detected by these (rather high) warning level settings.
+//
+// ==========================================================================
 
 #pragma GCC diagnostic push
-
-// a greedy selection from
-// https://gcc.gnu.org/onlinedocs/gcc-7.2.0/gcc/Warning-Options.html#Warning-Options
 
 #pragma GCC diagnostic error "-Wall"
 #pragma GCC diagnostic error "-Wextra"
@@ -79,17 +93,27 @@
 
 // -Wno-long-long.
 
+
+// ==========================================================================
+//
+// include all non-HAL library files, within the hwcpp namespace
+//
+// ==========================================================================
+
 namespace hwcpp {
 
    #include "core/hwcpp-basics.hpp"
    
    #include "core/hwcpp-box.hpp"
-   #include "core/hwcpp-box-no-inline.hpp"
-   #include "core/hwcpp-box-creator.hpp"
+   #include "core/hwcpp-stream.hpp"
+   #include "core/hwcpp-no-inline.hpp"
+   #include "core/hwcpp-buffering.hpp"
+   
    #include "core/hwcpp-box-adapters.hpp"
-   #include "core/hwcpp-box-buffering.hpp"
    #include "core/hwcpp-box-invert.hpp"
    #include "core/hwcpp-box-fanout.hpp"
+   
+   #include "core/hwcpp-box-creator.hpp"
 
    #include "core/hwcpp-pins.hpp"
    #include "core/hwcpp-pin-adapters.hpp"
@@ -112,7 +136,6 @@ namespace hwcpp {
    #include "core/hwcpp-timing-clock.hpp"
    
    
-   #include "core/hwcpp-stream.hpp"
    #include "core/hwcpp-stream-creator.hpp"
    #include "core/hwcpp-stream-out-formatting.hpp"
    

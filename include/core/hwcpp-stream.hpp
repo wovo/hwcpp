@@ -8,7 +8,7 @@
 // provide values. The declarations in this file are used by the library
 // to create concrete streams.
 //
-// Exaples of concrete streams are UARTs, files, keypads, LCDs.
+// Examples of concrete streams are UARTs, files, keypads, LCDs.
 //
 // An in stream has read functions, an out stream has write functions.
 // For these functions, there are default, buffered and direct versions,
@@ -142,5 +142,3 @@ concept bool _is_stream_in_out = requires {
    _has_stream_out_functions< T >;    
    _has_stream_in_functions< T >;    
 };
-
-

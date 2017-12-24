@@ -11,7 +11,7 @@ template< can_pin_out pin, is_interval interval >
    interval::init();
    for(;;){    
       led::set( 1 );
-	  interval::wait(); 
+      interval::wait(); 
       led::set( 0 );
       interval::wait();  
    }
