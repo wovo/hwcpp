@@ -50,8 +50,23 @@ The compilers I currently use are (gcc 7.2.0):
 -----------------------------------------------------------------------------
 
 Notes & ToDo
+- concepts for duration are not complete
+- concepts for box builder parameter
+- format STM32 HAL
+- sam8 restore timing
+- usae auto instead of _vt for reading
+- stream-object strlen should be from c lib
+- stream builder should use _box_builder
+- dummies and variable versions for adc and dac
+- port-from-pins: terminology for 'recurse'?
+- use dummies as recursion endpoints
+- immplement pin-variables (or => box?)
+- port-fixed, or should that be part of box?
+- concept for a box-foundation?
+- fanout< pin... > now has a write function :(
+- box creator => bs creator??
 - relation between blocking and buffering?
-- macro for the no-inline specializations? also for buffering, invert
+- macro for the no-inline specializations? also for buffering, invert, creators
 - targets should have multiple-inclusion guards?
 - strakkere naamgeving voor is_*, roots, larva's, creators
 - automagic run at end of main

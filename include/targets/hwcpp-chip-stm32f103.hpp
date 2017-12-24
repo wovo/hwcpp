@@ -59,7 +59,7 @@ static void init(){
 // ========= pin_in_out ==========
 
 template< port p, uint32_t pin >
-struct _pin_in_out : 
+struct _pin_in_out_foundation : 
    _pin_in_out_root 
 {
 	
@@ -94,7 +94,7 @@ struct _pin_in_out :
 };
 
 template< port p, uint32_t pin >
-using pin_in_out = _box_creator< _pin_in_out< p, pin > >;	
+using pin_in_out = _box_creator< _pin_in_out_foundation< p, pin > >;	
 
 
 // ========= SysTick ==========

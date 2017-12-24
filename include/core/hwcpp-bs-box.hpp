@@ -1,6 +1,6 @@
 // ==========================================================================
 //
-// file : hwcpp-box.hpp
+// file : hwcpp-bs-box.hpp
 //
 // declarations for box classes
 //

@@ -2,7 +2,7 @@
 //
 // file : hwcpp-stream-out-formatting.hpp
 //
-// std:ostream (cout) - like formatting 
+// char output stream formatting 
 //
 // ==========================================================================
 //
@@ -17,7 +17,36 @@
 //
 // ==========================================================================
 
-struct ostream_base {
+
+// ==========================================================================
+//
+// raw and formatted char output stream concept
+//
+// ==========================================================================
+
+template< typename T >
+concept bool co_stream() = _requires {
+	{ return T::_is_stream_out< char > };
+}
+
+stuct formatted_co_stream_root {
+   static constexpr bool is_formatted_co_stream_tag = true;
+};   
+
+template< typename T >
+concept bool formatted_co_stream() = _requires {
+   { return T::co_stream< T >; };
+   { return T::is_formatted_co_stream_tag; };	
+}
+
+
+// ==========================================================================
+//
+// the 'persistent' formatting information
+//
+// ==========================================================================
+
+struct _co_stream_formatting {
 	
    bool align_right;
    bool show_pos;
@@ -54,19 +83,30 @@ struct ostream_base {
    }     
 };
 
+
+// ==========================================================================
+//
+// print reverse: used to print an integer
+//
+// ==========================================================================
+
+template< unit64_t max_length >
 struct _print_reverse {
-   static constexpr uint_fast16_t length = 70;
-   char body[ length ];
+   char body[ max_length + 1 ];
    char *content;
+   int n;
          
    _print_reverse(){
-      body[ length - 1 ] = '\0';
-      content = & body[ length - 1 ];
+      body[ max_length ] = '\0';
+      content = & body[ max_length ];
+	  n = max_length;
    }
          
    void add_char( char c ){
-      content--;
-      *content = c;
+      if( n > 0 ){
+         --n;		   
+         *--content = c;
+      }		 
    }
          
    void add_digit( char c, char hex_base ){
@@ -78,8 +118,8 @@ struct _print_reverse {
       add_char( c );
    }
          
-   void add_prefix( const ostream_base & s ){
-      if( s.show_base ){
+   void add_prefix( const _co_stream_formatting & format ){
+      if( format.show_base ){
          switch( s.numerical_radix ){
             case 2  : add_char( 'b' ); break;
             case 8  : add_char( 'o' ); break;
@@ -93,96 +133,25 @@ struct _print_reverse {
 };
 
 
-// ========== ostream marker and concept ==========
-
-struct ostream_marker {
-   static constexpr bool is_ostream = true;
-};
-
-template< typename T >
-concept bool is_ostream(){ 
-   return T::is_ostream;
-}
-
-// ========== ostream base and associated functions ==========
-
-/// end-of-line constant
-constexpr char endl = '\n';
-   
-/// 0-character constant
-constexpr char ends = '\0';
-
-
-
-#define HWCPP_MANIPULATOR( TYPE, FIELD, NAME )              \
-                                                            \
-struct NAME {                                               \
-   const TYPE v;                                            \
-   constexpr NAME( TYPE v ): v{ v }{}                       \
-};                                                          \
-                                                            \
-template< is_ostream ostream >                              \
-ostream & operator<<( ostream & lhs, const NAME & rhs ){    \
-   lhs.FIELD = rhs.v;	                                    \
-   return lhs;                                              \
-}   
-
-HWCPP_MANIPULATOR( bool,           align_right,      _align_right      )
-HWCPP_MANIPULATOR( bool,           bool_alpha,       _boolalpha        )
-HWCPP_MANIPULATOR( bool,           show_pos,         _show_pos         )
-HWCPP_MANIPULATOR( bool,           show_base,        _show_base        )
-
-HWCPP_MANIPULATOR( char,           fill_char,        setfill           )
-HWCPP_MANIPULATOR( char,           hex_base,         _hex_base         )
-
-HWCPP_MANIPULATOR( uint_fast16_t,  field_width,      setw              )
-HWCPP_MANIPULATOR( uint_fast16_t,  numerical_radix,  _numerical_radix  )
-
-#undef HWCPP_MANIPULATOR
-
-constexpr _align_right right( true );
-constexpr _align_right left( false );
-
-constexpr _boolalpha boolalpha( true );
-constexpr _boolalpha noboolalhpa( false );
-
-constexpr _show_pos showpos( true );
-constexpr _show_pos noshowpos( false );
-
-constexpr _show_base showbase( true );
-constexpr _show_base noshowbase( false );
-
-constexpr _numerical_radix bin(  2 );
-constexpr _numerical_radix oct(  8 );
-constexpr _numerical_radix dec( 10 );
-constexpr _numerical_radix hex( 16 );
-
-// ========== ostream decorator ==========
-
-
+// ==========================================================================
+//
+// the formatter
+//
+// ==========================================================================
 
 template< typename T >
-struct ostream :
-   ostream_marker,
-   ostream_base
+struct formatter :
+   formatted_co_stream_root
 {
    
-   ostream(){
+   static void HWLIB_INLINE ostream(){
       T::init();	   
    }
-	
-   ostream< T > & putc( char c ){
-      T::write( c );  
-      return *this;	  
-   }  
    
-   // must handle negative numbers!
-   void fill( int_fast16_t n ){
-      while( n-- > 0 ){
-         putc( fill_char );
-      }
-   }   
-
+   static void HWLIB_INLINE write( char c ){
+      T::write( c );
+   }	  
+   
    template< typename lambda >
    ostream & print_aligned( int_fast16_t field_len, lambda print_field ){	
       fill( fill_count( true, field_len ));   
@@ -269,39 +238,4 @@ struct ostream :
 
 };
 
-// ========== worker functions ==========
 
-template< is_ostream ostream >
-auto & operator<<( ostream & stream, char c ){
-   return stream.putc( c );     	      
-}
-
-template< is_ostream ostream >
-auto & operator<< ( ostream & stream, const char *s ){
-   return stream.print_aligned( s );
-}
-
-/* 
-template< is_ostream ostream >
-auto & operator<< ( ostream & stream, bool v ){
-   return stream.print_aligned( stream.bool_rep( v ) );
-}
-*/
-
-template< is_ostream ostream >
-auto & operator<< ( ostream & stream, uint_fast16_t v ){   
-   return stream.print_int( v );
-}
-
-template< is_ostream ostream >
-auto & operator<< ( ostream & stream, int v ){   
-   return stream.print_int( v );
-}
- 
-template< is_ostream ostream >
-auto & operator<< ( ostream & stream, int64_t v ){   
-   return stream.print_int( v );
-}
- 
-
-	  

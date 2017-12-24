@@ -1,8 +1,8 @@
 // ==========================================================================
 //
-// file : hwcpp-no-inline.hpp
+// file : hwcpp-bs-no-inline.hpp
 //
-// wrapper that break a chain of inlining forced by HWLIB_INLINE 
+// wrapper for boxes and sreams that breaks a chain of forced inlining 
 //
 // ==========================================================================
 //
@@ -45,7 +45,7 @@ template< typename T >
 struct _no_inline_box_out_wrapper : T {};
 
 template< _has_box_out_functions T >
-struct _no_inline_box_out_wrappert< T > : T {
+struct _no_inline_box_out_wrapper< T > : T {
 	
    using _vt = typename T::value_type;
     
@@ -118,7 +118,7 @@ template< typename T >
 struct _no_inline_stream_out_wrapper : T {};
 
 template< _has_stream_out_functions T >
-struct _no_inline_stream_out_wrappert< T > : T {
+struct _no_inline_stream_out_wrapper< T > : T {
 	
    using _vt = typename T::value_type;
     

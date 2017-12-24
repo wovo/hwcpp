@@ -42,22 +42,22 @@ struct _port_recurse_init : tail {
 template< typename pin, typename tail >
 struct _port_recurse_set : tail {
 	
-   using _value_type = typename tail::value_type;
+   using _vt = typename tail::value_type;
 	
-   static void HWLIB_INLINE set( _value_type v ) {
+   static void HWLIB_INLINE set( _vt v ) {
       pin::set_buffered( ( v & 0x01 ) != 0 );
-      tail::set_buffered( (_value_type) ( v >> 1 ) );
+      tail::set_buffered( (_vt) ( v >> 1 ) );
 	  pin::flush();
    }
       
-   static void HWLIB_INLINE set_direct( _value_type v ) {
+   static void HWLIB_INLINE set_direct( _vt v ) {
       pin::set_direct( ( v & 0x01 ) != 0 );
-      tail::set_direct( (_value_type) ( v >> 1 ) );
+      tail::set_direct( (_vt) ( v >> 1 ) );
    }
       
-   static void HWLIB_INLINE set_buffered( _value_type v ) {
+   static void HWLIB_INLINE set_buffered( _vt v ) {
       pin::set_buffered( ( v & 0x01 ) != 0 );
-      tail::set_buffered( (_value_type) ( v >> 1 ) );
+      tail::set_buffered( (_vt) ( v >> 1 ) );
    }
       
    static void HWLIB_INLINE flush() {
@@ -72,23 +72,23 @@ struct _port_recurse_set : tail {
 template< typename pin, typename tail >
 struct _port_recurse_get : tail {
 	
-   using _value_type = typename tail::value_type;
+   using _vt = typename tail::value_type;
 	
-   static _value_type HWLIB_INLINE set() {
+   static _vt HWLIB_INLINE set() {
       pin::refresh();	    
-      return (_value_type)
+      return (_vt)
 	     pin::get_buffered()
          | ( tail::get_buffered() << 1 );
    }
       
-   static _value_type HWLIB_INLINE get_direct() {
-      return (_value_type)
+   static _vt HWLIB_INLINE get_direct() {
+      return (_vt)
 	     ( pin::get_direct()
             | ( tail::get_direct() << 1 ) );
    }
       
-   static _value_type HWLIB_INLINE get_buffered() {
-      return (_value_type)
+   static _vt HWLIB_INLINE get_buffered() {
+      return (_vt)
 	     ( pin::get_buffered()
             | ( tail::get_buffered() << 1 ) );
    }
@@ -157,7 +157,7 @@ struct _port_out_from_pins< n, pin, tail... > :
 // and defer to the recursive template
 template< _can_pin_out_list... Ts > 
 struct port_out< Ts... > :
-   _box_no_inline<
+   _no_inline_wrapper<
       _port_out_from_pins< sizeof...( Ts ), Ts... > >
 {};
 
@@ -192,7 +192,7 @@ struct _port_in_from_pins< n, pin, tail... > :
 // and defer to the recursive template
 template< _can_pin_in_list... Ts > 
 struct port_in< Ts... > :
-   _box_no_inline<
+   _no_inline_wrapper<
       _port_in_from_pins< sizeof...( Ts ), Ts... > >
 {};
 
@@ -229,7 +229,7 @@ struct _port_in_out_from_pins< n, pin, tail... > :
 // and defer to the recursive template
 template< _can_pin_in_out_list... Ts > 
 struct port_in_out< Ts... > :
-   _box_no_inline<
+   _no_inline_wrapper<
       _port_in_out_from_pins< sizeof...( Ts ), Ts... > >
 {};
    
@@ -265,6 +265,6 @@ struct _port_oc_from_pins< n, pin, tail... > :
 // and defer to the recursive template
 template< _can_pin_oc_list... Ts > 
 struct port_oc< Ts... > :
-   _box_no_inline<
+   _no_inline_wrapper<
       _port_oc_from_pins< sizeof...( Ts ), Ts... > >
 {};

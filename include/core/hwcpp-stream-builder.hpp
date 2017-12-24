@@ -1,11 +1,11 @@
 // ==========================================================================
 //
-// file : hwcpp-stream-creator.hpp
+// file : hwcpp-stream-builder.hpp
 //
 // creators for stream classes
 //
-// A stream creator adds the missing functions to a stream that has 
-// either only direct functions, or only buffered functions.
+// A stream creator adds the missing functions to a stream foundation
+// that has either only direct functions, or only buffered functions.
 // This is used by for instance the HALs 
 // to create a full stream from a minimal one.
 //
@@ -40,14 +40,14 @@ concept bool _stream_has_out_direct_unchecked = requires(
 };   
 
 template< typename T >
-struct _stream_creator_add_out_direct_checked : T {};
+struct _stream_add_out_direct_checked_wrapper : T {};
 
 template< _stream_has_out_direct_unchecked T >
-struct _stream_creator_add_out_direct_checked< T > : T {
+struct _stream_add_out_direct_checked_wrapper< T > : T {
 	
-   using _value_type = typename T::value_type;
+   using _vt = typename T::value_type;
 	
-   static void write_direct( _value_type v ){
+   static void write_direct( _vt v ){
        while( T::write_blocks() ){}	   
        T::write_direct_unchecked( v );
    }
@@ -70,10 +70,10 @@ concept bool _stream_has_in_direct_unchecked = requires{
 };   
 
 template< typename T >
-struct _stream_creator_add_in_direct_checked : T {};
+struct _stream_add_in_direct_checked_wrapper : T {};
 
 template< _stream_has_in_direct_unchecked T >
-struct _stream_creator_add_in_direct_checked< T > : T {
+struct _stream_add_in_direct_checked_wrapper< T > : T {
 	
    static auto read_direct(){
        while( T::read_blocks() ){}	   
@@ -98,20 +98,20 @@ concept bool _stream_has_out_direct = requires(
 };   
 
 template< typename T >
-struct _stream_creator_add_out_buffered : T {};
+struct _stream_add_out_buffered_wrapper : T {};
 
 template< _stream_has_out_direct T >
-struct _stream_creator_add_out_buffered< T > : T {
+struct _stream_add_out_buffered_wrapper< T > : T {
 	
-   using _value_type = typename T::value_type;
+   using _vt = typename T::value_type;
 	
-   static void HWLIB_INLINE write( _value_type v ){
+   static void HWLIB_INLINE write( _vt v ){
        T::write_direct( v );
    }
    
    // write_direct provided by T
    
-   static void HWLIB_INLINE write_buffered( _value_type v ){
+   static void HWLIB_INLINE write_buffered( _vt v ){
        T::write_direct( v );
    }
    
@@ -135,19 +135,19 @@ concept bool _stream_has_out_buffered = requires(
 };   
 
 template< typename T >
-struct _stream_creator_add_out_direct : T {};
+struct _stream_add_out_direct_wrapper : T {};
 
 template< _stream_has_out_buffered T >
-struct _stream_creator_add_out_direct< T > : T {
+struct _stream_add_out_direct_wrapper< T > : T {
 	
-   using _value_type = typename T::value_type;	
+   using _vt = typename T::value_type;	
    
-   static void HWLIB_INLINE set( _value_type v ){
+   static void HWLIB_INLINE set( _vt v ){
        T::write_buffered( v );
        T::flush();
    }
    
-   static void HWLIB_INLINE write_direct( _value_type v ){
+   static void HWLIB_INLINE write_direct( _vt v ){
        T::write_buffered( v );
        T::flush();
    }
@@ -172,20 +172,20 @@ concept bool _stream_has_in_direct = requires {
 };   
 
 template< typename T >
-struct _stream_creator_add_in_buffered : T {};
+struct _stream_add_in_buffered_wrapper : T {};
 
 template< _stream_has_in_direct T >
-struct _stream_creator_add_in_buffered< T > : T {
+struct _stream_add_in_buffered_wrapper< T > : T {
 	
-   using _value_type = typename T::value_type;	
+   using _vt = typename T::value_type;	
 	
-   static _value_type HWLIB_INLINE get(){
+   static _vt HWLIB_INLINE get(){
       return T::read_direct();
    }       
    
   // read_direct provided by T
    
-   static _value_type HWLIB_INLINE read_buffered(){
+   static _vt HWLIB_INLINE read_buffered(){
       return T::read_direct();
    }       
    
@@ -209,19 +209,19 @@ concept bool _stream_has_in_buffered = requires(
 };   
 
 template< typename T >
-struct _stream_creator_add_in_direct : T {};
+struct _stream_add_in_direct_wrapper : T {};
 
 template< _stream_has_in_buffered T >
-struct _stream_creator_add_in_direct< T > : T {
+struct _stream_add_in_direct_wrapper< T > : T {
 	
-   using _value_type = typename T::value_type;	
+   using _vt = typename T::value_type;	
    
-   static _value_type HWLIB_INLINE get(){
+   static _vt HWLIB_INLINE get(){
       T::refresh();       
       return T::read_buffered();
    }      
    
-   static _value_type HWLIB_INLINE read_direct(){
+   static _vt HWLIB_INLINE read_direct(){
       T::refresh();       
       return T::read_buffered();
    }      
@@ -241,11 +241,10 @@ struct _stream_creator_add_in_direct< T > : T {
 // ==========================================================================
 
 template< typename T >
-using _stream_creator = 
-   _stream_creator_add_out_buffered<
-      _stream_creator_add_out_direct<
-   _stream_creator_add_in_buffered<
-      _stream_creator_add_in_direct< 
-   _stream_creator_add_out_direct_checked<
-      _stream_creator_add_in_direct_checked<
-   T > > > > > >;
+using _stream_builder = 
+   _stream_add_out_buffered_wrapper<
+      _stream_add_out_direct_wrapper<
+   _stream_add_in_buffered_wrapper<
+      _stream_add_in_direct_wrapper< 
+   _stream_add_out_direct_checked_wrapper<
+      _stream_add_in_direct_checked_wrapper< T > > > > > >;

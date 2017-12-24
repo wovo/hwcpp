@@ -74,14 +74,14 @@ struct invertible_interval :
 //
 // FILE-INTERNAL
 //
-// class filter that inverts the set functions (when present)
+// class wrappere that inverts the set functions (when present)
 //
 // ==========================================================================
 
-template< typename T > struct _filter_invert_set : T {};
+template< typename T > struct _invert_set_wrapper : T {};
 
 template< _has_box_out_functions T >
-struct _filter_invert_set< T > : T {
+struct _invert_set_wrapper< T > : T {
 	
    using _vt = typename T::value_type;
     
@@ -104,10 +104,10 @@ struct _filter_invert_set< T > : T {
 //
 // ==========================================================================
 
-template< typename T > struct _filter_invert_get : T {};
+template< typename T > struct _invert_get_wrapper : T {};
 
 template< _has_box_in_functions T >
-struct _filter_invert_get< T > : T {
+struct _invert_get_wrapper< T > : T {
     
    	static auto HWLIB_INLINE get(){ 
        return T::invert_value( T::get() ); }
@@ -130,5 +130,5 @@ struct _filter_invert_get< T > : T {
 
 template< is_invertible T > 
 using invert =
-   _filter_invert_get< 
-   _filter_invert_set< T > > {};
+   _invert_get_wrapper< 
+   _invert_set_wrapper< T > >;

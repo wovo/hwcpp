@@ -23,7 +23,7 @@
 
 
 template< can_pin_out pin, bool v >
-struct pin_fixed : pin_out< pin > {
+struct pin_fixed {
    static void init(){
       pin_out< pin >::init();
       pin_out< pin >::set( v );

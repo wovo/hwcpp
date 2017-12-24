@@ -29,24 +29,25 @@
 
 template< 
    typename _timing,
-   timing:: typename ticks_type _ticks
+   typename _timing::ticks_type _ticks
 > 
 struct duration :
    not_instantiable
 {
    static constexpr bool is_duration_tag = true;
    
-   using ticks_type = _timing::ticks_type;
-   using ns_type    = _timing::ns_type;
+   using ticks_type = typename _timing::ticks_type;
+   using ns_type    = typename _timing::ns_type;
    
-   constexpr ticks_type ticks = _ticks;
+   static constexpr ticks_type ticks  = _ticks;
+   static constexpr ns_type ns        = _timing::ns_from_ticks( _ticks );
    
    static void init(){
-      timing::init();
+      _timing::init();
    }	  
    
    static void wait(){
-      timing::wait< ticks >();
+      _timing:: template wait< ticks >();
    }	  
    
    template< typename T >
@@ -54,21 +55,17 @@ struct duration :
 };
 
 template< typename T >
-concept bool is_duration() = requires (
-   typename V
-){ 
-
-   return T::is_duration_tag;
+concept bool is_duration = requires(
+   typename T::ticks_type t   
+){
+   T::is_duration_tag;
    
-   { T::ticks } -> typename T::ticks_type;
-   
+   { T::ticks  } -> typename T::ticks_type;
+   { T::ns     } -> typename T::ns_type;
    { T::init() } -> void;
-   
    { T::wait() } -> void;   
-   
-   { exclusive< V > }
-   
-}
+   //{ typename T:: template exclusive< R > }
+};
 
 
 // ==========================================================================
@@ -78,39 +75,41 @@ concept bool is_duration() = requires (
 // duration with polling class
 //
 // Duration extended with registering a callback,
-// and a real exclusive<>.
+// and a functional exclusive<>.
 //
 // ==========================================================================
 
 template< 
    typename _timing,
-   timing:: typename ticks_type _ticks
+   typename _timing::ticks_type _ticks
 >   
 struct is_duration_with_polling_root :
    duration< _timing, _ticks >
 {
    static constexpr bool is_duration_with_polling_tag = true;
+   
+   template< typename T >
+   struct exclusive {
+      exclusive(){
+         _timing::lock();
+      }
+      ~exclusive(){
+         _timing::unlock();
+	  }		  
+   };     
 };
 
-template< T > concept has_main = {
-   { T::main() ) -> void;	
-}	
+template< typename T > 
+concept bool has_main = requires {
+   { T::main() } -> void;	
+};	
 
 template< typename T >
-concept bool is_duration_with_polling() = requires (
+concept bool is_duration_with_polling = requires (
    has_main m
 ){ 
    return is_duration< T >;
    
    { template callback< m >::init() } -> void
-   
-   template< typename T >
-   struct exclusive {
-      exclusive(){
-         ++exclusion_count;
-      }
-      ~exclusive(){
-         --exclusion_count;
-	  }		  
-   };   
-}
+ 
+};

@@ -104,53 +104,66 @@ namespace hwcpp {
 
    #include "core/hwcpp-basics.hpp"
    
-   #include "core/hwcpp-box.hpp"
-   #include "core/hwcpp-stream.hpp"
-   #include "core/hwcpp-no-inline.hpp"
-   #include "core/hwcpp-buffering.hpp"
+   // ========= box/stream common
+   
+   #include "core/hwcpp-bs-box.hpp"
+   #include "core/hwcpp-bs-stream.hpp"
+   #include "core/hwcpp-bs-buffering.hpp"
+   #include "core/hwcpp-bs-fanout.hpp"
+   #include "core/hwcpp-bs-no-inline.hpp"
    
    #include "core/hwcpp-box-adapters.hpp"
    #include "core/hwcpp-box-invert.hpp"
-   #include "core/hwcpp-box-fanout.hpp"
+   #include "core/hwcpp-box-builder.hpp"
    
-   #include "core/hwcpp-box-creator.hpp"
+   // ========= pins
 
    #include "core/hwcpp-pins.hpp"
    #include "core/hwcpp-pin-adapters.hpp"
    #include "core/hwcpp-pin-dummies.hpp"
    #include "core/hwcpp-pin-fixed.hpp"
    #include "core/hwcpp-pin-fanout.hpp"
-   #include "core/hwcpp-pin-utilities.hpp"
+   #include "core/hwcpp-pin-variables.hpp"
+   
+   // ======== ports
    
    #include "core/hwcpp-ports.hpp"
+   #include "core/hwcpp-port-adapters.hpp"
    #include "core/hwcpp-port-dummies.hpp"
    #include "core/hwcpp-port-from-pins.hpp"
-   #include "core/hwcpp-port-adapters.hpp"
-   #include "core/hwcpp-port-utilities.hpp"
+   
+   // ======== other boxes
    
    #include "core/hwcpp-adc.hpp"
    #include "core/hwcpp-dac.hpp"
    
-   //#include "core/hwcpp-timing.hpp"
-   #include "core/hwcpp-timing-waiting.hpp"
-   #include "core/hwcpp-timing-clock.hpp"
+   // ======== streams
    
+//   #include "core/hwcpp-stream-builder.hpp"
+//   #include "core/hwcpp-stream-out-formatting.hpp"
+//   #include "core/hwcpp-stream-object.hpp"
    
-   #include "core/hwcpp-stream-creator.hpp"
-   #include "core/hwcpp-stream-out-formatting.hpp"
+   // ======== timing
    
-   #include "core/hwcpp-i2c.hpp"
-   #include "core/hwcpp-console.hpp"
-   #include "core/hwcpp-string.hpp"
+   #include "core/hwcpp-timing.hpp"
+   #include "core/hwcpp-timing-duration.hpp"
+//   #include "core/hwcpp-timing-waiting.hpp"
+//   #include "core/hwcpp-timing-clock.hpp"
    
-   #include "core/hwcpp-demos.hpp"
+   // ======== ??
+   
+//   #include "core/hwcpp-i2c.hpp"
+//   #include "core/hwcpp-console.hpp"
+//   #include "core/hwcpp-string.hpp"
+   
+//   #include "core/hwcpp-demos.hpp"
    
 //   #include "chips/hwcpp-pcf8574.hpp"
-   #include "chips/hwcpp-hd44780.hpp"
+//   #include "chips/hwcpp-hd44780.hpp"
    
    namespace shields {   
 
-      #include "shields/hwcpp-lcd-buttons.hpp"
+//      #include "shields/hwcpp-lcd-buttons.hpp"
       //#include "shields/hwcpp-joystick-buttons.hpp"
    
    } // namespace shields   

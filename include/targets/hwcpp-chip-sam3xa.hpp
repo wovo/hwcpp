@@ -33,7 +33,7 @@ struct chip_sam3xa {
 static void init(){
 	
    // don't do this over and over	
-   HWCPP_RUN_ONCE;	
+   _HWCPP_RUN_ONCE;	
    
    // disable the watchdog     
    WDT->WDT_MR = WDT_MR_WDDIS;     
@@ -86,7 +86,7 @@ enum class _port {
 };
 
 template< _port P, uint32_t pin >
-struct _pin_in_out_base : 
+struct _pin_in_out_foundation : 
    _pin_in_out_root 
 {
 	
@@ -116,7 +116,7 @@ struct _pin_in_out_base :
 // ========= GPIO constructor used in the actual targets
 
 template< _port P, uint32_t pin >
-using _pin_in_out = _box_creator< _pin_in_out_base< P, pin > >;
+using _pin_in_out = _box_builder< _pin_in_out_foundation< P, pin > >;
 
 
 // ==========================================================================
@@ -181,7 +181,7 @@ static uint_fast16_t _adc_get_common(
 // ========= flyweight interface to the init and read functions
 
 template< uint_fast64_t channel >
-struct _pin_adc_base :
+struct _pin_adc_foundation :
    _adc_root< 12 >
 {
 	
@@ -199,7 +199,7 @@ struct _pin_adc_base :
 // ========= ADC pin constructor used in the actual targets
 
 template< uint_fast64_t pin >
-using pin_adc = _adc_creator< _pin_adc_base< pin > >;
+using pin_adc = _adc_builder< _pin_adc_foundation< pin > >;
 
 
 // ==========================================================================
@@ -270,7 +270,7 @@ struct _uart :
    	
 };
 
-using uart = _stream_creator< _uart >;
+// using uart = _stream_builder< _uart >;
 
 
 // ==========================================================================
@@ -281,6 +281,7 @@ using uart = _stream_creator< _uart >;
 //
 // ==========================================================================
 
+/*
 struct _ticker :
    _ticker_root< uint_fast64_t, std::ratio< clock, 1 > >
 {   
@@ -308,7 +309,7 @@ struct _ticker :
 };
 
 using ticker = _ticker_creator< _ticker >;   
-
+*/
 }; // struct chip_sam3xa
 
 }; // namespace hwcpp

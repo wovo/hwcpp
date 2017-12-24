@@ -54,7 +54,7 @@ concept bool can_pin_oc =
 //
 // LIBRARY-INTERNAL
 //
-// concepts that tell whether a kist of things
+// concepts that tell whether a list of things
 // can be converted to the requested pin
 //
 // ==========================================================================
@@ -93,8 +93,8 @@ struct pin_out :
 template< is_pin_oc T >
 struct pin_out< T > : 
    _pin_out_root,
-   _pass_init< T >,
-   _pass_box_set< T >  
+   _init_filter< T >,
+   _box_set_filter< T >  
 {};	
 
 
@@ -119,8 +119,8 @@ struct pin_in :
 template< is_pin_oc T >
 struct pin_in< T > : 
    _pin_in_root,
-   _pass_init< T >,
-   _pass_box_set< T >  
+   _init_filter< T >,
+   _box_set_filter< T >  
 {
     
    static void HWLIB_INLINE init(){
@@ -151,8 +151,8 @@ struct pin_in_out :
 template< is_pin_oc T >
 struct pin_in_out< T > : 
    _pin_in_out_root,
-   _pass_box_set< T >,  
-   _pass_box_get< T >  
+   _box_set_filter< T >,  
+   _box_get_filter< T >  
 {
     
    static void HWLIB_INLINE direction_set( pin_direction d ){
@@ -209,8 +209,8 @@ template< can_pin_oc T > struct pin_oc;
 template< is_pin_in_out T >
 struct pin_oc< T > : 
    _pin_oc_root,
-   _pass_box_set< T >,  
-   _pass_box_get< T >  
+   _box_set_filter< T >,  
+   _box_get_filter< T >  
 {
     
    static void HWLIB_INLINE set( bool v ){

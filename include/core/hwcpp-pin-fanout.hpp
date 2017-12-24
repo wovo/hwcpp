@@ -24,6 +24,6 @@
 template< can_pin_out... pins >
 struct fanout :
    _pin_out_root,
-   _box_no_inline< _box_fanout< pin_out, pins... > >
+   _no_inline_wrapper< _bs_fanout< pin_out, pins... > >
 {}; 
 

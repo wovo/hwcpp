@@ -49,39 +49,37 @@ HEADERS           += hwcpp.hpp
 HEADERS           += hwcpp-all.hpp
 HEADERS           += hwcpp-basics.hpp 
 
-HEADERS           += hwcpp-box.hpp 
-HEADERS           += hwcpp-stream.hpp 
-HEADERS           += hwcpp-no-inline.hpp 
-HEADERS           += hwcpp-buffering.hpp 
+HEADERS           += hwcpp-bs-box.hpp 
+HEADERS           += hwcpp-bs-stream.hpp 
+HEADERS           += hwcpp-bs-buffering.hpp 
+HEADERS           += hwcpp-bs-fanout.hpp 
+HEADERS           += hwcpp-bs-no-inline.hpp 
 
-
-HEADERS           += hwcpp-box-creator.hpp 
 HEADERS           += hwcpp-box-adapters.hpp 
 HEADERS           += hwcpp-box-invert.hpp 
-HEADERS           += hwcpp-box-fanout.hpp 
+HEADERS           += hwcpp-box-builder.hpp 
 
 HEADERS           += hwcpp-pins.hpp 
 HEADERS           += hwcpp-pin-adapters.hpp 
+HEADERS           += hwcpp-pin-dummies.hpp 
 HEADERS           += hwcpp-pin-fixed.hpp 
 HEADERS           += hwcpp-pin-fanout.hpp 
-HEADERS           += hwcpp-pin-dummies.hpp 
-HEADERS           += hwcpp-pin-utilities.hpp 
+HEADERS           += hwcpp-pin-variables.hpp 
 
 HEADERS           += hwcpp-ports.hpp 
+HEADERS           += hwcpp-port-adapters.hpp 
 HEADERS           += hwcpp-port-dummies.hpp 
 HEADERS           += hwcpp-port-from-pins.hpp 
-HEADERS           += hwcpp-port-adapters.hpp 
-HEADERS           += hwcpp-port-utilities.hpp 
 
 HEADERS           += hwcpp-adc.hpp 
 HEADERS           += hwcpp-dac.hpp 
 
-HEADERS           += hwcpp-stream-creator.hpp 
+HEADERS           += hwcpp-stream-builder.hpp 
 HEADERS           += hwcpp-stream-out-formatting.hpp 
+HEADERS           += hwcpp-stream-object.hpp 
 
 HEADERS           += hwcpp-timing.hpp 
-HEADERS           += hwcpp-timing-ticker.hpp 
-
+//HEADERS           += hwcpp-timing-ticker.hpp 
 
 HEADERS           += hwcpp-i2c.hpp 
 HEADERS           += hwcpp-console.hpp 

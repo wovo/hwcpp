@@ -154,25 +154,25 @@ template<> struct uint_t< 8 * sizeof( unsigned char ) > {
    typedef unsigned char fast;
 };   
 
-#if sizeof( unsigned short ) > sizeof( unsigned char )
+#if USHRT_MAX > UCHAR_MAX
 template<> struct uint_t< 8 * sizeof( unsigned short ) > {
    typedef unsigned short fast;
 };
 #endif   
 
-#if sizeof( unsigned int ) > sizeof( unsigned short )
+#if UINT_MAX > USHRT_MAX
 template<> struct uint_t< 8 * sizeof( unsigned int ) > {
    typedef unsigned int fast;
 }; 
 #endif  
 
-#if sizeof( unsigned long int ) > sizeof( unsigned int )
+#if ULONG_MAX > UINT_MAX
 template<> struct uint_t< 8 * sizeof( unsigned long int ) > {
    typedef unsigned long int fast;
 }; 
 #endif  
 
-#if sizeof( unsigned long long int ) > sizeof( unsigned long int )
+#if ULLONG_MAX > ULONG_MAX
 template<> struct uint_t< 8 * sizeof( unsigned long long int ) > {
    typedef unsigned long long int fast;
 };  

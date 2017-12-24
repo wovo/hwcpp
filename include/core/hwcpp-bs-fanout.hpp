@@ -1,8 +1,8 @@
 // ==========================================================================
 //
-// file : hwcpp-box-fanout.hpp
+// file : hwcpp-bs-fanout.hpp
 //
-// fanout behaviour for box classes
+// fanout behaviour for box and stream classes
 //
 // A fanout combination of output boxes writes the same value
 // to all boxes.
@@ -33,64 +33,97 @@
 
 // ========== base, not implemented, never used
 
+
 template< 
    template< typename > class adapt, 
-   typename... pins 
-> struct _box_fanout;
+   typename... minions 
+> struct _bs_fanout;
 
 
 // ========== recursion endpoint
 
 template< 
    template< typename > class adapt 
-> struct _box_fanout< adapt > {
+> struct _bs_fanout< adapt > {
    
    static void HWLIB_INLINE init(){}
+   
    static void HWLIB_INLINE set( auto v ){}
    static void HWLIB_INLINE set_direct( auto v ){}
    static void HWLIB_INLINE set_buffered( auto v ){}
+   
+   static void HWLIB_INLINE write( auto v ){}
+   static void HWLIB_INLINE write_direct( auto v ){}
+   static void HWLIB_INLINE write_buffered( auto v ){}
+   
    static void HWLIB_INLINE flush(){}
 };
 
-// ========== handle one box and recurse
+
+// ========== handle one minion and recurse
 
 template<  
    template< typename > class adapt, 
-   typename _box, 
-   typename... tail >
-struct _box_fanout< adapt, _box, tail... > :
-   _box_fanout< adapt, tail... >
+   typename _minion, 
+   typename... _tail >
+struct _bs_fanout< adapt, _minion, _tail... > :
+   _bs_fanout< adapt, _tail... >
 {
 	
-   using _vt = typename _box::value_type;	
-   using box = adapt< _box >;	
-   using tail_boxes = _box_fanout< adapt, tail... >;
+   using _vt = typename _minion::value_type;	
+   using minion = adapt< _minion >;	
+   using tail = _bs_fanout< adapt, _tail... >;
+   
+   // ========= init   
 	
    static void HWLIB_INLINE init() { 
-      box::init();
-      tail_boxes::init(); 
+      minion::init();
+      tail::init(); 
    }
+   
+   // ========= set
       
    static void HWLIB_INLINE set( _vt v ) {
-      box::set_buffered( v );
-      tail_boxes::set_buffered( v );
+      minion::set_buffered( v );
+      tail::set_buffered( v );
 	  flush();
    }
       
    static void HWLIB_INLINE set_direct( _vt v ) {
-      box::set_buffered( v );
-      tail_boxes::set_buffered( v );
+      minion::set_buffered( v );
+      tail::set_buffered( v );
 	  flush();
    }
       
    static void HWLIB_INLINE set_buffered( _vt v ) {
-      box::set_buffered( v );
-      tail_boxes::set_buffered( v );
+      minion::set_buffered( v );
+      tail::set_buffered( v );
+   }
+   
+   // ========= write
+      
+   static void HWLIB_INLINE write( _vt v ) {
+      minion::write_buffered( v );
+      tail::write_buffered( v );
+	  flush();
    }
       
+   static void HWLIB_INLINE write_direct( _vt v ) {
+      minion::write_buffered( v );
+      tail::write_buffered( v );
+	  flush();
+   }
+      
+   static void HWLIB_INLINE write_buffered( _vt v ) {
+      minion::write_buffered( v );
+      tail::write_buffered( v );
+   }
+   
+   // ========= flush
+      
    static void HWLIB_INLINE flush() {
-      box::flush();
-      tail_boxes::flush();
+      minion::flush();
+      tail::flush();
    }
    
 };

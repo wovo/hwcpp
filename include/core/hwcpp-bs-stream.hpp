@@ -1,6 +1,6 @@
 // ==========================================================================
 //
-// file : hwcpp-stream.hpp
+// file : hwcpp-bs-stream.hpp
 //
 // declarations for stream classes
 //
@@ -71,6 +71,8 @@ template< typename T >
 struct _stream_in_out_root :
    _stream_root< T >
 {
+   static constexpr bool is_stream_out_tag = true;
+   static constexpr bool is_stream_in_tag = true;
    static constexpr bool is_stream_in_out_tag = true;
 };
 

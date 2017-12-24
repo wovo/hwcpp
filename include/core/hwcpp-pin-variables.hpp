@@ -1,8 +1,8 @@
 // ==========================================================================
 //
-// file : hwcpp-pin-utilities.hpp
+// file : hwcpp-pin-variables.hpp
 //
-// various declarations for pins
+// pins that write to or read from a variable
 //
 // ==========================================================================
 //

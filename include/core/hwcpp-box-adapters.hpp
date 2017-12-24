@@ -60,8 +60,8 @@ template< _can_box_out T > struct _box_out;
 // ========== adapt an out box
 
 template< _is_box_out T >
-struct _box_out_filter< T > :
-   _box_init_filter< T >, 	
+struct _box_out< T > :
+   _init_filter< T >, 	
    _box_set_filter< T >	
 {};	
 
@@ -100,7 +100,7 @@ template< _can_box_in T > struct _box_in;
 
 template< _is_box_in T >
 struct _box_in< T > :
-   _box_init_filter< T >, 	
+   _init_filter< T >, 	
    _box_get_filter< T >		
 {};	
 

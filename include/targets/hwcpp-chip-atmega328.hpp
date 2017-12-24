@@ -73,7 +73,7 @@ static constexpr regs * port_direction[] = {
 };
 
 template< _port p, uint32_t pin >
-struct _pin_in_out : 
+struct _pin_in_out_foundation : 
    _pin_in_out_root 
 {
 	
@@ -106,7 +106,7 @@ struct _pin_in_out :
 // ========= GPIO constructor used in the actual targets
 
 template< _port p, uint32_t pin >
-using pin_in_out = _box_creator< _pin_in_out< p, pin > >;	
+using pin_in_out = _box_builder< _pin_in_out_foundation< p, pin > >;	
 
 
 // ==========================================================================
@@ -118,7 +118,7 @@ using pin_in_out = _box_creator< _pin_in_out< p, pin > >;
 // ==========================================================================
 
 template< uint_fast64_t pin >
-struct _pin_adc :
+struct _pin_adc_foundation :
    _adc_root< 10 >
 {
 	
@@ -151,7 +151,7 @@ struct _pin_adc :
 // ========= ADC pin constructor used in the actual targets
 
 template< uint_fast64_t pin >
-using pin_adc = _adc_creator< _pin_adc< pin > > ;
+using pin_adc = _adc_builder< _pin_adc_foundation< pin > > ;
 
 
 // ==========================================================================
@@ -163,7 +163,7 @@ using pin_adc = _adc_creator< _pin_adc< pin > > ;
 // ==========================================================================
 
 
-struct _uart :
+struct _uart_foundation :
    _stream_out_root< char >,
    _stream_in_root< char >
 {
@@ -199,7 +199,7 @@ struct _uart :
    }   
 };
 
-using uart = _stream_creator< _uart >;
+using uart = _stream_builder< _uart_foundation >;
 
 
 // ==========================================================================

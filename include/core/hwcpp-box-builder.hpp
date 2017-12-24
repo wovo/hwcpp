@@ -4,10 +4,8 @@
 //
 // creators for box classes
 //
-// A box creator adds the missing functions to a box that has 
-// either only direct functions, or only buffered functions.
-// This is used by for instance the HALs 
-// to create a full GPIO pin or ADC from a minimal one.
+// A box creator adds the missing functions to a box foundation
+// (which has either only direct functions, or only buffered functions).
 //
 // ==========================================================================
 //
@@ -39,20 +37,20 @@ concept bool _box_has_out_direct = requires(
 };   
 
 template< typename T >
-struct _box_creator_add_out_buffered : T {};
+struct _box_add_out_buffered_wrapper : T {};
 
 template< _box_has_out_direct T >
-struct _box_creator_add_out_buffered< T > : T {
+struct _box_add_out_buffered_wrapper< T > : T {
 	
-   using _value_type = typename T::value_type;
+   using _vt = typename T::value_type;
 	
-   static void HWLIB_INLINE set( _value_type v ){
+   static void HWLIB_INLINE set( _vt v ){
        T::set_direct( v );
    }
    
    // set_direct provided by T
    
-   static void HWLIB_INLINE set_buffered( _value_type v ){
+   static void HWLIB_INLINE set_buffered( _vt v ){
        T::set_direct( v );
    }
    
@@ -76,19 +74,19 @@ concept bool _box_has_out_buffered = requires(
 };   
 
 template< typename T >
-struct _box_creator_add_out_direct : T {};
+struct _box_add_out_direct_wrapper : T {};
 
 template< _box_has_out_buffered T >
-struct _box_creator_add_out_direct< T > : T {
+struct _box_add_out_direct_wrapper< T > : T {
 	
-   using _value_type = typename T::value_type;	
+   using _vt = typename T::value_type;	
    
-   static void HWLIB_INLINE set( _value_type v ){
+   static void HWLIB_INLINE set( _vt v ){
        T::set_buffered( v );
        T::flush();
    }
    
-   static void HWLIB_INLINE set_direct( _value_type v ){
+   static void HWLIB_INLINE set_direct( _vt v ){
        T::set_buffered( v );
        T::flush();
    }
@@ -113,20 +111,20 @@ concept bool _box_has_in_direct = requires {
 };   
 
 template< typename T >
-struct _box_creator_add_in_buffered : T {};
+struct _box_add_in_buffered_wrapper : T {};
 
 template< _box_has_in_direct T >
-struct _box_creator_add_in_buffered< T > : T {
+struct _box_add_in_buffered_wrapper< T > : T {
 	
-   using _value_type = typename T::value_type;	
+   using _vt = typename T::value_type;	
 	
-   static _value_type HWLIB_INLINE get(){
+   static _vt HWLIB_INLINE get(){
       return T::get_direct();
    }       
    
   // get_direct provided by T
    
-   static _value_type HWLIB_INLINE get_buffered(){
+   static _vt HWLIB_INLINE get_buffered(){
       return T::get_direct();
    }       
    
@@ -150,19 +148,19 @@ concept bool _box_has_in_buffered = requires(
 };   
 
 template< typename T >
-struct _box_creator_add_in_direct : T {};
+struct _box_add_in_direct_wrapper : T {};
 
 template< _box_has_in_buffered T >
-struct _box_creator_add_in_direct< T > : T {
+struct _box_add_in_direct_wrapper< T > : T {
 	
-   using _value_type = typename T::value_type;	
+   using _vt = typename T::value_type;	
    
-   static _value_type HWLIB_INLINE get(){
+   static _vt HWLIB_INLINE get(){
       T::refresh();       
       return T::get_buffered();
    }      
    
-   static _value_type HWLIB_INLINE get_direct(){
+   static _vt HWLIB_INLINE get_direct(){
       T::refresh();       
       return T::get_buffered();
    }      
@@ -189,10 +187,10 @@ concept bool _box_has_direction_direct = requires(
 };   
 
 template< typename T >
-struct _box_creator_add_direction_buffered : T {};
+struct _box_add_direction_buffered_wrapper : T {};
 
 template< _box_has_direction_direct T >
-struct _box_creator_add_direction_buffered< T > : T {
+struct _box_add_direction_buffered_wrapper< T > : T {
 	
    static void HWLIB_INLINE direction_set( pin_direction d ){
       T::direction_set_direct( d );       
@@ -224,10 +222,10 @@ concept bool _box_has_direction_buffered = requires(
 };   
 
 template< typename T >
-struct _box_creator_add_direction_direct : T {};
+struct _box_add_direction_direct_wrapper : T {};
 
 template< _box_has_direction_buffered T >
-struct _box_creator_add_direction_direct< T > : T {
+struct _box_add_direction_direct_wrapper< T > : T {
    
    static void HWLIB_INLINE direction_set( pin_direction d ){
       T::direction_set_buffered( d ); 
@@ -254,10 +252,10 @@ struct _box_creator_add_direction_direct< T > : T {
 // ==========================================================================
 
 template< typename T >
-using _box_creator = 
-   _box_creator_add_out_buffered<
-      _box_creator_add_out_direct<
-   _box_creator_add_in_buffered<
-      _box_creator_add_in_direct<
-   _box_creator_add_direction_buffered<
-      _box_creator_add_direction_direct< T > > > > > >;
+using _box_builder = 
+   _box_add_out_buffered_wrapper<
+      _box_add_out_direct_wrapper<
+   _box_add_in_buffered_wrapper<
+      _box_add_in_direct_wrapper<
+   _box_add_direction_buffered_wrapper<
+      _box_add_direction_direct_wrapper< T > > > > > >;

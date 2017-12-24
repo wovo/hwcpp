@@ -42,10 +42,10 @@ concept bool is_adc = requires {
    { T::get() } -> typename T::value_type;
    { T::get_direct() } -> typename T::value_type;
    { T::get_buffered() } -> typename T::value_type;
-   { T::invalidate() } -> void;    
+   { T::refresh() } -> void;    
 };
 
 template< typename T >
-struct _adc_creator : 
-   _box_creator< T >  
+struct _adc_builder : 
+   _box_builder< T >  
 {};

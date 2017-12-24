@@ -1,6 +1,6 @@
 // ==========================================================================
 //
-// file : hwcpp-buffering.hpp
+// file : hwcpp-bs-buffering.hpp
 //
 // enable/disable buffering decorators for boxes and streams
 //
@@ -65,10 +65,10 @@ struct _direct_box_out_wrapper< T > : T {
 // ========== buffer read
 
 template< typename T >
-struct _buffered_out_wrapper : T {};
+struct _buffered_stream_out_wrapper : T {};
 
 template< _has_stream_out_functions T >
-struct _buffered_stream_wrapper< T > : T {
+struct _buffered_stream_out_wrapper< T > : T {
 	
    using _vt = typename T::value_type;	
    
@@ -99,10 +99,8 @@ struct _buffered_box_in_wrapper : T {};
 
 template< _has_box_in_functions T >
 struct _buffered_box_in_wrapper< T > : T {
-	
-   using _vt = typename T::value_type;	
    
-   static _vt HWLIB_INLINE get(){
+   static auto HWLIB_INLINE get(){
       return T::get_buffered();
    }	  
 };
@@ -112,12 +110,10 @@ struct _buffered_box_in_wrapper< T > : T {
 template< typename T >
 struct _direct_box_in_wrapper : T {};
 
-template< _has_box_out_functions T >
+template< _has_box_in_functions T >
 struct _direct_box_in_wrapper< T > : T {
-	
-   using _vt = typename T::value_type;	
    
-   static _vt HWLIB_INLINE get(){
+   static auto HWLIB_INLINE get(){
       return T::get_direct();
    }  
 };
@@ -129,10 +125,8 @@ struct _buffered_stream_in_wrapper : T {};
 
 template< _has_stream_in_functions T >
 struct _buffered_stream_in_wrapper< T > : T {
-	
-   using _vt = typename T::value_type;	
-   
-   static _vt HWLIB_INLINE read(){
+	   
+   static auto HWLIB_INLINE read(){
       return T::read_buffered();
    }	  
 };
@@ -142,12 +136,10 @@ struct _buffered_stream_in_wrapper< T > : T {
 template< typename T >
 struct _direct_stream_in_wrapper : T {};
 
-template< _has_stream_out_functions T >
+template< _has_stream_in_functions T >
 struct _direct_stream_in_wrapper< T > : T {
-	
-   using _vt = typename T::value_type;	
    
-   static _vt HWLIB_INLINE read(){
+   static auto HWLIB_INLINE read(){
       return T::read_direct();
    }  
 };
@@ -187,19 +179,21 @@ struct _direct_direction_wrapper< T > : T {
 //
 // ==========================================================================
 
+template< typename T > struct f : T {};
+
 template< typename T >
 using buffered = 
    _buffered_box_in_wrapper< 
    _buffered_box_out_wrapper< 
    _buffered_stream_in_wrapper< 
    _buffered_stream_out_wrapper< 
-   _buffered_direction_wrapper< T > > >;
+   _buffered_direction_wrapper< T > > > > >;
    
 template< typename T >
 using direct = 
    _direct_box_in_wrapper< 
    _direct_box_out_wrapper< 
    _direct_stream_in_wrapper< 
-   _direct_steram_out_wrapper< 
-   _direct_direction_wrapper< T > > >;
+   _direct_stream_out_wrapper< 
+   _direct_direction_wrapper< T > > > > >;
    

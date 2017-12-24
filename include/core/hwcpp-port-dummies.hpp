@@ -2,7 +2,7 @@
 //
 // file : hwcpp-port-dummies.hpp
 //
-// do-nothing ports
+// dummy (do-nothing) ports
 //
 // PUBLIC
 //
@@ -19,82 +19,36 @@
 //
 // ==========================================================================
 
-// ========= port out 
 
-template< int n > 
-struct port_out_dummy: 
-   _port_out_root< n > 
-{
-   using _value_type = typename _port_out_root< n >::value_type;
-   
-   static void init(){}
-   
-   static void set( _value_type v ){ (void) v; }
-   static void set_direct( _value_type v ){ (void) v; }
-   static void set_buffered( _value_type v ){ (void) v; }
-   static void flush(){}
-};
-
-// ========= port in
-
-template< int n > 
-struct port_in_dummy :
-   _port_in_root< n > 
-{
-   using _value_type = typename _port_in_root< n >::value_type;
-   
-   static void init(){}
-   
-   static _value_type get(){ return 0; }
-   static _value_type get_direct(){ return 0; }
-   static _value_type get_buffereh(){ return 0; }
-   static void refresh(){}
-};
-
-// ========= port in out
-
-template< int n > 
-struct port_in_out_dummy : 
+template< int n >
+struct _port_in_out_dummy_foundation : 
    _port_in_out_root< n > 
-{
-   using _value_type = typename _port_in_out_root< n >::value_type;
-   
-   static void init(){}
-   
-   static void set( _value_type v ){  (void) v; }
-   static void set_direct( _value_type v ){  (void) v; }
-   static void set_buffered( _value_type v ){  (void) v; }
-   static void flush(){}
+{   
 
-   static _value_type get(){ return 0; }
-   static _value_type get_direct(){ return 0; }
-   static _value_type get_buffered(){ return 0; }
-   static void refresh(){}
-   
-   static void direction_set( pin_direction d ) { (void) d; }
-   static void direction_set_direct( pin_direction d ) {  (void) d; }
-   static void direction_set_buffered( pin_direction d ) {  (void) d; }
-   static void direction_flush() {}
+   using _vt = typename _port_out_root< n >::value_type;
+
+   static void HWLIB_INLINE set_direct( _vt v ){ 
+      (void) v; 
+   }      
+	  
+   static _vt HWLIB_INLINE get_direct(){ 
+      return 0; 
+   }      
+	  
+   static void HWLIB_INLINE direction_set_direct( pin_direction d ){
+      (void) d; 
+   }
 };
 
-// ========= port oc
+template< int n >
+using port_in_out_dummy  
+   = port_in_out< _box_builder< _port_in_out_dummy_foundation< n > > >;
 
-template< int n > 
-struct port_oc_dummy : 
-   _port_oc_root< n > 
-{
-   using _value_type = typename _port_in_out_root< n >::value_type;
-   
-   static void init(){}
-   
-   static void set( _value_type v ){ (void) v; }
-   static void set_direct( _value_type v ){ (void) v; }
-   static void set_buffered( _value_type v ){ (void) v; }
-   static void flush(){}
+template< int n >
+using port_out_dummy = port_out< port_in_out_dummy< n > >;  
 
-   static _value_type get(){ return 0; }
-   static _value_type get_direct(){ return 0; }
-   static _value_type get_buffered(){ return 0; }
-   static void refresh(){}
-};
+template< int n >
+using port_in_dummy  = port_out< port_in_out_dummy< n > >;      
 
+template< int n >
+using port_oc_dummy  = port_out< port_in_out_dummy< n > >;      
