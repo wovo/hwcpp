@@ -25,19 +25,20 @@
 // ==========================================================================
 
 template< typename T >
-concept bool co_stream() = _requires {
-	{ return T::_is_stream_out< char > };
-}
+concept bool is_stream_out_char = requires {
+	_is_stream_out< T >;
+//    { T::value_type } -> char;
+};
 
-stuct formatted_co_stream_root {
-   static constexpr bool is_formatted_co_stream_tag = true;
-};   
+struct stream_out_char_formatted_root {
+   static constexpr bool _is_stream_out_char_formatted_tag = true;
+};
 
 template< typename T >
-concept bool formatted_co_stream() = _requires {
-   { return T::co_stream< T >; };
-   { return T::is_formatted_co_stream_tag; };	
-}
+concept bool is_stream_out_char_formatted = requires {
+   is_stream_out_char< T >;
+   T::_is_stream_out_char_formatted_tag;
+};
 
 
 // ==========================================================================
@@ -46,7 +47,7 @@ concept bool formatted_co_stream() = _requires {
 //
 // ==========================================================================
 
-struct _co_stream_formatting {
+struct _formatting {
 	
    bool align_right;
    bool show_pos;
@@ -59,7 +60,7 @@ struct _co_stream_formatting {
    uint_fast16_t field_width;
    uint_fast16_t numerical_radix;
    
-   constexpr ostream_base():
+   constexpr _formatting():
       align_right( true ), 
       show_pos( false ),
       bool_alpha( false ),
@@ -72,7 +73,7 @@ struct _co_stream_formatting {
       numerical_radix( 10 )
    {}	  
    
-   int_fast16_t fill_count( bool left, int_fast16_t len ){
+   int_fast16_t fill_count( bool left, int_fast16_t len ){      
       return ( left == align_right ) ? field_width - len : 0;
    }
    
@@ -90,7 +91,7 @@ struct _co_stream_formatting {
 //
 // ==========================================================================
 
-template< unit64_t max_length >
+template< uint64_t max_length >
 struct _print_reverse {
    char body[ max_length + 1 ];
    char *content;
@@ -118,9 +119,9 @@ struct _print_reverse {
       add_char( c );
    }
          
-   void add_prefix( const _co_stream_formatting & format ){
+   void add_prefix( const _formatting & format ){
       if( format.show_base ){
-         switch( s.numerical_radix ){
+         switch( format.numerical_radix ){
             case 2  : add_char( 'b' ); break;
             case 8  : add_char( 'o' ); break;
             case 10 : return;
@@ -139,101 +140,106 @@ struct _print_reverse {
 //
 // ==========================================================================
 
-template< typename T >
+uint_fast16_t __attribute__ ((pure)) _strlen( const char *s ){
+   uint_fast16_t n = 0;
+   while( *s++ ){ ++n; }
+   return n;
+}
+
+template< is_stream_out_char T >
 struct formatter :
-   formatted_co_stream_root
+   stream_out_char_formatted_root
 {
+    
+   inline static _formatting format;
    
-   static void HWLIB_INLINE ostream(){
-      T::init();	   
+   static void init(){
+      T::init();       
    }
    
    static void HWLIB_INLINE write( char c ){
       T::write( c );
    }	  
    
+   static void HWLIB_INLINE fill( int_fast16_t n ){
+      while( n-- > 0 ){
+         T::write( format.fill_char );
+      }         
+   }	  
+   
    template< typename lambda >
-   ostream & print_aligned( int_fast16_t field_len, lambda print_field ){	
-      fill( fill_count( true, field_len ));   
+   static void print_aligned( int_fast16_t field_len, lambda print_field ){	
+      fill( format.fill_count( true, field_len ) );   
 	  print_field();
-      fill( fill_count( false, field_len ));
-      field_width = 0;	  
-      return *this;	  
+      fill( format.fill_count( false, field_len ) );
+      format.field_width = 0;	    
    }
    
-   uint_fast16_t __attribute__ ((pure)) strlen( const char *s ){
-      uint_fast16_t n = 0;
-      while( *s++ ){ ++n; }
-      return n;
-   }
-   
-   ostream & print_aligned( const char * s ){	
-      return print_aligned( 
-         strlen( s ), 
+   static void write( const char * s ){	
+      print_aligned( 
+         _strlen( s ), 
 	     [&](){ 
 		    for( const char *p = s; *p != '\0'; p++ ){
-               putc( *p );
+               write( *p );
             }   
          }
       );  
    }
    
-   ostream & print_aligned( bool v ){	 
-      return print_aligned( bool_rep( v ) );
+   static void print_aligned( bool v ){	 
+      print_aligned( format.bool_rep( v ) );
    }   
       
-   ostream & print_int( int x ){
-         _print_reverse s;
+   static void print_int( int x ){
+         _print_reverse< 70 > s;
          
          bool minus = ( x < 0 );
          if( x > 0 ){ x = -x; }
        
          if( x == 0 ){
-            s.add_digit( 0, hex_base );
+            s.add_digit( 0, format.hex_base );
          }
 		 
          while( x != 0 ){
-            s.add_digit( (char) ( ( - x ) % numerical_radix ), hex_base );
-            x = - ( - x / numerical_radix );
+            s.add_digit( (char) ( ( - x ) % format.numerical_radix ), format.hex_base );
+            x = - ( - x / format.numerical_radix );
          }
 		 
-         s.add_prefix( *this );
+         s.add_prefix( format );
          
          if( minus ){
             s.add_char( '-' );
-         } else if( show_pos ){
+         } else if( format.show_pos ){
             s.add_char( '+' );
          }        
          
          print_aligned( s.content );
-         return *this;
       }   
 
-   ostream & print_int( int64_t x ){
-         _print_reverse s;
+   static void print_int( int64_t x ){
+         _print_reverse< 70 > s;
          
          bool minus = ( x < 0 );
          if( x > 0 ){ x = -x; }
        
          if( x == 0 ){
-            s.add_digit( 0, hex_base );
+            s.add_digit( 0, format.hex_base );
          }
 		 
          while( x != 0 ){
-            s.add_digit( (char) ( ( - x ) % numerical_radix ), hex_base );
-            x = - ( - x / numerical_radix );
+            s.add_digit( (char) ( ( - x ) % format.numerical_radix ), format.hex_base );
+            x = - ( - x / format.numerical_radix );
          }
 		 
-         s.add_prefix( *this );
+         s.add_prefix( format );
          
          if( minus ){
             s.add_char( '-' );
-         } else if( show_pos ){
+         } else if( format.show_pos ){
             s.add_char( '+' );
          }        
          
          print_aligned( s.content );
-         return *this;
       }   
 
 };

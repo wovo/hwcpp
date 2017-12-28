@@ -44,7 +44,7 @@ struct _stream_root :
    not_instantiable
 {
    using value_type = T;  
-   static constexpr bool is_stream_tag = true;
+   static constexpr bool _is_stream_tag = true;
 };
 
 // ========= stream out
@@ -53,7 +53,7 @@ template< typename T >
 struct _stream_out_root :
    _stream_root< T >
 {
-   static constexpr bool is_stream_out_tag = true;
+   static constexpr bool _is_stream_out_tag = true;
 };
 
 // ========= stream in
@@ -62,7 +62,7 @@ template< typename T >
 struct _stream_in_root :
    _stream_root< T >
 {
-   static constexpr bool is_stream_in_tag = true;
+   static constexpr bool _is_stream_in_tag = true;
 };
 
 // ========= stream in out
@@ -71,9 +71,9 @@ template< typename T >
 struct _stream_in_out_root :
    _stream_root< T >
 {
-   static constexpr bool is_stream_out_tag = true;
-   static constexpr bool is_stream_in_tag = true;
-   static constexpr bool is_stream_in_out_tag = true;
+   static constexpr bool _is_stream_out_tag = true;
+   static constexpr bool _is_stream_in_tag = true;
+   static constexpr bool _is_stream_in_out_tag = true;
 };
 
 
@@ -121,7 +121,7 @@ concept bool _has_stream_in_functions = requires {
 
 template< typename T >
 concept bool _is_stream_out = requires {
-   T::is_stream_out_tag;
+   T::_is_stream_out_tag;
    _has_init_function< T >;
    _has_stream_out_functions< T >;
 };
@@ -130,7 +130,7 @@ concept bool _is_stream_out = requires {
 
 template< typename T >
 concept bool _is_stream_in = requires {
-   T::is_stream_in_tag;
+   T::_is_stream_in_tag;
    _has_init_function< T >;
    _has_stream_in_functions< T >;  
 };
@@ -139,7 +139,7 @@ concept bool _is_stream_in = requires {
 
 template< typename T >
 concept bool _is_stream_in_out = requires {   
-   T::is_stream_in_out_tag;
+   T::_is_stream_in_out_tag;
    _has_init_function< T >;
    _has_stream_out_functions< T >;    
    _has_stream_in_functions< T >;    

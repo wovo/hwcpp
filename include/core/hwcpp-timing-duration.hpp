@@ -16,56 +16,7 @@
 // ==========================================================================
 
 
-// ==========================================================================
-//
-// PUBLIC
-//
-// duration class
-//
-// The most basic duration: offers only wait() 
-// and, of course, a (dummy) exclusive<>
-//
-// ==========================================================================
-
-template< 
-   typename _timing,
-   typename _timing::ticks_type _ticks
-> 
-struct duration :
-   not_instantiable
-{
-   static constexpr bool is_duration_tag = true;
-   
-   using ticks_type = typename _timing::ticks_type;
-   using ns_type    = typename _timing::ns_type;
-   
-   static constexpr ticks_type ticks  = _ticks;
-   static constexpr ns_type ns        = _timing::ns_from_ticks( _ticks );
-   
-   static void init(){
-      _timing::init();
-   }	  
-   
-   static void wait(){
-      _timing:: template wait< ticks >();
-   }	  
-   
-   template< typename T >
-   struct exclusive {};
-};
-
-template< typename T >
-concept bool is_duration = requires(
-   typename T::ticks_type t   
-){
-   T::is_duration_tag;
-   
-   { T::ticks  } -> typename T::ticks_type;
-   { T::ns     } -> typename T::ns_type;
-   { T::init() } -> void;
-   { T::wait() } -> void;   
-   //{ typename T:: template exclusive< R > }
-};
+/*
 
 
 // ==========================================================================
@@ -113,3 +64,5 @@ concept bool is_duration_with_polling = requires (
    { template callback< m >::init() } -> void
  
 };
+
+*/

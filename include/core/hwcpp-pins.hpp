@@ -40,7 +40,7 @@ struct _pin_out_root :
    _box_out_root< bool >,
    _pin_common_root
 {
-   static constexpr bool is_pin_out_tag = true;
+   static constexpr bool _is_pin_out_tag = true;
 };
 
 // ========= pin in 
@@ -49,7 +49,7 @@ struct _pin_in_root :
    _box_in_root< bool >,
    _pin_common_root
 {
-   static constexpr bool is_pin_in_tag = true;
+   static constexpr bool _is_pin_in_tag = true;
 };
 
 // ========= pin in out 
@@ -58,7 +58,7 @@ struct _pin_in_out_root :
    _box_in_out_root< bool >,
    _pin_common_root
 {
-   static constexpr bool is_pin_in_out_tag = true;
+   static constexpr bool _is_pin_in_out_tag = true;
 };
 
 // ========= pin oc 
@@ -68,7 +68,7 @@ struct _pin_oc_root :
    _box_in_root< bool >,
    _pin_common_root
 {
-   static constexpr bool is_pin_oc_tag = true;
+   static constexpr bool _is_pin_oc_tag = true;
 };
 
 
@@ -89,7 +89,8 @@ struct _pin_oc_root :
 
 template< typename T >
 concept bool is_pin_out = requires {
-   T::is_pin_out_tag;
+   T::_is_box_out_tag;
+   T::_is_pin_out_tag;
    _has_init_function< T >;
    _has_box_out_functions< T >;
 };
@@ -98,7 +99,8 @@ concept bool is_pin_out = requires {
 
 template< typename T >
 concept bool is_pin_in = requires {
-   T::is_pin_in_tag;
+   T::_is_box_in_tag;
+   T::_is_pin_in_tag;
    _has_init_function< T >;
    _has_box_in_functions< T >;  
 };
@@ -107,7 +109,8 @@ concept bool is_pin_in = requires {
 
 template< typename T >
 concept bool is_pin_in_out = requires {   
-   T::is_pin_in_out_tag;
+   T::_is_box_in_out_tag;
+   T::_is_pin_in_out_tag;
    _has_init_function< T >;
    _has_box_direction_functions< T >;    
    _has_box_out_functions< T >;    
@@ -118,7 +121,9 @@ concept bool is_pin_in_out = requires {
 
 template< typename T >
 concept bool is_pin_oc = requires {
-   T::is_pin_oc_tag;
+   T::_is_box_in_tag;
+   T::is_box_out_tag;
+   T::_is_pin_oc_tag;
    _has_init_function< T >;  
    _has_box_out_functions< T >;    
    _has_box_in_functions< T >;  	  

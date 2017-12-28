@@ -4,5 +4,5 @@ using target = hwcpp::target<>;
 using timing = target::waiting;
 
 int main(){ 
-   hwcpp::blink< target::led, timing::ms< 200 > >();
+   hwcpp::blink< target::_led, timing::ns< 1500 > >();
 }

@@ -50,6 +50,9 @@ The compilers I currently use are (gcc 7.2.0):
 -----------------------------------------------------------------------------
 
 Notes & ToDo
+- re-create duplicate concept problem
+- arduino uno longer waits take 8-byte arithmetic, even when constant
+- atmega328 restore uart stream
 - concepts for duration are not complete
 - concepts for box builder parameter
 - format STM32 HAL

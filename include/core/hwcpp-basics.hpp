@@ -39,6 +39,8 @@ constexpr char version[] = "V0.1 2017-12-23 work-in-progress";
    
 #define HWLIB_INLINE __attribute__((always_inline))
 
+#define HWLIB_NO_INLINE __attribute__((noinline))
+
 
 // ==========================================================================
 //

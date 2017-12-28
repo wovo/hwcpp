@@ -4,8 +4,8 @@
 //
 // ==========================================================================
 
-template< can_pin_out pin, is_interval interval >
-[[noreturn]] void blink(){
+template< is_pin_in_out pin, is_duration interval >
+[[noreturn]] void HWLIB_INLINE blink(){
    using led = pin_out< pin >;    
    led::init();
    interval::init();
@@ -17,8 +17,8 @@ template< can_pin_out pin, is_interval interval >
    }
 }
 
-template< can_pin_out pin, is_interval interval_high, is_interval interval_low >
-[[noreturn]] void blink(){
+template< can_pin_out pin, is_duration interval_high, is_duration interval_low >
+[[noreturn]] void HWLIB_INLINE blink(){
    using led = pin_out< pin >;    
    led::init();
    interval_high::init();
@@ -31,8 +31,21 @@ template< can_pin_out pin, is_interval interval_high, is_interval interval_low >
    }
 }
 
-template< can_port_out _port, is_interval interval >
-[[noreturn]] void kitt(){
+template< can_port_out _port, is_duration interval >
+[[noreturn]] void HWLIB_INLINE walk(){
+   using port = hwcpp::port_out< _port >;	
+   port::init();
+   interval::init();
+   for(;;){
+      for( uint_fast8_t  i = 0; i < port::n_pins; ++i ){
+         port::set_direct( (typename port::value_type) ( 0x01 << i ) );      
+         interval::wait(); 
+      }
+   }      
+}
+
+template< can_port_out _port, is_duration interval >
+[[noreturn]] void HWLIB_INLINE kitt(){
    using port = hwcpp::port_out< _port >;	
    port::init();
    interval::init();

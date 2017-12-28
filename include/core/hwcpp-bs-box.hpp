@@ -203,7 +203,7 @@ struct _box_in_out_interval_root :
 // ========= box out interval
 
 template< typename T >
-concept bool _is_box_interval_out = requires {
+concept bool _is_box_out_interval = requires {
    T::_is_box_out_interval_tag;
    _has_init_function< T >;
    _has_box_out_functions< T >;
@@ -221,7 +221,7 @@ concept bool _is_box_in_interval = requires {
 // ========= box in out interval 
 
 template< typename T >
-concept bool _is_box_in_out = requires {   
+concept bool _is_box_in_out_interval = requires {   
    T::_is_box_in_out_interval_tag;
    _has_init_function< T >;
    _has_box_direction_functions< T >;    

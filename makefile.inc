@@ -79,12 +79,12 @@ HEADERS           += hwcpp-stream-out-formatting.hpp
 HEADERS           += hwcpp-stream-object.hpp 
 
 HEADERS           += hwcpp-timing.hpp 
+HEADERS           += hwcpp-timing-waiting.hpp 
 //HEADERS           += hwcpp-timing-ticker.hpp 
 
 HEADERS           += hwcpp-i2c.hpp 
 HEADERS           += hwcpp-console.hpp 
 HEADERS           += hwcpp-string.hpp 
-HEADERS           += hwcpp-demos.hpp 
 
 
 # HwCpp supported external chips
@@ -93,11 +93,15 @@ HEADERS           += hwcpp-pcf8574.hpp
 HEADERS           += hwcpp-hd44780.hpp 
 
 
-# HwCpp supported arduyino shields
+# HwCpp supported arduino shields
 
 HEADERS           += hwcpp-lcd-buttons.hpp 
 HEADERS           += hwcpp-joystick-buttons.hpp 
 
+# etc
+
+HEADERS           += hwcpp-demos.hpp 
+HEADERS           += hwcpp-tests.hpp 
 
 # HwCpp HAL files
 

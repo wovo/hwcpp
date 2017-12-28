@@ -15,6 +15,8 @@
 
 namespace hwcpp {
     
+extern "C" void HWLIB_NO_INLINE _hwlib_avr_ret(){}
+    
 template< uint64_t clock >	
 struct chip_atmega328 {
 	
@@ -167,6 +169,8 @@ struct _uart_foundation :
    _stream_out_root< char >,
    _stream_in_root< char >
 {
+    
+   using value_type = char; // would otherwise be ambiguous
 	
    static void init(){   
 	   
@@ -199,7 +203,7 @@ struct _uart_foundation :
    }   
 };
 
-using uart = _stream_builder< _uart_foundation >;
+using uart = formatter< _stream_builder< _uart_foundation >>;
 
 
 // ==========================================================================
@@ -211,38 +215,127 @@ using uart = _stream_builder< _uart_foundation >;
 // ==========================================================================
 
 struct _waiting :
-   _waiting_root< uint_fast32_t, std::ratio< clock, 16 > >
+   _timing_waiting_foundation< std::ratio< clock, 1 > >
 {
+	
+   static void init(){
+      chip_atmega328< clock >::init();
+   }	
 
-   static void wait_us_asm( int n ){ 
+   // call overhead is LDI, LDI, CALL, CP, CPC, BRGE/t, RET => 15
+   static constexpr auto call_overhead = 15;
+   static constexpr auto chunk = 8192;
+   static constexpr auto one_loop = 7;
+
+   static void wait_ticks_asm( int n ){ 
        // first int parameter is passd in r24/r25
-       __asm volatile(                   // clocks
-          "1:  cp    r1, r24     \t\n"   // 1
-          "    cpc   r1, r25     \t\n"   // 1
-          "    brge  3f          \t\n"   // 1
-          "    rcall 3f          \t\n"   // 7
-          "    rjmp  2f          \t\n"   // 2
-          "2:  sbiw  r24, 0x01   \t\n"   // 2
-          "    rjmp  1b          \t\n"   // 2
-          "3:                    \t\n"   // 16 total
-          : : "r" ( n )                  // reads n
+       __asm volatile(                       // clocks
+          "1:  cp    r1, r24         \t\n"   // 1
+          "    cpc   r1, r25         \t\n"   // 1
+          "    brge  2f              \t\n"   // 1
+          "    sbiw  r24, 7          \t\n"   // 2 
+          "    rjmp  1b              \t\n"   // 2
+          "2:                        \t\n"   // 7 total
+          : : "r" ( n )                      // uses (reads) n
       ); 
    }
 
-   static void wait_ticks( uint_fast32_t n ){
+   static void HWLIB_NO_INLINE wait_ticks_function( ticks_type n ){     
 
-      const auto chunk = 8192;
       while( n > chunk ){
-         wait_us_asm( chunk );
+         wait_ticks_asm( chunk - call_overhead );
          n -= chunk;  
       }
       if( n > 0 ){
-         wait_us_asm( n );
+         wait_ticks_asm( n - call_overhead );
       }
    }  
+   
+   template< ticks_type n >
+   static void HWLIB_INLINE small_delay(){
+       
+      static_assert( n < 16 );
+       
+      if constexpr ( n > 7 ){
+         __asm volatile(                  
+            "call _hwlib_avr_ret"     
+         );        
+      }
+
+      constexpr ticks_type t = ( n % 8 );   
+       
+      if constexpr ( t  == 0 ){
+         // nothing
+         
+      } else if constexpr ( t == 1 ){
+         __asm volatile(                  
+            "   nop     \t\n"  
+         );           
+              
+      } else if constexpr ( t == 2 ){
+         __asm volatile(                  
+            "   rjmp 1f     \t\n"  
+            "1:             \t\n"   
+         );           
+         
+      } else if constexpr ( t == 3 ){
+         __asm volatile(                  
+            "   rjmp 1f     \t\n"  
+            "1: nop         \t\n"   
+         );           
+         
+      } else if constexpr ( t == 4 ){
+         __asm volatile(                  
+            "   rjmp 1f     \t\n"  
+            "1: rjmp 2f     \t\n"   
+            "2:             \t\n"   
+         );           
+         
+      } else if constexpr ( t == 5 ){
+         __asm volatile(                  
+            "   rjmp 1f     \t\n"  
+            "1: rjmp 2f     \t\n"   
+            "2: nop         \t\n"   
+         );           
+         
+      } else if constexpr ( t == 6 ){
+         __asm volatile(                  
+            "   rjmp 1f     \t\n"  
+            "1: rjmp 2f     \t\n"   
+            "2: rjmp 3f     \t\n"   
+            "3:             \t\n"   
+         );           
+         
+      } else if constexpr ( t == 7 ){
+         __asm volatile(                  
+            "   rjmp 1f     \t\n"  
+            "1: rjmp 2f     \t\n"   
+            "2: rjmp 3f     \t\n"   
+            "3: nop         \t\n"   
+         );           
+         
+      }
+   }
+   
+   template< ticks_type t >
+   static void HWLIB_INLINE wait_ticks_template(){
+      if constexpr ( t < call_overhead ){    
+          small_delay< t >();
+          
+      } else if constexpr ( t <= chunk ){  
+
+         constexpr ticks_type remaining = t - call_overhead;
+          
+         small_delay< remaining % one_loop >();
+         wait_ticks_asm( remaining - ( remaining % one_loop) );   
+         
+      } else {
+         wait_ticks_function( t ); 
+      }         
+   };	  
 };
 
-using waiting = _waiting_creator< _waiting >;   
+using waiting = _timing_waiting_builder< _waiting >;   
 
 }; // struct atmega328
 

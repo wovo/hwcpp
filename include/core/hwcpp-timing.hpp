@@ -3,44 +3,68 @@
 // file : hwcpp-timing.hpp
 //
 // ==========================================================================
+//
+// This file is part of HwCpp, 
+// a C++ library for close-to-the-hardware programming.
+//
+// Copyright Wouter van Ooijen 2017
+// 
+// Distributed under the Boost Software License, Version 1.0.
+// (See the accompanying LICENSE_1_0.txt in the root directory of this
+// library, or a copy at http://www.boost.org/LICENSE_1_0.txt)
+//
+// ==========================================================================
+
+// ========== types used for durations
 
 using ticks_type  = uint_fast64_t;
 using ns_type     = uint_fast64_t;
 
 
-/*
 // ==========================================================================
 //
 // PUBLIC
 //
 // duration class
 //
-// The most basic duration: offers only waiting
+// The minimal duration: offers only the constants,
+// wait(), exclusive, and a link to its service.
 //
 // ==========================================================================
 
-struct is_duration_root< 
-   typename _ticks_type, 
-   typename _ticks_frequency 
- > :
+template< 
+   ticks_type _ticks,
+   ns_type    _ns
+> 
+struct duration_root :
    not_instantiable
 {
    static constexpr bool is_duration_tag = true;
-   using ticks_type       = _ticks_type;
-   using ticks_frequency  = _ticks_frequency;   
+   
+   static constexpr ticks_type ticks  = _ticks;
+   static constexpr ns_type ns        = _ns;
+   
 };
 
+// ========== concept
+
 template< typename T >
-concept bool is_duration() = requires { 
-   return T::is_duration_tag;
+concept bool is_duration = requires(
+   typename T::ticks_type t   
+){
+   T::is_duration_tag;
    
-   { T::ticks } -> typename T::ticks_type;
-   
+   { T::ticks  } -> ticks_type;
+   { T::ns     } -> ns_type;
    { T::init() } -> void;
-   
    { T::wait() } -> void;   
    
-}
+   // exclusive
+};
+
+
+/*
+
 
 
 // ==========================================================================

@@ -139,14 +139,15 @@ namespace hwcpp {
    
    // ======== streams
    
-//   #include "core/hwcpp-stream-builder.hpp"
-//   #include "core/hwcpp-stream-out-formatting.hpp"
-//   #include "core/hwcpp-stream-object.hpp"
+   #include "core/hwcpp-stream-builder.hpp"
+   #include "core/hwcpp-stream-out-formatting.hpp"
+   #include "core/hwcpp-stream-object.hpp"
    
    // ======== timing
    
    #include "core/hwcpp-timing.hpp"
-   #include "core/hwcpp-timing-duration.hpp"
+   #include "core/hwcpp-timing-waiting.hpp"
+//   #include "core/hwcpp-timing-duration.hpp"
 //   #include "core/hwcpp-timing-waiting.hpp"
 //   #include "core/hwcpp-timing-clock.hpp"
    
@@ -156,7 +157,6 @@ namespace hwcpp {
 //   #include "core/hwcpp-console.hpp"
 //   #include "core/hwcpp-string.hpp"
    
-//   #include "core/hwcpp-demos.hpp"
    
 //   #include "chips/hwcpp-pcf8574.hpp"
 //   #include "chips/hwcpp-hd44780.hpp"
@@ -168,6 +168,9 @@ namespace hwcpp {
    
    } // namespace shields   
 
+   #include "core/hwcpp-demos.hpp"
+   #include "core/hwcpp-tests.hpp"
+   
 } // namespace hwcpp
 
 #pragma GCC diagnostic pop
