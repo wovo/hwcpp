@@ -22,7 +22,7 @@ concept bool is_i2c_bus(){
    return T::is_i2c_bus;
 }
 
-template< typename scl_arg, typename sda_arg, has_waiting timing >
+template< typename scl_arg, typename sda_arg, is_waiting timing >
 struct i2c_bus_scl_sda :
    i2c_bus_marker
 {

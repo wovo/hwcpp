@@ -26,7 +26,9 @@ template<
    uint32_t  _size_x,
    uint32_t  _size_y,
    typename  _timing
-> class _hd44780_rs_e_d_x_y_timing {
+> struct _hd44780_rs_e_d_x_y_timing_foundation :
+   _stream_out_root< char >   
+{
 public:	
 	
    using rs      = pin_out< _rs >;
@@ -116,8 +118,14 @@ public:
 	  cursor_x = x;
 	  cursor_y = y;
    }
+   
+   static bool HWLIB_INLINE write_blocks(){
+      return false;
+   }
 
-   static void putc( char chr ){
+   static void HWLIB_INLINE flush(){}
+
+   static void write_direct_unchecked( char chr ){
 
       if( size_y == 1 ){
          if( cursor_x == 8 ){
@@ -158,7 +166,7 @@ public:
       goto_xy( 0, 0 );    // 'cursor' home    
    }    
    
-}; // class _hd44780
+}; // class _hd44780_rs_e_d_x_y_timing_foundation
 
 template< 
    typename rs,
@@ -167,5 +175,9 @@ template<
    uint32_t size_x,
    uint32_t size_y,
    typename timing
-> using hd44780_rs_e_d_x_y_timing = console<
-   _hd44780_rs_e_d_x_y_timing< rs, e, port, size_x, size_y, timing >>;
+> using hd44780_rs_e_d_x_y_timing = 
+//    console<
+    formatter<
+	_stream_builder<
+    _hd44780_rs_e_d_x_y_timing_foundation< 
+       rs, e, port, size_x, size_y, timing > > >;

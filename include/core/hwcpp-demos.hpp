@@ -4,7 +4,7 @@
 //
 // ==========================================================================
 
-template< is_pin_in_out pin, is_duration interval >
+template< is_pin_out pin, is_duration interval >
 [[noreturn]] void HWLIB_INLINE blink(){
    using led = pin_out< pin >;    
    led::init();
@@ -38,7 +38,7 @@ template< can_port_out _port, is_duration interval >
    interval::init();
    for(;;){
       for( uint_fast8_t  i = 0; i < port::n_pins; ++i ){
-         port::set_direct( (typename port::value_type) ( 0x01 << i ) );      
+         port::set( (typename port::value_type) ( 0x01 << i ) );      
          interval::wait(); 
       }
    }      
@@ -46,16 +46,16 @@ template< can_port_out _port, is_duration interval >
 
 template< can_port_out _port, is_duration interval >
 [[noreturn]] void HWLIB_INLINE kitt(){
-   using port = hwcpp::port_out< _port >;	
+   using port = _port; //hwcpp::port_out< _port >;	
    port::init();
    interval::init();
    for(;;){
       for( uint_fast8_t  i = 0; i < port::n_pins; ++i ){
-         port::set_direct( (typename port::value_type) ( 0x01 << i ) );      
+         port::set( (typename port::value_type) ( 0x01 << i ) );      
          interval::wait(); 
       }
       for( uint_fast8_t  i = port::n_pins - 2; i > 0; --i ){
-         port::set_direct( (typename port::value_type) ( 0x01 << i ) );      
+         port::set( (typename port::value_type) ( 0x01 << i ) );      
          interval::wait(); 
       }
    }      

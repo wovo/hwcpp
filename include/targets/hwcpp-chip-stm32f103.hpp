@@ -94,7 +94,7 @@ struct _pin_in_out_foundation :
 };
 
 template< port p, uint32_t pin >
-using pin_in_out = _box_creator< _pin_in_out_foundation< p, pin > >;	
+using pin_in_out = _box_builder< _pin_in_out_foundation< p, pin > >;	
 
 
 // ========= SysTick ==========
@@ -124,6 +124,26 @@ static void wait_ticks( uint_fast64_t n ){
    auto t = now_ticks() + n;
    while( now_ticks() < t ){}   
 }   
+
+struct _waiting_foundation :
+   _timing_waiting_foundation< std::ratio< clock, 1 > >
+{
+   static void init(){
+      chip_stm32f103< clock >::init();
+   }	
+   
+   static void wait_ticks_function( ticks_type n ){     
+      ticks_type t = now_ticks() + n;
+      while( now_ticks() < t ){}
+   }  
+   
+   template< ticks_type t >
+   static void HWLIB_INLINE wait_ticks_template(){   
+      wait_ticks_function( t );
+   }      
+};
+
+using waiting = _timing_waiting_builder< _waiting_foundation >;
 
 }; // struct stm32f103
 

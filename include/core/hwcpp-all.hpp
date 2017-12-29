@@ -131,6 +131,7 @@ namespace hwcpp {
    #include "core/hwcpp-port-adapters.hpp"
    #include "core/hwcpp-port-dummies.hpp"
    #include "core/hwcpp-port-from-pins.hpp"
+   #include "core/hwcpp-port-from-buffers.hpp"
    
    // ======== other boxes
    
@@ -153,13 +154,13 @@ namespace hwcpp {
    
    // ======== ??
    
-//   #include "core/hwcpp-i2c.hpp"
-//   #include "core/hwcpp-console.hpp"
+   #include "core/hwcpp-i2c.hpp"
+   #include "core/hwcpp-console.hpp"
 //   #include "core/hwcpp-string.hpp"
    
    
-//   #include "chips/hwcpp-pcf8574.hpp"
-//   #include "chips/hwcpp-hd44780.hpp"
+   #include "chips/hwcpp-pcf8574.hpp"
+   #include "chips/hwcpp-hd44780.hpp"
    
    namespace shields {   
 

@@ -214,7 +214,7 @@ using uart = formatter< _stream_builder< _uart_foundation >>;
 //
 // ==========================================================================
 
-struct _waiting :
+struct _waiting_foundation :
    _timing_waiting_foundation< std::ratio< clock, 1 > >
 {
 	
@@ -335,7 +335,7 @@ struct _waiting :
    };	  
 };
 
-using waiting = _timing_waiting_builder< _waiting >;   
+using waiting = _timing_waiting_builder< _waiting_foundation >;   
 
 }; // struct atmega328
 

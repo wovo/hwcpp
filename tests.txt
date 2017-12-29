@@ -20,6 +20,11 @@ target arduino uno
 	  //test/arduino-uno/gpio-to-adc	  
 	  
 target blue-pill
+   overhead
+      demo/blue-pill/empty
+	     ROM: 104 RAM: 0
+      demo/blue-pill/fast-toggle
+	     500 ns, 2 MHz @ 8 MHz
 
 target stm32f103	   
 

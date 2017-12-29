@@ -35,13 +35,13 @@
 // ==========================================================================
 
 struct invertible {
-   static constexpr bool is_invertible = true;
+   static constexpr bool _is_invertible = true;
 };
 
 template< typename T >
 concept bool is_invertible = requires {  
-   T::is_box_tag;
-   T::is_invertible; 
+   T::_is_box_tag;
+   T::_is_invertible; 
 };
 
 // ========== mixin class for bitwise invertible boxes

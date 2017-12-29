@@ -28,12 +28,12 @@ template< typename _ticks_frequency >
 struct timing_waiting_root :
    not_instantiable
 {
-   static constexpr bool is_timing_waiting_marker = true; 
+   static constexpr bool _is_timing_waiting_marker = true; 
 };
 
 template< typename T >
-concept bool has_wait(){ 
-   return T::is_timing_wait_marker;
+concept bool is_waiting(){ 
+   return T::_is_timing_waiting_marker;
    // ticks_from_ns
    // ns_from_ticks
 }
