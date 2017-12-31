@@ -99,9 +99,7 @@ using pin_in_out = _box_builder< _pin_in_out_foundation< p, pin > >;
 
 // ========= SysTick ==========
 
-static uint_fast64_t now_ticks(){
-	
-   init();	
+static uint_fast64_t now_ticks(){	
    
    static unsigned int last_low = 0;
    static unsigned long long int high = 0;
@@ -119,6 +117,8 @@ static uint_fast64_t now_ticks(){
    // the counter runs at 84 MHz 
    return ( low | high ); 
 } 
+
+// ========= waiting ==========
 
 static void wait_ticks( uint_fast64_t n ){
    auto t = now_ticks() + n;

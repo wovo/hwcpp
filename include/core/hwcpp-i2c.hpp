@@ -7,6 +7,57 @@
 
 // ==========================================================================
 //
+// i2c profiles
+//
+// according to the "I2C-bus specification and user manual, 
+// 4 April 2014", UM10204.pdf, Table 10, p 48
+//
+// ==========================================================================
+
+struct i2c_profile_root {
+   static constexpr bool is_i2c_profile = true;
+};
+
+template< typename T >
+concept bool is_i2c_profile(){
+   return T::is_i2c_profile;
+}   
+
+// ========== 100 kHz
+
+struct i2c_profile_100kHz :
+   i2c_profile_root
+{
+   static constexpr uint_fast64_t  f         = 100'000;
+   static constexpr ns_type        t_hd_sta  = 4000;
+   static constexpr ns_type        t_low     = 4700;
+   static constexpr ns_type        t_high    = 4000;
+   static constexpr ns_type        t_su_sta  = 4700;
+   //static constexpr ns_type        t_hd_sta  =    0;
+   static constexpr ns_type        t_su_dat  =  250;
+   static constexpr ns_type        t_su_sto  = 4000;
+   static constexpr ns_type        t_buf     = 4700;
+};	
+
+// ========== 400 kHz
+      
+struct i2c_profile_400kHz :
+   i2c_profile_root
+{
+   static constexpr uint_fast64_t  f         = 400'000;
+   static constexpr ns_type        t_hd_sta  =  600;
+   static constexpr ns_type        t_low     = 1300;
+   static constexpr ns_type        t_high    =  600;
+   static constexpr ns_type        t_su_sta  =  600;
+   //static constexpr ns_type        t_hd_sta  =    0;
+   static constexpr ns_type        t_su_dat  =  100;
+   static constexpr ns_type        t_su_sto  =  600;
+   static constexpr ns_type        t_buf     = 1300;
+};	
+
+      
+// ==========================================================================
+//
 // i2c bus
 //
 // ==========================================================================  
@@ -22,52 +73,60 @@ concept bool is_i2c_bus(){
    return T::is_i2c_bus;
 }
 
-template< typename scl_arg, typename sda_arg, is_waiting timing >
+// ========== bit-banged implementation
+
+template< 
+   can_pin_oc scl_arg, 
+   can_pin_oc sda_arg, 
+   is_waiting timing, 
+   is_i2c_profile profile = i2c_profile_100kHz
+>
 struct i2c_bus_scl_sda :
    i2c_bus_marker
 {
+private:
+
    using scl = pin_oc< scl_arg >;
    using sda = pin_oc< sda_arg >;  
-   using delay = typename timing::template us< 1 >;
    
    static void write_bit( bool x ){
       scl::set( 0 );
-      delay::wait();
+      timing::template ns< profile::t_low - profile::t_su_dat >::wait();
       sda::set( x );
-      delay::wait();
+      timing::template ns< profile::t_su_dat >::wait();
       scl::set( 1 ); 
-      delay::wait();
+      timing::template ns< profile::t_high >::wait();
    }
    
    static bool read_bit(){         
       scl::set( 0 );
-      delay::wait();         
+      timing::template ns< profile::t_low - profile::t_su_dat >::wait();         
       sda::set( 1 );
-      delay::wait();         
+      timing::template ns< profile::t_su_dat >::wait();         
       scl::set( 1 );
       bool result = sda::get();    
-      delay::wait();
+      timing::template ns< profile::t_high >::wait();
       return result;
    }       
      
    static void write_start(){
       sda::set( 1 );
       scl::set( 1 );
-      delay::wait();
+      timing::template ns< profile::t_su_sta >::wait();
       sda::set( 0 );
-      delay::wait();
+      timing::template ns< profile::t_hd_sta >::wait();
       scl::set( 0 );
    }
 
    static void write_stop(){
       scl::set( 0 );
-      delay::wait();         
+      timing::template ns< profile::t_low - profile::t_su_dat >::wait();         
       sda::set( 0 );
-      delay::wait(); 
+      timing::template ns< profile::t_su_dat >::wait(); 
       scl::set( 1 );
-      delay::wait();   
+      timing::template ns< profile::t_su_sto >::wait();   
       sda::set( 1 );
-      delay::wait();
+      timing::template ns< profile::t_buf >::wait();
    }
        
    static bool read_ack(){
@@ -136,5 +195,3 @@ public:
    }      
 	  
 };	
-
-   

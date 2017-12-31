@@ -90,6 +90,7 @@
 
 #pragma GCC diagnostic ignored "-Wstrict-overflow"
 #pragma GCC diagnostic ignored "-Wconversion"
+#pragma GCC diagnostic ignored "-Wsuggest-attribute=const"
 
 // -Wno-long-long.
 
@@ -166,6 +167,7 @@ namespace hwcpp {
 
 //      #include "shields/hwcpp-lcd-buttons.hpp"
       //#include "shields/hwcpp-joystick-buttons.hpp"
+      #include "shields/hwcpp-i2c-lcd.hpp"
    
    } // namespace shields   
 

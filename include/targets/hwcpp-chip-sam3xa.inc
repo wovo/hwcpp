@@ -45,8 +45,9 @@ static inline uint32_t SystemCoreClock = CHIP_FREQ_MAINCK_RC_4MHZ;
 static void SystemInit( void )
 {
   /* Set FWS according to SYS_BOARD_MCKR configuration */
-  EFC0->EEFC_FMR = EEFC_FMR_FWS(4);
-  EFC1->EEFC_FMR = EEFC_FMR_FWS(4);
+  // wovo: set in hwcpp-chip-sam3xa.hpp
+  //EFC0->EEFC_FMR = EEFC_FMR_FWS(4);
+  //EFC1->EEFC_FMR = EEFC_FMR_FWS(4);
 
   /* Initialize main oscillator */
   if ( !(PMC->CKGR_MOR & CKGR_MOR_MOSCSEL) )

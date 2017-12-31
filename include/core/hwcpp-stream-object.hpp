@@ -86,7 +86,6 @@ constexpr _numerical_radix hex( 16 );
 //
 // ==========================================================================
 
-
 template< is_stream_out_char_formatted T >
 struct ostream :
     ostream_root
@@ -96,50 +95,17 @@ struct ostream :
       T::init();	   
    }
    
-   auto & write( char c ){
-      T::write( c );  
+   template< typename V >
+   auto & write( V v ){
+      T::write( v );  
       return *this;	  
    }  
-   
-   auto & write( const char *s ){   
-      T::write( s );
-      return *this;	  
-   }   
-
-
-   auto & write( uint_fast16_t v ){   
-      T::write( v );
-      return *this;	  
-   } 
    
 };
 
 // ========== worker functions ==========
 
-template< is_ostream ostream >
-auto & operator<<( ostream & stream, char c ){
-   return stream.write( c );     	      
-}
-
-template< is_ostream ostream >
-auto & operator<< ( ostream & stream, const char *s ){
-   return stream.write( s );
-}
-
-template< is_ostream ostream >
-auto & operator<< ( ostream & stream, uint_fast16_t v ){   
-   return stream.write( v );
-}
-
-template< is_ostream ostream >
-auto & operator<< ( ostream & stream, int v ){   
-   return stream.write( v );
-}
- 
-template< is_ostream ostream >
-auto & operator<< ( ostream & stream, int64_t v ){   
-   return stream.write( v );
-}
- 
-
-	  
+template< is_ostream ostream, typename T >
+auto & operator<<( ostream & stream, T v ){
+   return stream.write( v );     	      
+}	  

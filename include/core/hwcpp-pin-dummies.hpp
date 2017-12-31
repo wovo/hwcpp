@@ -22,6 +22,8 @@
 struct _pin_in_out_dummy_foundation : 
    _pin_in_out_root 
 {   
+   static void HWLIB_INLINE init(){}
+	  
    static void HWLIB_INLINE set_direct( bool v ){ 
       (void) v; 
    }      

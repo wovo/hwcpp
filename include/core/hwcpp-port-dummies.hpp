@@ -26,6 +26,8 @@ struct _port_in_out_dummy_foundation :
 {   
 
    using _vt = typename _port_out_root< n >::value_type;
+   
+   static void HWLIB_INLINE init(){}   
 
    static void HWLIB_INLINE set_direct( _vt v ){ 
       (void) v; 

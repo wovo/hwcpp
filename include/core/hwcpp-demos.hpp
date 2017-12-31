@@ -4,7 +4,7 @@
 //
 // ==========================================================================
 
-template< is_pin_out pin, is_duration interval >
+template< can_pin_out pin, is_duration interval >
 [[noreturn]] void HWLIB_INLINE blink(){
    using led = pin_out< pin >;    
    led::init();

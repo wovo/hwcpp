@@ -122,7 +122,7 @@ concept bool is_pin_in_out = requires {
 template< typename T >
 concept bool is_pin_oc = requires {
    T::_is_box_in_tag;
-   T::is_box_out_tag;
+   T::_is_box_out_tag;
    T::_is_pin_oc_tag;
    _has_init_function< T >;  
    _has_box_out_functions< T >;    

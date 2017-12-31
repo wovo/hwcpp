@@ -1,5 +1,4 @@
-/*
- * #include "hwcpp.hpp"
+#include "hwcpp.hpp"
 
 using target = hwcpp::target<>;
 using timing = target::waiting;
@@ -18,17 +17,6 @@ int main( void ){
    
    for(;;){
       timing::ms<500 >::wait();
-	  cout << adc::get() << "\n";
+	  cout << (int) adc::get() << "\n";
    }
-
-}
-*
-* 
-*/   
- 
-sum( int x){ return x; }
-
-int main(){
-   int y = sum( 12 ); 
-(void)y;	
 }

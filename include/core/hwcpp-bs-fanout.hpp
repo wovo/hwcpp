@@ -48,13 +48,29 @@ template<
    
    static void HWLIB_INLINE init(){}
    
-   static void HWLIB_INLINE set( auto v ){}
-   static void HWLIB_INLINE set_direct( auto v ){}
-   static void HWLIB_INLINE set_buffered( auto v ){}
+   static void HWLIB_INLINE set( auto v ){ 
+      (void) v;
+   }
    
-   static void HWLIB_INLINE write( auto v ){}
-   static void HWLIB_INLINE write_direct( auto v ){}
-   static void HWLIB_INLINE write_buffered( auto v ){}
+   static void HWLIB_INLINE set_direct( auto v ){ 
+      (void) v; 
+   }
+   
+   static void HWLIB_INLINE set_buffered( auto v ){ 
+      (void) v; 
+   }
+   
+   static void HWLIB_INLINE write( auto v ){ 
+      (void) v; 
+   }
+   
+   static void HWLIB_INLINE write_direct( auto v ){ 
+      (void) v; 
+   }
+   
+   static void HWLIB_INLINE write_buffered( auto v ){ 
+      (void) v; 
+   }
    
    static void HWLIB_INLINE flush(){}
 };
@@ -86,13 +102,13 @@ struct _bs_fanout< adapt, _minion, _tail... > :
    static void HWLIB_INLINE set( _vt v ) {
       minion::set_buffered( v );
       tail::set_buffered( v );
-	  flush();
+	  minion::flush();
    }
       
    static void HWLIB_INLINE set_direct( _vt v ) {
       minion::set_buffered( v );
       tail::set_buffered( v );
-	  flush();
+	  minion::flush();
    }
       
    static void HWLIB_INLINE set_buffered( _vt v ) {
@@ -105,13 +121,13 @@ struct _bs_fanout< adapt, _minion, _tail... > :
    static void HWLIB_INLINE write( _vt v ) {
       minion::write_buffered( v );
       tail::write_buffered( v );
-	  flush();
+	  minion::flush();
    }
       
    static void HWLIB_INLINE write_direct( _vt v ) {
       minion::write_buffered( v );
       tail::write_buffered( v );
-	  flush();
+	  minion::flush();
    }
       
    static void HWLIB_INLINE write_buffered( _vt v ) {

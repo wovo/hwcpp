@@ -50,7 +50,13 @@ The compilers I currently use are (gcc 7.2.0):
 -----------------------------------------------------------------------------
 
 Notes & ToDo
-- port_from_buffers now only oc, needs pin
+- 84 MHz rolls over in 5 sec??
+- add timing (NAME!!) for cortexes
+- time LCD/I2C
+- set_direct should be internal (start with _)
+- backpack is not a shield, "modules"??
+- fanout moet gebufferd -> done, check
+- port_from_buffers now only oc, needs pins
 - stm32 uart, adc, full-speed
 - avr return -> 2 sources kan niet meer
 - re-create duplicate concept problem
@@ -76,7 +82,6 @@ Notes & ToDo
 - strakkere naamgeving voor is_*, roots, larva's, creators
 - automagic run at end of main
 - allocate list of callbacks
-- time in ns is now always uint64d
 - what does refresh() mean for a stream?
 - lcd 16x2 separate test
 - ostream negative int formatting is weird (neg / %)
@@ -86,11 +91,8 @@ Notes & ToDo
 - adapt oc pin to in-out
 - flatten == inline *inside* a function
 - the box adapters (in_out => out) set the dircetion, but NOT DIRECT
-- port dummies (utilities) should derive from dummy boxes
-- even polling needs mutexes...
 - tests for non-existing-ness
-- class template tasking
-- re-rechk INLINE, should inits be ALWAYS_INLINE at all (meybe never)?
+- re-rechk INLINE, should inits be ALWAYS_INLINE at all (maybe never)?
 - box buffered/direct : can't be done on top of each other....
 - box : fixed value, variable / reference ?, select, combine, moving_average
 - box : average, limit, add, multiply, scale, linear_transform
@@ -108,12 +110,9 @@ Notes & ToDo
 - adc, joystick, joystick-button, => xy buttons
 - adc ==> subrange input box => can invert!
 - concepts should also test for the static const members
-- atmega328 test with LCDs
 - HWLIB_TRACE : hwlib::cout :(
 - tests demos should be moved to test?
-- avr8 64 bit not to be trusted?
-- max toggle tests, document freq
-- what is the due start-up frequency?
+- what is the due start-up frequency? => test reasonable toggle?
 - fixed-out pins/ports to hwcpp
 - // #undef putc in hwcpp-all.hpp
 - remove redundancy from port concepts => ask Chiel

@@ -186,11 +186,11 @@ struct formatter :
       );  
    }
    
-   static void print_aligned( bool v ){	 
-      print_aligned( format.bool_rep( v ) );
+   static void write( bool v ){	 
+      write( format.bool_rep( v ) );
    }   
       
-   static void print_int( int x ){
+   static void write( int x ){
          _print_reverse< 70 > s;
          
          bool minus = ( x < 0 );
@@ -213,10 +213,10 @@ struct formatter :
             s.add_char( '+' );
          }        
          
-         print_aligned( s.content );
+         write( s.content );
       }   
 
-   static void print_int( int64_t x ){
+   static void write( int64_t x ){
          _print_reverse< 70 > s;
          
          bool minus = ( x < 0 );
@@ -239,7 +239,7 @@ struct formatter :
             s.add_char( '+' );
          }        
          
-         print_aligned( s.content );
+         write( s.content );
       }   
 
 };

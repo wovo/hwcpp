@@ -155,8 +155,8 @@ using chip = chip_sam3xa< clock >;
 #undef make_pin_in_out   
 #undef make_pin_adc
 
-   using ticker = typename chip::ticker;	  
-   using timing = ticker;	  
+   using waiting = typename chip::waiting;	  
+   using timing = waiting;	  
    
 }; // template<...> struct target_arduino_due
 

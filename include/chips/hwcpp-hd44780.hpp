@@ -31,9 +31,9 @@ template<
 {
 public:	
 	
-   using rs      = pin_out< _rs >;
-   using e       = pin_out< _e >;
-   using port    = port_out< _port >;  
+   using rs      = _rs; // pin_out< _rs >;
+   using e       = _e; // pin_out< _e >;
+   using port    = _port; // port_out< _port >;  
    using timing  = waiting< _timing >;
    
    using xy_t    = uint_fast8_t;
@@ -176,8 +176,8 @@ template<
    uint32_t size_y,
    typename timing
 > using hd44780_rs_e_d_x_y_timing = 
-//    console<
     formatter<
+    console<
 	_stream_builder<
     _hd44780_rs_e_d_x_y_timing_foundation< 
-       rs, e, port, size_x, size_y, timing > > >;
+       rs, e, port, size_x, size_y, timing > > > >;

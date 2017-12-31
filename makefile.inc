@@ -98,6 +98,7 @@ HEADERS           += hwcpp-hd44780.hpp
 
 HEADERS           += hwcpp-lcd-buttons.hpp 
 HEADERS           += hwcpp-joystick-buttons.hpp 
+HEADERS           += hwcpp-i2c-lcd.hpp 
 
 # etc
 

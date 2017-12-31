@@ -69,6 +69,49 @@ struct _port_oc_from_buffers_builder :
    _port_oc_root< T::_n_pins >,
    _box_builder< T >
 {
+   template< uint8_t pin > 
+   struct _pin_foundation :
+      _pin_oc_root
+   {    
+      
+      static void init(){
+          T::init();
+      } 
+      
+      static void flush(){
+          T::flush();
+      }
+      
+      static void refresh(){
+          T::refresh();
+      }
+       
+      static void set_buffered( bool v ){
+         if( v ){
+            T::write_buffer |= ( 0x1U << pin );
+         } else {
+            T::write_buffer &= ~ ( 0x1U << pin );
+         }             
+      }  
+      
+      static bool get_buffered(){
+         return ( T::read_buffer & ( 0x1U << pin )) != 0;
+      }     
+       
+   };       
+   
+   template< uint8_t p >
+   using _pin = _box_builder< _pin_foundation< p > >;
+    
+   using p0 = _pin< 0 >;
+   using p1 = _pin< 1 >;
+   using p2 = _pin< 2 >;
+   using p3 = _pin< 3 >;
+   using p4 = _pin< 4 >;
+   using p5 = _pin< 5 >;
+   using p6 = _pin< 6 >;
+   using p7 = _pin< 7 >;
+    
    using value_type = typename T::value_type;
 };
    

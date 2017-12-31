@@ -21,6 +21,8 @@
 // ==========================================================================
 
 namespace _tests {
+    
+namespace test_1 {    
 
 struct _pin_in_out_foundation : _pin_in_out_root {
    
@@ -48,7 +50,7 @@ using pin_oc      = pin_oc<      pin_in_out1 >;
 template< _is_box_in_out T >
 void constexpr ff(){}
 
-void constexpr test(){
+void run() {
    static_assert( _box_in_out_root< bool >::_is_box_in_out_tag );	
    static_assert( _pin_in_out_root::_is_box_in_out_tag );	
    static_assert( _pin_in_out_root::_is_pin_in_out_tag );	
@@ -63,13 +65,27 @@ void constexpr test(){
    ff< pin_in_out1 > ();
    static_assert( _is_box_in_out< pin_in_out1 > );
 
-/*
    pin_in_out1::init();
    pin_in::init();
    pin_in_out::init();
    pin_out::init();
    pin_oc::init();
-*/
 }    
+
+} // test_1
+
+namespace test_2 {
+    
+   using pin  = pin_oc_dummy;
+   using po   = pin_out< pin >;
+   using port = port_out< pin  >;
+   
+   void run(){
+       pin::init();
+       po::init();
+       port::init();    
+   }
+    
+} // test_2
 
 }

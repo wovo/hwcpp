@@ -19,7 +19,7 @@ struct console_add_clear : T {
       for( typename T::xy_t y = 0; y < T::size_y; ++y ){
          T::goto_xy( 0, y );
          for( typename T::xy_t x = 0; x < T::size_x; ++x ){
-            T::putc( ' ' );
+            T::write( ' ' );
          }
       }
       T::goto_xy( 0, 0 );
@@ -34,7 +34,7 @@ private:
 
 public:
 
-   static void putc( char c ){
+   static void write( char c ){
 
       switch( goto_xy_state ){
 
@@ -82,7 +82,7 @@ public:
 
       } else if( c == '\a' ){
          while( T::cursor_x < T::size_x ){
-	        T::putc( ' ' );
+	        T::write( ' ' );
          }			
 
       } else if(
@@ -91,7 +91,7 @@ public:
          && ( T::cursor_y >= 0 )
          && ( T::cursor_y < T::size_y )
       ){
-         T::putc( c );
+         T::write( c );
       }
    }
    
