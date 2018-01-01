@@ -50,6 +50,8 @@ The compilers I currently use are (gcc 7.2.0):
 -----------------------------------------------------------------------------
 
 Notes & ToDo
+- hd44780 timing calls
+- check & scavenge https://www.chromium.org/chromium-os/ec-development
 - 84 MHz rolls over in 5 sec??
 - add timing (NAME!!) for cortexes
 - time LCD/I2C

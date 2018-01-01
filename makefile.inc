@@ -81,6 +81,7 @@ HEADERS           += hwcpp-stream-object.hpp
 
 HEADERS           += hwcpp-timing.hpp 
 HEADERS           += hwcpp-timing-waiting.hpp 
+HEADERS           += hwcpp-timing-clocking.hpp 
 //HEADERS           += hwcpp-timing-ticker.hpp 
 
 HEADERS           += hwcpp-i2c.hpp 

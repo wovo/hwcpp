@@ -69,21 +69,27 @@ struct _port_oc_from_buffers_builder :
    _port_oc_root< T::_n_pins >,
    _box_builder< T >
 {
+   static inline bool needs_flush = false;
+   static inline bool needs_refresh = false;
+      
    template< uint8_t pin > 
    struct _pin_foundation :
       _pin_oc_root
    {    
-      
+   
       static void init(){
           T::init();
       } 
       
       static void flush(){
-          T::flush();
+         if( needs_flush ){
+            T::flush();
+			needs_flush = false;
+         }			
       }
       
       static void refresh(){
-          T::refresh();
+         needs_refresh = true;		  
       }
        
       static void set_buffered( bool v ){
@@ -91,10 +97,15 @@ struct _port_oc_from_buffers_builder :
             T::write_buffer |= ( 0x1U << pin );
          } else {
             T::write_buffer &= ~ ( 0x1U << pin );
-         }             
+         }
+         needs_flush = true;		 
       }  
       
       static bool get_buffered(){
+         if( needs_refresh ){
+            T::refresh();
+			needs_refresh = false;
+		 }			 
          return ( T::read_buffer & ( 0x1U << pin )) != 0;
       }     
        

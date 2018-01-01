@@ -20,21 +20,20 @@ struct waiting : T {};
 };*/   
 
 template< 
-   typename  _rs,
-   typename  _e,
-   typename  _port,
-   uint32_t  _size_x,
-   uint32_t  _size_y,
-   typename  _timing
+   can_pin_out _rs,
+   can_pin_out _e,
+   can_pin_out  _port,
+   uint32_t     _size_x,
+   uint32_t     _size_y,
+   is_waiting   timing
 > struct _hd44780_rs_e_d_x_y_timing_foundation :
    _stream_out_root< char >   
 {
 public:	
 	
-   using rs      = _rs; // pin_out< _rs >;
-   using e       = _e; // pin_out< _e >;
-   using port    = _port; // port_out< _port >;  
-   using timing  = waiting< _timing >;
+   using rs      = pin_out< _rs >;
+   using e       = pin_out< _e >;
+   using port    = port_out< _port >;  
    
    using xy_t    = uint_fast8_t;
    
@@ -50,22 +49,31 @@ public:
    static constexpr xy_t size_y = _size_y;   
    
    static void write4( uint_fast8_t d ){
-      wait_us< 10 >();
-      port::set_direct( d );
-      wait_us< 20 >();
+
+      port::set_buffered( d );      
+      port::flush();
+      rs::flush();
+      
+      // minumum tAS
+      timing::template ns< 40 >::wait();
       e::set( 1 );
-      wait_us< 20 >();
+      
+      // minimum PW-EH
+      timing::template ns< 230 >::wait();
       e::set( 0 );
-	  
-	  // enough for most instructions
-	  // if an instrution needs more, that is his responsibilitty
-      wait_us< 100 >();
+      
+      // minumum TcycE = 500 ns
+	  timing::template ns< 270 >::wait();
    }
 
    static void write8( bool is_data, uint_fast8_t d ){
-      rs::set( is_data );
+      rs::set_buffered( is_data );
       write4( d >> 4 );
       write4( d );
+      
+	  // enough for most instructions
+	  // if an instruction needs more, that is his responsibilitty
+      timing::template us< 100 >::wait();
    }      
            
 public:
@@ -80,7 +88,7 @@ public:
 
    static void clear(){
       command( 0x01 );
-      wait_us< 5'000 >();
+      timing::template us< 5'000 >::wait();
       goto_xy( 0, 0 );
    }   
    
@@ -169,12 +177,12 @@ public:
 }; // class _hd44780_rs_e_d_x_y_timing_foundation
 
 template< 
-   typename rs,
-   typename e,
-   typename port,
-   uint32_t size_x,
-   uint32_t size_y,
-   typename timing
+   can_pin_out  rs,
+   can_pin_out  e,
+   can_pin_out  port,
+   uint32_t     size_x,
+   uint32_t     size_y,
+   is_waiting   timing
 > using hd44780_rs_e_d_x_y_timing = 
     formatter<
     console<

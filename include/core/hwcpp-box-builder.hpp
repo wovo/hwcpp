@@ -253,9 +253,10 @@ struct _box_add_direction_direct_wrapper< T > : T {
 
 template< typename T >
 using _box_builder = 
-   _box_add_out_buffered_wrapper<
-      _box_add_out_direct_wrapper<
-   _box_add_in_buffered_wrapper<
-      _box_add_in_direct_wrapper<
-   _box_add_direction_buffered_wrapper<
-      _box_add_direction_direct_wrapper< T > > > > > >;
+   _box_add_out_direct_wrapper<
+      _box_add_out_buffered_wrapper<
+   _box_add_in_direct_wrapper<
+      _box_add_in_buffered_wrapper<
+   _box_add_direction_direct_wrapper< 
+      _box_add_direction_buffered_wrapper<
+   T > > > > > >;

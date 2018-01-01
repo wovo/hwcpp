@@ -46,7 +46,7 @@ template< can_port_out _port, is_duration interval >
 
 template< can_port_out _port, is_duration interval >
 [[noreturn]] void HWLIB_INLINE kitt(){
-   using port = _port; //hwcpp::port_out< _port >;	
+   using port = hwcpp::port_out< _port >;	
    port::init();
    interval::init();
    for(;;){

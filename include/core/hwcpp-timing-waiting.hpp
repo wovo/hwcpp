@@ -25,15 +25,15 @@
 // ==========================================================================
 
 template< typename _ticks_frequency > 
-struct timing_waiting_root :
+struct _timing_waiting_root :
    not_instantiable
 {
-   static constexpr bool _is_timing_waiting_marker = true; 
+   static constexpr bool _is_timing_waiting_tag = true; 
 };
 
 template< typename T >
 concept bool is_waiting(){ 
-   return T::_is_timing_waiting_marker;
+   return T::_is_timing_waiting_tag;
    // ticks_from_ns
    // ns_from_ticks
 }
@@ -43,8 +43,7 @@ concept bool is_waiting(){
 //
 // LIBRARY-INTERNAL
 //
-// the busy type is what can be provided by a HAL
-// as the base for a wait service
+// this is the foundation provided by a HAL
 //
 // ==========================================================================
 
@@ -52,18 +51,17 @@ template< typename _ticks_frequency >
 struct _timing_waiting_foundation :
    not_instantiable
 {
-   static constexpr bool is_timing_waiting_foundation = true;
+   static constexpr bool _is_timing_waiting_foundation_tag = true;
    
    using ticks_frequency = _ticks_frequency;
 };
 
 template< typename T >
-concept bool is_timing_waiting_foundation(){ 
-   return T::is_timing_waiting_foundation;
+concept bool _is_timing_waiting_foundation(){ 
+   return T::_is_timing_waiting_foundation_tag;
    
-   // init
-   // wait_ticks_function()
-   // wait_ticks_template<>()
+   // + waiting
+   // now_ticks()
 }
 
 
@@ -76,12 +74,12 @@ concept bool is_timing_waiting_foundation(){
 // ==========================================================================
 
 
-template< is_timing_waiting_foundation T >
+template< _is_timing_waiting_foundation T >
 struct _timing_waiting_builder : 
-   timing_waiting_root< T >
+   _timing_waiting_root< T >
 {
-   using _root = timing_waiting_root< T >;	
-   using ticks_frequency  = typename T::ticks_frequency;	
+   using _root = _timing_waiting_root< T >;	
+   using ticks_frequency = typename T::ticks_frequency;	
    
    static void init(){
       T::init();

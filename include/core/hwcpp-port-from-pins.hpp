@@ -46,13 +46,12 @@ struct _port_recurse_set : tail {
 	
    static void HWLIB_INLINE set( _vt v ) {
       pin::set_buffered( ( v & 0x01 ) != 0 );
-      tail::set_buffered( (_vt) ( v >> 1 ) );
+      tail::set( (_vt) ( v >> 1 ) );
 	  pin::flush();
    }
       
    static void HWLIB_INLINE set_direct( _vt v ) {
-      pin::set_direct( ( v & 0x01 ) != 0 );
-      tail::set_direct( (_vt) ( v >> 1 ) );
+      set( v );	   
    }
       
    static void HWLIB_INLINE set_buffered( _vt v ) {
@@ -74,7 +73,7 @@ struct _port_recurse_get : tail {
 	
    using _vt = typename tail::value_type;
 	
-   static _vt HWLIB_INLINE set() {
+   static _vt HWLIB_INLINE get() {
       pin::refresh();	    
       return (_vt)
 	     pin::get_buffered()

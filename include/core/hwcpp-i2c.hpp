@@ -81,7 +81,7 @@ template<
    is_waiting timing, 
    is_i2c_profile profile = i2c_profile_100kHz
 >
-struct i2c_bus_scl_sda :
+struct i2c_bus_bb_scl_sda :
    i2c_bus_marker
 {
 private:
@@ -194,4 +194,4 @@ public:
       write_stop();
    }      
 	  
-};	
+};// i2c_bus_bb_scl_sda

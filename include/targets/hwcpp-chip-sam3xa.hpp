@@ -277,7 +277,7 @@ using uart = formatter< _stream_builder< _uart_foundation >>;;
 static inline uint32_t   last_low = 0;
 static inline ticks_type high = 0;
 
-static uint_fast64_t now_ticks(){
+static ticks_type now_ticks(){
    
    // the timer ticks down, but we want an up counter
    uint32_t low = 0xFFFFFF - ( SysTick->VAL & 0xFFFFFF );
@@ -293,12 +293,16 @@ static uint_fast64_t now_ticks(){
 
 // ========= waiting ==========
 
-struct _waiting_foundation :
-   _timing_waiting_foundation< std::ratio< clock, 1 > >
+struct _clocking_foundation :
+   _timing_clocking_foundation< std::ratio< clock, 1 > >
 {
    static void init(){
       chip_sam3xa< clock >::init();
    }	
+   
+   static ticks_type now_ticks(){
+      return chip_sam3xa< clock >::now_ticks();
+   }      
    
    static void HWLIB_NO_INLINE  wait_ticks_function( ticks_type n ){     
       ticks_type t = now_ticks() + n;
@@ -386,7 +390,8 @@ struct _waiting_foundation :
    }      
 };
 
-using waiting = _timing_waiting_builder< _waiting_foundation >;
+using waiting = _timing_waiting_builder< _clocking_foundation >;
+using clocking = _timing_clocking_builder< _clocking_foundation >;
 
 }; // struct chip_sam3xa
 

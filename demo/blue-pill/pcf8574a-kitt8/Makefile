@@ -22,6 +22,8 @@ SEARCH             +=
 # extra results that must be built
 RESULTS            += main.lst main.lss
 
+//ALL_OPTIMIZATION := -O0
+
 # set RELATIVE to the next higher directory and defer to the makefile.link
 RELATIVE           := ../
 include            $(RELATIVE)Makefile.link

@@ -149,6 +149,7 @@ namespace hwcpp {
    
    #include "core/hwcpp-timing.hpp"
    #include "core/hwcpp-timing-waiting.hpp"
+   #include "core/hwcpp-timing-clocking.hpp"
 //   #include "core/hwcpp-timing-duration.hpp"
 //   #include "core/hwcpp-timing-waiting.hpp"
 //   #include "core/hwcpp-timing-clock.hpp"
