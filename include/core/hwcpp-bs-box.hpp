@@ -8,7 +8,7 @@
 // provide a value. The declarations in this file are used by the library
 // to create concrete boxes.
 //
-// Exaples of concrete boxes are a GPIO pin, a port, an ADC, a DAC, a PWM.
+// Examples of concrete boxes are a GPIO pin, a port, an ADC, a DAC, a PWM.
 //
 // An in box has set functions, an out box has get functions.
 // For these functions, there are default, buffered and direct versions,

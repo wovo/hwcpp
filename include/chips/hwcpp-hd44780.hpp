@@ -1,35 +1,31 @@
 // ==========================================================================
 //
-// file : hd44780.hpp
+// file : hwcpp-hd44780.hpp
+//
+// ==========================================================================
+//
+// This file is part of HwCpp, 
+// a C++ library for close-to-the-hardware programming.
+//
+// Copyright Wouter van Ooijen 2017
+// 
+// Distributed under the Boost Software License, Version 1.0.
+// (See the accompanying LICENSE_1_0.txt in the root directory of this
+// library, or a copy at http://www.boost.org/LICENSE_1_0.txt)
 //
 // ==========================================================================
 
-template< typename T >
-struct waiting : T {};
-/*{
-   static void init(){
-      T::init();
-   }	
-	
-   template< int n >
-   struct us {
-      static void wait(){ 
-         T::us< n >::wait();   
-      }		 
-   };
-};*/   
-
 template< 
-   can_pin_out _rs,
-   can_pin_out _e,
-   can_pin_out  _port,
-   uint32_t     _size_x,
-   uint32_t     _size_y,
-   is_waiting   timing
+   can_pin_out   _rs,
+   can_pin_out   _e,
+   can_port_out  _port,
+   uint32_t      _size_x,
+   uint32_t      _size_y,
+   is_waiting    timing
 > struct _hd44780_rs_e_d_x_y_timing_foundation :
    _stream_out_root< char >   
 {
-public:	
+private:	
 	
    using rs      = pin_out< _rs >;
    using e       = pin_out< _e >;
@@ -37,16 +33,15 @@ public:
    
    using xy_t    = uint_fast8_t;
    
-   template< long long int n >
-   static void wait_us(){
-	   timing:: template us< n >::wait();
-   }	   
+public:   
+   
+   static constexpr xy_t size_x = _size_x; 
+   static constexpr xy_t size_y = _size_y;   
    
    static inline xy_t cursor_x; 
    static inline xy_t cursor_y;   
    
-   static constexpr xy_t size_x = _size_x; 
-   static constexpr xy_t size_y = _size_y;   
+private:
    
    static void write4( uint_fast8_t d ){
 
@@ -78,11 +73,11 @@ public:
            
 public:
 
-   static void command( uint_fast8_t cmd ){
+   static void HWLIB_INLINE command( uint_fast8_t cmd ){
       write8( 0, cmd );
    }
 
-   static void data( uint_fast8_t chr ){
+   static void HWLIB_INLINE data( uint_fast8_t chr ){
       write8( 1, chr );
    }
 
@@ -156,14 +151,14 @@ public:
       // give LCD time to wake up
       e::set( 0 );
       rs::set( 0 );
-      wait_us< 100'000 >();
+      timing::template ms< 40 >::wait();
 
       // interface initialisation: make sure the LCD is in 4 bit mode
       // (magical sequence, taken from the HD44780 datasheet)
       write4( 0x03 );
-      wait_us< 15'000 >();
+      timing::template ms< 5 >::wait();
       write4( 0x03 );
-      wait_us< 100'000 >();
+      timing::template us< 100 >::wait();
       write4( 0x03 );
       write4( 0x02 );     // now we are in 4 bit mode
 
@@ -177,12 +172,12 @@ public:
 }; // class _hd44780_rs_e_d_x_y_timing_foundation
 
 template< 
-   can_pin_out  rs,
-   can_pin_out  e,
-   can_pin_out  port,
-   uint32_t     size_x,
-   uint32_t     size_y,
-   is_waiting   timing
+   can_pin_out   rs,
+   can_pin_out   e,
+   can_port_out  port,
+   uint32_t      size_x,
+   uint32_t      size_y,
+   is_waiting    timing
 > using hd44780_rs_e_d_x_y_timing = 
     formatter<
     console<

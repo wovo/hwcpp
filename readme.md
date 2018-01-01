@@ -50,11 +50,11 @@ The compilers I currently use are (gcc 7.2.0):
 -----------------------------------------------------------------------------
 
 Notes & ToDo
-- hd44780 timing calls
 - check & scavenge https://www.chromium.org/chromium-os/ec-development
+- scavenge https://github.com/arobenko/embxx
+- scavenge https://github.com/ETLCPP/etl
 - 84 MHz rolls over in 5 sec??
 - add timing (NAME!!) for cortexes
-- time LCD/I2C
 - set_direct should be internal (start with _)
 - backpack is not a shield, "modules"??
 - fanout moet gebufferd -> done, check
