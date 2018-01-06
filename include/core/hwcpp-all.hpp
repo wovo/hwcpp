@@ -162,6 +162,7 @@ namespace hwcpp {
    
    
    #include "chips/hwcpp-pcf8574.hpp"
+   #include "chips/hwcpp-pcf8591.hpp"
    #include "chips/hwcpp-hd44780.hpp"
    
    namespace shields {   

@@ -10,12 +10,14 @@
 
 namespace hwcpp {
     
-template< uint64_t clock = 8'000'000 >
+template< uint64_t clock = 64'000'000 >
 struct target_stm32f103 :
    chip_stm32f103    
 {       
+   using chip = chip_stm32f103< clock >;
 
-   using waiting = timing_waiting< chip_stm32f103, long long int, MHz< 8 > >;  
+   using waiting = typename chip::waiting;	  
+   using timing = waiting;	  
 
 }; // template<...> struct target_stm32f103
 	

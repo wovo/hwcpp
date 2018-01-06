@@ -18,31 +18,60 @@ namespace hwcpp {
 template< uint64_t clock >
 struct chip_stm32f103 {
 	
-enum class port {
-   a,
-   b, 
-   c, 
-   d
-};	
+static constexpr uint64_t HWLIB_INLINE mask( int size ){
+   return ( 0x01 << ( size + 1 )) - 1;
+}
 
-static constexpr GPIO_TypeDef * port_block[] = { 
-   (GPIO_TypeDef *) GPIOA_BASE,
-   (GPIO_TypeDef *) GPIOB_BASE,
-   (GPIO_TypeDef *) GPIOC_BASE,
-   (GPIO_TypeDef *) GPIOD_BASE
-};
+static void HWLIB_INLINE field_set( auto & v, int start, int size, int value ){
+   v = ( v & ( mask( start) << size )) | ( value << start );
+}
+
+
+// ==========================================================================
+//
+// PUBLIC
+//
+// chip initialization
+//
+// ==========================================================================
    
 static void init(){
-   static bool done = false;
-   if( done ){
-      return; 
-   }       
-   done = true;	
-   
-   static_assert( 
-      clock == 8'000'000, 
-      "Only 8 MHz clock is supported for stm32f103." );   
 	
+   // don't do this over and over	
+   _HWCPP_RUN_ONCE;
+   
+   if constexpr ( clock == 8'000'000 ){
+	   
+      // default HSI clock	   
+   
+   } else if constexpr ( clock == 64'000'000 ){
+	   
+      // two flash wait states
+      field_set( FLASH->ACR, 0, 6, 0x32 );
+
+      // turn on hse and wait for it
+      field_set( RCC->CR, 16, 1, 0x1 );
+      while( ( RCC->CR & ( 0x1 << 17 ) ) == 0 ){};
+   
+      // sysclk is CPU clock, AHB=0, APB=1
+      field_set( RCC->CFGR, 0, 16, 0x0400 );
+   
+      // set PLL source = HSE/2, MUL=16
+      field_set( RCC->CFGR, 16, 7, 0x3F );
+   
+      // enable PLL and  wait for it
+      field_set( RCC->CR, 24, 1, 0x1 );
+      while( ( RCC->CR & ( 0x1 << 25 ) ) == 0 ){};
+   
+      // use PLL as clock
+      field_set( RCC->CFGR, 0, 2, 0x2 );
+	   
+   } else {	   
+      static_assert( 
+         clock == 8'000'000, 
+         "Only 8 and 64 MHz are supported for stm32f103." );   
+   }		 
+	  	
    // enable the clock to all GPIO ports	
    RCC->APB2ENR |= 
       RCC_APB2ENR_IOPAEN | RCC_APB2ENR_IOPBEN | 
@@ -56,7 +85,27 @@ static void init(){
 }
    
 
-// ========= pin_in_out ==========
+// ==========================================================================
+//
+// LIBRARY-INTERNAL
+//
+// GPIO
+//
+// ==========================================================================
+
+enum class port {
+   a,
+   b, 
+   c, 
+   d
+};	
+
+static constexpr GPIO_TypeDef * port_block[] = { 
+   (GPIO_TypeDef *) GPIOA_BASE,
+   (GPIO_TypeDef *) GPIOB_BASE,
+   (GPIO_TypeDef *) GPIOC_BASE,
+   (GPIO_TypeDef *) GPIOD_BASE
+};
 
 template< port p, uint32_t pin >
 struct _pin_in_out_foundation : 
@@ -93,9 +142,19 @@ struct _pin_in_out_foundation :
    }
 };
 
+// ========= GPIO constructor used in the actual targets
+
 template< port p, uint32_t pin >
 using pin_in_out = _box_builder< _pin_in_out_foundation< p, pin > >;	
 
+
+// ==========================================================================
+//
+// LIBRARY-INTERNAL
+//
+// timing
+//
+// ==========================================================================
 
 // ========= SysTick ==========
 
@@ -114,7 +173,6 @@ static uint_fast64_t now_ticks(){
    last_low = low;
 
    // return the aggregated ticks value
-   // the counter runs at 84 MHz 
    return ( low | high ); 
 } 
 

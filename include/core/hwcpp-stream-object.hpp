@@ -45,7 +45,7 @@ struct NAME {                                               \
                                                             \
 template< is_ostream ostream >                              \
 ostream & operator<<( ostream & lhs, const NAME & rhs ){    \
-   lhs.FIELD = rhs.v;	                                    \
+   ostream::base_type::format.FIELD = rhs.v;	            \
    return lhs;                                              \
 }   
 
@@ -90,6 +90,8 @@ template< is_stream_out_char_formatted T >
 struct ostream :
     ostream_root
 {
+	
+   using base_type = T;	
 	
    ostream(){
       T::init();	   

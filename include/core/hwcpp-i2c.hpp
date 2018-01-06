@@ -142,7 +142,7 @@ private:
    }
    
    static void write_byte( uint8_t x ){
-      for( int i = 0; i < 8; i++ ){
+      for( int i = 0; i < 8; ++i){
          write_bit( ( x & 0x80 ) != 0 );
          x = x << 1;
       }         
@@ -150,7 +150,7 @@ private:
 
    static uint8_t read_byte(){
       uint8_t result = 0;
-      for( int i = 0; i < 8; i++ ){
+      for( int i = 0; i < 8; ++i ){
          result = result << 1;
          if( read_bit() ){
             result |= 0x01;
@@ -173,7 +173,7 @@ public:
    static void write( uint8_t address, const uint8_t data[], int n ){
       write_start();
       write_byte( address << 1 );
-      for( int i = 0; i < n; i++ ){
+      for( int i = 0; i < n; ++i ){
          read_ack();
          write_byte( data[ i ] );
       }               

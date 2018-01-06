@@ -92,6 +92,7 @@ HEADERS           += hwcpp-string.hpp
 # HwCpp supported external chips
 
 HEADERS           += hwcpp-pcf8574.hpp
+HEADERS           += hwcpp-pcf8591.hpp
 HEADERS           += hwcpp-hd44780.hpp 
 
 

@@ -18,7 +18,7 @@
       <Project Name="empty" ConfigName="Release"/>
     </WorkspaceConfiguration>
   </BuildMatrix>
-  <Project Name="fast-toggle" Path="fast-toggle/_codelite.project" Active="No"/>
+  <Project Name="fast-toggle" Path="fast-toggle/_codelite.project" Active="Yes"/>
   <BuildMatrix>
     <WorkspaceConfiguration Name="Release" Selected="yes">
       <Project Name="fast-toggle" ConfigName="Release"/>
@@ -48,7 +48,7 @@
       <Project Name="pcf8574a-blink" ConfigName="Release"/>
     </WorkspaceConfiguration>
   </BuildMatrix>
-  <Project Name="pcf8574a-kitt8" Path="pcf8574a-kitt8/_codelite.project" Active="Yes"/>
+  <Project Name="pcf8574a-kitt8" Path="pcf8574a-kitt8/_codelite.project" Active="No"/>
   <BuildMatrix>
     <WorkspaceConfiguration Name="Release" Selected="yes">
       <Project Name="pcf8574a-kitt8" ConfigName="Release"/>

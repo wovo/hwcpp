@@ -50,6 +50,13 @@ The compilers I currently use are (gcc 7.2.0):
 -----------------------------------------------------------------------------
 
 Notes & ToDo
+- stm32 short waiting & timing verification
+- stm32 divisr for ADC
+- stm32 UART
+- stm32 field_set re-use??
+- due last_low == global??
+- stm32 72 MHz
+- stm32f030
 - check & scavenge https://www.chromium.org/chromium-os/ec-development
 - scavenge https://github.com/arobenko/embxx
 - scavenge https://github.com/ETLCPP/etl

@@ -4,6 +4,7 @@ using target = hwcpp::target<>;
 using pin = target::led;
 
 int main(){ 
+    
    pin::init();
    for(;;){
       pin::set( 1 );
@@ -11,4 +12,4 @@ int main(){
    }
 }
 
-// 16 MHz : p = 375 ns 
+// 8 MHz : p = 375 ns 

@@ -270,12 +270,21 @@ struct _uart_foundation :
    	
 };
 
-using uart = formatter< _stream_builder< _uart_foundation >>;;
+using uart = formatter< _stream_builder< _uart_foundation >>;
+
+
+// ==========================================================================
+//
+// LIBRARY-INTERNAL
+//
+// timing
+//
+// ==========================================================================
 
 // ========= SysTick ==========
 
-static inline uint32_t   last_low = 0;
-static inline ticks_type high = 0;
+static inline uint32_t    last_low = 0;
+static inline ticks_type  high = 0;
 
 static ticks_type now_ticks(){
    

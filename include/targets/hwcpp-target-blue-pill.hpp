@@ -15,7 +15,7 @@ struct target_blue_pill :
    chip_stm32f103< clock >    
 {       
 	
-	using chip = chip_stm32f103< clock >;
+   using chip = chip_stm32f103< clock >;
 	
 // ========= chip pins ==========
 
@@ -63,7 +63,7 @@ struct target_blue_pill :
    
 }; // template<...> struct target_blue_pill
 
-template< uint64_t clock = 8'000'000 >
+template< uint64_t clock = 64'000'000 >
 using target = target_blue_pill< clock >; 
 	
 }; // namespace hwcpp
