@@ -63,7 +63,7 @@ struct target_blue_pill :
    
 }; // template<...> struct target_blue_pill
 
-template< uint64_t clock = 64'000'000 >
+template< uint64_t clock = 72'000'000 >
 using target = target_blue_pill< clock >; 
 	
 }; // namespace hwcpp

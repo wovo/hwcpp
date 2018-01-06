@@ -44,7 +44,7 @@ static void init(){
 	   
       // default HSI clock	   
    
-   } else if constexpr ( clock == 64'000'000 ){
+   } else if constexpr ( clock == 72'000'000 ){
 	   
       // two flash wait states
       field_set( FLASH->ACR, 0, 6, 0x32 );
@@ -57,7 +57,7 @@ static void init(){
       field_set( RCC->CFGR, 0, 16, 0x0400 );
    
       // set PLL source = HSE/2, MUL=16
-      field_set( RCC->CFGR, 16, 7, 0x3F );
+      field_set( RCC->CFGR, 16, 7, 0x1D );
    
       // enable PLL and  wait for it
       field_set( RCC->CR, 24, 1, 0x1 );
@@ -158,7 +158,7 @@ using pin_in_out = _box_builder< _pin_in_out_foundation< p, pin > >;
 
 // ========= SysTick ==========
 
-static uint_fast64_t now_ticks(){	
+static uint_fast64_t HWLIB_NO_INLINE now_ticks(){	
    
    static unsigned int last_low = 0;
    static unsigned long long int high = 0;

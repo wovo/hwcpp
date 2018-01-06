@@ -55,7 +55,6 @@ Notes & ToDo
 - stm32 UART
 - stm32 field_set re-use??
 - due last_low == global??
-- stm32 72 MHz
 - stm32f030
 - check & scavenge https://www.chromium.org/chromium-os/ec-development
 - scavenge https://github.com/arobenko/embxx

@@ -10,7 +10,7 @@
 
 namespace hwcpp {
     
-template< uint64_t clock = 64'000'000 >
+template< uint64_t clock = 72'000'000 >
 struct target_stm32f103 :
    chip_stm32f103    
 {       
