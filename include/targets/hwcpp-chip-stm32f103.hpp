@@ -15,6 +15,19 @@
 
 namespace hwcpp {
     
+// Running from RAM seems to take twice the expected time,
+// but that seems to be consistent.  
+// Alignment doesn't seem to affect this.
+// Note: can't be static inside the struct, because 
+// that causes the RAM attribute to be (silently) ignored.
+void HWLIB_RAM_FUNCTION stm32_ram_busy_delay( int32_t n ){
+   __asm volatile(                  
+      "1: subs.w  r0, #6     \t\n"  
+      "   bgt 1b             \t\n"  
+      : : "r" ( n )          // uses (reads) n         
+   ); 
+}   
+
 template< uint64_t clock >
 struct chip_stm32f103 {
 	
@@ -40,6 +53,9 @@ static void init(){
    // don't do this over and over	
    _HWCPP_RUN_ONCE;
    
+   //field_set( FLASH->ACR, 0, 6, 0x10 );   
+   //field_set( RCC->CFGR, 0, 16, 0x0400 );
+   
    if constexpr ( clock == 8'000'000 ){
 	   
       // default HSI clock	   
@@ -47,16 +63,16 @@ static void init(){
    } else if constexpr ( clock == 72'000'000 ){
 	   
       // two flash wait states
-      field_set( FLASH->ACR, 0, 6, 0x32 );
+      field_set( FLASH->ACR, 0, 6, 0x12 );
 
       // turn on hse and wait for it
       field_set( RCC->CR, 16, 1, 0x1 );
       while( ( RCC->CR & ( 0x1 << 17 ) ) == 0 ){};
    
-      // sysclk is CPU clock, AHB=0, APB=1
+      // HSI, sysclk is CPU clock, AHB=0, APB=1
       field_set( RCC->CFGR, 0, 16, 0x0400 );
    
-      // set PLL source = HSE/2, MUL=16
+      // set PLL source = HSE, MUL=9
       field_set( RCC->CFGR, 16, 7, 0x1D );
    
       // enable PLL and  wait for it
@@ -183,8 +199,8 @@ static void wait_ticks( uint_fast64_t n ){
    while( now_ticks() < t ){}   
 }   
 
-struct _waiting_foundation :
-   _timing_waiting_foundation< std::ratio< clock, 1 > >
+struct _clocking_foundation :
+   _timing_clocking_foundation< std::ratio< clock, 1 > >
 {
    static void init(){
       chip_stm32f103< clock >::init();
@@ -195,13 +211,145 @@ struct _waiting_foundation :
       while( now_ticks() < t ){}
    }  
    
+   static constexpr auto inline_delay_max = 10;
+   template< ticks_type t >
+   static void HWLIB_INLINE inline_delay(){
+              
+      if constexpr ( t  == 0 ){
+         // nothing
+         
+      } else if constexpr ( t == 1 ){
+         __asm volatile(                  
+            "   nop     \t\n"  
+         );           
+              
+      } else if constexpr ( t == 2 ){
+         __asm volatile(                  
+            "   nop     \t\n"  
+            "   nop     \t\n"  
+         ); 
+		 
+      } else if constexpr ( t == 3 ){
+         __asm volatile(                  
+            "   nop     \t\n"  
+            "   nop     \t\n"  
+            "   nop     \t\n"  
+         ); 
+		 
+      } else if constexpr ( t == 4 ){
+         __asm volatile(                  
+            "   nop     \t\n"  
+            "   nop     \t\n"  
+            "   nop     \t\n"  
+            "   nop     \t\n"  
+         ); 
+		 
+      } else if constexpr ( t == 5 ){
+         __asm volatile(                  
+            "   nop     \t\n"  
+            "   nop     \t\n"  
+            "   nop     \t\n"  
+            "   nop     \t\n"  
+            "   nop     \t\n"  
+         ); 
+		 
+      } else if constexpr ( t == 6 ){
+         __asm volatile(                  
+            "   nop     \t\n"  
+            "   nop     \t\n"  
+            "   nop     \t\n"  
+            "   nop     \t\n"  
+            "   nop     \t\n"  
+            "   nop     \t\n"  
+         ); 
+		 
+      } else if constexpr ( t == 7 ){
+         __asm volatile(                  
+            "   nop     \t\n"  
+            "   nop     \t\n"  
+            "   nop     \t\n"  
+            "   nop     \t\n"  
+            "   nop     \t\n"  
+            "   nop     \t\n"  
+            "   nop     \t\n"  
+         ); 
+		 
+      } else if constexpr ( t == 8 ){
+         __asm volatile(                  
+            "   nop     \t\n"  
+            "   nop     \t\n"  
+            "   nop     \t\n"  
+            "   nop     \t\n"  
+            "   nop     \t\n"  
+            "   nop     \t\n"  
+            "   nop     \t\n"  
+            "   nop     \t\n"  
+         ); 
+		 
+      } else if constexpr ( t == 9 ){
+         __asm volatile(                  
+            "   nop     \t\n"  
+            "   nop     \t\n"  
+            "   nop     \t\n"  
+            "   nop     \t\n"  
+            "   nop     \t\n"  
+            "   nop     \t\n"  
+            "   nop     \t\n"  
+            "   nop     \t\n"  
+            "   nop     \t\n"  
+         ); 
+		 
+      } else if constexpr ( t == 10 ){
+         __asm volatile(                  
+            "   nop     \t\n"  
+            "   nop     \t\n"  
+            "   nop     \t\n"  
+            "   nop     \t\n"  
+            "   nop     \t\n"  
+            "   nop     \t\n"  
+            "   nop     \t\n"  
+            "   nop     \t\n"  
+            "   nop     \t\n"  
+            "   nop     \t\n"  
+         ); 
+		 
+      }
+   }   
+   
+   // NOT USED
+   // This gives the expected timing at 8 MHz / FLASH 0 WS,
+   // but at 72 MHz / 2 WS it seems to run at half speed.
+   // 8 MHz / 2 WS gives an intermediate result.
+   // Alignment doesn't seem to change the timing.
+   // Hence to get consistent timing the same code is used, 
+   // but run from RAM (stm32_ram_busy_delay).
+   static void HWLIB_NO_INLINE stm32_flash_busy_delay( int32_t n ){
+      __asm volatile(                  
+         "   .align 4           \t\n"  
+         "1: subs.w  r0, #3     \t\n"   
+         "   bgt 1b             \t\n"  
+         : : "r" ( n )          // uses (reads) n         
+      ); 
+   }   
+      
    template< ticks_type t >
    static void HWLIB_INLINE wait_ticks_template(){   
-      wait_ticks_function( t );
-   }      
+       
+      if constexpr ( t <= inline_delay_max ){
+         inline_delay< t >();    
+      
+      } else if constexpr ( t < 2'000 ){
+          stm32_ram_busy_delay( ((int32_t) t ) - 14 );
+          
+      } else {
+          wait_ticks_function( t );
+          
+      }   
+   }    
 };
 
-using waiting = _timing_waiting_builder< _waiting_foundation >;
+using waiting = _timing_waiting_builder< _clocking_foundation >;
+using clocking = _timing_clocking_builder< _clocking_foundation >;
 
 }; // struct stm32f103
 

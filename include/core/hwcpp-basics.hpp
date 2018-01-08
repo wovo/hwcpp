@@ -41,6 +41,9 @@ constexpr char version[] = "V0.1 2017-12-23 work-in-progress";
 
 #define HWLIB_NO_INLINE __attribute__((noinline))
 
+#define HWLIB_RAM_FUNCTION \
+   __attribute__( ( noinline, long_call, section(".data") ) )
+
 
 // ==========================================================================
 //

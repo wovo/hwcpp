@@ -388,8 +388,7 @@ struct _clocking_foundation :
       if constexpr ( t <= inline_delay_max ){
          inline_delay< t >();    
       
-      } else 
-          if constexpr ( t < 2'000 ){
+      } else if constexpr ( t < 2'000 ){
           busy_delay( ((int32_t) t ) - 20 );
           
       } else {

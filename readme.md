@@ -50,6 +50,11 @@ The compilers I currently use are (gcc 7.2.0):
 -----------------------------------------------------------------------------
 
 Notes & ToDo
+- ws2812 doesn't work??
+- due in-line delays only up to 6, stm32 up to 10
+- suppress stm32 asm warning
+- better rationale & test for the borders and fuzz factors of the delays
+- construction a cto gives 'use of a deleted function'
 - stm32 short waiting & timing verification
 - stm32 divisr for ADC
 - stm32 UART
