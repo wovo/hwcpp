@@ -37,10 +37,13 @@ and combines the parts of the application.
 #include "hwcpp.hpp"
 ```
 
-The default way to specify which target is to put that information in
+The default way to specify which target is used 
+is to put that information in
 the makefile, which passes it to the compiler as a command-line macro.
-The application includes "hwcpp.hpp", which turn includes 
-the appropriate target-specific parts of HwCpp.
+The application just includes "hwcpp.hpp", which includes 
+the appropriate target-specific parts of HwCpp. 
+Alternatively, the application can include the target-specific HwCpp
+file directly.
 
 ```C++
 using target = hwcpp::target<>;
