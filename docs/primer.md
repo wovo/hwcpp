@@ -225,43 +225,216 @@ A bunch of pins can be combined into a something that walks and quacks like
 a single (output) pin with the hwcpp::fanout<> template. 
 To blink the six LEDs of the kitt example in usinson, all
 we need is to combine them into a single 'pin', and pass that pin
-to the blink template.
+to the blink function.
 
-<>
+[](from....)
+```C++
+#include "hwcpp.hpp"
+
+using target = hwcpp::target<>;
+using timing = target::waiting;
+
+using pins = hwcpp::fanout< 
+   target::d8,
+   target::d9,
+   target::d10,
+   target::d11,
+   target::d12,
+   target::d13
+>;
+
+int main(){ 
+   hwcpp::blink< pins, timing::ms< 200 > >();
+}
+```
 
 The hwcpp::invert<> template can be used to create a pin that inverses
-the behaviour of the pin it decorates. If we invert the first
+the behavior of the pin it decorates. If we invert the first
 three pins this way before passing them to fanout, the LEDs
 alternate left-right.
 
-<>
+[](from....)
+```C++
+#include "hwcpp.hpp"
+
+using target = hwcpp::target<>;
+using timing = target::waiting;
+
+using pins = hwcpp::fanout< 
+   hwcpp::invert< target::d8 >,
+   hwcpp::invert< target::d9 >,
+   hwcpp::invert< target::d10 >,
+   target::d11,
+   target::d12,
+   target::d13
+>;
+
+int main(){ 
+   hwcpp::blink< pins, timing::ms< 200 > >();
+}
+```
 
 A different (but totally equivalent) way to get this effect is to
 first combine the two groups of three LEDs, then invert one,
 and finally combine the two groups.
 
-<>
+[](from....)
+```C++
+#include "hwcpp.hpp"
+
+using target = hwcpp::target<>;
+using timing = target::waiting;
+
+using pins = hwcpp::fanout< 
+   hwcpp::invert< hwcpp::fanout< 
+      target::d8,
+      target::d9,
+      target::d10 > >,
+   hwcpp::fanout< 
+      target::d11,
+      target::d12,
+      target::d13 >
+>;
+
+int main(){ 
+   hwcpp::blink< pins, timing::ms< 200 > >();
+}
+```
 
 A simple variation alternates between the even and odd LEDs.
 
-<>
+[](from....)
+```C++
+#include "hwcpp.hpp"
+
+using target = hwcpp::target<>;
+using timing = target::waiting;
+
+using pins = hwcpp::fanout< 
+   hwcpp::invert< target::d8 >,
+   target::d9,
+   hwcpp::invert< target::d10 >,
+   target::d11,
+   hwcpp::invert< target::d12 >,
+   target::d13
+>;
+
+int main(){ 
+   hwcpp::blink< pins, timing::ms< 200 > >();
+}
+```
 
 Another nice pattern is the inside-to-outside. 
 The base for this is the walk<> function, 
-which is like kitt, but only forward.
+which is like Kitt, but only forward.
 
-<>
+[](from....)
+```C++
+#include "hwcpp.hpp"
+
+using target = hwcpp::target<>;
+using timing = target::waiting;
+
+using pins = hwcpp::port_out< 
+   target::d8,
+   target::d9,
+   target::d10,
+   target::d11,
+   target::d12,
+   target::d13
+>;
+
+int main(){ 
+   hwcpp::walk< pins, timing::ms< 50 > >();
+}
+```
+
+If you don't like the direction in which the pattern walks,
+you could of course change the order in which the pins are mentioned
+in the port_out constructor, but it is easier to use hwcpp::mirror<>.
+
+[](from....)
+```C++
+#include "hwcpp.hpp"
+
+using target = hwcpp::target<>;
+using timing = target::waiting;
+
+using pins = hwcpp::port_out< 
+   target::d8,
+   target::d9,
+   target::d10,
+   target::d11,
+   target::d12,
+   target::d13
+>;
+
+int main(){ 
+   hwcpp::walk< pins, timing::ms< 50 > >();
+}
+```
 
 To get inside-to-outside, we create two ports of three LEDs,
-one in the normal order and the other in the reverse order.
+one in the reverse order and the other in the normal order.
 These two ports are combined by fanout<> to get a single port.
-Running walk<> on this port creates the inteded effect.
+Running walk<> on this port creates the intended effect.
 
-<>
+[](from....)
+```C++
+#include "hwcpp.hpp"
+
+using target = hwcpp::target<>;
+using timing = target::waiting;
+
+using pins = hwcpp::fanout< 
+   hwcpp::port_out< 
+      target::d10,
+      target::d9,
+      target::d8 >,
+   hwcpp::port_out< 
+      target::d11,
+      target::d12,
+      target::d13 >
+>;
+
+int main(){ 
+   hwcpp::walk< pins, timing::ms< 200 > >();
+}
+```
 
 An alternative is to create the two sub-ports both
-in the standard order, but apply mirror<> to one 
-of them before the are combined by fanout<>.
+in the standard pin order, but apply mirror<> to one 
+of them before the two ports are combined by fanout<>.
 
-<>
+[](from....)
+```C++
+#include "hwcpp.hpp"
+
+using target = hwcpp::target<>;
+using timing = target::waiting;
+
+using pins = hwcpp::fanout< 
+   hwcpp::mirror< hwcpp::port_out< 
+      target::d8,
+      target::d9,
+      target::d10 > >,
+   hwcpp::port_out< 
+      target::d11,
+      target::d12,
+      target::d13 >
+>;
+
+int main(){ 
+   hwcpp::walk< pins, timing::ms< 200 > >();
+}
+```
+
+<add dummy pins>
+
+
+-------------------------------------
+
+[](from....)
+```C++
+```
 

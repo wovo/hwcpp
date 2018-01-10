@@ -1,17 +1,19 @@
 #include "hwcpp.hpp"
 
 using target = hwcpp::target<>;
-using timing = target::timing;
-using led    = target::led;
+using timing = target::waiting;
+
+using pins = hwcpp::fanout< 
+   hwcpp::invert< hwcpp::fanout< 
+      target::d8,
+      target::d9,
+      target::d10 > >,
+   hwcpp::fanout< 
+      target::d11,
+      target::d12,
+      target::d13 >
+>;
 
 int main(){ 
-   led::init();
-   timing::init();
-   
-   for(;;){
-      led::set( 1 );
-      timing::ms< 200 >::wait();
-      led::set( 0 );
-      timing::ms< 200 >::wait();
-   }
+   hwcpp::blink< pins, timing::ms< 200 > >();
 }

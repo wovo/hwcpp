@@ -115,6 +115,7 @@ namespace hwcpp {
    
    #include "core/hwcpp-box-adapters.hpp"
    #include "core/hwcpp-box-invert.hpp"
+   #include "core/hwcpp-box-mirror.hpp"
    #include "core/hwcpp-box-builder.hpp"
    
    // ========= pins
@@ -133,6 +134,7 @@ namespace hwcpp {
    #include "core/hwcpp-port-dummies.hpp"
    #include "core/hwcpp-port-from-pins.hpp"
    #include "core/hwcpp-port-from-buffers.hpp"
+   #include "core/hwcpp-port-fanout.hpp"
    
    // ======== other boxes
    

@@ -3,7 +3,7 @@
 using target = hwcpp::target<>;
 using timing = target::waiting;
 
-using pins = hwcpp::fanout< 
+using pins = hwcpp::port_out< 
    target::d8,
    target::d9,
    target::d10,
@@ -13,5 +13,5 @@ using pins = hwcpp::fanout<
 >;
 
 int main(){ 
-   hwcpp::blink< pins, timing::ms< 200 > >();
+   hwcpp::walk< hwcpp::mirror< pins >, timing::ms< 50 > >();
 }

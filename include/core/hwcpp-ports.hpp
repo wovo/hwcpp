@@ -33,7 +33,8 @@
 
 template< int n >
 struct _port_common_root :
-   invertible_bitwise
+   invertible_bitwise,
+   mirrorable_bitwise< n >
 {
    static constexpr int n_pins = n;
 };

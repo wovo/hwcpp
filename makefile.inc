@@ -57,6 +57,7 @@ HEADERS           += hwcpp-bs-no-inline.hpp
 
 HEADERS           += hwcpp-box-adapters.hpp 
 HEADERS           += hwcpp-box-invert.hpp 
+HEADERS           += hwcpp-box-mirror.hpp 
 HEADERS           += hwcpp-box-builder.hpp 
 
 HEADERS           += hwcpp-pins.hpp 
@@ -71,6 +72,7 @@ HEADERS           += hwcpp-port-adapters.hpp
 HEADERS           += hwcpp-port-dummies.hpp 
 HEADERS           += hwcpp-port-from-pins.hpp 
 HEADERS           += hwcpp-port-from-buffers.hpp 
+HEADERS           += hwcpp-port-fanout.hpp 
 
 HEADERS           += hwcpp-adc.hpp 
 HEADERS           += hwcpp-dac.hpp 
