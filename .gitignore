@@ -12,7 +12,6 @@ __codelite.workspace
 *.hex
 *.lss
 *.lst
-*.md
 *.exe
 bmptk_*_stack.c
 _push.bat
