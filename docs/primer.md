@@ -242,7 +242,7 @@ and finally combine the two groups.
 
 <>
 
-A simple variation alternates wetween the even and odd LEDs.
+A simple variation alternates between the even and odd LEDs.
 
 <>
 
