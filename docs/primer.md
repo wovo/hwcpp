@@ -1,10 +1,9 @@
-introduction
+# Introduction
 
 HwCpp is a library for writing micro-controller applications. 
-A typical HwCpp application is a single main.cpp file that includes 
-and combines the parts of the application. 
 
-blink a led
+
+# Blink a led
 
 Blinking a LED is the "Hello world!" equivalent for micro-controllers,
 so let's start with that.
@@ -28,11 +27,29 @@ int main(){
    }
 }
 ```
+A typical HwCpp application is a single main.cpp file that includes 
+and combines the parts of the application. 
+
+```C++
+#include "hwcpp.hpp"
+```
 
 The default way to specify which target is to put that information in
 the makefile, which passes it to the compiler as a command-line macro.
 The application includes "hwcpp.hpp", which turn includes the appropriate
 target-specific parts of HwCpp.
+
+```C++
+using target = hwcpp::target<>;
+```
+
+All hwcpp stuff is inside the namespace hwcpp. 
+This includes the target<> template, which is, through makefile/macro/hwcpp.hpp
+magic, the target micro-controller or board you are building your application for.
+By default, the target will use the highest clock speed possible, but in some
+cases you can specify a slower clock speed as template parameter.
+
+
 
 
 
