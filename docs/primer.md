@@ -117,7 +117,7 @@ Such a duration cto has a ::wait() function that will wait for
 the appropriate amount of time.
 
 The point of a library is to make writing applications easier,
-so HwCpp has a blink<> template that can be used to write a 
+so HwCpp has a blink<> function template that can be used to write a 
 blinky. It requires the pin that must be blinked, and the
 duration of the on and off periods.  
 
@@ -144,8 +144,8 @@ int main(){
 ```
 
 The using... line for the target could be omitted too, but 
-the target is mentione dtwice, so in my taste omitting that
-line produces a blinky that is shorted, 
+the target is mentioned twice, so in my taste omitting that
+line produces a blinky that is shorter, 
 but slightly less pleasing to the eye.
 
 [](from....)
@@ -161,3 +161,107 @@ int main(){
 ```
 
 # Kitt
+
+After blinking a single LED, the next step is to do something with a bunch of LEDs. 
+The Kitt (one LED back-and-forth) is the standard example for this.
+
+[](from....)
+```C++
+#include "hwcpp.hpp"
+
+using target = hwcpp::target<>;
+using timing = target::waiting;
+
+using pins = hwcpp::port_out< 
+   target::d8,
+   target::d9,
+   target::d10,
+   target::d11,
+   target::d12,
+   target::d13
+>;
+
+int main(){ 
+   hwcpp::kitt< pins, timing::ms< 50 > >();
+}
+```
+
+The supported target boards don't have a string of LEDs, 
+so instead the pins that connect to the LEDs are specified.
+This application is for the Arduino Uno target, 
+hence the Arduino pin names are used.
+(Alternatively, the pin names of the atMega chip could be used.)
+I used six pins are are conveniently located next to a ground pin.
+
+[](from....)
+```C++
+using pins = hwcpp::port_out< 
+   target::d8,
+   target::d9,
+   target::d10,
+   target::d11,
+   target::d12,
+   target::d13
+>;
+
+```
+
+The 6 pins are combined into a port_out.
+A port is a (ordered) bundle of pins, and 'out' indicates that the port
+can be used only as output. 
+
+```C++
+   hwcpp::kitt< pins, timing::ms< 50 > >();
+```
+
+We could write the kitt functionality ourselves, but HwCpp has a 
+function template for that, which requires a port and a duration. 
+We pass those parameters, call the function, and kitt is alive.
+
+# More fun with LEDs
+
+Blinking can be made more interesting by blinking more than just a single LED.
+A bunch of pins can be combined into a something that walks and quacks like
+a single (output) pin with the hwcpp::fanout<> template. 
+To blink the six LEDs of the kitt example in usinson, all
+we need is to combine them into a single 'pin', and pass that pin
+to the blink template.
+
+<>
+
+The hwcpp::invert<> template can be used to create a pin that inverses
+the behaviour of the pin it decorates. If we invert the first
+three pins this way before passing them to fanout, the LEDs
+alternate left-right.
+
+<>
+
+A different (but totally equivalent) way to get this effect is to
+first combine the two groups of three LEDs, then invert one,
+and finally combine the two groups.
+
+<>
+
+A simple variation alternates wetween the even and odd LEDs.
+
+<>
+
+Another nice pattern is the inside-to-outside. 
+The base for this is the walk<> function, 
+which is like kitt, but only forward.
+
+<>
+
+To get inside-to-outside, we create two ports of three LEDs,
+one in the normal order and the other in the reverse order.
+These two ports are combined by fanout<> to get a single port.
+Running walk<> on this port creates the inteded effect.
+
+<>
+
+An alternative is to create the two sub-ports both
+in the standard order, but apply mirror<> to one 
+of them before the are combined by fanout<>.
+
+<>
+
