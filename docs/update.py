@@ -52,7 +52,6 @@ def parse( file_name ):
 		 
    # process
    result = []
-   skipping = 0
    while len( input ) > 0:
       line = input.pop( 0 )
 		 
@@ -63,6 +62,14 @@ def parse( file_name ):
          line = line.replace( "-->", "" )	
          result = result + eval( line )
 		    		
+      elif line.startswith( "```" ):
+         result.append( line )
+         line = input.pop( 0 )	
+         result.append( line )	 
+         while not line.startswith( "```" ):
+            line = input.pop( 0 )   
+            result.append( line )         
+	  
       elif line.startswith( '<a name="toc-anchor-' ):
          pass  
 	  
