@@ -50,6 +50,7 @@ The compilers I currently use are (gcc 7.2.0):
 -----------------------------------------------------------------------------
 
 Notes & ToDo
+- updater: TOC & ch numbering. ignore title
 - updater: copyright, etc
 - update: create TOC
 - update: write to source file
