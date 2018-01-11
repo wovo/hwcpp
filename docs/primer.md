@@ -10,26 +10,10 @@ Basic C++ and hardware knowledge is assumed, but nothing too advanced.
 Blinking a LED is the "Hello world!" equivalent for micro-controllers,
 so let's start with that.
 
-[](from....)
+[](python example( input, "../demo/arduino-uno/blink-for-loop/main.cpp" ) )
 ```C++
-#include "hwcpp.hpp"
-
-using target = hwcpp::target<>;
-using timing = target::timing;
-using led    = target::led;
-
-int main(){ 
-   led::init();
-   timing::init();
-   
-   for(;;){
-      led::set( 1 );
-      timing::ms< 200 >::wait();
-      led::set( 0 );
-      timing::ms< 200 >::wait();
-   }
-}
 ```
+
 A typical HwCpp application is a single main.cpp file that includes 
 and combines the parts of the application. 
 
@@ -129,7 +113,7 @@ those lines.
 And because the timing is now mentioned only once 
 the using... line for that can be omitted.
 
-[](from....)
+[](python example( input, "../demo/arduino-uno/blink-blink/main.cpp" ) )
 ```C++
 #include "hwcpp.hpp"
 
@@ -370,7 +354,7 @@ using pins = hwcpp::port_out<
 >;
 
 int main(){ 
-   hwcpp::walk< pins, timing::ms< 50 > >();
+   hwcpp::walk< hwcpp::mirror< pins >, timing::ms< 50 > >();
 }
 ```
 
@@ -378,6 +362,8 @@ To get inside-to-outside, we create two ports of three LEDs,
 one in the reverse order and the other in the normal order.
 These two ports are combined by fanout<> to get a single port.
 Running walk<> on this port creates the intended effect.
+
+=> fanout doesn't work yet for ports
 
 [](from....)
 ```C++

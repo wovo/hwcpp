@@ -1,6 +1,15 @@
-The HwCpp documentation is even more work-in-progress than the library itself.
+The HwCpp documentation 
 
-The primer aims to offer a gentle introduction.
-Some C++ and hardware knowledge is assumed.
+(probably even more work-in-progress than the library itself)
 
-The reference is aims to tell all the nitty-gritty details.
+- getting-started.md
+   How to get started using HwCpp (installation etc.)
+   
+- primer.md
+   Aims to offer a gentle introduction.
+   
+- reference.md
+   Read this for the nitty gityy details.
+   
+- update.py
+   inserts code snippets into the documents
