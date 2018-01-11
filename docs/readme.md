@@ -1,6 +1,6 @@
-This is the HwCpp documentation 
-
-(which is probably even more work-in-progress than the library itself)
+This is the available HwCpp documentation, 
+which is probably even more work-in-progress than the library itself.
+The pdfs are by gitprint.com.
 
 - hwcpp-getting-started.md 
    [pdf](https://gitprint.com/wovo/hwcpp/blob/master/docs/hwcpp-getting-started.md) :
