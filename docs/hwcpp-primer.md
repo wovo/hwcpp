@@ -1,4 +1,4 @@
-HwCpp primer
+HwCpp Primer
 ===
 
 <!-- update table_of_contents( input ) -->

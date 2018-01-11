@@ -41,7 +41,7 @@ def table_of_contents( input ):
    
    return [ "%%TOC%%\n", line ]
 
-def parse( file_name ):
+def update( file_name ):
    print( "updating %s" % file_name )
    toc = []
 
@@ -92,4 +92,6 @@ def parse( file_name ):
          else:
             f.write( line )   
 	
-parse( "primer.md" )
+update( "hwcpp-getting-started.md" )
+update( "hwcpp-primer.md" )
+update( "hwcpp-reference.md" )

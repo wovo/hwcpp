@@ -1,2 +1,3 @@
-c:/python36/python update.py
+PATH=$PATH;C:/python36
+python _update.py
 pause

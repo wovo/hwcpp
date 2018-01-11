@@ -2,15 +2,15 @@ This is the HwCpp documentation
 
 (which is probably even more work-in-progress than the library itself)
 
-- getting-started.md
+- hwcpp-getting-started.md
 
    How to get started using HwCpp (installation etc.)
    
-- primer.md
+- hwcpp-primer.md
 
    Aims to offer a gentle introduction.
    
-- reference.md
+- hwcpp-reference.md
 
    Read this for the nitty gityy details.
    
@@ -19,11 +19,11 @@ This is the HwCpp documentation
    inserts code snippets and TOC into the documents
 
 - _update.bat
-- _pdfs.bat
-   
-   (sorry, windows...) 
 
    _update runs update.py on the documents
+
+- _pdfs.bat
+   
    _pdfs uses pandoc + MiKTeX + some auto-installed packages
    to generate pdf versions of the documents
 
