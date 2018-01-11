@@ -11,8 +11,9 @@ Basic C++ and hardware knowledge is assumed, but nothing too advanced.
 Blinking a LED is the "Hello world!" equivalent for micro-controllers,
 so let's start with that.
 
-[//]: # "python example( input, '../demo/arduino-uno/blink-for-loop/main.cpp' ) "
+[]: # "python example( input, '../demo/arduino-uno/blink-for-loop/main.cpp' ) "
 ```C++
+bla
 ```
 
 A typical HwCpp application is a single main.cpp file that includes 
