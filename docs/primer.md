@@ -13,6 +13,10 @@ so let's start with that.
 
 [](from... )
 
+[](python example input )
+
+[](python "../demo/arduino-uno/blink-for-loop/main.cpp"  )
+
 [](python example input, "../demo/arduino-uno/blink-for-loop/main.cpp"  )
 
 [](python example "../demo/arduino-uno/blink-for-loop/main.cpp" )
