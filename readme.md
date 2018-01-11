@@ -50,6 +50,9 @@ The compilers I currently use are (gcc 7.2.0):
 -----------------------------------------------------------------------------
 
 Notes & ToDo
+- updater: copyright, etc
+- update: create TOC
+- update: write to source file
 - add 'number of loops' to blink, kitt, walk
 - python extractor for the .md files
 - combine mirror and invert mechanics?

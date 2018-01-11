@@ -1,17 +1,34 @@
+<a name="toc-anchor-0"></a>
 # HwCpp primer
 
 <!-- update table_of_contents( input ) -->
-bla
-bla 
-bla
+[ HwCpp primer](#toc-anchor-0)
+[ Introduction](#toc-anchor-1)
+[ Blink a led](#toc-anchor-2)
+[include "hwcpp.hpp"](#toc-anchor-3)
+[include "hwcpp.hpp"](#toc-anchor-4)
+[include "hwcpp.hpp"](#toc-anchor-5)
+[ Kitt](#toc-anchor-6)
+[include "hwcpp.hpp"](#toc-anchor-7)
+[ More fun with LEDs](#toc-anchor-8)
+[include "hwcpp.hpp"](#toc-anchor-9)
+[include "hwcpp.hpp"](#toc-anchor-10)
+[include "hwcpp.hpp"](#toc-anchor-11)
+[include "hwcpp.hpp"](#toc-anchor-12)
+[include "hwcpp.hpp"](#toc-anchor-13)
+[include "hwcpp.hpp"](#toc-anchor-14)
+[include "hwcpp.hpp"](#toc-anchor-15)
+[include "hwcpp.hpp"](#toc-anchor-16)
 <!-- update end -->
 
+<a name="toc-anchor-1"></a>
 ## Introduction
 
 HwCpp is a library for writing micro-controller applications. 
 This document provides a gentle introduction to using HwCpp.
 Basic C++ and hardware knowledge is assumed, but nothing too advanced.
 
+<a name="toc-anchor-2"></a>
 ## Blink a led
 
 Blinking a LED is the "Hello world!" equivalent for micro-controllers,
@@ -20,13 +37,30 @@ so let's start with that.
 <!-- update example_path( "../demo/" ) -->
 <!-- update example( input, "arduino-uno/blink-for-loop/main.cpp" ) -->
 ```C++
-bla
+#include "hwcpp.hpp"
+
+using target = hwcpp::target<>;
+using timing = target::timing;
+using led    = target::led;
+
+int main(){ 
+   led::init();
+   timing::init();
+   
+   for(;;){
+      led::set( 1 );
+      timing::ms< 200 >::wait();
+      led::set( 0 );
+      timing::ms< 200 >::wait();
+   }
+}
 ```
 
 A typical HwCpp application is a single main.cpp file that includes 
 and combines the parts of the application. 
 
 ```C++
+<a name="toc-anchor-3"></a>
 #include "hwcpp.hpp"
 ```
 
@@ -124,6 +158,7 @@ the using... line for that can be omitted.
 
 [](python example( input, "../demo/arduino-uno/blink-blink/main.cpp" ) )
 ```C++
+<a name="toc-anchor-4"></a>
 #include "hwcpp.hpp"
 
 using target = hwcpp::target<>;
@@ -143,6 +178,7 @@ but slightly less pleasing to the eye.
 
 [](from....)
 ```C++
+<a name="toc-anchor-5"></a>
 #include "hwcpp.hpp"
 
 int main(){ 
@@ -153,6 +189,7 @@ int main(){
 }
 ```
 
+<a name="toc-anchor-6"></a>
 ## Kitt
 
 After blinking a single LED, the next step is to do something with a bunch of LEDs. 
@@ -160,6 +197,7 @@ The Kitt (one LED back-and-forth) is the standard example for this.
 
 [](from....)
 ```C++
+<a name="toc-anchor-7"></a>
 #include "hwcpp.hpp"
 
 using target = hwcpp::target<>;
@@ -210,6 +248,7 @@ We could write the kitt functionality ourselves, but HwCpp has a
 function template for that, which requires a port and a duration. 
 We pass those parameters, call the function, and kitt is alive.
 
+<a name="toc-anchor-8"></a>
 ## More fun with LEDs
 
 Blinking can be made more interesting by blinking more than just a single LED.
@@ -221,6 +260,7 @@ to the blink function.
 
 [](from....)
 ```C++
+<a name="toc-anchor-9"></a>
 #include "hwcpp.hpp"
 
 using target = hwcpp::target<>;
@@ -247,6 +287,7 @@ alternate left-right.
 
 [](from....)
 ```C++
+<a name="toc-anchor-10"></a>
 #include "hwcpp.hpp"
 
 using target = hwcpp::target<>;
@@ -272,6 +313,7 @@ and finally combine the two groups.
 
 [](from....)
 ```C++
+<a name="toc-anchor-11"></a>
 #include "hwcpp.hpp"
 
 using target = hwcpp::target<>;
@@ -297,6 +339,7 @@ A simple variation alternates between the even and odd LEDs.
 
 [](from....)
 ```C++
+<a name="toc-anchor-12"></a>
 #include "hwcpp.hpp"
 
 using target = hwcpp::target<>;
@@ -322,6 +365,7 @@ which is like Kitt, but only forward.
 
 [](from....)
 ```C++
+<a name="toc-anchor-13"></a>
 #include "hwcpp.hpp"
 
 using target = hwcpp::target<>;
@@ -347,6 +391,7 @@ in the port_out constructor, but it is easier to use hwcpp::mirror<>.
 
 [](from....)
 ```C++
+<a name="toc-anchor-14"></a>
 #include "hwcpp.hpp"
 
 using target = hwcpp::target<>;
@@ -375,6 +420,7 @@ Running walk<> on this port creates the intended effect.
 
 [](from....)
 ```C++
+<a name="toc-anchor-15"></a>
 #include "hwcpp.hpp"
 
 using target = hwcpp::target<>;
@@ -402,6 +448,7 @@ of them before the two ports are combined by fanout<>.
 
 [](from....)
 ```C++
+<a name="toc-anchor-16"></a>
 #include "hwcpp.hpp"
 
 using target = hwcpp::target<>;

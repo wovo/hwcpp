@@ -16,4 +16,4 @@ The HwCpp documentation
    
 - update.py
 
-   inserts code snippets into the documents
+   inserts code snippets and TOC into the documents
