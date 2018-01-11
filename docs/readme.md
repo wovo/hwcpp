@@ -17,3 +17,12 @@ The HwCpp documentation
 - update.py
 
    inserts code snippets and TOC into the documents
+
+- _update.bat
+   
+   (sorry, windows...) 
+   runs update.py and uses pandoc + MiKTeX to generate pdf versions
+   of the documents
+
+- pdfs
+   pdf versions of the documents

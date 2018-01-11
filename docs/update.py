@@ -83,7 +83,7 @@ def parse( file_name ):
          result.append( line )
 		 
    # write output to the same file
-   with open( "result.md", "w" ) as f:
+   with open( "filer_name", "w" ) as f:
       for line in result:
          if line == "%%TOC%%\n":
             for line in toc:

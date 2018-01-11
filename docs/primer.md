@@ -123,7 +123,7 @@ those lines.
 And because the timing is now mentioned only once 
 the using... line for that can be omitted.
 
-[](python example( input, "../demo/arduino-uno/blink-blink/main.cpp" ) )
+[](python example( input, "../demo/arduino-uno/blink-blink-1/main.cpp" ) )
 ```C++
 #include "hwcpp.hpp"
 
@@ -142,7 +142,7 @@ the target is mentioned twice, so in my taste omitting that
 line produces a blinky that is shorter, 
 but slightly less pleasing to the eye.
 
-[](from....)
+<!-- update example( input, "arduino-uno/blink-blink-2/main.cpp" ) -->
 ```C++
 #include "hwcpp.hpp"
 
@@ -157,9 +157,10 @@ int main(){
 # Kitt
 
 After blinking a single LED, the next step is to do something with a bunch of LEDs. 
-The Kitt (one LED back-and-forth) is the standard example for this.
+The Kitt display (one LED back-and-forth, from the Knightrider series) 
+is the standard example for this.
 
-[](from....)
+<!-- update example( input, "arduino-uno/led-6-kitt/main.cpp" ) -->
 ```C++
 #include "hwcpp.hpp"
 
@@ -184,10 +185,9 @@ The supported target boards don't have a string of LEDs,
 so instead the pins that connect to the LEDs are specified.
 This application is for the Arduino Uno target, 
 hence the Arduino pin names are used.
-(Alternatively, the pin names of the atMega chip could be used.)
+(Alternatively, the pin names of the atMega328 chip could be used.)
 I used six pins are are conveniently located next to a ground pin.
 
-[](from....)
 ```C++
 using pins = hwcpp::port_out< 
    target::d8,
@@ -200,8 +200,8 @@ using pins = hwcpp::port_out<
 ```
 
 The 6 pins are combined into a port_out.
-A port is a (ordered) bundle of pins, and 'out' indicates that the port
-can be used only as output. 
+A port is an (ordered) bundle of pins, 
+and 'out' indicates that the port can be used only as output. 
 
 ```C++
    hwcpp::kitt< pins, timing::ms< 50 > >();
@@ -220,7 +220,7 @@ To blink the six LEDs of the kitt example in usinson, all
 we need is to combine them into a single 'pin', and pass that pin
 to the blink function.
 
-[](from....)
+<!-- update example( input, "arduino-uno/led-6-together/main.cpp" ) -->
 ```C++
 #include "hwcpp.hpp"
 
@@ -246,7 +246,7 @@ the behavior of the pin it decorates. If we invert the first
 three pins this way before passing them to fanout, the LEDs
 alternate left-right.
 
-[](from....)
+<!-- update example( input, "arduino-uno/led-6-left-right-1/main.cpp" ) -->
 ```C++
 #include "hwcpp.hpp"
 
@@ -271,7 +271,7 @@ A different (but totally equivalent) way to get this effect is to
 first combine the two groups of three LEDs, then invert one,
 and finally combine the two groups.
 
-[](from....)
+<!-- update example( input, "arduino-uno/led-6-left-right-2/main.cpp" ) -->
 ```C++
 #include "hwcpp.hpp"
 
@@ -296,7 +296,7 @@ int main(){
 
 A simple variation alternates between the even and odd LEDs.
 
-[](from....)
+<!-- update example( input, "arduino-uno/led-6-even-odd/main.cpp" ) -->
 ```C++
 #include "hwcpp.hpp"
 
@@ -321,7 +321,7 @@ Another nice pattern is the inside-to-outside.
 The base for this is the walk<> function, 
 which is like Kitt, but only forward.
 
-[](from....)
+<!-- update example( input, "arduino-uno/led-6-walk-1/main.cpp" ) -->
 ```C++
 #include "hwcpp.hpp"
 
@@ -346,7 +346,7 @@ If you don't like the direction in which the pattern walks,
 you could of course change the order in which the pins are mentioned
 in the port_out constructor, but it is easier to use hwcpp::mirror<>.
 
-[](from....)
+<!-- update example( input, "arduino-uno/led-6-walk-2/main.cpp" ) -->
 ```C++
 #include "hwcpp.hpp"
 
@@ -374,7 +374,7 @@ Running walk<> on this port creates the intended effect.
 
 => fanout doesn't work yet for ports
 
-[](from....)
+<!-- update example( input, "arduino-uno/led-6-inside-out-1/main.cpp" ) -->
 ```C++
 #include "hwcpp.hpp"
 
@@ -401,7 +401,7 @@ An alternative is to create the two sub-ports both
 in the standard pin order, but apply mirror<> to one 
 of them before the two ports are combined by fanout<>.
 
-[](from....)
+<!-- update example( input, "arduino-uno/led-6-inside-out-2/main.cpp" ) -->
 ```C++
 #include "hwcpp.hpp"
 
@@ -424,12 +424,5 @@ int main(){
 }
 ```
 
-<add dummy pins>
-
-
--------------------------------------
-
-[](from....)
-```C++
-```
+- add dummy pins
 
