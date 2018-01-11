@@ -1,11 +1,12 @@
-# Introduction
+# HwCpp primer
+
+## Introduction
 
 HwCpp is a library for writing micro-controller applications. 
-This document provides a gentle introduction to using
-HwCpp.
+This document provides a gentle introduction to using HwCpp.
 Basic C++ and hardware knowledge is assumed, but nothing too advanced.
 
-# Blink a led
+## Blink a led
 
 Blinking a LED is the "Hello world!" equivalent for micro-controllers,
 so let's start with that.
@@ -144,7 +145,7 @@ int main(){
 }
 ```
 
-# Kitt
+## Kitt
 
 After blinking a single LED, the next step is to do something with a bunch of LEDs. 
 The Kitt (one LED back-and-forth) is the standard example for this.
@@ -187,7 +188,6 @@ using pins = hwcpp::port_out<
    target::d12,
    target::d13
 >;
-
 ```
 
 The 6 pins are combined into a port_out.
@@ -202,7 +202,7 @@ We could write the kitt functionality ourselves, but HwCpp has a
 function template for that, which requires a port and a duration. 
 We pass those parameters, call the function, and kitt is alive.
 
-# More fun with LEDs
+## More fun with LEDs
 
 Blinking can be made more interesting by blinking more than just a single LED.
 A bunch of pins can be combined into a something that walks and quacks like
