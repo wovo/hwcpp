@@ -2,9 +2,9 @@ HwCpp Getting Started
 ===
 
 <!-- update table_of_contents( input ) -->
-- [ Introduction](#toc-anchor-0)
-- [ Download and install](#toc-anchor-1)
-- [ First use](#toc-anchor-2)
+   - [ Introduction](#toc-anchor-0)
+   - [ Download and install](#toc-anchor-1)
+   - [ First use](#toc-anchor-2)
 <!-- update end -->
 
 <a name="toc-anchor-0"></a>
