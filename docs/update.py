@@ -75,7 +75,7 @@ def parse( file_name ):
 	  
       elif line.startswith( "#" ):
          n = len( toc )
-         toc.append( "[%s](#toc-anchor-%d)\n" % ( line.replace( "#", '' ).replace( "\n", "" ), n ))
+         toc.append( "- [%s](#toc-anchor-%d)\n" % ( line.replace( "#", '' ).replace( "\n", "" ), n ))
          result.append( '<a name="toc-anchor-%d"></a>\n' % n )
          result.append( line )
       
