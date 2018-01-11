@@ -2,9 +2,9 @@
 # HwCpp primer
 
 <!-- update table_of_contents( input ) -->
-[ HwCpp primer](#toc-anchor-0)
-[ Introduction](#toc-anchor-1)
-[ Blink a led](#toc-anchor-2)
+- [ HwCpp primer](#toc-anchor-0)
+- [ Introduction](#toc-anchor-1)
+- [ Blink a led](#toc-anchor-2)
 [include "hwcpp.hpp"](#toc-anchor-3)
 [include "hwcpp.hpp"](#toc-anchor-4)
 [include "hwcpp.hpp"](#toc-anchor-5)
