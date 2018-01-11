@@ -42,6 +42,7 @@ def table_of_contents( input ):
    return [ "%%TOC%%\n", line ]
 
 def parse( file_name ):
+   print( "updating %s" % file_name )
    toc = []
 
    # read input file
@@ -83,7 +84,7 @@ def parse( file_name ):
          result.append( line )
 		 
    # write output to the same file
-   with open( "filer_name", "w" ) as f:
+   with open( file_name, "w" ) as f:
       for line in result:
          if line == "%%TOC%%\n":
             for line in toc:

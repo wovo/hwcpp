@@ -2,17 +2,20 @@ HwCpp primer
 ===
 
 <!-- update table_of_contents( input ) -->
-bla
-bla 
-bla
+- [ Introduction](#toc-anchor-0)
+- [ Blink a led](#toc-anchor-1)
+- [ Kitt](#toc-anchor-2)
+- [ More fun with LEDs](#toc-anchor-3)
 <!-- update end -->
 
+<a name="toc-anchor-0"></a>
 # Introduction
 
 HwCpp is a library for writing micro-controller applications. 
 This document provides a gentle introduction to using HwCpp.
 Basic C++ and hardware knowledge is assumed, but nothing too advanced.
 
+<a name="toc-anchor-1"></a>
 # Blink a led
 
 Blinking a LED is the "Hello world!" equivalent for micro-controllers,
@@ -21,7 +24,23 @@ so let's start with that.
 <!-- update example_path( "../demo/" ) -->
 <!-- update example( input, "arduino-uno/blink-for-loop/main.cpp" ) -->
 ```C++
-bla
+#include "hwcpp.hpp"
+
+using target = hwcpp::target<>;
+using timing = target::timing;
+using led    = target::led;
+
+int main(){ 
+   led::init();
+   timing::init();
+   
+   for(;;){
+      led::set( 1 );
+      timing::ms< 200 >::wait();
+      led::set( 0 );
+      timing::ms< 200 >::wait();
+   }
+}
 ```
 
 A typical HwCpp application is a single main.cpp file that includes 
@@ -154,6 +173,7 @@ int main(){
 }
 ```
 
+<a name="toc-anchor-2"></a>
 # Kitt
 
 After blinking a single LED, the next step is to do something with a bunch of LEDs. 
@@ -211,6 +231,7 @@ We could write the kitt functionality ourselves, but HwCpp has a
 function template for that, which requires a port and a duration. 
 We pass those parameters, call the function, and kitt is alive.
 
+<a name="toc-anchor-3"></a>
 # More fun with LEDs
 
 Blinking can be made more interesting by blinking more than just a single LED.
@@ -381,7 +402,7 @@ Running walk<> on this port creates the intended effect.
 using target = hwcpp::target<>;
 using timing = target::waiting;
 
-using pins = hwcpp::fanout< 
+using pins = hwcpp::pfanout< 
    hwcpp::port_out< 
       target::d10,
       target::d9,
@@ -408,7 +429,7 @@ of them before the two ports are combined by fanout<>.
 using target = hwcpp::target<>;
 using timing = target::waiting;
 
-using pins = hwcpp::fanout< 
+using pins = hwcpp::pfanout< 
    hwcpp::mirror< hwcpp::port_out< 
       target::d8,
       target::d9,

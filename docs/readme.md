@@ -21,8 +21,8 @@ The HwCpp documentation
 - _update.bat
    
    (sorry, windows...) 
-   runs update.py and uses pandoc + MiKTeX to generate pdf versions
-   of the documents
+   runs update.py and uses pandoc + MiKTeX + some auto-installed packages
+   to generate pdf versions of the documents
 
 - pdfs
    pdf versions of the documents

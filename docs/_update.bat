@@ -1,1 +1,2 @@
-pandoc primer.md -o pdfs/primer.pdf
+c:/python36/python update.py
+pause
