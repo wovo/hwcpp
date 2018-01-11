@@ -1,6 +1,6 @@
-The HwCpp documentation 
+This is the HwCpp documentation 
 
-(probably even more work-in-progress than the library itself)
+(which is probably even more work-in-progress than the library itself)
 
 - getting-started.md
 
@@ -19,10 +19,14 @@ The HwCpp documentation
    inserts code snippets and TOC into the documents
 
 - _update.bat
+- _pdfs.bat
    
    (sorry, windows...) 
-   runs update.py and uses pandoc + MiKTeX + some auto-installed packages
+
+   _update runs update.py on the documents
+   _pdfs uses pandoc + MiKTeX + some auto-installed packages
    to generate pdf versions of the documents
 
 - pdfs
+
    pdf versions of the documents
