@@ -27,7 +27,7 @@ so let's start with that.
 
 [](python example "../demo/arduino-uno/blink-for-loop/main.cpp" )
 
-[//]: # (python example( input, "../demo/arduino-uno/blink-for-loop/main.cpp" ) )
+[//]: # "python example( input, '../demo/arduino-uno/blink-for-loop/main.cpp' ) "
 ```C++
 ```
 
