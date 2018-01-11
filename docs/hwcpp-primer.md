@@ -9,6 +9,7 @@ HwCpp Primer
 <!-- update end -->
 
 <a name="toc-anchor-0"></a>
+
 # Introduction
 
 HwCpp is a library for writing micro-controller applications. 
@@ -16,6 +17,7 @@ This document provides a gentle introduction to using HwCpp.
 Basic C++ and hardware knowledge is assumed, but nothing too advanced.
 
 <a name="toc-anchor-1"></a>
+
 # Blink a led
 
 Blinking a LED is the "Hello world!" equivalent for micro-controllers,
