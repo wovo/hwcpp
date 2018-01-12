@@ -1,13 +1,5 @@
-//#include "hwcpp.hpp"
-
-sum( int x){ return x; }
+#include <iostream>
 
 int main(){
-   int y = sum( 12 );
-(void)y;	
+   std::cout << "Hello world\n";
 }
-
-
-//int xmain(){
-   //hwlib::cout << "Hello world\n"	;
-//}
