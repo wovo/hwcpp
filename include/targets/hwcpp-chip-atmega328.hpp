@@ -175,7 +175,7 @@ struct _uart_foundation :
    static void init(){   
 	   
       // set baudrate	   
-      uint64_t UBRR_VALUE = ((( clock / ( BMPTK_BAUDRATE * 16UL ))) - 1 );
+      uint64_t UBRR_VALUE = ((( clock / ( HWCPP_UART_BAUDRATE * 16UL ))) - 1 );
       UBRR0H = (uint8_t) (UBRR_VALUE>>8);
       UBRR0L = (uint8_t) UBRR_VALUE;
 	  

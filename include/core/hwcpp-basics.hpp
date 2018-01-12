@@ -31,6 +31,23 @@ constexpr char version[] = "V0.1 2017-12-23 work-in-progress";
 
 // ==========================================================================
 //
+// PUBLIC
+//
+// the baudrate for the (default) uart
+//
+// ==========================================================================
+
+#ifndef HWCPP_UART_BAUDRATE
+   #ifdef BMPTK_BAUDRATE
+      #define HWCPP_UART_BAUDRATE BMPTK_BAUDRATE
+   #else
+      #define HWCPP_UART_BAUDRATE 9600
+   #endif
+#endif
+
+
+// ==========================================================================
+//
 // LIBRARY-INTERNAL
 //
 // inline this function

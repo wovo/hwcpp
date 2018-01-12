@@ -2,11 +2,11 @@ HwCpp Getting Started
 ===
 
 <!-- update table_of_contents( input ) -->
-
- - [ Introductionx](#toc-anchor-0)
- - [ Download and install](#toc-anchor-1)
- - [ First use](#toc-anchor-2)
-
+ - [Introduction](#toc-anchor-0)
+ - [Download and install](#toc-anchor-1)
+ - [First use](#toc-anchor-2)
+ - [Bmptk](#toc-anchor-3)
+ - [CodeLite](#toc-anchor-4)
 <!-- update end -->
 
 <a name="toc-anchor-0"></a>
@@ -38,6 +38,7 @@ Add the bmptk/tools directory to your PATH.
 <a name="toc-anchor-2"></a>
 # First use
 
+<a name="toc-anchor-3"></a>
 ## Bmptk
 
  - Open the hwcpp/demos/native/hello directory in windows explorer.
@@ -50,6 +51,7 @@ Add the bmptk/tools directory to your PATH.
    - If you get a 'The system cannot find the path specified' error you either 
    didn't install thge MingW toolchain, or the ....
 
+<a name="toc-anchor-4"></a>
 ## CodeLite
 
  - Open the hwcpp/demos/native directory in windows explorer.

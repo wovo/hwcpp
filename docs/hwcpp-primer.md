@@ -2,22 +2,24 @@ HwCpp Primer
 ===
 
 <!-- update table_of_contents( input ) -->
-- [ Introduction](#toc-anchor-0)
-- [ Blink a led](#toc-anchor-1)
-- [ Kitt](#toc-anchor-2)
-- [ More fun with LEDs](#toc-anchor-3)
+ - [Introduction](#toc-anchor-0)
+ - [Blink a led](#toc-anchor-1)
+ - [Kitt](#toc-anchor-2)
+ - [More fun with LEDs](#toc-anchor-3)
+ - [Input and output pins](#toc-anchor-4)
+ - [Character output](#toc-anchor-5)
 <!-- update end -->
 
-<a name="toc-anchor-0"></a>
 
+<a name="toc-anchor-0"></a>
 # Introduction
 
 HwCpp is a library for writing micro-controller applications. 
 This document provides a gentle introduction to using HwCpp.
 Basic C++ and hardware knowledge is assumed, but nothing too advanced.
 
-<a name="toc-anchor-1"></a>
 
+<a name="toc-anchor-1"></a>
 # Blink a led
 
 Blinking a LED is the "Hello world!" equivalent for micro-controllers,
@@ -448,4 +450,157 @@ int main(){
 ```
 
 - add dummy pins
+
+<a name="toc-anchor-4"></a>
+# Input and output pins
+
+<a name="toc-anchor-5"></a>
+# Character output
+
+Even embedded programmers want their applications to talk.
+Most embedded targets have at least a serial (UART) connection,
+which is (in the absence of a real debugger) often used for debug logging.
+The cto for this (default) uart is available target::uart. 
+
+It is a formatted character output, which means that 
+it has write() functions that accept the common types
+(bool, char, ints, char *, formatters, etc).
+
+<!-- update example( input, "arduino-uno/hello-uart/main.cpp" ) -->
+```C++
+#include "hwcpp.hpp"
+
+using target = hwcpp::target<>;
+using timing = target::waiting;
+using uart   = target::uart;
+
+int main(){ 
+   timing::init();    
+   uart::init();
+   
+   for(;;){
+      uart::write( "xHello world!\n" );
+	  timing::ms< 1'000 >::wait();
+   }	  
+}
+
+```
+
+The uart is configured for HWCPP_UART_BAUDRATE, or (when that
+macro is not defined) BMPTK_BAUDRATE.
+When you use bmptk, this will be set to a sensible value and
+after downloading a terminal window will be started with that
+baudrate. 
+If you don't use bmptk you must define the baudrate
+macro at the compiler command line, 
+and start your terminal application accordingly.
+
+If you prefer to use << operators, you can make a cout object
+from a uart and use that object. 
+The object constructor takes care of calling init() on the uart.
+Currently bmptk doen't support global objects with a non-trivial constructor,
+hence such a cout object must be created locally.
+
+<!-- update example( input, "arduino-uno/hello-cout/main.cpp" ) -->
+```C++
+#include "hwcpp.hpp"
+
+using target = hwcpp::target<>;
+using timing = target::waiting;
+using uart   = target::uart;
+
+int main(){ 
+   timing::init();       
+   hwcpp::ostream< uart > cout;
+   
+   for(;;){
+      cout << "Hello world!\n";
+	  timing::ms< 1'000 >::wait();
+   }	  
+}
+
+```
+
+A common character output for embedded systems is the hd44780 character LCD.
+To create a cto for such a display you must provide
+the pins that connect to the RS (register select), E (enable), 
+a port_out for the D4..D8 pins (the 4 high data inputs), 
+the number of characters in the x (columns) and y (rows) directions,
+and a timing service.
+It is assumed that the RW (select read or write) pin is tied low 
+(to ground, only write operations).
+
+<!-- update example( input, "arduino-uno/lcd-16x1/main.cpp" ) -->
+```C++
+#include "hwcpp.hpp"
+
+using target = hwcpp::target<>;
+
+using lcd = hwcpp::hd44780_rs_e_d_x_y_timing< 
+   target::d8, 
+   target::d9,  
+   hwcpp::port_out< 
+	  target::d4, 
+	  target::d5, 
+      target::d6, 
+      target::d7 >,
+   16, 1,
+   target::timing >; 	
+
+int main( void ){
+   lcd::init();
+   lcd::print( "\fHello my world!" ); 
+}
+```
+
+When you use an Arduino Uno with the common lcd-with-buttons shield you can 
+use the HwCpp definition for that shield, which takes care of selecting the right pins.
+The shield cto contains a pin for the backlight, and the lcd itself.
+For my shield, the backlight had to be enabled for the LCD to be readable.
+
+<!-- update example( input, "arduino-uno/lcd-20x4-shield/main.cpp" ) -->
+```C++
+#include "hwcpp.hpp"
+
+using target = hwcpp::target<>;
+using timing = target::waiting;
+using shield = hwcpp::shields::lcd_buttons< target, timing >;
+
+int main( void ){
+
+   shield::init();
+   shield::backlight::set( 1 );
+
+   shield::lcd::write( 
+      "\fLine 1 ======== end.\n"
+      "And line 2 likewise.\n"
+      "This is line 3;\n"
+      "And finally line 4!\n";
+   );
+
+}
+```
+
+The LCD examples used "\f", which clears the LCD and puts the cursor at
+the top-left position.
+This is part of the console functionality of an lCD.
+It extends a formatted character output, extended with a notion of how 
+many rows and columns of characters it has. 
+This can be used through functions like clear() and goto_xy(),
+but also (and perhaps most easily) be by data 
+in the character stream:
+
+ - "\n" : cursor to next line, first position
+ - "\r" : cursor to current line, first position
+ - "\v" : cursor to first line, first position
+ - "\f" : as "\v", but also clears the display
+ - "\tXXYY" : cursor to column XX, row YY. X and Y are decimal characters.
+         }	
+(example for this using 40x4?)
+
+
+
+
+
+
 

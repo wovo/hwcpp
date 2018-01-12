@@ -1,9 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CodeLite_Workspace Name="example code" Database="" Version="10.0.0">
-  <Project Name="blink-blink" Path="blink-blink/_codelite.project" Active="No"/>
+  <Project Name="blink-blink-1" Path="blink-blink-1/_codelite.project" Active="No"/>
   <BuildMatrix>
     <WorkspaceConfiguration Name="Release" Selected="yes">
-      <Project Name="blink-blink" ConfigName="Release"/>
+      <Project Name="blink-blink-1" ConfigName="Release"/>
+    </WorkspaceConfiguration>
+  </BuildMatrix>
+  <Project Name="blink-blink-2" Path="blink-blink-2/_codelite.project" Active="No"/>
+  <BuildMatrix>
+    <WorkspaceConfiguration Name="Release" Selected="yes">
+      <Project Name="blink-blink-2" ConfigName="Release"/>
     </WorkspaceConfiguration>
   </BuildMatrix>
   <Project Name="blink-for-loop" Path="blink-for-loop/_codelite.project" Active="No"/>
@@ -24,10 +30,16 @@
       <Project Name="fast-toggle" ConfigName="Release"/>
     </WorkspaceConfiguration>
   </BuildMatrix>
-  <Project Name="hello" Path="hello/_codelite.project" Active="No"/>
+  <Project Name="hello-cout" Path="hello-cout/_codelite.project" Active="No"/>
   <BuildMatrix>
     <WorkspaceConfiguration Name="Release" Selected="yes">
-      <Project Name="hello" ConfigName="Release"/>
+      <Project Name="hello-cout" ConfigName="Release"/>
+    </WorkspaceConfiguration>
+  </BuildMatrix>
+  <Project Name="hello-uart" Path="hello-uart/_codelite.project" Active="Yes"/>
+  <BuildMatrix>
+    <WorkspaceConfiguration Name="Release" Selected="yes">
+      <Project Name="hello-uart" ConfigName="Release"/>
     </WorkspaceConfiguration>
   </BuildMatrix>
   <Project Name="lcd-12x2" Path="lcd-12x2/_codelite.project" Active="No"/>
@@ -78,7 +90,7 @@
       <Project Name="led-6-inside-out-1" ConfigName="Release"/>
     </WorkspaceConfiguration>
   </BuildMatrix>
-  <Project Name="led-6-inside-out-2" Path="led-6-inside-out-2/_codelite.project" Active="Yes"/>
+  <Project Name="led-6-inside-out-2" Path="led-6-inside-out-2/_codelite.project" Active="No"/>
   <BuildMatrix>
     <WorkspaceConfiguration Name="Release" Selected="yes">
       <Project Name="led-6-inside-out-2" ConfigName="Release"/>

@@ -1,7 +1,6 @@
 #include "hwcpp.hpp"
 
 using target = hwcpp::target<>;
-using timing = target::waiting;
 
 using lcd = hwcpp::hd44780_rs_e_d_x_y_timing< 
    target::d8, 
@@ -12,11 +11,9 @@ using lcd = hwcpp::hd44780_rs_e_d_x_y_timing<
       target::d6, 
       target::d7 >,
    16, 1,
-   timing >; 	
+   target::timing >; 	
 
 int main( void ){
-	
-   hwcpp::ostream< lcd > cout;	
-
-   cout << "\fHello my world!"; 
+   lcd::init();
+   lcd::print( "\fHello my world!" ); 
 }

@@ -5,6 +5,7 @@ using timing = target::waiting;
 using uart   = target::uart;
 
 int main(){ 
+   timing::init();       
    hwcpp::ostream< uart > cout;
    
    for(;;){
