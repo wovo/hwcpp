@@ -12,7 +12,18 @@ HwCpp Getting Started
 <a name="toc-anchor-0"></a>
 # Introduction
 
-This document explains how to get started with HwCpp,
+HwCpp is (only) a library. 
+To build and dowload an application you need, 
+besides HwCpp and your application code, 
+the folling:
+ - a toolchain (compiler, linker, and associated tools)
+ - the header files for the target device (in most cases provided by the vendor)
+ - a linker script suitable for the target device
+ - a download, communication and/or debug tool for the target device
+ - scripts to invoke the various tools with appropriate parameters
+ - (optionally) an IDE to edit the source and invoke the scripts
+
+This document explains how to get started with HwCpp using bmptk and CodeLite,
 for now only for windows.
 
 <a name="toc-anchor-1"></a>
@@ -24,9 +35,9 @@ Download and install using the default settings:
  - Git : https://git-scm.com/download/win
 
 Download and install the GCC toolchains (at least 7.2.0 required).
- - for windows native : https://mingw-w64.org/doku.php/download/mingw-builds 
- - for avr8 : http://blog.zakkemble.co.uk/avr-gcc-builds/ 
- - for arm/cortex : http://gnutoolchains.com/arm-eabi/ 
+ - GCC for windows native : https://mingw-w64.org/doku.php/download/mingw-builds 
+ - GCC for avr8 : http://blog.zakkemble.co.uk/avr-gcc-builds/ 
+ - GCC for arm/cortex : http://gnutoolchains.com/arm-eabi/ 
 
 Create a directory of your choice. 
 Go there, and clone (git clone ...) these repositories:
