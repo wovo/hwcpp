@@ -20,8 +20,8 @@ HwCpp Getting Started
 HwCpp is (only) a library. 
 To build and dowload an application you need, 
 besides HwCpp and your application code, 
-the folling:
- - a toolchain (compiler, linker, and associated tools)
+at least the following:
+ - a toolchain (compiler, linker, and associated tools) for your target(s)
  - the header files for the target device (in most cases provided by the vendor)
  - a linker script suitable for the target device
  - a download, communication and/or debug tool for the target device
