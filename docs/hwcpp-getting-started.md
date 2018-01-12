@@ -2,7 +2,7 @@ HwCpp Getting Started
 ===
 
 <!-- update table_of_contents( input ) -->
- - [xIntroduction](#toc-anchor-0)
+ - [Introduction](#toc-anchor-0)
 
  - [Download and install](#toc-anchor-1)
 

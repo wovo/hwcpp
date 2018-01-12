@@ -3,11 +3,17 @@ HwCpp Primer
 
 <!-- update table_of_contents( input ) -->
  - [Introduction](#toc-anchor-0)
+
  - [Blink a led](#toc-anchor-1)
+
  - [Kitt](#toc-anchor-2)
+
  - [More fun with LEDs](#toc-anchor-3)
+
  - [Input and output pins](#toc-anchor-4)
+
  - [Character output](#toc-anchor-5)
+
 <!-- update end -->
 
 
