@@ -50,12 +50,10 @@ The compilers I currently use are (gcc 7.2.0):
 -----------------------------------------------------------------------------
 
 Notes & ToDo
+- check arduino shield: should be 16x2?
 - updater: TOC & ch numbering. ignore title
 - updater: copyright, etc
-- update: create TOC
-- update: write to source file
 - add 'number of loops' to blink, kitt, walk
-- python extractor for the .md files
 - combine mirror and invert mechanics?
 - fanout for ports - how to use the same name?
 - ws2812 doesn't work??
