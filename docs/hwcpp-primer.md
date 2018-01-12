@@ -485,7 +485,7 @@ int main(){
    uart::init();
    
    for(;;){
-      uart::write( "xHello world!\n" );
+      uart::write( "Hello world!\n" );
 	  timing::ms< 1'000 >::wait();
    }	  
 }
