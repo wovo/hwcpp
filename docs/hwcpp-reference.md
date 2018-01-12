@@ -99,7 +99,7 @@ Wouter van Ooijen (wouter.vanooijen@hu.nl, or wouter@voti.nl)
  
 This section explains some terms and mechanisms used in the library.
 
-!(https://imgs.xkcd.com/comics/manuals.png)
+![xkcd "Manuals"](https://imgs.xkcd.com/comics/manuals.png)
 
 <a name="toc-anchor-2"></a>
 ## Source, sink
