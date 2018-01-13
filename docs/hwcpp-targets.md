@@ -408,6 +408,8 @@ by the RTS and DTR lines of the serial interface.
 <a name="toc-anchor-24"></a>
 ## Arduino Due
 
+![Arduino Due board](images/arduino-due.png)
+
 <a name="toc-anchor-25"></a>
 ### Specifying this target
 
