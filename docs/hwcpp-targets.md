@@ -27,40 +27,79 @@ targets/hwcpp-chip-<target-name>.hpp file directly.
 # Native
 
 HwCpp can build for the native target.
-This might be useful for module tests.
+This might be useful for module tests, but is otherwise of little use.
 
 # Chips
 
 ## atMega328
 
-RAM  2k
-ROM  32k
-EEPROM 1k
-GPIO 23
-CPU 8 bit AVR
-CLOCK 8 MHz internal, 20 MHz Xtal
+### Target properties
+
+<table>
+<tr><td>   RAM     </td><td>   2k          </td></tr>
+<tr><td>   EEPROM  </td><td>   1k          </td></tr>
+<tr><td>   GPIO    </td><td>   23          </td></tr>
+<tr><td>   CPU     </td><td>   8 bit AVR   </td></tr>
+<tr><td>   CLOCK   </td><td>   up to 8 MHz internal, up to 20 MHz Xtal    </td></tr>
+</table>
 
 This is an 8-bit AVR chip, popularized by the Arduino Uno.
-The AVR has separate code and data address spaces.
-At C++ level, this means that const data ends up in RAM because
-pointers can't point to ROM.
-You can store constant data in ROM, but you must copy it to RAM
-or address it using special code.
+The AVR architecture has separate code and data address spaces.
+At C++ level this means that const data ends up in RAM because
+pointers can only point into RAM, not into ROM.
+You can still store constant data in ROM (using 
+[PROGMEM](http://www.nongnu.org/avr-libc/user-manual/pgmspace.html) ), 
+but you must copy it to RAM before use, 
+or address it using special functions. 
+
+### Clock
 
 The clock can be either internal (1 MHz or 8 Mhz) or external
 (Xtal up to 20 MHz). This is done in the configuration fuses,
 which are NOT under program control.
-Hence the clock frequency must specified explicitly, and
-HwCpp simply assumes that you do this correctly.
+Hence the clock frequency must specified explicitly, 
+and HwCpp simply assumes that you do this correctly.
 
-A/D pins a0 .. a5
-GPIO input_output pins  b0 .. b7, c0 .. c7, d0 .. d7.
-SPI pins
-sck, miso, mosi, ss (synonyms for b5, b4, b3, b2).
+At the moment, only busy waiting is available.
 
-I2C pins: scl, sda (synonyms for c5, c4)
-tx rx (d0, d1)
+<table>
+<tr>
+   <th> Item name </th> 
+   <th> HwCpp type </th>
+</tr>  
+<tr><td> timing   </td><td> waiting </td><td>
+<tr><td> waiting  </td><td> waiting </td><td>
+</table>
 
+### IO items
+
+<table>
+<tr>
+   <th> Service </th>
+   <th> Item name </th> 
+   <th> HwCpp type </th>
+   <th> Shares GPIO </th>
+</tr>  
+<tr><td> GPIO  </td><td> b0 .. b7, c0 .. c6, d0 .. d7  </td>
+   <td> pin_in_out </td><td></td></tr>
+<tr><td> ADC   </td><td> a0 .. a5  </td>
+   <td> adc<10>    </td><td> c0 .. c5 </td></tr>
+<tr><td rowspan=4 > SPI  </td>
+      <td> sck   </td><td> pin_out </td><td> b5  </td></tr>
+  <tr><td> miso  </td><td> pin_in  </td><td> b4  </td></tr>  
+  <tr><td> mosi  </td><td> pin_out </td><td> b3  </td></tr>  
+  <tr><td> ss    </td><td> pin_out </td><td> b2  </td></tr>  
+<tr><td rowspan=2> I2C   </td>
+      <td> scl   </td><td> pin_oc  </td><td> c5  </td></tr>
+  <tr><td> sda   </td><td> pin_oc  </td><td> c4  </td></tr>
+<tr><td rowspan=2> UART  </td>
+      <td> tx   </td><td> pin_out  </td><td> d0  </td></tr>
+  <tr><td> rx   </td><td> pin_in   </td><td> d1  </td></tr>
+</table>
+
+### example
+
+<!-- ------------------------------------------------------------- -->
 
 ## atSam3xa
 
