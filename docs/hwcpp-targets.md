@@ -215,20 +215,20 @@ At the moment, only busy waiting is available.
 <!-- -------------------------------------------------------------------- -->
 
 <a name="toc-anchor-9"></a>
-## atSam3xa
+## atSam3x8e
 
-![atsam3xa chip](images/atsam3xa.png)
+![atsam3x8e chip](images/atsam3x8e.png)
 
 <a name="toc-anchor-10"></a>
 ### Specifying this target
 
 <table>
 <tr><td>  bmptk makefile line           </td>
-   <td>      TARGET := atsam3xa                   </td></tr>
+   <td>      TARGET := atsam3x8e                  </td></tr>
 <tr><td>  compiler command line define  </td>
-   <td>      -DHWCPP_TARGET_atsam3xa              </td></tr>
+   <td>      -DHWCPP_TARGET_atsam3x8e             </td></tr>
 <tr><td>  direct include                </td>
-   <td>      #include "hwcpp-target-atsam3xa"     </td></tr>
+   <td>      #include "hwcpp-target-atsam3x8e"    </td></tr>
 </table>
 
 <a name="toc-anchor-11"></a>
