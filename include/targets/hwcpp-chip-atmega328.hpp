@@ -31,13 +31,20 @@ struct chip_atmega328 {
 
 static void HWLIB_INLINE init(){
     
-   if constexpr ( clock == 16'000'000 ){
+   if constexpr ( clock == 20'000'000 ){
+      // 20 MHz crystal	   
+	  
+   elif constexpr ( clock == 16'000'000 ){
       // 16 MHz crystal	   
+	  
+   elif constexpr ( clock == 1'000'000 ){
+      // 1 MHz crystal	   
 	  
    } else {
       static_assert( 
          clock == 0, 
-         "Only 16 MHz (crystal) "
+         "Only 1 MHz (internal), "
+		 "or 16 or 20 MHz (external crystal) "
 		 "clock is supported for atmega328.");
    }		 
 }

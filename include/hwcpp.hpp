@@ -31,6 +31,10 @@
    #include "targets/hwcpp-target-blue-pill.hpp"
 #endif
 
+#ifdef HWCPP_TARGET_blue_brick
+   #include "targets/hwcpp-target-blue-brick.hpp"
+#endif
+
 #ifdef HWCPP_TARGET_native
    #include "targets/hwcpp-target-native.hpp"
 #endif

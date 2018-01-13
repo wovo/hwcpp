@@ -10,7 +10,7 @@
 
 namespace hwcpp {
     
-template< uint64_t clock = 16'000'000 >
+template< uint64_t clock >
 struct target_atmega328 :
    chip_atmega328    
 {       
@@ -54,15 +54,15 @@ struct target_atmega328 :
    make_pin_adc(    a4,  4 );
    make_pin_adc(    a5,  4 );
 
-   make_pin_in_out(   sck,  b,  5 );
-   make_pin_in_out(  miso,  b,  4 );
-   make_pin_in_out(  mosi,  b,  3 );
-   make_pin_in_out(    ss,  b,  2 );
+   pin_out< make_pin_in_out(   sck,  b,  5 ) >;
+   pin_in<  make_pin_in_out(  miso,  b,  4 ) >;
+   pin_out< make_pin_in_out(  mosi,  b,  3 ) >;
+   pin_out< make_pin_in_out(    ss,  b,  2 ) >;
    
-   make_pin_in_out(   scl,  c,  5 );
-   make_pin_in_out(   sda,  c,  4 );
-   make_pin_in_out(    tx,  d,  0 );
-   make_pin_in_out(    rx,  d,  1 );   
+   pin_oc<  make_pin_in_out(   scl,  c,  5 ) >;
+   pin_oc<  make_pin_in_out(   sda,  c,  4 ) >;
+   pin_out< make_pin_in_out(    tx,  d,  0 ) >;
+   pin_in<  make_pin_in_out(    rx,  d,  1 ) >;   
    
    
 #undef make_pin_in_out   
