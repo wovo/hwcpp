@@ -217,6 +217,8 @@ At the moment, only busy waiting is available.
 <a name="toc-anchor-9"></a>
 ## atSam3xa
 
+![atsam3xa chip](images/atsam3xa.png)
+
 <a name="toc-anchor-10"></a>
 ### Specifying this target
 
