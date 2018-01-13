@@ -2,14 +2,83 @@ HwCpp Targets
 ===
 
 <!-- update table_of_contents( input ) -->
+ - [Introduction](#toc-anchor-0)
+
+ - [Native](#toc-anchor-1)
+
+ - [Chip targets](#toc-anchor-2)
+
+ - [atMega328](#toc-anchor-3)
+
+ - [Specifying this target](#toc-anchor-4)
+
+ - [Target properties](#toc-anchor-5)
+
+ - [Clock](#toc-anchor-6)
+
+ - [IO items](#toc-anchor-7)
+
+ - [example](#toc-anchor-8)
+
+ - [atSam3xa](#toc-anchor-9)
+
+ - [Specifying this target](#toc-anchor-10)
+
+ - [Target properties](#toc-anchor-11)
+
+ - [Clock](#toc-anchor-12)
+
+ - [IO items](#toc-anchor-13)
+
+ - [example](#toc-anchor-14)
+
+ - [STM32F103C8](#toc-anchor-15)
+
+ - [Specifying this target](#toc-anchor-16)
+
+ - [Target properties](#toc-anchor-17)
+
+ - [Clock](#toc-anchor-18)
+
+ - [IO items](#toc-anchor-19)
+
+ - [example](#toc-anchor-20)
+
+ - [Board targets](#toc-anchor-21)
+
+ - [Arduino Uno](#toc-anchor-22)
+
+ - [Specifying this target](#toc-anchor-23)
+
+ - [Arduino Due](#toc-anchor-24)
+
+ - [Specifying this target](#toc-anchor-25)
+
+ - [Blue Pill](#toc-anchor-26)
+
+ - [Specifying this target](#toc-anchor-27)
+
+ - [Blue Brick](#toc-anchor-28)
+
+ - [Specifying this target](#toc-anchor-29)
+
 <!-- update end -->
+
+<!--
+- complete board descriptions
+- add foto's
+- add links to external links
+-->
+
+<!-- -------------------------------------------------------------------- -->
+<!-- -------------------------------------------------------------------- -->
 
 <a name="toc-anchor-0"></a>
 # Introduction
 
 This document describes the targets supported by HwCpp.
-A target is either a chip, or a board with a chip and
-probably some other things.
+A target is either a (micro-controller) chip, 
+or a board with such a chip and probably some other things.
 
 The preferred way to use HwCpp is to include hwcpp.hpp in
 the (single) source file, and specify the target on the
@@ -24,23 +93,53 @@ and bmptk will put the appropriate define on the command line.
 Alternatively, the application source file can include the 
 targets/hwcpp-chip-<target-name>.hpp file directly.
 
+
+<!-- -------------------------------------------------------------------- -->
+<!-- -------------------------------------------------------------------- -->
+
+<a name="toc-anchor-1"></a>
 # Native
 
 HwCpp can build for the native target.
 This might be useful for module tests, but is otherwise of little use.
+Currently, HwCpp offers nothing specific to the native target.
 
-# Chips
 
+<!-- -------------------------------------------------------------------- -->
+<!-- -------------------------------------------------------------------- -->
+
+<a name="toc-anchor-2"></a>
+# Chip targets
+
+<!-- -------------------------------------------------------------------- -->
+<!-- -------------------------------------------------------------------- -->
+
+<a name="toc-anchor-3"></a>
 ## atMega328
 
+<a name="toc-anchor-4"></a>
+### Specifying this target
+
+<table>
+<tr><td>  bmptk makefile line           </td>
+   <td>      TARGET := atmega328                  </td></tr>
+<tr><td>  compiler command line define  </td>
+   <td>      -DHWCPP_TARGET_atmega328             </td></tr>
+<tr><td>  direct include                </td>
+   <td>      #include "hwcpp-target-atmega328"    </td></tr>
+</table>
+
+<a name="toc-anchor-5"></a>
 ### Target properties
 
 <table>
 <tr><td>   RAM     </td><td>   2k          </td></tr>
+<tr><td>   FLASH   </td><td>  32k          </td></tr>
 <tr><td>   EEPROM  </td><td>   1k          </td></tr>
 <tr><td>   GPIO    </td><td>   23          </td></tr>
 <tr><td>   CPU     </td><td>   8 bit AVR   </td></tr>
-<tr><td>   CLOCK   </td><td>   up to 8 MHz internal, up to 20 MHz Xtal    </td></tr>
+<tr><td>   CLOCK   </td>
+   <td>   up to 8 MHz internal, up to 20 MHz Xtal    </td></tr>
 </table>
 
 This is an 8-bit AVR chip, popularized by the Arduino Uno.
@@ -52,13 +151,21 @@ You can still store constant data in ROM (using
 but you must copy it to RAM before use, 
 or address it using special functions. 
 
+<a name="toc-anchor-6"></a>
 ### Clock
 
 The clock can be either internal (1 MHz or 8 Mhz) or external
 (Xtal up to 20 MHz). This is done in the configuration fuses,
 which are NOT under program control.
-Hence the clock frequency must specified explicitly, 
-and HwCpp simply assumes that you do this correctly.
+Hence the clock frequency has no default (it must specified explicitly), 
+and HwCpp assumes that you do this correctly.
+
+<table>
+<tr><td rowspan=3> supported clock parameter values </td>
+       <td> 1'000'000  </td><td>
+   <tr><td> 16'000'000 </td><td>
+   <tr><td> 20'000'000 </td><td>
+</table>
 
 At the moment, only busy waiting is available.
 
@@ -71,6 +178,7 @@ At the moment, only busy waiting is available.
 <tr><td> waiting  </td><td> waiting </td><td>
 </table>
 
+<a name="toc-anchor-7"></a>
 ### IO items
 
 <table>
@@ -97,24 +205,177 @@ At the moment, only busy waiting is available.
   <tr><td> rx   </td><td> pin_in   </td><td> d1  </td></tr>
 </table>
 
+<a name="toc-anchor-8"></a>
 ### example
 
-<!-- ------------------------------------------------------------- -->
+=> TBW
 
+
+<!-- -------------------------------------------------------------------- -->
+<!-- -------------------------------------------------------------------- -->
+
+<a name="toc-anchor-9"></a>
 ## atSam3xa
+
+<a name="toc-anchor-10"></a>
+### Specifying this target
+
+<table>
+<tr><td>  bmptk makefile line           </td>
+   <td>      TARGET := atsam3xa                   </td></tr>
+<tr><td>  compiler command line define  </td>
+   <td>      -DHWCPP_TARGET_atsam3xa              </td></tr>
+<tr><td>  direct include                </td>
+   <td>      #include "hwcpp-target-atsam3xa"     </td></tr>
+</table>
+
+<a name="toc-anchor-11"></a>
+### Target properties
+
+<table>
+<tr><td>   RAM     </td><td>   96k            </td></tr>
+<tr><td>   FLASH   </td><td>  256k            </td></tr>
+<tr><td>   GPIO    </td><td>   103             </td></tr>
+<tr><td>   CPU     </td><td>  32 bit Cortex-M3 </td></tr>
+<tr><td>   CLOCK   </td>
+   <td>   8 MHz internal, up to 84 MHz with Xtal and PLL  </td></tr>
+</table>
 
 This is a 32-bit Cortex-M3 chip, popularized by the Arduino Due.
 
+<a name="toc-anchor-12"></a>
+### Clock
+
+The chip starts on the 8 Mhz internal clock.
+With a 12 Mhz crystal and the PLL the clock bet set to 84 MHz
+by the application.
+The clock frequency has no default (it must specified explicitly).
+
+<table>
+<tr><td rowspan=2> supported clock parameter values </td>
+       <td> 8'000'000  </td><td>
+   <tr><td> 84'000'000 (assumes 12MHz crystal) </td><td>
+</table>
+
+At both busy waiting and clock-based waiting are available.
+
+<table>
+<tr>
+   <th> Item name </th> 
+   <th> HwCpp type </th>
+</tr>  
+<tr><td> timing    </td><td> clocking  </td><td>
+<tr><td> waiting   </td><td> waiting   </td><td>
+<tr><td> clocking  </td><td> clocking  </td><td>
+</table>
+
+<a name="toc-anchor-13"></a>
+### IO items
+
+=> TBW
+
+<a name="toc-anchor-14"></a>
+### example
+
+=> TBW
+
+
+<!-- -------------------------------------------------------------------- -->
+<!-- -------------------------------------------------------------------- -->
+
+<a name="toc-anchor-15"></a>
 ## STM32F103C8
 
+<a name="toc-anchor-16"></a>
+### Specifying this target
+
+<table>
+<tr><td>  bmptk makefile line           </td>
+   <td>      TARGET := stm32f103c8                </td></tr>
+<tr><td>  compiler command line define  </td>
+   <td>      -DHWCPP_TARGET_stm32f103c8           </td></tr>
+<tr><td>  direct include                </td>
+   <td>      #include "hwcpp-target-stm32f103c8"  </td></tr>
+</table>
+
+<a name="toc-anchor-17"></a>
+### Target properties
+
+<table>
+<tr><td>   RAM     </td><td>   20k            </td></tr>
+<tr><td>   FLASH   </td><td>   64k            </td></tr>
+<tr><td>   GPIO    </td><td>    37            </td></tr>
+<tr><td>   CPU     </td><td>  32 bit Cortex-M3 </td></tr>
+<tr><td>   CLOCK   </td>
+   <td>   8 MHz internal, up to 72 MHz with Xtal and PLL  </td></tr>
+</table>
+
 This is a 32-bit Cortex-M3 chip, popularized by the Arduino Maple,
-and used in cheap Chinese boards like the Blue Pill.
+and used in al sorts of cheap Chinese boards, like the Blue Pill.
 
-##
+<a name="toc-anchor-18"></a>
+### Clock
 
-# Boards
+The chip starts on the 8 Mhz internal clock.
+With an 8 Mhz crystal and the PLL the clock bet set to 72 MHz
+by the application.
+The clock frequency has no default (it must specified explicitly).
 
+<table>
+<tr><td rowspan=2> supported clock parameter values </td>
+       <td> 8'000'000  </td><td>
+   <tr><td> 72'000'000 (assumes 12MHz crystal) </td><td>
+</table>
+
+At both busy waiting and clock-based waiting are available.
+
+<table>
+<tr>
+   <th> Item name </th> 
+   <th> HwCpp type </th>
+</tr>  
+<tr><td> timing    </td><td> clocking  </td><td>
+<tr><td> waiting   </td><td> waiting   </td><td>
+<tr><td> clocking  </td><td> clocking  </td><td>
+</table>
+
+<a name="toc-anchor-19"></a>
+### IO items
+
+=> TBW
+
+<a name="toc-anchor-20"></a>
+### example
+
+=> TBW
+
+
+<!-- -------------------------------------------------------------------- -->
+<!-- -------------------------------------------------------------------- -->
+
+<a name="toc-anchor-21"></a>
+# Board targets
+
+<!-- -------------------------------------------------------------------- -->
+<!-- -------------------------------------------------------------------- -->
+
+<a name="toc-anchor-22"></a>
 ## Arduino Uno
+
+<a name="toc-anchor-23"></a>
+### Specifying this target
+
+<table>
+<tr><td>  bmptk makefile line           </td>
+   <td>      TARGET := arduino_uno                </td></tr>
+<tr><td>  compiler command line define  </td>
+   <td>      -DHWCPP_TARGET_arduino_uno           </td></tr>
+<tr><td>  direct include                </td>
+   <td>      #include "hwcpp-target-arduino-uno"  </td></tr>
+</table>
+
+This is a 32-bit Cortex-M3 chip, popularized by the Arduino Maple,
+and used in al sorts of cheap Chinese boards, like the Blue Pill.
 
 micro-controller
 connectors
@@ -125,8 +386,8 @@ on board
 
 This is the modern version of the original, 
 still tremendously popular Arduino board.
-There are various clones of this borad, which are equivalent but use
-different USB-to-serial chips.
+There are various clones of this board, which are equivalent but 
+different in small details, for instance the USB-to-serial chips.
 
 The connector pin names are the Arduino pin names, which
 have no relation with the chip pin names.
@@ -138,7 +399,24 @@ This is a hands-off processes:
 the target chip is forced to reset and into bootload mode 
 by the RTS and DTR lines of the serial interface.
 
+
+<!-- -------------------------------------------------------------------- -->
+<!-- -------------------------------------------------------------------- -->
+
+<a name="toc-anchor-24"></a>
 ## Arduino Due
+
+<a name="toc-anchor-25"></a>
+### Specifying this target
+
+<table>
+<tr><td>  bmptk makefile line           </td>
+   <td>      TARGET := arduino_due                </td></tr>
+<tr><td>  compiler command line define  </td>
+   <td>      -DHWCPP_TARGET_arduino_due           </td></tr>
+<tr><td>  direct include                </td>
+   <td>      #include "hwcpp-target-arduino-due"  </td></tr>
+</table>
 
 This Arduino board has the same form factor as the Arduino Mega, 
 but uses the much more powerful atSam3xa Cortex-M3 micro-controller.
@@ -152,7 +430,24 @@ The 'native' USB connector connects directly to the chip's USB interface.
 The 'programming' connector connects to an AVR chip that takes care
 of programming the 
 
+
+<!-- -------------------------------------------------------------------- -->
+<!-- -------------------------------------------------------------------- -->
+
+<a name="toc-anchor-26"></a>
 ## Blue Pill
+
+<a name="toc-anchor-27"></a>
+### Specifying this target
+
+<table>
+<tr><td>  bmptk makefile line           </td>
+   <td>      TARGET := blue_pill                  </td></tr>
+<tr><td>  compiler command line define  </td>
+   <td>      -DHWCPP_TARGET_blue_pill             </td></tr>
+<tr><td>  direct include                </td>
+   <td>      #include "hwcpp-target-blue-pill"    </td></tr>
+</table>
 
 This is a popular and very cheap board with the 
 STM32F103C8 micro-controller. 
@@ -171,7 +466,24 @@ My preferred way to program this board is using a
 This requires a four-wire connection, which is (unfortunately)
 not straight, check the pictures.
 
+
+<!-- -------------------------------------------------------------------- -->
+<!-- -------------------------------------------------------------------- -->
+
+<a name="toc-anchor-28"></a>
 ## Blue Brick
+
+<a name="toc-anchor-29"></a>
+### Specifying this target
+
+<table>
+<tr><td>  bmptk makefile line           </td>
+   <td>      TARGET := blue_brick                 </td></tr>
+<tr><td>  compiler command line define  </td>
+   <td>      -DHWCPP_TARGET_blue_brick            </td></tr>
+<tr><td>  direct include                </td>
+   <td>      #include "hwcpp-target-blue-brick"   </td></tr>
+</table>
 
 reset button, power LED
 button, LED, 24C02 eeprom, coin battery

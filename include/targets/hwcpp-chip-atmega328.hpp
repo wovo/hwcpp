@@ -17,7 +17,7 @@ namespace hwcpp {
     
 extern "C" void HWLIB_NO_INLINE _hwlib_avr_ret(){}
     
-template< uint64_t clock >	
+template< uint64_t clock = 84'000'000 >	
 struct chip_atmega328 {
 	
 
@@ -138,7 +138,7 @@ struct _pin_adc_foundation :
       ADMUX = 0x01 << REFS0;
 	  
       // Enable the ADC and prescale
-      ADCSRA = 7 | ( 0x01 << ADEN );	  
+      ADCSRA = 7 | ( 0x01 << ADEN );  
    }
 
    static uint_fast16_t get_direct(){

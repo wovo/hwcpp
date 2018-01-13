@@ -398,7 +398,7 @@ struct _clocking_foundation :
    }      
 };
 
-using waiting = _timing_waiting_builder< _clocking_foundation >;
+using waiting  = _timing_waiting_builder< _clocking_foundation >;
 using clocking = _timing_clocking_builder< _clocking_foundation >;
 
 }; // struct chip_sam3xa
