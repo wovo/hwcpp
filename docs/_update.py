@@ -32,7 +32,7 @@ def example_path( path ):
    example_files_path = "" + path
    return []   
    
-def table_of_contents( input ):
+def table_of_contents( input, n = 10 ):
 
    # skip lines until the end marker
    line = input.pop( 0 )		 
@@ -40,6 +40,11 @@ def table_of_contents( input ):
       line = input.pop( 0 )   
    
    return [ "%%TOC%%\n", line ]
+   
+def list_entry( n ):
+   if n == 1 : return " - " 
+   if n == 2 : return "   * " 
+   return "   ?"
 
 def update( file_name ):
    print( "updating %s" % file_name )
@@ -76,9 +81,16 @@ def update( file_name ):
 	  
       elif line.startswith( "#" ):
          n = len( toc )
-         toc.append( " - [%s](#toc-anchor-%d)\n\n" % ( line.replace( "#", '' ).replace( "\n", "" ).strip(), n ))
+         d = 0
+         while line.startswith( "#" ):
+            d = d + 1
+            line = line[ 1 : ]
+         while ( line + ' ' )[ 0 ] in "1234567890. ":
+            line = line[ 1 : ]
+         line = line.replace( "\n", "" ).strip()
+         toc.append( " - [%s](#toc-anchor-%d)\n\n" % ( list_entry( n ) + line , n ))
          result.append( '<a name="toc-anchor-%d"></a>\n' % n )
-         result.append( line )
+         result.append( d * "#" + line )
       
       else:
          result.append( line )

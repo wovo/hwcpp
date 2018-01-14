@@ -1,6 +1,15 @@
 HwCpp Targets
 ===
 
+<!--
+TO DO list
+- complete board descriptions
+- add foto's
+- add links to external info
+- format the TOC better
+- other name for blue brick
+-->
+
 <!-- update table_of_contents( input ) -->
  - [Introduction](#toc-anchor-0)
 
@@ -63,13 +72,6 @@ HwCpp Targets
  - [Specifying this target](#toc-anchor-29)
 
 <!-- update end -->
-
-<!--
-- complete board descriptions
-- add foto's
-- add links to external links
-- format the TOC better
--->
 
 <!-- -------------------------------------------------------------------- -->
 <!-- -------------------------------------------------------------------- -->
@@ -177,8 +179,8 @@ At the moment, only busy waiting is available.
    <th> Item name </th> 
    <th> HwCpp type </th>
 </tr>  
-<tr><td> timing   </td><td> waiting </td><td>
-<tr><td> waiting  </td><td> waiting </td><td>
+<tr><td> timing   </td><td> waiting </td></tr>
+<tr><td> waiting  </td><td> waiting </td></tr>
 </table>
 
 <a name="toc-anchor-7"></a>
@@ -238,10 +240,10 @@ At the moment, only busy waiting is available.
 ### Target properties
 
 <table>
-<tr><td>   RAM     </td><td>   96k            </td></tr>
-<tr><td>   FLASH   </td><td>  256k            </td></tr>
-<tr><td>   GPIO    </td><td>   103             </td></tr>
-<tr><td>   CPU     </td><td>  32 bit Cortex-M3 </td></tr>
+<tr><td>   RAM     </td><td>   96k              </td></tr>
+<tr><td>   FLASH   </td><td>  256k              </td></tr>
+<tr><td>   GPIO    </td><td>   103               </td></tr>
+<tr><td>   CPU     </td><td>  32 bit Cortex-M3   </td></tr>
 <tr><td>   CLOCK   </td>
    <td>   8 MHz internal, up to 84 MHz with Xtal and PLL  </td></tr>
 </table>
@@ -258,8 +260,8 @@ The clock frequency has no default (it must specified explicitly).
 
 <table>
 <tr><td rowspan=2> supported clock parameter values </td>
-       <td> 8'000'000  </td><td>
-   <tr><td> 84'000'000 (assumes 12MHz crystal) </td><td>
+       <td> 8'000'000                           </td></tr>
+   <tr><td> 84'000'000 (assumes 12MHz crystal)  </td></tr>
 </table>
 
 At both busy waiting and clock-based waiting are available.
@@ -269,9 +271,9 @@ At both busy waiting and clock-based waiting are available.
    <th> Item name </th> 
    <th> HwCpp type </th>
 </tr>  
-<tr><td> timing    </td><td> clocking  </td><td>
-<tr><td> waiting   </td><td> waiting   </td><td>
-<tr><td> clocking  </td><td> clocking  </td><td>
+<tr><td> timing    </td><td> clocking  </td></tr>
+<tr><td> waiting   </td><td> waiting   </td></tr>
+<tr><td> clocking  </td><td> clocking  </td></tr>
 </table>
 
 <a name="toc-anchor-13"></a>
@@ -309,10 +311,10 @@ At both busy waiting and clock-based waiting are available.
 ### Target properties
 
 <table>
-<tr><td>   RAM     </td><td>   20k            </td></tr>
-<tr><td>   FLASH   </td><td>   64k            </td></tr>
-<tr><td>   GPIO    </td><td>    37            </td></tr>
-<tr><td>   CPU     </td><td>  32 bit Cortex-M3 </td></tr>
+<tr><td>   RAM     </td><td>   20k               </td></tr>
+<tr><td>   FLASH   </td><td>   64k               </td></tr>
+<tr><td>   GPIO    </td><td>    37               </td></tr>
+<tr><td>   CPU     </td><td>  32 bit Cortex-M3   </td></tr>
 <tr><td>   CLOCK   </td>
    <td>   8 MHz internal, up to 72 MHz with Xtal and PLL  </td></tr>
 </table>
@@ -330,8 +332,8 @@ The clock frequency has no default (it must specified explicitly).
 
 <table>
 <tr><td rowspan=2> supported clock parameter values </td>
-       <td> 8'000'000  </td><td>
-   <tr><td> 72'000'000 (assumes 12MHz crystal) </td><td>
+       <td> 8'000'000                            </td></tr>
+   <tr><td> 72'000'000 (assumes 12MHz crystal)   </td></tr>
 </table>
 
 At both busy waiting and clock-based waiting are available.
@@ -341,9 +343,9 @@ At both busy waiting and clock-based waiting are available.
    <th> Item name </th> 
    <th> HwCpp type </th>
 </tr>  
-<tr><td> timing    </td><td> clocking  </td><td>
-<tr><td> waiting   </td><td> waiting   </td><td>
-<tr><td> clocking  </td><td> clocking  </td><td>
+<tr><td> timing    </td><td> clocking  </td></tr>
+<tr><td> waiting   </td><td> waiting   </td></tr>
+<tr><td> clocking  </td><td> clocking  </td></tr>
 </table>
 
 <a name="toc-anchor-19"></a>
