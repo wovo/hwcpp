@@ -17,52 +17,92 @@ TO DO list
 
 <!-- update table_of_contents( input ) -->
   - [1 Introduction](#toc-anchor-0)
+
   - [2 Native](#toc-anchor-1)
+
   - [3 Chip targets](#toc-anchor-2)
+
     - [3.1 atMega328](#toc-anchor-3)
 
-      [3.1.1 Specifying this target](#toc-anchor-4)
-      [3.1.2 Target properties](#toc-anchor-5)
-      [3.1.3 Clock](#toc-anchor-6)
-      [3.1.4 IO items](#toc-anchor-7)
-      [3.1.5 example](#toc-anchor-8)
-	  
-    - [3.2 atSam3x8e](#toc-anchor-9)
-      [3.2.1 Specifying this target](#toc-anchor-10)
-      [3.2.2 Target properties](#toc-anchor-11)
-      [3.2.3 Clock](#toc-anchor-12)
-      [3.2.4 IO items](#toc-anchor-13)
-      [3.2.5 example](#toc-anchor-14)
-	  
-    - [3.3 STM32F103C8](#toc-anchor-15)
+      - [3.1.1 Specifying this target](#toc-anchor-4)
 
-      - [3.3.1 Specifying this target](#toc-anchor-16)
+      - [3.1.2 Target properties](#toc-anchor-5)
 
-      - [3.3.2 Target properties](#toc-anchor-17)
+      - [3.1.3 Clock](#toc-anchor-6)
 
-      - [3.3.3 Clock](#toc-anchor-18)
+      - [3.1.4 IO items](#toc-anchor-7)
 
-      - [3.3.4 IO items](#toc-anchor-19)
+      - [3.1.5 example](#toc-anchor-8)
 
-      - [3.3.5 example](#toc-anchor-20)
+      - [3.1.6 Resources](#toc-anchor-9)
 
-  - [4 Board targets](#toc-anchor-21)
+    - [3.2 atSam3x8e](#toc-anchor-10)
 
-    - [4.1 Arduino Uno](#toc-anchor-22)
+      - [3.2.1 Specifying this target](#toc-anchor-11)
 
-      - [4.1.1 Specifying this target](#toc-anchor-23)
+      - [3.2.2 Target properties](#toc-anchor-12)
 
-    - [4.2 Arduino Due](#toc-anchor-24)
+      - [3.2.3 Clock](#toc-anchor-13)
 
-      - [4.2.1 Specifying this target](#toc-anchor-25)
+      - [3.2.4 IO items](#toc-anchor-14)
 
-    - [4.3 Blue Pill](#toc-anchor-26)
+      - [3.2.5 example](#toc-anchor-15)
 
-      - [4.3.1 Specifying this target](#toc-anchor-27)
+      - [3.2.6 Resources](#toc-anchor-16)
 
-    - [4.4 Blue Brick](#toc-anchor-28)
+    - [3.3 STM32F103C8](#toc-anchor-17)
 
-      - [4.4.1 Specifying this target](#toc-anchor-29)
+      - [3.3.1 Specifying this target](#toc-anchor-18)
+
+      - [3.3.2 Target properties](#toc-anchor-19)
+
+      - [3.3.3 Clock](#toc-anchor-20)
+
+      - [3.3.4 IO items](#toc-anchor-21)
+
+      - [3.3.5 example](#toc-anchor-22)
+
+      - [3.3.6 Resources](#toc-anchor-23)
+
+  - [4 Board targets](#toc-anchor-24)
+
+    - [4.1 Arduino Uno](#toc-anchor-25)
+
+      - [4.1.1 Specifying this target](#toc-anchor-26)
+
+      - [4.1.2 Target properties](#toc-anchor-27)
+
+      - [4.1.3 Clock](#toc-anchor-28)
+
+      - [4.1.4 IO items](#toc-anchor-29)
+
+      - [4.1.5 example](#toc-anchor-30)
+
+      - [4.1.6 Resources](#toc-anchor-31)
+
+    - [4.2 Arduino Due](#toc-anchor-32)
+
+      - [4.2.1 Specifying this target](#toc-anchor-33)
+
+      - [4.2.2 Target properties](#toc-anchor-34)
+
+      - [4.2.3 Clock](#toc-anchor-35)
+
+      - [4.2.4 IO items](#toc-anchor-36)
+
+      - [4.2.5 Resources](#toc-anchor-37)
+
+    - [4.3 Blue Pill](#toc-anchor-38)
+
+      - [4.3.1 Specifying this target](#toc-anchor-39)
+
+      - [4.3.2 Resources](#toc-anchor-40)
+
+    - [4.4 Blue Brick](#toc-anchor-41)
+
+      - [4.4.1 Specifying this target](#toc-anchor-42)
+
+      - [4.4.2 Resources](#toc-anchor-43)
 
 <!-- update end -->
 
@@ -209,8 +249,8 @@ At the moment, only busy waiting is available.
 
 => TBW
 
-<a name="toc-anchor-8"></a>
-### 3.1.5 Resources
+<a name="toc-anchor-9"></a>
+### 3.1.6 Resources
 
 - [Wikipedia page](https://en.wikipedia.org/wiki/ATmega328)
 - [Manufacturer's page](https://www.microchip.com/wwwproducts/en/ATmega328)
@@ -223,12 +263,12 @@ At the moment, only busy waiting is available.
 <!-- -------------------------------------------------------------------- -->
 
 <a name="atsam3x8e"></a>
-<a name="toc-anchor-9"></a>
+<a name="toc-anchor-10"></a>
 ## 3.2 atSam3x8e
 
 ![atsam3x8e chip](images/atsam3x8e.png)
 
-<a name="toc-anchor-10"></a>
+<a name="toc-anchor-11"></a>
 ### 3.2.1 Specifying this target
 
 <table>
@@ -240,7 +280,7 @@ At the moment, only busy waiting is available.
    <td>      #include "hwcpp-target-atsam3x8e"    </td></tr>
 </table>
 
-<a name="toc-anchor-11"></a>
+<a name="toc-anchor-12"></a>
 ### 3.2.2 Target properties
 
 <table>
@@ -254,7 +294,7 @@ At the moment, only busy waiting is available.
 
 This is a 32-bit Cortex-M3 chip, popularized by the Arduino Due.
 
-<a name="toc-anchor-12"></a>
+<a name="toc-anchor-13"></a>
 ### 3.2.3 Clock
 
 The chip starts on the 8 Mhz internal clock.
@@ -280,18 +320,18 @@ Both busy waiting and clock-based waiting are available.
 <tr><td> clocking  </td><td> clocking  </td></tr>
 </table>
 
-<a name="toc-anchor-13"></a>
+<a name="toc-anchor-14"></a>
 ### 3.2.4 IO items
 
 => TBW
 
-<a name="toc-anchor-14"></a>
+<a name="toc-anchor-15"></a>
 ### 3.2.5 example
 
 => TBW
 
-<a name="toc-anchor-8"></a>
-### 3.1.5 Resources
+<a name="toc-anchor-16"></a>
+### 3.2.6 Resources
 
 - [Manufacturer's page](http://www.microchip.com/wwwproducts/en/ATsam3x8e)
 - [SAM3X/SAM3A series datasheet](http://ww1.microchip.com/downloads/en/DeviceDoc/Atmel-11057-32-bit-Cortex-M3-Microcontroller-SAM3X-SAM3A_Datasheet.pdf)
@@ -302,12 +342,12 @@ Both busy waiting and clock-based waiting are available.
 <!-- -------------------------------------------------------------------- -->
 
 <a name="stm32f103c8"></a>
-<a name="toc-anchor-15"></a>
+<a name="toc-anchor-17"></a>
 ## 3.3 STM32F103C8
 
 ![STM32F103C8 chip](images/stm32f103c8.png)
 
-<a name="toc-anchor-16"></a>
+<a name="toc-anchor-18"></a>
 ### 3.3.1 Specifying this target
 
 <table>
@@ -319,7 +359,7 @@ Both busy waiting and clock-based waiting are available.
    <td>      #include "hwcpp-target-stm32f103c8"  </td></tr>
 </table>
 
-<a name="toc-anchor-17"></a>
+<a name="toc-anchor-19"></a>
 ### 3.3.2 Target properties
 
 <table>
@@ -334,7 +374,7 @@ Both busy waiting and clock-based waiting are available.
 This is a 32-bit Cortex-M3 chip, popularized by the Arduino Maple,
 and used in al sorts of cheap Chinese boards, like the Blue Pill.
 
-<a name="toc-anchor-18"></a>
+<a name="toc-anchor-20"></a>
 ### 3.3.3 Clock
 
 The chip starts on the 8 Mhz internal clock.
@@ -360,18 +400,18 @@ Both busy waiting and clock-based waiting are available.
 <tr><td> clocking  </td><td> clocking  </td></tr>
 </table>
 
-<a name="toc-anchor-19"></a>
+<a name="toc-anchor-21"></a>
 ### 3.3.4 IO items
 
 => TBW
 
-<a name="toc-anchor-20"></a>
+<a name="toc-anchor-22"></a>
 ### 3.3.5 example
 
 => TBW
 
-<a name="toc-anchor-8"></a>
-### 3.1.5 Resources
+<a name="toc-anchor-23"></a>
+### 3.3.6 Resources
 
 - [Manufacturer's page](http://www.st.com/en/microcontrollers/stm32f103c8.html)
 - [STM32F103C8 datasheet](http://www.st.com/content/ccc/resource/technical/document/datasheet/33/d4/6f/1d/df/0b/4c/6d/CD00161566.pdf/files/CD00161566.pdf/jcr:content/translations/en.CD00161566.pdf)
@@ -382,18 +422,18 @@ Both busy waiting and clock-based waiting are available.
 <!-- -------------------------------------------------------------------- -->
 <!-- -------------------------------------------------------------------- -->
 
-<a name="toc-anchor-21"></a>
+<a name="toc-anchor-24"></a>
 # 4 Board targets
 
 <!-- -------------------------------------------------------------------- -->
 <!-- -------------------------------------------------------------------- -->
 
-<a name="toc-anchor-22"></a>
+<a name="toc-anchor-25"></a>
 ## 4.1 Arduino Uno
 
 ![Arduino Uno board](images/arduino-uno.png)
 
-<a name="toc-anchor-23"></a>
+<a name="toc-anchor-26"></a>
 ### 4.1.1 Specifying this target
 
 <table>
@@ -405,8 +445,8 @@ Both busy waiting and clock-based waiting are available.
    <td>      #include "hwcpp-target-arduino-uno"  </td></tr>
 </table>
 
-<a name="toc-anchor-23"></a>
-### 4.1.1 Target properties
+<a name="toc-anchor-27"></a>
+### 4.1.2 Target properties
 
 <table>
 <tr><td>  Micro-controller  </td><td> [atmega328](#atmega328)    </td></tr>
@@ -433,8 +473,8 @@ This is a hands-off processes:
 the target chip is forced to reset and into bootload mode 
 by the RTS and DTR lines of the serial interface.
 
-<a name="toc-anchor-18"></a>
-### 3.3.3 Clock
+<a name="toc-anchor-28"></a>
+### 4.1.3 Clock
 
 The atMega328 chip runs from the 16 Mhz crystal,
 hence this is the default frequency.
@@ -457,8 +497,8 @@ At the moment, only busy waiting is available.
 <tr><td> waiting  </td><td> waiting </td></tr>
 </table>
 
-<a name="toc-anchor-19"></a>
-### 3.3.4 IO items
+<a name="toc-anchor-29"></a>
+### 4.1.4 IO items
 
 <table>
 <tr>
@@ -478,13 +518,13 @@ At the moment, only busy waiting is available.
       <td> led   </td><td> pin_out  </td><td> d13  </td></tr>  
 </table>
 
-<a name="toc-anchor-20"></a>
-### 3.3.5 example
+<a name="toc-anchor-30"></a>
+### 4.1.5 example
 
 => TBW
 
-<a name="toc-anchor-8"></a>
-### 3.1.5 Resources
+<a name="toc-anchor-31"></a>
+### 4.1.6 Resources
 
 - [atMega328 target](#atmega328)
 - [Uno page at arduino.cc](https://store.arduino.cc/usa/arduino-uno-rev3)
@@ -495,12 +535,12 @@ At the moment, only busy waiting is available.
 <!-- -------------------------------------------------------------------- -->
 <!-- -------------------------------------------------------------------- -->
 
-<a name="toc-anchor-24"></a>
+<a name="toc-anchor-32"></a>
 ## 4.2 Arduino Due
 
 ![Arduino Due board](images/arduino-due.png)
 
-<a name="toc-anchor-25"></a>
+<a name="toc-anchor-33"></a>
 ### 4.2.1 Specifying this target
 
 <table>
@@ -512,8 +552,8 @@ At the moment, only busy waiting is available.
    <td>      #include "hwcpp-target-arduino-due"  </td></tr>
 </table>
 
-<a name="toc-anchor-23"></a>
-### 4.1.1 Target properties
+<a name="toc-anchor-34"></a>
+### 4.2.2 Target properties
 
 <table>
 <tr><td>  Micro-controller  </td><td> [atsam3x8e](#atsam3x8e)    </td></tr>
@@ -543,8 +583,8 @@ The programming process can be done hands-off.
 When an Arduino Due is powered, it does NOT automatically run the 
 programmed application: a reset is required.
 
-<a name="toc-anchor-12"></a>
-### 3.2.3 Clock
+<a name="toc-anchor-35"></a>
+### 4.2.3 Clock
 
 The chip starts on the 8 Mhz internal clock.
 With a 12 Mhz crystal and the PLL the clock bet set to 84 MHz,
@@ -568,8 +608,8 @@ Both busy waiting and clock-based waiting are available.
 <tr><td> clocking  </td><td> clocking  </td></tr>
 </table>
 
-<a name="toc-anchor-19"></a>
-### 3.3.4 IO items
+<a name="toc-anchor-36"></a>
+### 4.2.4 IO items
 
 <table>
 <tr>
@@ -600,8 +640,8 @@ Both busy waiting and clock-based waiting are available.
       <td> led   </td><td> pin_out  </td><td> d13  </td></tr>
 </table>
 
-<a name="toc-anchor-8"></a>
-### 3.1.5 Resources
+<a name="toc-anchor-37"></a>
+### 4.2.5 Resources
 
 - [atsam3x8e target)[#atsam3x8e]
 - [Due page at arduino.cc](https://store.arduino.cc/arduino-due)
@@ -612,12 +652,12 @@ Both busy waiting and clock-based waiting are available.
 <!-- -------------------------------------------------------------------- -->
 <!-- -------------------------------------------------------------------- -->
 
-<a name="toc-anchor-26"></a>
+<a name="toc-anchor-38"></a>
 ## 4.3 Blue Pill
 
 ![Blue Pill board](images/blue-pill.png)
 
-<a name="toc-anchor-27"></a>
+<a name="toc-anchor-39"></a>
 ### 4.3.1 Specifying this target
 
 <table>
@@ -646,8 +686,8 @@ My preferred way to program this board is using a
 This requires a four-wire connection, which is (unfortunately)
 not straight, check the pictures.
 
-<a name="toc-anchor-8"></a>
-### 3.1.5 Resources
+<a name="toc-anchor-40"></a>
+### 4.3.2 Resources
 
 - [stm32f103c8 target](#stm32f103c8]
 - [Wiki page](http://wiki.stm32duino.com/index.php?title=Blue_Pill)
@@ -659,12 +699,12 @@ not straight, check the pictures.
 <!-- -------------------------------------------------------------------- -->
 <!-- -------------------------------------------------------------------- -->
 
-<a name="toc-anchor-28"></a>
+<a name="toc-anchor-41"></a>
 ## 4.4 Blue Brick
 
 ![Blue Brick board](images/blue-brick.png)
 
-<a name="toc-anchor-29"></a>
+<a name="toc-anchor-42"></a>
 ### 4.4.1 Specifying this target
 
 <table>
@@ -702,8 +742,8 @@ My preferred way to program this board is using a
 This requires a four-wire connection, which is (unfortunately)
 not straight, check the pictures.
 
-<a name="toc-anchor-8"></a>
-### 3.1.5 Resources
+<a name="toc-anchor-43"></a>
+### 4.4.2 Resources
 
 - [stm32f103c8 target](#stm32f103c8]
 - [Wiki page](http://wiki.stm32duino.com/index.php?title=Blue_Pill)
