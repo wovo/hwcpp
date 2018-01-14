@@ -12,35 +12,20 @@ TO DO list
 
 <!-- update table_of_contents( input ) -->
   - [1 Introduction](#toc-anchor-0)
-
   - [2 Native](#toc-anchor-1)
-
   - [3 Chip targets](#toc-anchor-2)
-
     - [3.1 atMega328](#toc-anchor-3)
-
       - [3.1.1 Specifying this target](#toc-anchor-4)
-
       - [3.1.2 Target properties](#toc-anchor-5)
-
       - [3.1.3 Clock](#toc-anchor-6)
-
       - [3.1.4 IO items](#toc-anchor-7)
-
       - [3.1.5 example](#toc-anchor-8)
-
     - [3.2 atSam3x8e](#toc-anchor-9)
-
       - [3.2.1 Specifying this target](#toc-anchor-10)
-
       - [3.2.2 Target properties](#toc-anchor-11)
-
       - [3.2.3 Clock](#toc-anchor-12)
-
       - [3.2.4 IO items](#toc-anchor-13)
-
       - [3.2.5 example](#toc-anchor-14)
-
     - [3.3 STM32F103C8](#toc-anchor-15)
 
       - [3.3.1 Specifying this target](#toc-anchor-16)
