@@ -11,65 +11,65 @@ TO DO list
 -->
 
 <!-- update table_of_contents( input ) -->
- - [Introduction](#toc-anchor-0)
+    * [1 Introduction](#toc-anchor-0)
 
- - [Native](#toc-anchor-1)
+    * [2 Native](#toc-anchor-1)
 
- - [Chip targets](#toc-anchor-2)
+    * [3 Chip targets](#toc-anchor-2)
 
- - [atMega328](#toc-anchor-3)
+       * [3.1 atMega328](#toc-anchor-3)
 
- - [Specifying this target](#toc-anchor-4)
+          * [3.1.1 Specifying this target](#toc-anchor-4)
 
- - [Target properties](#toc-anchor-5)
+          * [3.1.2 Target properties](#toc-anchor-5)
 
- - [Clock](#toc-anchor-6)
+          * [3.1.3 Clock](#toc-anchor-6)
 
- - [IO items](#toc-anchor-7)
+          * [3.1.4 IO items](#toc-anchor-7)
 
- - [example](#toc-anchor-8)
+          * [3.1.5 example](#toc-anchor-8)
 
- - [atSam3xa](#toc-anchor-9)
+       * [3.2 atSam3x8e](#toc-anchor-9)
 
- - [Specifying this target](#toc-anchor-10)
+          * [3.2.1 Specifying this target](#toc-anchor-10)
 
- - [Target properties](#toc-anchor-11)
+          * [3.2.2 Target properties](#toc-anchor-11)
 
- - [Clock](#toc-anchor-12)
+          * [3.2.3 Clock](#toc-anchor-12)
 
- - [IO items](#toc-anchor-13)
+          * [3.2.4 IO items](#toc-anchor-13)
 
- - [example](#toc-anchor-14)
+          * [3.2.5 example](#toc-anchor-14)
 
- - [STM32F103C8](#toc-anchor-15)
+       * [3.3 STM32F103C8](#toc-anchor-15)
 
- - [Specifying this target](#toc-anchor-16)
+          * [3.3.1 Specifying this target](#toc-anchor-16)
 
- - [Target properties](#toc-anchor-17)
+          * [3.3.2 Target properties](#toc-anchor-17)
 
- - [Clock](#toc-anchor-18)
+          * [3.3.3 Clock](#toc-anchor-18)
 
- - [IO items](#toc-anchor-19)
+          * [3.3.4 IO items](#toc-anchor-19)
 
- - [example](#toc-anchor-20)
+          * [3.3.5 example](#toc-anchor-20)
 
- - [Board targets](#toc-anchor-21)
+    * [4 Board targets](#toc-anchor-21)
 
- - [Arduino Uno](#toc-anchor-22)
+       * [4.1 Arduino Uno](#toc-anchor-22)
 
- - [Specifying this target](#toc-anchor-23)
+          * [4.1.1 Specifying this target](#toc-anchor-23)
 
- - [Arduino Due](#toc-anchor-24)
+       * [4.2 Arduino Due](#toc-anchor-24)
 
- - [Specifying this target](#toc-anchor-25)
+          * [4.2.1 Specifying this target](#toc-anchor-25)
 
- - [Blue Pill](#toc-anchor-26)
+       * [4.3 Blue Pill](#toc-anchor-26)
 
- - [Specifying this target](#toc-anchor-27)
+          * [4.3.1 Specifying this target](#toc-anchor-27)
 
- - [Blue Brick](#toc-anchor-28)
+       * [4.4 Blue Brick](#toc-anchor-28)
 
- - [Specifying this target](#toc-anchor-29)
+          * [4.4.1 Specifying this target](#toc-anchor-29)
 
 <!-- update end -->
 
@@ -77,7 +77,7 @@ TO DO list
 <!-- -------------------------------------------------------------------- -->
 
 <a name="toc-anchor-0"></a>
-# Introduction
+# 1 Introduction
 
 This document describes the targets supported by HwCpp.
 A target is either a (micro-controller) chip, 
@@ -101,7 +101,7 @@ targets/hwcpp-chip-<target-name>.hpp file directly.
 <!-- -------------------------------------------------------------------- -->
 
 <a name="toc-anchor-1"></a>
-# Native
+# 2 Native
 
 HwCpp can build for the native target.
 This might be useful for module tests, but is otherwise of little use.
@@ -112,18 +112,18 @@ Currently, HwCpp offers nothing specific to the native target.
 <!-- -------------------------------------------------------------------- -->
 
 <a name="toc-anchor-2"></a>
-# Chip targets
+# 3 Chip targets
 
 <!-- -------------------------------------------------------------------- -->
 <!-- -------------------------------------------------------------------- -->
 
 <a name="toc-anchor-3"></a>
-## atMega328
+## 3.1 atMega328
 
 ![atMega328 chip](images/atmega328.png)
 
 <a name="toc-anchor-4"></a>
-### Specifying this target
+### 3.1.1 Specifying this target
 
 <table>
 <tr><td>  bmptk makefile line           </td>
@@ -135,7 +135,7 @@ Currently, HwCpp offers nothing specific to the native target.
 </table>
 
 <a name="toc-anchor-5"></a>
-### Target properties
+### 3.1.2 Target properties
 
 <table>
 <tr><td>   RAM     </td><td>   2k          </td></tr>
@@ -157,7 +157,7 @@ but you must copy it to RAM before use,
 or address it using special functions. 
 
 <a name="toc-anchor-6"></a>
-### Clock
+### 3.1.3 Clock
 
 The clock can be either internal (1 MHz or 8 Mhz) or external
 (Xtal up to 20 MHz). This is done in the configuration fuses,
@@ -184,7 +184,7 @@ At the moment, only busy waiting is available.
 </table>
 
 <a name="toc-anchor-7"></a>
-### IO items
+### 3.1.4 IO items
 
 <table>
 <tr>
@@ -211,7 +211,7 @@ At the moment, only busy waiting is available.
 </table>
 
 <a name="toc-anchor-8"></a>
-### example
+### 3.1.5 example
 
 => TBW
 
@@ -220,12 +220,12 @@ At the moment, only busy waiting is available.
 <!-- -------------------------------------------------------------------- -->
 
 <a name="toc-anchor-9"></a>
-## atSam3x8e
+## 3.2 atSam3x8e
 
 ![atsam3x8e chip](images/atsam3x8e.png)
 
 <a name="toc-anchor-10"></a>
-### Specifying this target
+### 3.2.1 Specifying this target
 
 <table>
 <tr><td>  bmptk makefile line           </td>
@@ -237,7 +237,7 @@ At the moment, only busy waiting is available.
 </table>
 
 <a name="toc-anchor-11"></a>
-### Target properties
+### 3.2.2 Target properties
 
 <table>
 <tr><td>   RAM     </td><td>   96k              </td></tr>
@@ -251,7 +251,7 @@ At the moment, only busy waiting is available.
 This is a 32-bit Cortex-M3 chip, popularized by the Arduino Due.
 
 <a name="toc-anchor-12"></a>
-### Clock
+### 3.2.3 Clock
 
 The chip starts on the 8 Mhz internal clock.
 With a 12 Mhz crystal and the PLL the clock bet set to 84 MHz
@@ -277,12 +277,12 @@ At both busy waiting and clock-based waiting are available.
 </table>
 
 <a name="toc-anchor-13"></a>
-### IO items
+### 3.2.4 IO items
 
 => TBW
 
 <a name="toc-anchor-14"></a>
-### example
+### 3.2.5 example
 
 => TBW
 
@@ -291,12 +291,12 @@ At both busy waiting and clock-based waiting are available.
 <!-- -------------------------------------------------------------------- -->
 
 <a name="toc-anchor-15"></a>
-## STM32F103C8
+## 3.3 STM32F103C8
 
 ![STM32F103C8 chip](images/stm32f103c8.png)
 
 <a name="toc-anchor-16"></a>
-### Specifying this target
+### 3.3.1 Specifying this target
 
 <table>
 <tr><td>  bmptk makefile line           </td>
@@ -308,7 +308,7 @@ At both busy waiting and clock-based waiting are available.
 </table>
 
 <a name="toc-anchor-17"></a>
-### Target properties
+### 3.3.2 Target properties
 
 <table>
 <tr><td>   RAM     </td><td>   20k               </td></tr>
@@ -323,7 +323,7 @@ This is a 32-bit Cortex-M3 chip, popularized by the Arduino Maple,
 and used in al sorts of cheap Chinese boards, like the Blue Pill.
 
 <a name="toc-anchor-18"></a>
-### Clock
+### 3.3.3 Clock
 
 The chip starts on the 8 Mhz internal clock.
 With an 8 Mhz crystal and the PLL the clock bet set to 72 MHz
@@ -349,12 +349,12 @@ At both busy waiting and clock-based waiting are available.
 </table>
 
 <a name="toc-anchor-19"></a>
-### IO items
+### 3.3.4 IO items
 
 => TBW
 
 <a name="toc-anchor-20"></a>
-### example
+### 3.3.5 example
 
 => TBW
 
@@ -363,18 +363,18 @@ At both busy waiting and clock-based waiting are available.
 <!-- -------------------------------------------------------------------- -->
 
 <a name="toc-anchor-21"></a>
-# Board targets
+# 4 Board targets
 
 <!-- -------------------------------------------------------------------- -->
 <!-- -------------------------------------------------------------------- -->
 
 <a name="toc-anchor-22"></a>
-## Arduino Uno
+## 4.1 Arduino Uno
 
 ![Arduino Uno board](images/arduino-uno.png)
 
 <a name="toc-anchor-23"></a>
-### Specifying this target
+### 4.1.1 Specifying this target
 
 <table>
 <tr><td>  bmptk makefile line           </td>
@@ -415,12 +415,12 @@ by the RTS and DTR lines of the serial interface.
 <!-- -------------------------------------------------------------------- -->
 
 <a name="toc-anchor-24"></a>
-## Arduino Due
+## 4.2 Arduino Due
 
 ![Arduino Due board](images/arduino-due.png)
 
 <a name="toc-anchor-25"></a>
-### Specifying this target
+### 4.2.1 Specifying this target
 
 <table>
 <tr><td>  bmptk makefile line           </td>
@@ -448,12 +448,12 @@ of programming the
 <!-- -------------------------------------------------------------------- -->
 
 <a name="toc-anchor-26"></a>
-## Blue Pill
+## 4.3 Blue Pill
 
 ![Blue Pill board](images/blue-pill.png)
 
 <a name="toc-anchor-27"></a>
-### Specifying this target
+### 4.3.1 Specifying this target
 
 <table>
 <tr><td>  bmptk makefile line           </td>
@@ -486,12 +486,12 @@ not straight, check the pictures.
 <!-- -------------------------------------------------------------------- -->
 
 <a name="toc-anchor-28"></a>
-## Blue Brick
+## 4.4 Blue Brick
 
 ![Blue Brick board](images/blue-brick.png)
 
 <a name="toc-anchor-29"></a>
-### Specifying this target
+### 4.4.1 Specifying this target
 
 <table>
 <tr><td>  bmptk makefile line           </td>

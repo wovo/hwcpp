@@ -2,23 +2,23 @@ HwCpp Primer
 ===
 
 <!-- update table_of_contents( input ) -->
- - [Introduction](#toc-anchor-0)
+    * [1 Introduction](#toc-anchor-0)
 
- - [Blink a led](#toc-anchor-1)
+    * [2 Blink a led](#toc-anchor-1)
 
- - [Kitt](#toc-anchor-2)
+    * [3 Kitt](#toc-anchor-2)
 
- - [More fun with LEDs](#toc-anchor-3)
+    * [4 More fun with LEDs](#toc-anchor-3)
 
- - [Input and output pins](#toc-anchor-4)
+    * [5 Input and output pins](#toc-anchor-4)
 
- - [Character output](#toc-anchor-5)
+    * [6 Character output](#toc-anchor-5)
 
 <!-- update end -->
 
 
 <a name="toc-anchor-0"></a>
-# Introduction
+# 1 Introduction
 
 HwCpp is a library for writing micro-controller applications. 
 This document provides a gentle introduction to using HwCpp.
@@ -26,7 +26,7 @@ Basic C++ and hardware knowledge is assumed, but nothing too advanced.
 
 
 <a name="toc-anchor-1"></a>
-# Blink a led
+# 2 Blink a led
 
 Blinking a LED is the "Hello world!" equivalent for micro-controllers,
 so let's start with that.
@@ -184,7 +184,7 @@ int main(){
 ```
 
 <a name="toc-anchor-2"></a>
-# Kitt
+# 3 Kitt
 
 After blinking a single LED, the next step is to do something with a bunch of LEDs. 
 The Kitt display (one LED back-and-forth, from the Knightrider series) 
@@ -242,7 +242,7 @@ function template for that, which requires a port and a duration.
 We pass those parameters, call the function, and kitt is alive.
 
 <a name="toc-anchor-3"></a>
-# More fun with LEDs
+# 4 More fun with LEDs
 
 Blinking can be made more interesting by blinking more than just a single LED.
 A bunch of pins can be combined into a something that walks and quacks like
@@ -458,10 +458,10 @@ int main(){
 - add dummy pins
 
 <a name="toc-anchor-4"></a>
-# Input and output pins
+# 5 Input and output pins
 
 <a name="toc-anchor-5"></a>
-# Character output
+# 6 Character output
 
 Even embedded programmers want their applications to talk.
 Most embedded targets have at least a serial (UART) connection,

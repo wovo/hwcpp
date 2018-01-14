@@ -42,13 +42,30 @@ def table_of_contents( input, n = 10 ):
    return [ "%%TOC%%\n", line ]
    
 def list_entry( n ):
-   if n == 1 : return " - " 
-   if n == 2 : return "   * " 
-   return "   ?"
+   #if n == 1 : return " - " 
+   #if n == 2 : return "   * " 
+   #return "?[%d]" % n
+   return " " * ( 1 + ( 3 * n ) ) + "* " 
+   
+def num_add( num, n ):
+   while len( num ) > n:
+      num.pop()
+   if len( num ) < n:
+      num.append( 0 )
+   num[ n - 1 ] = num[ n - 1 ] + 1
+   return num
+
+def num_str( num ):
+   result = ""
+   while len( num ) > 0:
+      n = num.pop( 0 )   
+      if result != "":
+         result += "."
+      result += str( n )
+   return result	  
 
 def update( file_name ):
    print( "updating %s" % file_name )
-   toc = []
 
    # read input file
    input = []
@@ -58,6 +75,8 @@ def update( file_name ):
 		 
    # process
    result = []
+   toc = []
+   num = []
    while len( input ) > 0:
       line = input.pop( 0 )
 		 
@@ -85,12 +104,14 @@ def update( file_name ):
          while line.startswith( "#" ):
             d = d + 1
             line = line[ 1 : ]
+         num = num_add( num, d )			
          while ( line + ' ' )[ 0 ] in "1234567890. ":
             line = line[ 1 : ]
          line = line.replace( "\n", "" ).strip()
-         toc.append( " - [%s](#toc-anchor-%d)\n\n" % ( list_entry( n ) + line , n ))
+         line = num_str( num[:] ) + " " + line
+         toc.append( list_entry( d ) + "[%s](#toc-anchor-%d)\n\n" % ( line , n ))
          result.append( '<a name="toc-anchor-%d"></a>\n' % n )
-         result.append( d * "#" + line )
+         result.append( d * "#" + " " + line + "\n" )
       
       else:
          result.append( line )
