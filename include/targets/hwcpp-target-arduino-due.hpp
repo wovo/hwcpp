@@ -101,6 +101,13 @@ using chip = chip_sam3xa< clock >;
    make_pin_in_out(  d67,  b, 16 );
    make_pin_in_out(  d68,  a,  1 );
    make_pin_in_out(  d69,  a,  0 );
+   make_pin_in_out(  d70,  a, 17 );
+   make_pin_in_out(  d71,  a, 18 );
+   make_pin_in_out(  d72,  c, 30 );
+   make_pin_in_out(  d73,  a, 21 );
+   make_pin_in_out(  d74,  a, 27 );
+   make_pin_in_out(  d75,  a, 26 );
+   make_pin_in_out(  d76,  a, 25 );
       
    make_pin_adc(  a0,  7 );
    make_pin_adc(  a1,  6 );

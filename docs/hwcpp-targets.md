@@ -6,8 +6,13 @@ TO DO list
 - complete board descriptions
 - add foto's
 - add links to external info
-- format the TOC better
+- format the TOC better? hierarchical TOC's?
 - other name for blue brick
+- blue brick resources
+- http://en.mxchip.com/product/wifi_product/38
+- other due/sam uarts
+- uno timer
+- dac's
 -->
 
 <!-- update table_of_contents( input ) -->
@@ -105,6 +110,7 @@ Currently, HwCpp offers nothing specific to the native target.
 <!-- -------------------------------------------------------------------- -->
 <!-- -------------------------------------------------------------------- -->
 
+<a name="atmega328"></a>
 <a name="toc-anchor-3"></a>
 ## 3.1 atMega328
 
@@ -194,8 +200,8 @@ At the moment, only busy waiting is available.
       <td> scl   </td><td> pin_oc  </td><td> c5  </td></tr>
   <tr><td> sda   </td><td> pin_oc  </td><td> c4  </td></tr>
 <tr><td rowspan=2> UART  </td>
-      <td> tx   </td><td> pin_out  </td><td> d0  </td></tr>
-  <tr><td> rx   </td><td> pin_in   </td><td> d1  </td></tr>
+      <td> tx   </td><td> pin_out  </td><td> d1  </td></tr>
+  <tr><td> rx   </td><td> pin_in   </td><td> d0  </td></tr>
 </table>
 
 <a name="toc-anchor-8"></a>
@@ -203,10 +209,20 @@ At the moment, only busy waiting is available.
 
 => TBW
 
+<a name="toc-anchor-8"></a>
+### 3.1.5 Resources
+
+- [Wikipedia page](https://en.wikipedia.org/wiki/ATmega328)
+- [Manufacturer's page](https://www.microchip.com/wwwproducts/en/ATmega328)
+- [Summary datasheet](http://ww1.microchip.com/downloads/en/DeviceDoc/Atmel-42735-8-bit-AVR-Microcontroller-ATmega328-328P_Summary.pdf)
+- [Complete datasheet](http://ww1.microchip.com/downloads/en/DeviceDoc/Atmel-42735-8-bit-AVR-Microcontroller-ATmega328-328P_Datasheet.pdf)
+- [GCC for AVR8](http://blog.zakkemble.co.uk/avr-gcc-builds/)
+
 
 <!-- -------------------------------------------------------------------- -->
 <!-- -------------------------------------------------------------------- -->
 
+<a name="atsam3x8e"></a>
 <a name="toc-anchor-9"></a>
 ## 3.2 atSam3x8e
 
@@ -228,8 +244,8 @@ At the moment, only busy waiting is available.
 ### 3.2.2 Target properties
 
 <table>
-<tr><td>   RAM     </td><td>   96k              </td></tr>
-<tr><td>   FLASH   </td><td>  256k              </td></tr>
+<tr><td>   RAM     </td><td>   96k               </td></tr>
+<tr><td>   FLASH   </td><td>  256k               </td></tr>
 <tr><td>   GPIO    </td><td>   103               </td></tr>
 <tr><td>   CPU     </td><td>  32 bit Cortex-M3   </td></tr>
 <tr><td>   CLOCK   </td>
@@ -252,7 +268,7 @@ The clock frequency has no default (it must specified explicitly).
    <tr><td> 84'000'000 (assumes 12MHz crystal)  </td></tr>
 </table>
 
-At both busy waiting and clock-based waiting are available.
+Both busy waiting and clock-based waiting are available.
 
 <table>
 <tr>
@@ -274,10 +290,18 @@ At both busy waiting and clock-based waiting are available.
 
 => TBW
 
+<a name="toc-anchor-8"></a>
+### 3.1.5 Resources
+
+- [Manufacturer's page](http://www.microchip.com/wwwproducts/en/ATsam3x8e)
+- [SAM3X/SAM3A series datasheet](http://ww1.microchip.com/downloads/en/DeviceDoc/Atmel-11057-32-bit-Cortex-M3-Microcontroller-SAM3X-SAM3A_Datasheet.pdf)
+- [GCC for ARM/Cortex](http://gnutoolchains.com/arm-eabi/)
+
 
 <!-- -------------------------------------------------------------------- -->
 <!-- -------------------------------------------------------------------- -->
 
+<a name="stm32f103c8"></a>
 <a name="toc-anchor-15"></a>
 ## 3.3 STM32F103C8
 
@@ -324,7 +348,7 @@ The clock frequency has no default (it must specified explicitly).
    <tr><td> 72'000'000 (assumes 12MHz crystal)   </td></tr>
 </table>
 
-At both busy waiting and clock-based waiting are available.
+Both busy waiting and clock-based waiting are available.
 
 <table>
 <tr>
@@ -345,6 +369,14 @@ At both busy waiting and clock-based waiting are available.
 ### 3.3.5 example
 
 => TBW
+
+<a name="toc-anchor-8"></a>
+### 3.1.5 Resources
+
+- [Manufacturer's page](http://www.st.com/en/microcontrollers/stm32f103c8.html)
+- [STM32F103C8 datasheet](http://www.st.com/content/ccc/resource/technical/document/datasheet/33/d4/6f/1d/df/0b/4c/6d/CD00161566.pdf/files/CD00161566.pdf/jcr:content/translations/en.CD00161566.pdf)
+- [STM32F103C8 product specification](http://www.st.com/content/ccc/resource/technical/document/datasheet/33/d4/6f/1d/df/0b/4c/6d/CD00161566.pdf/files/CD00161566.pdf/jcr:content/translations/en.CD00161566.pdf)
+- [GCC for ARM/Cortex](http://gnutoolchains.com/arm-eabi/)
 
 
 <!-- -------------------------------------------------------------------- -->
@@ -373,20 +405,23 @@ At both busy waiting and clock-based waiting are available.
    <td>      #include "hwcpp-target-arduino-uno"  </td></tr>
 </table>
 
-This is a 32-bit Cortex-M3 chip, popularized by the Arduino Maple,
-and used in al sorts of cheap Chinese boards, like the Blue Pill.
+<a name="toc-anchor-23"></a>
+### 4.1.1 Target properties
 
-micro-controller
-connectors
-IO voltage
-downloading
-serial interface
-on board
+<table>
+<tr><td>  Micro-controller  </td><td> [atmega328](#atmega328)    </td></tr>
+<tr><td>  Clock             </td><td> Xtal 16 MHz                </td></tr>
+<tr><td>  Digital IO pins   </td><td> d0 .. d19 (5V)             </td></tr>
+<tr><td>  Analog input pins </td><td> a0 .. a5 (overlap)         </td></tr>
+<tr><td>  Downloading       </td><td> USB bootloader, 2x3 ISP    </td></tr>
+<tr><td>  Power             </td><td> USB, barrel connector      </td></tr>
+<tr><td>  Peripherals       </td><td> LED                        </td></tr>
+</table>
 
 This is the modern version of the original, 
 still tremendously popular Arduino board.
 There are various clones of this board, which are equivalent but 
-different in small details, for instance the USB-to-serial chips.
+different in small details, for instance the USB-to-serial chip.
 
 The connector pin names are the Arduino pin names, which
 have no relation with the chip pin names.
@@ -397,6 +432,64 @@ pre-programmed Arduino bootloader.
 This is a hands-off processes: 
 the target chip is forced to reset and into bootload mode 
 by the RTS and DTR lines of the serial interface.
+
+<a name="toc-anchor-18"></a>
+### 3.3.3 Clock
+
+The atMega328 chip runs from the 16 Mhz crystal,
+hence this is the default frequency.
+You could specify another frequency supported
+by the [atMega328](#atmega328) target.
+
+<table>
+<tr><td rowspan=1> default clock parameter values </td>
+       <td> 16'000'000                            </td></tr>
+</table>
+
+At the moment, only busy waiting is available.
+
+<table>
+<tr>
+   <th> Item name </th> 
+   <th> HwCpp type </th>
+</tr>  
+<tr><td> timing   </td><td> waiting </td></tr>
+<tr><td> waiting  </td><td> waiting </td></tr>
+</table>
+
+<a name="toc-anchor-19"></a>
+### 3.3.4 IO items
+
+<table>
+<tr>
+   <th> Service </th>
+   <th> Item name </th> 
+   <th> HwCpp type </th>
+   <th> Shares GPIO </th>
+</tr>  
+<tr><td> GPIO  </td><td> d0 .. d19  </td>
+   <td> pin_in_out </td><td></td></tr>
+<tr><td> ADC   </td><td> a0 .. a5  </td>
+   <td> adc<10>    </td><td> d14 .. d19 </td></tr>
+<tr><td rowspan=2> UART  </td>
+      <td> tx   </td><td> pin_out  </td><td> d1  </td></tr>
+  <tr><td> rx   </td><td> pin_in   </td><td> d0  </td></tr>
+<tr><td> LED </td>
+      <td> led   </td><td> pin_out  </td><td> d13  </td></tr>  
+</table>
+
+<a name="toc-anchor-20"></a>
+### 3.3.5 example
+
+=> TBW
+
+<a name="toc-anchor-8"></a>
+### 3.1.5 Resources
+
+- [atMega328 target](#atmega328)
+- [Uno page at arduino.cc](https://store.arduino.cc/usa/arduino-uno-rev3)
+- [Reference schematic from arduino.cc](https://www.arduino.cc/en/uploads/Main/arduino-uno-schematic.pdf)
+- [Uno pinout](images/arduino-uno.png)
 
 
 <!-- -------------------------------------------------------------------- -->
@@ -419,6 +512,19 @@ by the RTS and DTR lines of the serial interface.
    <td>      #include "hwcpp-target-arduino-due"  </td></tr>
 </table>
 
+<a name="toc-anchor-23"></a>
+### 4.1.1 Target properties
+
+<table>
+<tr><td>  Micro-controller  </td><td> [atsam3x8e](#atsam3x8e)    </td></tr>
+<tr><td>  Clock             </td><td> Xtal 12 MHz => 84 MHz      </td></tr>
+<tr><td>  Digital IO pins   </td><td> d0 .. d76 (3.3V)           </td></tr>
+<tr><td>  Analog input pins </td><td> a0 .. a11 (overlap)        </td></tr>
+<tr><td>  Downloading       </td><td> USB bootloader, 2x3 ISP    </td></tr>
+<tr><td>  Power             </td><td> 2 x USB, barrel connector  </td></tr>
+<tr><td>  Peripherals       </td><td> LED                        </td></tr>
+</table>
+
 This Arduino board has the same form factor as the Arduino Mega, 
 but uses the much more powerful atSam3xa Cortex-M3 micro-controller.
 Note that unlike the Mega the IO voltage of the Due is 3.3V.
@@ -427,9 +533,80 @@ The connector pin names are the Arduino pin names, which
 have no relation with the chip pin names.
 
 The Due has two USB connectors. Both can be used to power the board.
-The 'native' USB connector connects directly to the chip's USB interface. 
-The 'programming' connector connects to an AVR chip that takes care
-of programming the 
+The 'native' USB connector connects directly to the atsam3x8e USB interface. 
+The 'programming' USB connector connects to an dedicated AVR chip 
+that takes care of programming the atsam3x8e.
+This programming process is started by setting the USB-serial interface
+to 1200 baud, so take care not to use that baudrate in your application.
+The programming process can be done hands-off. 
+
+When an Arduino Due is powered, it does NOT automatically run the 
+programmed application: a reset is required.
+
+<a name="toc-anchor-12"></a>
+### 3.2.3 Clock
+
+The chip starts on the 8 Mhz internal clock.
+With a 12 Mhz crystal and the PLL the clock bet set to 84 MHz,
+which is the default.
+
+<table>
+<tr><td rowspan=2> supported clock parameter values </td>
+       <td> 8'000'000                           </td></tr>
+   <tr><td> 84'000'000 (default              )  </td></tr>
+</table>
+
+Both busy waiting and clock-based waiting are available.
+
+<table>
+<tr>
+   <th> Item name </th> 
+   <th> HwCpp type </th>
+</tr>  
+<tr><td> timing    </td><td> clocking  </td></tr>
+<tr><td> waiting   </td><td> waiting   </td></tr>
+<tr><td> clocking  </td><td> clocking  </td></tr>
+</table>
+
+<a name="toc-anchor-19"></a>
+### 3.3.4 IO items
+
+<table>
+<tr>
+   <th> Service </th>
+   <th> Item name </th> 
+   <th> HwCpp type </th>
+   <th> Shares GPIO </th>
+</tr>  
+<tr><td> GPIO  </td><td> d0 .. d76  </td>
+   <td> pin_in_out </td><td></td></tr>
+<tr><td> ADC   </td><td> a0 .. a11  </td>
+   <td> adc<12>    </td><td> d54 .. d65 </td></tr>
+<tr><td rowspan=2> UART </td>
+      <td> tx   </td><td> pin_out  </td><td> d1  </td></tr>
+  <tr><td> rx   </td><td> pin_in   </td><td> d0  </td></tr>
+<tr><td rowspan=4> I2C </td>
+      <td> scl   </td><td> pin_oc   </td><td> d21  </td></tr>
+      <td> sda   </td><td> pin_oc   </td><td> d20  </td></tr>
+      <td> scl1  </td><td> pin_oc   </td><td> d71  </td></tr>
+  <tr><td> sda1  </td><td> pin_oc   </td><td> d70  </td></tr>
+<tr><td rowspan=4> SPI </td>
+      <td> sck   </td><td> pin_out  </td><td> d74  </td></tr>
+      <td> miso  </td><td> pin_in   </td><td> d76  </td></tr>
+      <td> mosi  </td><td> pin_out  </td><td> d75  </td></tr>
+      <td> cs0   </td><td> pin_out  </td><td> d10  </td></tr>
+  <tr><td> cs1   </td><td> pin_out  </td><td> d4  </td></tr>
+<tr><td> LED </td>
+      <td> led   </td><td> pin_out  </td><td> d13  </td></tr>
+</table>
+
+<a name="toc-anchor-8"></a>
+### 3.1.5 Resources
+
+- [atsam3x8e target)[#atsam3x8e]
+- [Due page at arduino.cc](https://store.arduino.cc/arduino-due)
+- [Reference schematic from arduino.cc](https://www.arduino.cc/en/uploads/Main/arduino-Due-schematic.pdf)
+- [Due pinout](images/arduino-due.png)
 
 
 <!-- -------------------------------------------------------------------- -->
@@ -468,6 +645,15 @@ My preferred way to program this board is using a
 (clone) ST-LINK V2 programmer.
 This requires a four-wire connection, which is (unfortunately)
 not straight, check the pictures.
+
+<a name="toc-anchor-8"></a>
+### 3.1.5 Resources
+
+- [stm32f103c8 target](#stm32f103c8]
+- [Wiki page](http://wiki.stm32duino.com/index.php?title=Blue_Pill)
+- [Programming with an ST-LINK V2](https://github.com/rogerclarkmelbourne/Arduino_STM32/wiki/Programming-an-STM32F103XXX-with-a-generic-"ST-Link-V2"-programmer-from-Linux)
+- [Reference schematic](images/blue-pill-circuit.png)
+- [Blue pill pinout](images/blue-pill-pinout.png)
 
 
 <!-- -------------------------------------------------------------------- -->
@@ -515,3 +701,12 @@ My preferred way to program this board is using a
 (clone) ST-LINK V2 programmer.
 This requires a four-wire connection, which is (unfortunately)
 not straight, check the pictures.
+
+<a name="toc-anchor-8"></a>
+### 3.1.5 Resources
+
+- [stm32f103c8 target](#stm32f103c8]
+- [Wiki page](http://wiki.stm32duino.com/index.php?title=Blue_Pill)
+- [Programming with an ST-LINK V2](https://github.com/rogerclarkmelbourne/Arduino_STM32/wiki/Programming-an-STM32F103XXX-with-a-generic-"ST-Link-V2"-programmer-from-Linux)
+- [Reference schematic](images/blue-pill-circuit.png)
+- [Blue pill pinout](images/blue-pill-pinout.png)

@@ -42,9 +42,6 @@ def table_of_contents( input, n = 10 ):
    return [ "%%TOC%%\n", line ]
    
 def list_entry( n ):
-   #if n == 1 : return " - " 
-   #if n == 2 : return "   * " 
-   #return "?[%d]" % n
    return " " * ( 2 * n ) + "- " 
    
 def num_add( num, n ):
