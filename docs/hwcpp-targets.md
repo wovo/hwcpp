@@ -68,6 +68,7 @@ HwCpp Targets
 - complete board descriptions
 - add foto's
 - add links to external links
+- format the TOC better
 -->
 
 <!-- -------------------------------------------------------------------- -->
@@ -86,7 +87,7 @@ compiler command line as -DHWCPP_TARGET_<target_name>
 
 When bmptk is used, the target is specified in the Makefile as
 ```
-TARGET ?= <target_name>
+TARGET := <target_name>
 ```
 and bmptk will put the appropriate define on the command line.
 
@@ -116,6 +117,8 @@ Currently, HwCpp offers nothing specific to the native target.
 
 <a name="toc-anchor-3"></a>
 ## atMega328
+
+![atMega328 chip](images/atmega328.png)
 
 <a name="toc-anchor-4"></a>
 ### Specifying this target
@@ -162,9 +165,9 @@ and HwCpp assumes that you do this correctly.
 
 <table>
 <tr><td rowspan=3> supported clock parameter values </td>
-       <td> 1'000'000  </td><td>
-   <tr><td> 16'000'000 </td><td>
-   <tr><td> 20'000'000 </td><td>
+       <td> 1'000'000  </td></tr>
+   <tr><td> 16'000'000 </td></tr>
+   <tr><td> 20'000'000 </td></tr>
 </table>
 
 At the moment, only busy waiting is available.
@@ -288,6 +291,8 @@ At both busy waiting and clock-based waiting are available.
 <a name="toc-anchor-15"></a>
 ## STM32F103C8
 
+![STM32F103C8 chip](images/stm32f103c8.png)
+
 <a name="toc-anchor-16"></a>
 ### Specifying this target
 
@@ -363,6 +368,8 @@ At both busy waiting and clock-based waiting are available.
 
 <a name="toc-anchor-22"></a>
 ## Arduino Uno
+
+![Arduino Uno board](images/arduino-uno.png)
 
 <a name="toc-anchor-23"></a>
 ### Specifying this target
@@ -441,6 +448,8 @@ of programming the
 <a name="toc-anchor-26"></a>
 ## Blue Pill
 
+![Blue Pill board](images/blue-pill.png)
+
 <a name="toc-anchor-27"></a>
 ### Specifying this target
 
@@ -476,6 +485,8 @@ not straight, check the pictures.
 
 <a name="toc-anchor-28"></a>
 ## Blue Brick
+
+![Blue Brick board](images/blue-brick.png)
 
 <a name="toc-anchor-29"></a>
 ### Specifying this target
