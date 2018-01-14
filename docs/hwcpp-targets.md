@@ -11,11 +11,9 @@ TO DO list
 -->
 
 <!-- update table_of_contents( input ) -->
-    * [1 Introduction](#toc-anchor-0)
-
-    * [2 Native](#toc-anchor-1)
-
-    * [3 Chip targets](#toc-anchor-2)
+[1 Introduction](#toc-anchor-0)
+[2 Native](#toc-anchor-1)
+[3 Chip targets](#toc-anchor-2)
 
        * [3.1 atMega328](#toc-anchor-3)
 
