@@ -2,35 +2,35 @@ HwCpp Reference
 ===
 
 <!-- update table_of_contents( input ) -->
-    * [1 Introduction](#toc-anchor-0)
+  - [1 Introduction](#toc-anchor-0)
 
-    * [2 Library mechanisms](#toc-anchor-1)
+  - [2 Library mechanisms](#toc-anchor-1)
 
-       * [2.1 Source, sink](#toc-anchor-2)
+    - [2.1 Source, sink](#toc-anchor-2)
 
-       * [2.2 Box : get, set, invalidate, flush](#toc-anchor-3)
+    - [2.2 Box : get, set, invalidate, flush](#toc-anchor-3)
 
-       * [2.3 Stream : read, write, refresh, flush](#toc-anchor-4)
+    - [2.3 Stream : read, write, refresh, flush](#toc-anchor-4)
 
-       * [2.4 Class filters](#toc-anchor-5)
+    - [2.4 Class filters](#toc-anchor-5)
 
-       * [2.5 Public, Library-internal, File-internal](#toc-anchor-6)
+    - [2.5 Public, Library-internal, File-internal](#toc-anchor-6)
 
-       * [2.6 pin_in_out_creator](#toc-anchor-7)
+    - [2.6 pin_in_out_creator](#toc-anchor-7)
 
-       * [2.7 root class, class filter, class creator, mixin class](#toc-anchor-8)
+    - [2.7 root class, class filter, class creator, mixin class](#toc-anchor-8)
 
-       * [2.8 Files](#toc-anchor-9)
+    - [2.8 Files](#toc-anchor-9)
 
-       * [2.9 Dependencies](#toc-anchor-10)
+    - [2.9 Dependencies](#toc-anchor-10)
 
-       * [2.10 Static classes](#toc-anchor-11)
+    - [2.10 Static classes](#toc-anchor-11)
 
-    * [3 include "hwcpp.hpp"](#toc-anchor-12)
+  - [3 include "hwcpp.hpp"](#toc-anchor-12)
 
-       * [3.1 Interfaces and concepts](#toc-anchor-13)
+    - [3.1 Interfaces and concepts](#toc-anchor-13)
 
-    * [4 Glossary](#toc-anchor-14)
+  - [4 Glossary](#toc-anchor-14)
 
 <!-- update end -->
 

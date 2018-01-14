@@ -2,17 +2,17 @@ HwCpp Primer
 ===
 
 <!-- update table_of_contents( input ) -->
-    * [1 Introduction](#toc-anchor-0)
+  - [1 Introduction](#toc-anchor-0)
 
-    * [2 Blink a led](#toc-anchor-1)
+  - [2 Blink a led](#toc-anchor-1)
 
-    * [3 Kitt](#toc-anchor-2)
+  - [3 Kitt](#toc-anchor-2)
 
-    * [4 More fun with LEDs](#toc-anchor-3)
+  - [4 More fun with LEDs](#toc-anchor-3)
 
-    * [5 Input and output pins](#toc-anchor-4)
+  - [5 Input and output pins](#toc-anchor-4)
 
-    * [6 Character output](#toc-anchor-5)
+  - [6 Character output](#toc-anchor-5)
 
 <!-- update end -->
 

@@ -2,15 +2,15 @@ HwCpp Getting Started
 ===
 
 <!-- update table_of_contents( input ) -->
-    * [1 Introduction](#toc-anchor-0)
+  - [1 Introduction](#toc-anchor-0)
 
-    * [2 Download and install](#toc-anchor-1)
+  - [2 Download and install](#toc-anchor-1)
 
-    * [3 First use](#toc-anchor-2)
+  - [3 First use](#toc-anchor-2)
 
-       * [3.1 Bmptk](#toc-anchor-3)
+    - [3.1 Bmptk](#toc-anchor-3)
 
-       * [3.2 CodeLite](#toc-anchor-4)
+    - [3.2 CodeLite](#toc-anchor-4)
 
 <!-- update end -->
 

@@ -11,61 +11,65 @@ TO DO list
 -->
 
 <!-- update table_of_contents( input ) -->
-- [1 Introduction](#toc-anchor-0)
-- [2 Native](#toc-anchor-1)
-- [3 Chip targets](#toc-anchor-2)
-  - [3.1 atMega328](#toc-anchor-3)
-  - [3.1.1 Specifying this target](#toc-anchor-4)
+  - [1 Introduction](#toc-anchor-0)
 
-          * [3.1.2 Target properties](#toc-anchor-5)
+  - [2 Native](#toc-anchor-1)
 
-          * [3.1.3 Clock](#toc-anchor-6)
+  - [3 Chip targets](#toc-anchor-2)
 
-          * [3.1.4 IO items](#toc-anchor-7)
+    - [3.1 atMega328](#toc-anchor-3)
 
-          * [3.1.5 example](#toc-anchor-8)
+      - [3.1.1 Specifying this target](#toc-anchor-4)
 
-       * [3.2 atSam3x8e](#toc-anchor-9)
+      - [3.1.2 Target properties](#toc-anchor-5)
 
-          * [3.2.1 Specifying this target](#toc-anchor-10)
+      - [3.1.3 Clock](#toc-anchor-6)
 
-          * [3.2.2 Target properties](#toc-anchor-11)
+      - [3.1.4 IO items](#toc-anchor-7)
 
-          * [3.2.3 Clock](#toc-anchor-12)
+      - [3.1.5 example](#toc-anchor-8)
 
-          * [3.2.4 IO items](#toc-anchor-13)
+    - [3.2 atSam3x8e](#toc-anchor-9)
 
-          * [3.2.5 example](#toc-anchor-14)
+      - [3.2.1 Specifying this target](#toc-anchor-10)
 
-       * [3.3 STM32F103C8](#toc-anchor-15)
+      - [3.2.2 Target properties](#toc-anchor-11)
 
-          * [3.3.1 Specifying this target](#toc-anchor-16)
+      - [3.2.3 Clock](#toc-anchor-12)
 
-          * [3.3.2 Target properties](#toc-anchor-17)
+      - [3.2.4 IO items](#toc-anchor-13)
 
-          * [3.3.3 Clock](#toc-anchor-18)
+      - [3.2.5 example](#toc-anchor-14)
 
-          * [3.3.4 IO items](#toc-anchor-19)
+    - [3.3 STM32F103C8](#toc-anchor-15)
 
-          * [3.3.5 example](#toc-anchor-20)
+      - [3.3.1 Specifying this target](#toc-anchor-16)
 
-    * [4 Board targets](#toc-anchor-21)
+      - [3.3.2 Target properties](#toc-anchor-17)
 
-       * [4.1 Arduino Uno](#toc-anchor-22)
+      - [3.3.3 Clock](#toc-anchor-18)
 
-          * [4.1.1 Specifying this target](#toc-anchor-23)
+      - [3.3.4 IO items](#toc-anchor-19)
 
-       * [4.2 Arduino Due](#toc-anchor-24)
+      - [3.3.5 example](#toc-anchor-20)
 
-          * [4.2.1 Specifying this target](#toc-anchor-25)
+  - [4 Board targets](#toc-anchor-21)
 
-       * [4.3 Blue Pill](#toc-anchor-26)
+    - [4.1 Arduino Uno](#toc-anchor-22)
 
-          * [4.3.1 Specifying this target](#toc-anchor-27)
+      - [4.1.1 Specifying this target](#toc-anchor-23)
 
-       * [4.4 Blue Brick](#toc-anchor-28)
+    - [4.2 Arduino Due](#toc-anchor-24)
 
-          * [4.4.1 Specifying this target](#toc-anchor-29)
+      - [4.2.1 Specifying this target](#toc-anchor-25)
+
+    - [4.3 Blue Pill](#toc-anchor-26)
+
+      - [4.3.1 Specifying this target](#toc-anchor-27)
+
+    - [4.4 Blue Brick](#toc-anchor-28)
+
+      - [4.4.1 Specifying this target](#toc-anchor-29)
 
 <!-- update end -->
 

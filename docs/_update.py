@@ -45,7 +45,7 @@ def list_entry( n ):
    #if n == 1 : return " - " 
    #if n == 2 : return "   * " 
    #return "?[%d]" % n
-   return " " * ( 1 + ( 3 * n ) ) + "* " 
+   return " " * ( 2 * n ) + "- " 
    
 def num_add( num, n ):
    while len( num ) > n:
