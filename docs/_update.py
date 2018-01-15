@@ -49,6 +49,7 @@ def num_add( num, n ):
       num.pop()
    if len( num ) < n:
       num.append( 0 )
+   # print( n, num )
    num[ n - 1 ] = num[ n - 1 ] + 1
    return num
 
@@ -93,7 +94,9 @@ def update( file_name ):
             result.append( line )         
 	  
       elif line.startswith( '<a name="toc-anchor-' ):
-         pass  
+         line = input.pop( 0 )
+         if line.strip() != "":
+            input = [ ":" + line ] + input
 	  
       elif line.startswith( "#" ):
          n = len( toc )
@@ -108,6 +111,7 @@ def update( file_name ):
          line = num_str( num[:] ) + " " + line
          toc.append( list_entry( d ) + "[%s](#toc-anchor-%d)\n\n" % ( line , n ))
          result.append( '<a name="toc-anchor-%d"></a>\n' % n )
+         result.append( '\n' )
          result.append( d * "#" + " " + line + "\n" )
       
       else:

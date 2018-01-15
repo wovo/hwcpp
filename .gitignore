@@ -13,6 +13,8 @@ __codelite.workspace
 *.lss
 *.lst
 *.exe
+*.pdf
+*.html
 bmptk_*_stack.c
 _push.bat
 _pull.bat
