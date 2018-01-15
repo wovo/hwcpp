@@ -13,6 +13,7 @@ TO DO list
 - other due/sam uarts
 - uno timer
 - dac's
+- uarts are also a service, not just two pins!
 -->
 
 <!-- update table_of_contents( input ) -->
