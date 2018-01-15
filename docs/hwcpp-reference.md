@@ -2,41 +2,10 @@ HwCpp Reference
 ===
 
 <!-- update table_of_contents( input ) -->
-  - [1 Introduction](#toc-anchor-0)
-
-  - [2 Library mechanisms](#toc-anchor-1)
-
-    - [2.1 Source, sink](#toc-anchor-2)
-
-    - [2.2 Box : get, set, invalidate, flush](#toc-anchor-3)
-
-    - [2.3 Stream : read, write, refresh, flush](#toc-anchor-4)
-
-    - [2.4 Class filters](#toc-anchor-5)
-
-    - [2.5 Public, Library-internal, File-internal](#toc-anchor-6)
-
-    - [2.6 pin_in_out_creator](#toc-anchor-7)
-
-    - [2.7 root class, class filter, class creator, mixin class](#toc-anchor-8)
-
-    - [2.8 Files](#toc-anchor-9)
-
-    - [2.9 Dependencies](#toc-anchor-10)
-
-    - [2.10 Static classes](#toc-anchor-11)
-
-  - [3 include "hwcpp.hpp"](#toc-anchor-12)
-
-    - [3.1 Interfaces and concepts](#toc-anchor-13)
-
-  - [4 Glossary](#toc-anchor-14)
-
 <!-- update end -->
 
 
-<a name="toc-anchor-0"></a>
-# 1 Introduction
+:# 1 Introduction
 
 HwCpp (HardWare library for C++) is a library for efficient and 
 re-usable programming of (small) micro-controllers. 
@@ -94,38 +63,28 @@ or otherwise thinks (too) logically.
 
 Wouter van Ooijen (wouter.vanooijen@hu.nl, or wouter@voti.nl)
 
-<a name="toc-anchor-1"></a>
-# 2 Library mechanisms
+:# 2 Library mechanisms
  
 This section explains some terms and mechanisms used in the library.
 
 ![xkcd "Manuals"](https://imgs.xkcd.com/comics/manuals.png)
 
-<a name="toc-anchor-2"></a>
-## 2.1 Source, sink
+:## 2.1 Source, sink
 
-<a name="toc-anchor-3"></a>
-## 2.2 Box : get, set, invalidate, flush
-<a name="toc-anchor-4"></a>
-## 2.3 Stream : read, write, refresh, flush
-<a name="toc-anchor-5"></a>
-## 2.4 Class filters
-<a name="toc-anchor-6"></a>
-## 2.5 Public, Library-internal, File-internal
-<a name="toc-anchor-7"></a>
-## 2.6 pin_in_out_creator
-<a name="toc-anchor-8"></a>
-## 2.7 root class, class filter, class creator, mixin class
+:## 2.2 Box : get, set, invalidate, flush
+:## 2.3 Stream : read, write, refresh, flush
+:## 2.4 Class filters
+:## 2.5 Public, Library-internal, File-internal
+:## 2.6 pin_in_out_creator
+:## 2.7 root class, class filter, class creator, mixin class
 how to call the fanout style?
 
-<a name="toc-anchor-9"></a>
-## 2.8 Files
+:## 2.8 Files
 HwCpp is a is header-only and meant for single-source projects. Normal use is  for the user to include hwcpp.hpp and specify the target using a command-line define. The hwcpp.hpp file includes the target-specific header (one of the target-*.hpp files in the /targets directory), as specified by the define. Alternately, the user could include one of the target-specific header files directly.
 A target-specific header includes hwlib-all.hpp, which in turn includes all target-independent files of the library.
 The individual HwCpp files are NOT meant to be included directly: they don’t have the multiple-inclusion guards and namespace brackets required for an independent file.
 
-<a name="toc-anchor-10"></a>
-## 2.9 Dependencies
+:## 2.9 Dependencies
 HwCpp uses C++17 features and the Concepts TS. It has been tested (only) with GCC 7.2.0. 
 The hwcpp.hpp file requires a command-line defined target. Check this file for the currently supported targets.
 Some module tests use Catch2 and assume that the include path is set to find the Catch2 files.
@@ -133,12 +92,10 @@ The AVR8 GCC doesn’t provide a (full) standard library. The directory targets/
 The target-specific files assume that the manufacturer’s chip definition files are in the search path. These files are not part of the library, and are not distributed with the standard GCC distributions.
 The author uses bmptk, a make-based build-and-download framework for embedded targets, to handle the aspects of embedded application building that are outside the scope of HwCpp. The examples and tests have a chain of Makefile and Makefile.link files that work with bmptk, assuming that it is located ‘next’ to HwCpp.
 
-<a name="toc-anchor-11"></a>
-## 2.10 Static classes
+:## 2.10 Static classes
 The main abstraction mechanism used in HwCpp is the static class (and the static class template). A static class is a class (or struct) that has only static elements: static functions, static data, and sub-classes. A static class has no per-instance data and no non-static functions.  A static class has no lifetime, hence it can’t cause dangling references. A static class doesn’t have a constructor. Instead all static classes have an init() function that must be called before any data or other functions of the static class is used.
 An example of a static class is a GPIO pin. A target board often has a LED that can be controlled by the application. By convention, the pin to which this LED is connected is available as the active-high  output pin led. The target itself is available as the class template target, within the namespace hwcpp. The following application first initializes the LED and then enables it.
-<a name="toc-anchor-12"></a>
-# 3 include "hwcpp.hpp"
+:# 3 include "hwcpp.hpp"
 
 using target = hwcpp::target<>;
 
@@ -147,8 +104,7 @@ int main(){
    target::led::set( 1 );
 }
 
-<a name="toc-anchor-13"></a>
-## 3.1 Interfaces and concepts
+:## 3.1 Interfaces and concepts
 A static class implements on or more interfaces. It advertises this by inheriting from the root class, xyz_rooot for an interface xyz, for each interface it implements. This inserts a tag element  into the class, and probably some more items that are mandatory for that interface. For each interface xyz, a concept is_xyz tests for the marker and the other elements required by the interface. This concept is used to constrain templates that accept only classes that implement a specific interface. 
 The pin_out interface is identified by inheriting from the pin_out_root. The is_pin_out concept tests for the presence of this marker and the other required interface elements: init() and set( bool ).
 struct pin_out_root {
@@ -213,8 +169,7 @@ foo( pin_in_out_from( target.gpio_0_0 ));
 foo( pin_in_out_from( target.gpio_0_5 ));
 A disadvantage is that such a function accepts only the exact type. 
 
-<a name="toc-anchor-14"></a>
-# 4 Glossary
+:# 4 Glossary
 
 This section describes the terms that have a specific meaning 
 in the context of the library. 
