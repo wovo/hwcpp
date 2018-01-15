@@ -19,7 +19,7 @@ struct target_arduino_uno :
 
    #define make_pin_in_out( NAME, PORT, PIN )                  \
       using NAME = typename chip::                             \
-	     template pin_in_out< chip::_port::PORT, PIN >;       \
+	     template pin_in_out< chip::_port::PORT, PIN >;        \
    
    #define make_pin_adc( NAME, PIN )                           \
       using NAME = typename chip:: template pin_adc< PIN >;    \

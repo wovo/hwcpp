@@ -2,6 +2,7 @@ HwCpp Primer
 ===
 
 <!-- update table_of_contents( input ) -->
+
 <!-- update end -->
 
 
@@ -585,6 +586,9 @@ in the character stream:
  - "\tXXYY" : cursor to column XX, row YY. X and Y are decimal characters.
          }	
 (example for this using 40x4?)
+
+
+
 
 
 

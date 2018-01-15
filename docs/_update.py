@@ -31,8 +31,12 @@ def example_path( path ):
    global example_files_path
    example_files_path = "" + path
    return []   
+
+toc_one_line = -1;
    
-def table_of_contents( input, n = 10 ):
+def table_of_contents( input, n = -1 ):
+   global toc_one_line
+   toc_one_line = n
 
    # skip lines until the end marker
    line = input.pop( 0 )		 
@@ -109,7 +113,16 @@ def update( file_name ):
             line = line[ 1 : ]
          line = line.replace( "\n", "" ).strip()
          line = num_str( num[:] ) + " " + line
-         toc.append( list_entry( d ) + "[%s](#toc-anchor-%d)\n\n" % ( line , n ))
+         if d == toc_one_line:
+            c = "-" if num[ -1 ] == 1 else " "
+            nl = "\n" if num[ -1 ] == 1 else ""
+            toc.append( 
+              nl + list_entry( d ).replace( "-", c ) 
+              + "[%s](#toc-anchor-%d)\n" % ( line , n ))
+         else:
+            toc.append( 
+               "\n" + list_entry( d ) 
+               + "[%s](#toc-anchor-%d)\n" % ( line , n ))
          result.append( '<a name="toc-anchor-%d"></a>\n' % n )
          result.append( '\n' )
          result.append( d * "#" + " " + line + "\n" )
@@ -123,9 +136,10 @@ def update( file_name ):
          if line == "%%TOC%%\n":
             for line in toc:
                f.write( line )
+            f.write( "\n" )
          else:
             f.write( line )   
-	
+ 	
 update( "hwcpp-getting-started.md" )
 update( "hwcpp-primer.md" )
 update( "hwcpp-reference.md" )

@@ -2,6 +2,7 @@ HwCpp Reference
 ===
 
 <!-- update table_of_contents( input ) -->
+
 <!-- update end -->
 
 
@@ -188,11 +189,9 @@ An operation on a stream can be blocking: a read() call can have to wait until s
 1.4.	 Buffering
 An action on a thing (a box or stream) can be postponed to a later moment, when all operations on that thing can be done more efficiently in one go. To facilitate this, streams and boxes have _direct() and _buffered versions of their get, set, read and write functions. The direct ones have immediate effect. The effect of a set_buffered() or write_buffered() call can be delayed until the next flush() call on the thing. Likewise, the external reality might not affect what is returned by a get_buffered() or read_buffered() call until a refresh() call is done on the thing.
 When a box can be switched between in and out mode, it has default, direct and buffered versions of the direction_set function.
-<example>
-By default, the unadorned calls are direct. The buffered<> template can be used to create a version for which the default to buffered. This is meant to be done only for use within a limited scope.
-<example>
+==> example
 For efficiency reasons, the default behavior for operations on higher-level things like graphic or text windows is in most cases buffered. The direct<> template can be used to create a version for which the default is direct.
-<example>
+==> example
 1.5.	 CTO’s
 The main building blocks of the library are (templated or complete) static classes. A static class contains  only things that are associated with the class (not with an instance): static const data, static functions, and sub-classes and templates (both of which are inherently static). These static classes act like objects that are created at compile time, hence they are called Compile Time Objects or cto’s. 
 1.6.	 Groups
@@ -210,7 +209,10 @@ For each group X, a C++ concept is_X<> is defined. This concept checks for the p
 The is_pin_out<> concept test whether cto belongs to the pin_out group.
 1.11.	 Roots
 For convenience, all cto’s in a group derive from a common root class. For a group X the root class (which can be a template) is called X_root. All roots inherit from uninistantiable to prevent instantiations of cto’s (which would be pointless, and hence probably a mistake).
-The pin_out_root class is the root of all pin_out cto’s. pin_out_root inherits from box_out_root<bool>. This is a specialization of box_out_root<T>, which is the shared ancestor of all things you can ::set() to a T value.
+The pin_out_root class is the root of all pin_out cto’s. pin_out_root inherits from box_out_root&lt;bool>. 
+This is a specialization of box_out_root&lt;T>, 
+which is the shared ancestor of all things you can ::set() to a T value.
+
 1.12.	Foundations
 A cto that implements the semantics of a group is often created from a simpler one. Such a simpler cto that is used to create a cto of group X is called an X_foundation.
 A pin_in_out_foundation requires only init(), set_direct(), get_direct(), and direction_set_direct() functions.
@@ -221,7 +223,7 @@ An example is _box_creator<>, which creates a full box (with both default, buffe
 1.14.	 HALs
 A Hardware Abstraction Layer (HAL) is the code that interfaces directly to the hardware of a target. A minimal HAL provides GPIO (an _pin_in_out_founcation )and a busy delay function. A more complete HAL provides a monotonic timer, a context switch, and support for its peripherals like UART, ADC, DAC, PWM. Builders are used to create a full-function cto from the foundations provided by the target-specific HAL code.
 The sam3xa HAL defines an _pin_in_out_foundation, and uses the _pin_in_out_builder to provide a full pin_in_out cto. 
-<>
+ ==>
 
 1.15.	 Filters
 A filter is a template that passes only specific features of its argument. Filters are used in the library to adapt a cto to another kind of cto, which requires passing (only) certain functions.
@@ -300,5 +302,8 @@ All declarations in the library (except for a few macro’s) are inside the name
 The library file names use lisp-case. All files in the library start with ‘hwcpp‘. Except for include/hwcpp.hpp, which is the file to include in an application, all library files are in subdirectories of the include directory.
 When a name consist of multiple words, the preferred order is largest-first. This is the same order the words would appear when the thing were a nested chain of objects (or cto’s). Variations (like _direct) are suffixes.
 Names that are for internal use by the library start with a single underscore. The (very few) macros are prefixed by HWCPP_ (or _HWCPP for internal-use-only macros).
+
+
+
 
 

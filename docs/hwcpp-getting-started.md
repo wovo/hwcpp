@@ -2,9 +2,10 @@ HwCpp Getting Started
 ===
 
 <!-- update table_of_contents( input ) -->
+
 <!-- update end -->
 
-:# 1 Introduction
+# 1 Introduction
 
 HwCpp is (only) a library. 
 To build and dowload an application you need, 
@@ -20,7 +21,7 @@ at least the following:
 This document explains how to get started with HwCpp using bmptk and CodeLite,
 for now only for windows.
 
-:# 2 Download and install
+# 2 Download and install
 
 Download and install using the default settings:
  - Python : http://www.python.org I used 3.6
@@ -39,9 +40,9 @@ Go there, and clone (git clone ...) these repositories:
 
 Add the bmptk/tools directory to your PATH.
 
-:# 3 First use
+# 3 First use
 
-:## 3.1 Bmptk
+## 3.1 Bmptk
 
  - Open the hwcpp/demos/native/hello directory in windows explorer.
  
@@ -53,7 +54,7 @@ Add the bmptk/tools directory to your PATH.
    - If you get a 'The system cannot find the path specified' error you either 
    didn't install thge MingW toolchain, or the ....
 
-:## 3.2 CodeLite
+## 3.2 CodeLite
 
  - Open the hwcpp/demos/native directory in windows explorer.
 
@@ -62,4 +63,7 @@ This should produce a message window that shows that bmptk projects are created 
 Press return to close the window.
  - Run (double-click) the _codelite.workspace file. If windows doesn't know how to open a
  file with this extension, associate it with the CodelIte executable. Now CodeLite starts.
- - When 
+
+
+
+

@@ -30,13 +30,13 @@
       <Project Name="fast-toggle" ConfigName="Release"/>
     </WorkspaceConfiguration>
   </BuildMatrix>
-  <Project Name="hello-cout" Path="hello-cout/_codelite.project" Active="No"/>
+  <Project Name="hello-cout" Path="hello-cout/_codelite.project" Active="Yes"/>
   <BuildMatrix>
     <WorkspaceConfiguration Name="Release" Selected="yes">
       <Project Name="hello-cout" ConfigName="Release"/>
     </WorkspaceConfiguration>
   </BuildMatrix>
-  <Project Name="hello-uart" Path="hello-uart/_codelite.project" Active="Yes"/>
+  <Project Name="hello-uart" Path="hello-uart/_codelite.project" Active="No"/>
   <BuildMatrix>
     <WorkspaceConfiguration Name="Release" Selected="yes">
       <Project Name="hello-uart" ConfigName="Release"/>
@@ -58,6 +58,12 @@
   <BuildMatrix>
     <WorkspaceConfiguration Name="Release" Selected="yes">
       <Project Name="lcd-20x4" ConfigName="Release"/>
+    </WorkspaceConfiguration>
+  </BuildMatrix>
+  <Project Name="lcd-20x4-shield" Path="lcd-20x4-shield/_codelite.project" Active="No"/>
+  <BuildMatrix>
+    <WorkspaceConfiguration Name="Release" Selected="yes">
+      <Project Name="lcd-20x4-shield" ConfigName="Release"/>
     </WorkspaceConfiguration>
   </BuildMatrix>
   <Project Name="lcd-40x2" Path="lcd-40x2/_codelite.project" Active="No"/>

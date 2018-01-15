@@ -50,6 +50,9 @@ The compilers I currently use are (gcc 7.2.0):
 -----------------------------------------------------------------------------
 
 Notes & ToDo
+- uno uart?
+- dacs
+- other uarts
 - check arduino shield: should be 16x2?
 - updater: TOC & ch numbering. ignore title
 - updater: copyright, etc

@@ -17,7 +17,7 @@ namespace hwcpp {
     
 extern "C" void HWLIB_NO_INLINE _hwlib_avr_ret(){}
     
-template< uint64_t clock = 84'000'000 >	
+template< uint64_t clock >	
 struct chip_atmega328 {
 	
 
@@ -30,14 +30,17 @@ struct chip_atmega328 {
 // ==========================================================================	
 
 static void HWLIB_INLINE init(){
+
+   // don't do this over and over	
+   _HWCPP_RUN_ONCE;	
     
    if constexpr ( clock == 20'000'000 ){
       // 20 MHz crystal	   
 	  
-   elif constexpr ( clock == 16'000'000 ){
+   } else if constexpr ( clock == 16'000'000 ){
       // 16 MHz crystal	   
 	  
-   elif constexpr ( clock == 1'000'000 ){
+   } else if constexpr ( clock == 1'000'000 ){
       // 1 MHz crystal	   
 	  
    } else {
@@ -47,7 +50,13 @@ static void HWLIB_INLINE init(){
 		 "or 16 or 20 MHz (external crystal) "
 		 "clock is supported for atmega328.");
    }		 
-}
+
+    // set up timer with prescaler = 8
+    //TCCR1B |= ( 1 << CS11 );
+  
+    // initialize counter
+    //TCNT1 = 0;
+  }
    
    
 // ==========================================================================
@@ -171,7 +180,6 @@ using pin_adc = _adc_builder< _pin_adc_foundation< pin > > ;
 //
 // ==========================================================================
 
-
 struct _uart_foundation :
    _stream_out_root< char >,
    _stream_in_root< char >
@@ -183,7 +191,7 @@ struct _uart_foundation :
 	   
       // set baudrate	   
       uint64_t UBRR_VALUE = ((( clock / ( HWCPP_UART_BAUDRATE * 16UL ))) - 1 );
-      UBRR0H = (uint8_t) (UBRR_VALUE>>8);
+      UBRR0H = (uint8_t) ( UBRR_VALUE >> 8 );
       UBRR0L = (uint8_t) UBRR_VALUE;
 	  
 	  // format : 8 data bits, no parity, 1 stop bit
@@ -220,6 +228,24 @@ using uart = formatter< _stream_builder< _uart_foundation >>;
 // timing
 //
 // ==========================================================================
+
+static inline uint16_t    last_low = 0;
+static inline ticks_type  high = 0;
+
+static ticks_type now_ticks(){
+
+   uint16_t low = TCNT1L;
+   low |= ( TCNT1H << 8 );
+
+   if( low < last_low ){
+   
+       // the timer rolled over, so increment the high part
+      high += 0x1ULL << 16;
+   }
+   last_low = low;
+
+   return ( low | high ); 
+} 
 
 struct _waiting_foundation :
    _timing_waiting_foundation< std::ratio< clock, 1 > >

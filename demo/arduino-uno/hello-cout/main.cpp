@@ -10,6 +10,7 @@ int main(){
    
    for(;;){
       cout << "Hello world!\n";
+      cout << "t=" << (int16_t) target::now_ticks() << "\n";
 	  timing::ms< 1'000 >::wait();
    }	  
 }
