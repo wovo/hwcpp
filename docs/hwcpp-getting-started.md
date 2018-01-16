@@ -13,7 +13,7 @@ besides HwCpp and your application code,
 at least the following:
  - a toolchain (compiler, linker, and associated tools) for your target(s)
  - the header files for the target device (in most cases provided by the vendor)
- - a linker script suitable for the target device
+ - a linkerscript suitable for the target device
  - a download, communication and/or debug tool for the target device
  - scripts to invoke the various tools with appropriate parameters
  - (optionally) an IDE to edit the source and invoke the scripts
@@ -23,22 +23,26 @@ for now only for windows.
 
 # 2 Download and install
 
-Download and install using the default settings:
- - Python : http://www.python.org I used 3.6
- - CodeLite : https://codelite.org I used 11.0.0
- - Git : https://git-scm.com/download/win
+Download and install:
+ - Python 3.6 from http://www.python.org to C:/python36
+ - CodeLite from https://codelite.org (I used 11.0.0)
+ - Git from https://git-scm.com/download/win
+ - GCC for windows native from https://mingw-w64.org/doku.php/download/mingw-builds to
+ - GCC for avr8 from http://blog.zakkemble.co.uk/avr-gcc-builds/ to
+ - GCC for arm/cortex from http://gnutoolchains.com/arm-eabi/ to
+ - ST-LINK tool from http://www.st.com/content/st_com/en/products/development-tools/stm32-programmers/stsw-link004.html 
+   to C:/Program Files (x86)/STMicroelectronics/STM32 ST-LINK Utility
 
-Download and install the GCC toolchains (at least 7.2.0 required).
- - GCC for windows native : https://mingw-w64.org/doku.php/download/mingw-builds 
- - GCC for avr8 : http://blog.zakkemble.co.uk/avr-gcc-builds/ 
- - GCC for arm/cortex : http://gnutoolchains.com/arm-eabi/ 
 
 Create a directory of your choice. 
-Go there, and clone (git clone ...) these repositories:
+Go there, and clone (right-click in the explorer, "Git Bash Here", git clone ...) these repositories:
  - github/wovo/bmptk
  - github/wovo/hwcpp
 
 Add the bmptk/tools directory to your PATH.
+
+When you installed on of the applications to a different directory, you
+must edit hwcpp/
 
 # 3 First use
 
