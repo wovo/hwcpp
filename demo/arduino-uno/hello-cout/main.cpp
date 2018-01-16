@@ -10,7 +10,11 @@ int main(){
    
    for(;;){
       cout << "Hello world!\n";
-      cout << "t=" << (int16_t) target::now_ticks() << "\n";
+      cout << "t=" << hwcpp::hex << (int32_t) target::now_ticks() << "\n";
+      auto t1 = (int32_t) target::now_ticks() ;
+      auto t2 = (int32_t) target::now_ticks() ;
+      auto t3 = (int32_t) target::now_ticks() ;
+      cout << t1 << " " << t2 << " " << t3 << "\n";
 	  timing::ms< 1'000 >::wait();
    }	  
 }

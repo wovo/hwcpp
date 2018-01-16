@@ -52,10 +52,10 @@ static void HWLIB_INLINE init(){
    }		 
 
     // set up timer with prescaler = 8
-    //TCCR1B |= ( 1 << CS11 );
+    TCCR1B |= ( 1 << CS11 );
   
     // initialize counter
-    //TCNT1 = 0;
+    TCNT1 = 0;
   }
    
    

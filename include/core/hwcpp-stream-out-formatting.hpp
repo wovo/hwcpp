@@ -190,7 +190,33 @@ struct formatter :
       write( format.bool_rep( v ) );
    }   
       
-   static void write( int x ){
+   static void write( int16_t x ){
+         _print_reverse< 70 > s;
+         
+         bool minus = ( x < 0 );
+         if( x > 0 ){ x = -x; }
+       
+         if( x == 0 ){
+            s.add_digit( 0, format.hex_base );
+         }
+		 
+         while( x != 0 ){
+            s.add_digit( (char) ( ( - x ) % format.numerical_radix ), format.hex_base );
+            x = - ( - x / format.numerical_radix );
+         }
+		 
+         s.add_prefix( format );
+         
+         if( minus ){
+            s.add_char( '-' );
+         } else if( format.show_pos ){
+            s.add_char( '+' );
+         }        
+         
+         write( s.content );
+      }   
+
+   static void write( int32_t x ){
          _print_reverse< 70 > s;
          
          bool minus = ( x < 0 );
