@@ -7,9 +7,9 @@ using uart   = target::uart;
 int main( void ){
    hwcpp::ostream< uart > cout;    
 
-   using gnd = hwcpp::pin_low< target::d54 >;
+   using gnd = hwcpp::pin_low< target::d14 >;
    using adc = target::a2;
-   using vcc = hwcpp::pin_high< target::d58 >;
+   using vcc = hwcpp::pin_high< target::d18 >;
    
    gnd::init();
    adc::init();

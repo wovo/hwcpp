@@ -36,7 +36,7 @@ ifeq ($(TARGET),arduino_uno)
    #CPP_LANGUAGE      += -isystem C:/SysGCC/arm-eabi/arm-eabi/include/c++/7.2.0/arm-eabi
    #CPP_LANGUAGE      += -isystem C:/SysGCC/arm-eabi/arm-eabi/include/c++/7.2.0
 endif
-ifeq ($(TARGET),atmega328p)
+ifeq ($(TARGET),atmega328)
    CPP_LANGUAGE      += -I $(HWCPP)/include/targets/avr8-hacks
    #CPP_LANGUAGE      += -isystem C:/avr-gcc-7.2.0-x86-mingw/avr/include
    #CPP_LANGUAGE      += -isystem C:/SysGCC/arm-eabi/arm-eabi/include/c++/7.2.0/arm-eabi

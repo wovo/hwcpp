@@ -12,14 +12,17 @@ namespace hwcpp {
     
 template< uint64_t clock >
 struct target_atmega328 :
-   chip_atmega328    
+   chip_atmega328< clock >  
 {       
+    
+   using chip = chip_atmega328< clock >;	
 
-#define make_pin_in_out( NAME, PORT, PIN ) \
-   using NAME  = chip_atmega328::pin_in_out< chip_atmega328::_port::PORT, PIN >;
-
-#define make_pin_adc( NAME, PIN ) \
-   using NAME  = chip_atmega328::pin_adc< PIN >;   
+   #define make_pin_in_out( NAME, PORT, PIN )                  \
+      using NAME = typename chip::                             \
+	     template pin_in_out< chip::_port::PORT, PIN >;        \
+   
+   #define make_pin_adc( NAME, PIN )                           \
+      using NAME = typename chip:: template pin_adc< PIN >;    \
    
    make_pin_in_out(    b0,  b,  0 );
    make_pin_in_out(    b1,  b,  1 );
@@ -54,28 +57,19 @@ struct target_atmega328 :
    make_pin_adc(    a4,  4 );
    make_pin_adc(    a5,  4 );
 
-   pin_out< make_pin_in_out(   sck,  b,  5 ) >;
-   pin_in<  make_pin_in_out(  miso,  b,  4 ) >;
-   pin_out< make_pin_in_out(  mosi,  b,  3 ) >;
-   pin_out< make_pin_in_out(    ss,  b,  2 ) >;
+   make_pin_in_out(   _tx,  d,  0 );
+   make_pin_in_out(   _rx,  d,  1 );
    
-   pin_oc<  make_pin_in_out(   scl,  c,  5 ) >;
-   pin_oc<  make_pin_in_out(   sda,  c,  4 ) >;
-   pin_out< make_pin_in_out(    tx,  d,  0 ) >;
-   pin_in<  make_pin_in_out(    rx,  d,  1 ) >;   
-   
+   using tx  = pin_out<  _tx >;
+   using rx  = pin_in<   _rx >;
    
 #undef make_pin_in_out   
-#undef make_pin_adc 
-
-   using waiting = timing_waiting< 
-      chip_atmega328< clock >, 
-	  uint_fast32_t, 
-      std::ratio< clock, 16 > >;   
+#undef make_pin_adc  
     
 }; // template<...> struct target_atmega328
-	
-using target = target_atmega328;    
+
+template< uint64_t clock >	
+using target = target_atmega328< clock >;    
    
 }; // namespace hwcpp
 

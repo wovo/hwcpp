@@ -55,12 +55,14 @@ struct target_arduino_uno :
    
    make_pin_in_out(  _scl,  c,  5 );
    make_pin_in_out(  _sda,  c,  4 );
-   make_pin_in_out(    tx,  d,  0 );
-   make_pin_in_out(    rx,  d,  1 );
+   make_pin_in_out(   _tx,  d,  0 );
+   make_pin_in_out(   _rx,  d,  1 );
    make_pin_in_out(  _led,  b,  5 );
   
    using scl = pin_oc<  _scl >;
    using sda = pin_oc<  _sda >;
+   using tx  = pin_out<  _tx >;
+   using rx  = pin_in<   _rx >;
    using led = pin_out< _led >;
    
    make_pin_in_out(  _sck,  b,  5 );
@@ -76,8 +78,8 @@ struct target_arduino_uno :
    #undef make_pin_in_out   
    #undef make_pin_adc 
 
-   using waiting = typename chip::waiting;	  
-   using timing = waiting;	  	  
+   //using waiting = typename chip::waiting;	  
+   //using timing = waiting;	  	  
    
 }; // template<...> struct target_arduino_uno
 

@@ -169,7 +169,7 @@ namespace hwcpp {
    
    namespace shields {   
 
-//      #include "shields/hwcpp-lcd-buttons.hpp"
+      #include "shields/hwcpp-lcd-buttons.hpp"
       //#include "shields/hwcpp-joystick-buttons.hpp"
       #include "shields/hwcpp-i2c-lcd.hpp"
    

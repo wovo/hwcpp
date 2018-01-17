@@ -51,7 +51,7 @@ def list_entry( n ):
 def num_add( num, n ):
    while len( num ) > n:
       num.pop()
-   if len( num ) < n:
+   while len( num ) < n:
       num.append( 0 )
    # print( n, num )
    num[ n - 1 ] = num[ n - 1 ] + 1

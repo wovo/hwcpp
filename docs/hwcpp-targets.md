@@ -3,12 +3,14 @@ HwCpp Targets
 
 <!--
 TO DO list
-- style is visible...
+- plain chip targets
 - uno timer-based delay
 - native: timing and uart?
 - complete the board descriptions
 - other name for blue brick
 - blue brick resources
+- stm32f407 board
+- arduino nano
 - http://en.mxchip.com/product/wifi_product/38
 - exact type of uart, does it still have input??
 - kramdown.bat
@@ -21,25 +23,20 @@ TO DO list
 
 <!--
 nice, but markdown displays this as text :(
-<table>
+<table border="1" style="border-collapse: collapse;" >
 <style>
 table{
     border-collapse: collapse;
     border-spacing: 0;
     border:2px solid #000000;
 }
-
-th{
-    border:2px solid #000000;
-}
-
-td{
-    border:1px solid #000000;
-    padding: 5px;
-}
+th{ border:2px solid #000000; }
+td{ border:1px solid #000000; padding: 5px; }
 </style>
 </table>
 -->
+
+<!-- update example_path( "../demo/" ) -->
 
 <!-- update table_of_contents( input, 3 ) -->
 
@@ -47,63 +44,68 @@ td{
 
   - [2 Native](#toc-anchor-1)
 
-  - [3 Chip targets](#toc-anchor-2)
+      - [2.0.1 Specifying this target](#toc-anchor-2)
+        [2.0.2 Target properties](#toc-anchor-3)
 
-    - [3.1 atMega328](#toc-anchor-3)
+  - [3 Chip targets](#toc-anchor-4)
 
-      - [3.1.1 Specifying this target](#toc-anchor-4)
-        [3.1.2 Target properties](#toc-anchor-5)
-        [3.1.3 Clock](#toc-anchor-6)
-        [3.1.4 IO items](#toc-anchor-7)
-        [3.1.5 example](#toc-anchor-8)
-        [3.1.6 Resources](#toc-anchor-9)
+    - [3.1 atMega328](#toc-anchor-5)
 
-    - [3.2 atSam3x8e](#toc-anchor-10)
+      - [3.1.1 Specifying this target](#toc-anchor-6)
+        [3.1.2 Target properties](#toc-anchor-7)
+        [3.1.3 Clock](#toc-anchor-8)
+        [3.1.4 Timing](#toc-anchor-9)
+        [3.1.5 IO items](#toc-anchor-10)
+        [3.1.6 example](#toc-anchor-11)
+        [3.1.7 Resources](#toc-anchor-12)
 
-      - [3.2.1 Specifying this target](#toc-anchor-11)
-        [3.2.2 Target properties](#toc-anchor-12)
-        [3.2.3 Clock](#toc-anchor-13)
-        [3.2.4 IO items](#toc-anchor-14)
-        [3.2.5 example](#toc-anchor-15)
-        [3.2.6 Resources](#toc-anchor-16)
+    - [3.2 atSam3x8e](#toc-anchor-13)
 
-    - [3.3 STM32F103C8](#toc-anchor-17)
+      - [3.2.1 Specifying this target](#toc-anchor-14)
+        [3.2.2 Target properties](#toc-anchor-15)
+        [3.2.3 Clock](#toc-anchor-16)
+        [3.2.4 Timing](#toc-anchor-17)
+        [3.2.5 IO items](#toc-anchor-18)
+        [3.2.6 example](#toc-anchor-19)
+        [3.2.7 Resources](#toc-anchor-20)
 
-      - [3.3.1 Specifying this target](#toc-anchor-18)
-        [3.3.2 Target properties](#toc-anchor-19)
-        [3.3.3 Clock](#toc-anchor-20)
-        [3.3.4 IO items](#toc-anchor-21)
-        [3.3.5 example](#toc-anchor-22)
-        [3.3.6 Resources](#toc-anchor-23)
+    - [3.3 stm32f103C8](#toc-anchor-21)
 
-  - [4 Board targets](#toc-anchor-24)
+      - [3.3.1 Specifying this target](#toc-anchor-22)
+        [3.3.2 Target properties](#toc-anchor-23)
+        [3.3.3 Clock](#toc-anchor-24)
+        [3.3.4 IO items](#toc-anchor-25)
+        [3.3.5 example](#toc-anchor-26)
+        [3.3.6 Resources](#toc-anchor-27)
 
-    - [4.1 Arduino Uno](#toc-anchor-25)
+  - [4 Board targets](#toc-anchor-28)
 
-      - [4.1.1 Specifying this target](#toc-anchor-26)
-        [4.1.2 Target properties](#toc-anchor-27)
-        [4.1.3 Clock](#toc-anchor-28)
-        [4.1.4 IO items](#toc-anchor-29)
-        [4.1.5 example](#toc-anchor-30)
-        [4.1.6 Resources](#toc-anchor-31)
+    - [4.1 Arduino Uno](#toc-anchor-29)
 
-    - [4.2 Arduino Due](#toc-anchor-32)
+      - [4.1.1 Specifying this target](#toc-anchor-30)
+        [4.1.2 Target properties](#toc-anchor-31)
+        [4.1.3 Clock](#toc-anchor-32)
+        [4.1.4 IO items](#toc-anchor-33)
+        [4.1.5 example](#toc-anchor-34)
+        [4.1.6 Resources](#toc-anchor-35)
 
-      - [4.2.1 Specifying this target](#toc-anchor-33)
-        [4.2.2 Target properties](#toc-anchor-34)
-        [4.2.3 Clock](#toc-anchor-35)
-        [4.2.4 IO items](#toc-anchor-36)
-        [4.2.5 Resources](#toc-anchor-37)
+    - [4.2 Arduino Due](#toc-anchor-36)
 
-    - [4.3 Blue Pill](#toc-anchor-38)
+      - [4.2.1 Specifying this target](#toc-anchor-37)
+        [4.2.2 Target properties](#toc-anchor-38)
+        [4.2.3 Clock](#toc-anchor-39)
+        [4.2.4 IO items](#toc-anchor-40)
+        [4.2.5 Resources](#toc-anchor-41)
 
-      - [4.3.1 Specifying this target](#toc-anchor-39)
-        [4.3.2 Resources](#toc-anchor-40)
+    - [4.3 Blue Pill](#toc-anchor-42)
 
-    - [4.4 Blue Brick](#toc-anchor-41)
+      - [4.3.1 Specifying this target](#toc-anchor-43)
+        [4.3.2 Resources](#toc-anchor-44)
 
-      - [4.4.1 Specifying this target](#toc-anchor-42)
-        [4.4.2 Resources](#toc-anchor-43)
+    - [4.4 Blue Brick](#toc-anchor-45)
+
+      - [4.4.1 Specifying this target](#toc-anchor-46)
+        [4.4.2 Resources](#toc-anchor-47)
 
 <!-- update end -->
 
@@ -139,6 +141,23 @@ targets/hwcpp-chip-*target-name*.hpp file directly.
 
 # 2 Native
 
+<a name="toc-anchor-2"></a>
+
+### 2.0.1 Specifying this target
+
+<table border="1" style="border-collapse: collapse;" >
+<tr><td>  bmptk makefile line           </td>
+   <td>      TARGET := native                  </td></tr>
+<tr><td>  compiler command line define  </td>
+   <td>      -DHWCPP_TARGET_native             </td></tr>
+<tr><td>  direct include                </td>
+   <td>      #include "hwcpp-target-native"    </td></tr>
+</table>
+
+<a name="toc-anchor-3"></a>
+
+### 2.0.2 Target properties
+
 HwCpp can build for the native target.
 This might be useful for module tests, but is otherwise of little use.
 Currently, HwCpp offers nothing specific to the native target.
@@ -147,7 +166,7 @@ Currently, HwCpp offers nothing specific to the native target.
 <!-- -------------------------------------------------------------------- -->
 <!-- -------------------------------------------------------------------- -->
 
-<a name="toc-anchor-2"></a>
+<a name="toc-anchor-4"></a>
 
 # 3 Chip targets
 
@@ -155,13 +174,13 @@ Currently, HwCpp offers nothing specific to the native target.
 <!-- -------------------------------------------------------------------- -->
 
 <a name="atmega328"></a>
-<a name="toc-anchor-3"></a>
+<a name="toc-anchor-5"></a>
 
 ## 3.1 atMega328
 
 ![atMega328 chip](images/atmega328.png)
 
-<a name="toc-anchor-4"></a>
+<a name="toc-anchor-6"></a>
 
 ### 3.1.1 Specifying this target
 
@@ -174,11 +193,11 @@ Currently, HwCpp offers nothing specific to the native target.
    <td>      #include "hwcpp-target-atmega328"    </td></tr>
 </table>
 
-<a name="toc-anchor-5"></a>
+<a name="toc-anchor-7"></a>
 
 ### 3.1.2 Target properties
 
-<table>
+<table border="1" style="border-collapse: collapse;" >
 <tr><td>   RAM     </td><td>   2k          </td></tr>
 <tr><td>   FLASH   </td><td>  32k          </td></tr>
 <tr><td>   EEPROM  </td><td>   1k          </td></tr>
@@ -198,7 +217,7 @@ You can still store constant data in ROM (using
 but you must copy it to RAM before use, 
 or address it using special functions. 
 
-<a name="toc-anchor-6"></a>
+<a name="toc-anchor-8"></a>
 
 ### 3.1.3 Clock
 
@@ -208,29 +227,40 @@ which are NOT under program control.
 Hence the clock frequency has no default (it must specified explicitly), 
 and HwCpp assumes that you do this correctly.
 
-<table>
+<table border="1" style="border-collapse: collapse;" >
 <tr><td rowspan="3"> supported clock parameter values </td>
        <td> 1'000'000  </td></tr>
+   <tr><td> 8'000'000 </td></tr>
    <tr><td> 16'000'000 </td></tr>
    <tr><td> 20'000'000 </td></tr>
 </table>
 
-At the moment, only busy waiting is available.
+<a name="toc-anchor-9"></a>
 
-<table>
+### 3.1.4 Timing
+
+Busy waiting and clock-based waiting are available.
+HwCpp clock-based timing uses 64-bit integer arithmetic, 
+which leads to larger code, and the granularity for
+the clock-based waiting is 50-100 clock ticks.
+Hence waiting-based timing might be attractive
+for applications that don't need the clocking service.
+
+<table border="1" style="border-collapse: collapse;" >
 <tr>
    <th> Item name </th> 
    <th> HwCpp concept </th>
 </tr>  
-<tr><td> timing   </td><td> waiting </td></tr>
-<tr><td> waiting  </td><td> waiting </td></tr>
+<tr><td> timing    </td><td> clocking  </td></tr>
+<tr><td> waiting   </td><td> waiting   </td></tr>
+<tr><td> clocking  </td><td> clocking  </td></tr>
 </table>
 
-<a name="toc-anchor-7"></a>
+<a name="toc-anchor-10"></a>
 
-### 3.1.4 IO items
+### 3.1.5 IO items
 
-<table>
+<table border="1" style="border-collapse: collapse;" >
 <tr>
    <th> Service </th>
    <th> Item name </th> 
@@ -257,15 +287,15 @@ At the moment, only busy waiting is available.
   <tr><td> rx   </td><td> pin_in   </td><td> d0  </td></tr>
 </table>
 
-<a name="toc-anchor-8"></a>
+<a name="toc-anchor-11"></a>
 
-### 3.1.5 example
+### 3.1.6 example
 
-=> TBW
+<!-- update example( input, "atmega328/blink/main.cpp" ) -->
 
-<a name="toc-anchor-9"></a>
+<a name="toc-anchor-12"></a>
 
-### 3.1.6 Resources
+### 3.1.7 Resources
 
 - [Wikipedia page](https://en.wikipedia.org/wiki/ATmega328)
 - [Manufacturer's page](https://www.microchip.com/wwwproducts/en/ATmega328)
@@ -278,17 +308,17 @@ At the moment, only busy waiting is available.
 <!-- -------------------------------------------------------------------- -->
 
 <a name="atsam3x8e"></a>
-<a name="toc-anchor-10"></a>
+<a name="toc-anchor-13"></a>
 
 ## 3.2 atSam3x8e
 
 ![atsam3x8e chip](images/atsam3x8e.png)
 
-<a name="toc-anchor-11"></a>
+<a name="toc-anchor-14"></a>
 
 ### 3.2.1 Specifying this target
 
-<table>
+<table border="1" style="border-collapse: collapse;" >
 <tr><td>  bmptk makefile line           </td>
    <td>      TARGET := atsam3x8e                  </td></tr>
 <tr><td>  compiler command line define  </td>
@@ -297,11 +327,11 @@ At the moment, only busy waiting is available.
    <td>      #include "hwcpp-target-atsam3x8e"    </td></tr>
 </table>
 
-<a name="toc-anchor-12"></a>
+<a name="toc-anchor-15"></a>
 
 ### 3.2.2 Target properties
 
-<table>
+<table border="1" style="border-collapse: collapse;" >
 <tr><td>   RAM     </td><td>   96k               </td></tr>
 <tr><td>   FLASH   </td><td>  256k               </td></tr>
 <tr><td>   GPIO    </td><td>   103               </td></tr>
@@ -312,7 +342,7 @@ At the moment, only busy waiting is available.
 
 This is a 32-bit Cortex-M3 chip, popularized by the Arduino Due.
 
-<a name="toc-anchor-13"></a>
+<a name="toc-anchor-16"></a>
 
 ### 3.2.3 Clock
 
@@ -321,16 +351,20 @@ With a 12 Mhz crystal and the PLL the clock can be set to 84 MHz
 by the application.
 The clock frequency has no default (it must specified explicitly).
 
-<table>
+<table border="1" style="border-collapse: collapse;" >
 <tr><td rowspan="2"> supported clock parameter values </td>
        <td> 8'000'000                           </td></tr>
    <tr><td> 84'000'000 (assumes 12MHz crystal)  </td></tr>
 </table>
 
+<a name="toc-anchor-17"></a>
+
+### 3.2.4 Timing
+
 Busy waiting and clock-based waiting are available.
 Both use the SysTick timer.
 
-<table>
+<table border="1" style="border-collapse: collapse;" >
 <tr>
    <th> Item name </th> 
    <th> HwCpp concept </th>
@@ -340,21 +374,21 @@ Both use the SysTick timer.
 <tr><td> clocking  </td><td> clocking  </td></tr>
 </table>
 
-<a name="toc-anchor-14"></a>
+<a name="toc-anchor-18"></a>
 
-### 3.2.4 IO items
-
-=> TBW
-
-<a name="toc-anchor-15"></a>
-
-### 3.2.5 example
+### 3.2.5 IO items
 
 => TBW
 
-<a name="toc-anchor-16"></a>
+<a name="toc-anchor-19"></a>
 
-### 3.2.6 Resources
+### 3.2.6 example
+
+=> TBW
+
+<a name="toc-anchor-20"></a>
+
+### 3.2.7 Resources
 
 - [Manufacturer's page](http://www.microchip.com/wwwproducts/en/ATsam3x8e)
 - [SAM3X/SAM3A series datasheet](http://ww1.microchip.com/downloads/en/DeviceDoc/Atmel-11057-32-bit-Cortex-M3-Microcontroller-SAM3X-SAM3A_Datasheet.pdf)
@@ -365,17 +399,17 @@ Both use the SysTick timer.
 <!-- -------------------------------------------------------------------- -->
 
 <a name="stm32f103c8"></a>
-<a name="toc-anchor-17"></a>
+<a name="toc-anchor-21"></a>
 
 ## 3.3 stm32f103C8
 
 ![stm32f103C8 chip](images/stm32f103c8.png)
 
-<a name="toc-anchor-18"></a>
+<a name="toc-anchor-22"></a>
 
 ### 3.3.1 Specifying this target
 
-<table>
+<table border="1" style="border-collapse: collapse;" >
 <tr><td>  bmptk makefile line           </td>
    <td>      TARGET := stm32f103c8                </td></tr>
 <tr><td>  compiler command line define  </td>
@@ -384,11 +418,11 @@ Both use the SysTick timer.
    <td>      #include "hwcpp-target-stm32f103c8"  </td></tr>
 </table>
 
-<a name="toc-anchor-19"></a>
+<a name="toc-anchor-23"></a>
 
 ### 3.3.2 Target properties
 
-<table>
+<table border="1" style="border-collapse: collapse;" >
 <tr><td>   RAM     </td><td>   20k               </td></tr>
 <tr><td>   FLASH   </td><td>   64k               </td></tr>
 <tr><td>   GPIO    </td><td>    37               </td></tr>
@@ -400,7 +434,7 @@ Both use the SysTick timer.
 This is a 32-bit Cortex-M3 chip, popularized by the Arduino Maple,
 and used in al sorts of cheap Chinese boards, like the Blue Pill.
 
-<a name="toc-anchor-20"></a>
+<a name="toc-anchor-24"></a>
 
 ### 3.3.3 Clock
 
@@ -409,7 +443,7 @@ With an 8 Mhz crystal and the PLL the clock can be set to 72 MHz
 by the application.
 The clock frequency has no default (it must specified explicitly).
 
-<table>
+<table border="1" style="border-collapse: collapse;" >
 <tr><td rowspan="2"> supported clock parameter values </td>
        <td> 8'000'000                            </td></tr>
    <tr><td> 72'000'000 (assumes 12MHz crystal)   </td></tr>
@@ -418,7 +452,7 @@ The clock frequency has no default (it must specified explicitly).
 Busy waiting and clock-based waiting are available.
 Both use the SysTick timer.
 
-<table>
+<table border="1" style="border-collapse: collapse;" >
 <tr>
    <th> Item name </th> 
    <th> HwCpp concept </th>
@@ -428,19 +462,19 @@ Both use the SysTick timer.
 <tr><td> clocking  </td><td> clocking  </td></tr>
 </table>
 
-<a name="toc-anchor-21"></a>
+<a name="toc-anchor-25"></a>
 
 ### 3.3.4 IO items
 
 => TBW
 
-<a name="toc-anchor-22"></a>
+<a name="toc-anchor-26"></a>
 
 ### 3.3.5 example
 
 => TBW
 
-<a name="toc-anchor-23"></a>
+<a name="toc-anchor-27"></a>
 
 ### 3.3.6 Resources
 
@@ -454,24 +488,24 @@ Both use the SysTick timer.
 <!-- -------------------------------------------------------------------- -->
 <!-- -------------------------------------------------------------------- -->
 
-<a name="toc-anchor-24"></a>
+<a name="toc-anchor-28"></a>
 
 # 4 Board targets
 
 <!-- -------------------------------------------------------------------- -->
 <!-- -------------------------------------------------------------------- -->
 
-<a name="toc-anchor-25"></a>
+<a name="toc-anchor-29"></a>
 
 ## 4.1 Arduino Uno
 
 ![Arduino Uno board](images/arduino-uno.png)
 
-<a name="toc-anchor-26"></a>
+<a name="toc-anchor-30"></a>
 
 ### 4.1.1 Specifying this target
 
-<table>
+<table border="1" style="border-collapse: collapse;" >
 <tr><td>  bmptk makefile line           </td>
    <td>      TARGET := arduino_uno                </td></tr>
 <tr><td>  compiler command line define  </td>
@@ -480,11 +514,11 @@ Both use the SysTick timer.
    <td>      #include "hwcpp-target-arduino-uno"  </td></tr>
 </table>
 
-<a name="toc-anchor-27"></a>
+<a name="toc-anchor-31"></a>
 
 ### 4.1.2 Target properties
 
-<table>
+<table border="1" style="border-collapse: collapse;" >
 <tr><td>  Micro-controller  </td>
    <td> <A HREF="#atmega328">atmega328</A> </td></tr>
 <tr><td>  Clock             </td><td> Xtal 16 MHz                </td></tr>
@@ -510,7 +544,19 @@ This is a hands-off processes:
 the target chip is forced to reset and into bootload mode 
 by the RTS and DTR lines of the serial interface.
 
-<a name="toc-anchor-28"></a>
+![Arduino Nano board](images/arduino-nano.png)
+
+The Arduino Nano is essentially the Arduino Uno but on a small
+DIP-style PCB, and without the DC power option. 
+It can be used with the HwCpp Arduino Uno target.
+
+- Nano's are often shipped without the Arduino bootloader:
+  In that case you can use the Arduino IDE and a programmer 
+  (for instance an USBAsp) to download the bootloader.
+- Beside the standard 5V/16MHz Nano there is also a version
+  with an 8MHz crystal that is meant to be used at 3.3V.
+
+<a name="toc-anchor-32"></a>
 
 ### 4.1.3 Clock
 
@@ -520,14 +566,14 @@ If you change the crystal or the clock fuses
 you could specify another frequency supported by the
 [atMega328](#atmega328) target.
 
-<table>
+<table border="1" style="border-collapse: collapse;" >
 <tr><td rowspan="1"> default clock parameter values </td>
        <td> 16'000'000                            </td></tr>
 </table>
 
 At the moment, only busy waiting is available.
 
-<table>
+<table border="1" style="border-collapse: collapse;" >
 <tr>
    <th> Item name </th> 
    <th> HwCpp concept </th>
@@ -536,11 +582,11 @@ At the moment, only busy waiting is available.
 <tr><td> waiting  </td><td> waiting </td></tr>
 </table>
 
-<a name="toc-anchor-29"></a>
+<a name="toc-anchor-33"></a>
 
 ### 4.1.4 IO items
 
-<table>
+<table border="1" style="border-collapse: collapse;" >
 <tr>
    <th> Service </th>
    <th> Item name </th> 
@@ -561,20 +607,21 @@ At the moment, only busy waiting is available.
       <td> led   </td><td> pin_out  </td><td> d13  </td></tr>  
 </table>
 
-<a name="toc-anchor-30"></a>
+<a name="toc-anchor-34"></a>
 
 ### 4.1.5 example
 
 => TBW
 
-<a name="toc-anchor-31"></a>
+<a name="toc-anchor-35"></a>
 
 ### 4.1.6 Resources
 
 - [atMega328 target](#atmega328)
 - [Uno page at arduino.cc](https://store.arduino.cc/usa/arduino-uno-rev3)
 - [Reference schematic from arduino.cc](https://www.arduino.cc/en/uploads/Main/arduino-uno-schematic.pdf)
-- [Uno pinout](images/arduino-uno.png)
+- [Uno pinout](images/arduino-uno-pinout.png)
+- [Nano pinout](images/arduino-nano-pinout.png)
 
 
 <!-- -------------------------------------------------------------------- -->
@@ -582,17 +629,17 @@ At the moment, only busy waiting is available.
 
 
 
-<a name="toc-anchor-32"></a>
+<a name="toc-anchor-36"></a>
 
 ## 4.2 Arduino Due
 
 ![Arduino Due board](images/arduino-due.png)
 
-<a name="toc-anchor-33"></a>
+<a name="toc-anchor-37"></a>
 
 ### 4.2.1 Specifying this target
 
-<table>
+<table border="1" style="border-collapse: collapse;" >
 <tr><td>  bmptk makefile line           </td>
    <td>      TARGET := arduino_due                </td></tr>
 <tr><td>  compiler command line define  </td>
@@ -601,11 +648,11 @@ At the moment, only busy waiting is available.
    <td>      #include "hwcpp-target-arduino-due"  </td></tr>
 </table>
 
-<a name="toc-anchor-34"></a>
+<a name="toc-anchor-38"></a>
 
 ### 4.2.2 Target properties
 
-<table>
+<table border="1" style="border-collapse: collapse;" >
 <tr><td>  Micro-controller  </td>
    <td> <A HREF="#atsam3x8e">atsam3x8e</A>    </td></tr>
 <tr><td>  Clock             </td><td> Xtal 12 MHz => 84 MHz      </td></tr>
@@ -634,7 +681,7 @@ The programming process can be done hands-off.
 When an Arduino Due is powered, it does NOT automatically run the 
 programmed application: a reset is required.
 
-<a name="toc-anchor-35"></a>
+<a name="toc-anchor-39"></a>
 
 ### 4.2.3 Clock
 
@@ -642,7 +689,7 @@ The chip starts on the 8 Mhz internal clock.
 With the 12 Mhz crystal and the PLL the clock can be set to 84 MHz,
 which is the default.
 
-<table>
+<table border="1" style="border-collapse: collapse;" >
 <tr><td rowspan="2"> supported clock parameter values </td>
        <td> 8'000'000                           </td></tr>
    <tr><td> 84'000'000 (default              )  </td></tr>
@@ -651,7 +698,7 @@ which is the default.
 Busy waiting and clock-based waiting are available.
 Both use the SysTick timer.
 
-<table>
+<table border="1" style="border-collapse: collapse;" >
 <tr>
    <th> Item name </th> 
    <th> HwCpp concept </th>
@@ -661,11 +708,11 @@ Both use the SysTick timer.
 <tr><td> clocking  </td><td> clocking  </td></tr>
 </table>
 
-<a name="toc-anchor-36"></a>
+<a name="toc-anchor-40"></a>
 
 ### 4.2.4 IO items
 
-<table>
+<table border="1" style="border-collapse: collapse;" >
 <tr>
    <th> Service </th>
    <th> Item name </th> 
@@ -694,30 +741,30 @@ Both use the SysTick timer.
       <td> led   </td><td> pin_out  </td><td> d13  </td></tr>
 </table>
 
-<a name="toc-anchor-37"></a>
+<a name="toc-anchor-41"></a>
 
 ### 4.2.5 Resources
 
 - [atsam3x8e target](#atsam3x8e)
 - [Due page at arduino.cc](https://store.arduino.cc/arduino-due)
 - [Reference schematic from arduino.cc](https://www.arduino.cc/en/uploads/Main/arduino-Due-schematic.pdf)
-- [Due pinout](images/arduino-due.png)
+- [Due pinout](images/arduino-due-pinout.png)
 
 
 <!-- -------------------------------------------------------------------- -->
 <!-- -------------------------------------------------------------------- -->
 
-<a name="toc-anchor-38"></a>
+<a name="toc-anchor-42"></a>
 
 ## 4.3 Blue Pill
 
 ![Blue Pill board](images/blue-pill.png)
 
-<a name="toc-anchor-39"></a>
+<a name="toc-anchor-43"></a>
 
 ### 4.3.1 Specifying this target
 
-<table>
+<table border="1" style="border-collapse: collapse;" >
 <tr><td>  bmptk makefile line           </td>
    <td>      TARGET := blue_pill                  </td></tr>
 <tr><td>  compiler command line define  </td>
@@ -745,7 +792,7 @@ not straight.
 
 => TWB picture of connection
 
-<a name="toc-anchor-40"></a>
+<a name="toc-anchor-44"></a>
 
 ### 4.3.2 Resources
 
@@ -759,17 +806,17 @@ not straight.
 <!-- -------------------------------------------------------------------- -->
 <!-- -------------------------------------------------------------------- -->
 
-<a name="toc-anchor-41"></a>
+<a name="toc-anchor-45"></a>
 
 ## 4.4 Blue Brick
 
 ![Blue Brick board](images/blue-brick.png)
 
-<a name="toc-anchor-42"></a>
+<a name="toc-anchor-46"></a>
 
 ### 4.4.1 Specifying this target
 
-<table>
+<table border="1" style="border-collapse: collapse;" >
 <tr><td>  bmptk makefile line           </td>
    <td>      TARGET := blue_brick                 </td></tr>
 <tr><td>  compiler command line define  </td>
@@ -806,7 +853,7 @@ not straight.
 
 => TWB picture of connection
 
-<a name="toc-anchor-43"></a>
+<a name="toc-anchor-47"></a>
 
 ### 4.4.2 Resources
 

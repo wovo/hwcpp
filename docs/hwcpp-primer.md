@@ -1,6 +1,8 @@
 HwCpp Primer
 ===
 
+<!-- update example_path( "../demo/" ) -->
+
 <!-- update table_of_contents( input ) -->
 
 <!-- update end -->
@@ -18,7 +20,6 @@ Basic C++ and hardware knowledge is assumed, but nothing too advanced.
 Blinking a LED is the "Hello world!" equivalent for micro-controllers,
 so let's start with that.
 
-<!-- update example_path( "../demo/" ) -->
 <!-- update example( input, "arduino-uno/blink-for-loop/main.cpp" ) -->
 ```C++
 #include "hwcpp.hpp"
@@ -538,7 +539,7 @@ using lcd = hwcpp::hd44780_rs_e_d_x_y_timing<
 
 int main( void ){
    lcd::init();
-   lcd::print( "\fHello my world!" ); 
+   lcd::write( "\fHello my world!" ); 
 }
 ```
 
@@ -564,7 +565,7 @@ int main( void ){
       "\fLine 1 ======== end.\n"
       "And line 2 likewise.\n"
       "This is line 3;\n"
-      "And finally line 4!\n";
+      "And finally line 4!\n"
    );
 
 }

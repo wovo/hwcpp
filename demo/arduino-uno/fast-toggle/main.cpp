@@ -11,4 +11,4 @@ int main(){
    }
 }
 
-// 16 MHz : p = 375 ns 
+// 16 MHz : p = 375 ns, 2.66 MHz

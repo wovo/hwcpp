@@ -281,7 +281,7 @@ using uart = formatter< _stream_builder< _uart_foundation >>;
 //
 // ==========================================================================
 
-// ========= SysTick ==========
+// ========= SysTick
 
 static inline uint32_t    last_low = 0;
 static inline ticks_type  high = 0;
@@ -300,9 +300,77 @@ static ticks_type now_ticks(){
    return ( low | high ); 
 } 
 
-// ========= waiting ==========
+// ========= inline small delay
 
-struct _clocking_foundation :
+static constexpr auto inline_delay_max = 6;
+template< ticks_type t >
+static void HWLIB_INLINE inline_delay(){
+              
+   if constexpr ( t  == 0 ){
+      // nothing
+         
+   } else if constexpr ( t == 1 ){
+      __asm volatile(                  
+         "   nop     \t\n"  
+      );           
+              
+   } else if constexpr ( t == 2 ){
+      __asm volatile(                  
+         "   nop     \t\n"  
+         "   nop     \t\n"  
+      ); 
+		 
+   } else if constexpr ( t == 3 ){
+      __asm volatile(                  
+         "   nop     \t\n"  
+         "   nop     \t\n"  
+         "   nop     \t\n"  
+      ); 
+		 
+   } else if constexpr ( t == 4 ){
+      __asm volatile(                  
+         "   nop     \t\n"  
+         "   nop     \t\n"  
+         "   nop     \t\n"  
+         "   nop     \t\n"  
+      ); 
+		 
+   } else if constexpr ( t == 5 ){
+      __asm volatile(                  
+         "   nop     \t\n"  
+         "   nop     \t\n"  
+         "   nop     \t\n"  
+         "   nop     \t\n"  
+         "   nop     \t\n"  
+      ); 
+		 
+   } else if constexpr ( t == 6 ){
+      __asm volatile(                  
+         "   nop     \t\n"  
+         "   nop     \t\n"  
+         "   nop     \t\n"  
+         "   nop     \t\n"  
+         "   nop     \t\n"  
+         "   nop     \t\n"  
+      ); 
+		 
+   }
+}
+
+// ========= busy loop wait
+
+static void HWLIB_NO_INLINE busy_delay( int32_t n ){
+   __asm volatile(                  
+      "   .align 4           \t\n"  
+      "1: subs.w  r0, #3     \t\n"  
+      "   bgt 1b             \t\n"  
+      : : "r" ( n )          // uses (reads) n         
+   ); 
+}
+
+// ========= foundation
+
+struct _timing_foundation :
    _timing_clocking_foundation< std::ratio< clock, 1 > >
 {
    static void init(){
@@ -317,70 +385,6 @@ struct _clocking_foundation :
       ticks_type t = now_ticks() + n;
       while( now_ticks() < t ){}
    }  
-   
-   static constexpr auto inline_delay_max = 6;
-   template< ticks_type t >
-   static void HWLIB_INLINE inline_delay(){
-              
-      if constexpr ( t  == 0 ){
-         // nothing
-         
-      } else if constexpr ( t == 1 ){
-         __asm volatile(                  
-            "   nop     \t\n"  
-         );           
-              
-      } else if constexpr ( t == 2 ){
-         __asm volatile(                  
-            "   nop     \t\n"  
-            "   nop     \t\n"  
-         ); 
-		 
-      } else if constexpr ( t == 3 ){
-         __asm volatile(                  
-            "   nop     \t\n"  
-            "   nop     \t\n"  
-            "   nop     \t\n"  
-         ); 
-		 
-      } else if constexpr ( t == 4 ){
-         __asm volatile(                  
-            "   nop     \t\n"  
-            "   nop     \t\n"  
-            "   nop     \t\n"  
-            "   nop     \t\n"  
-         ); 
-		 
-      } else if constexpr ( t == 5 ){
-         __asm volatile(                  
-            "   nop     \t\n"  
-            "   nop     \t\n"  
-            "   nop     \t\n"  
-            "   nop     \t\n"  
-            "   nop     \t\n"  
-         ); 
-		 
-      } else if constexpr ( t == 6 ){
-         __asm volatile(                  
-            "   nop     \t\n"  
-            "   nop     \t\n"  
-            "   nop     \t\n"  
-            "   nop     \t\n"  
-            "   nop     \t\n"  
-            "   nop     \t\n"  
-         ); 
-		 
-      }
-   }
-   
-   static void HWLIB_NO_INLINE busy_delay( int32_t n ){
-      __asm volatile(                  
-         "   .align 4           \t\n"  
-         "1: subs.w  r0, #3     \t\n"  
-         "   bgt 1b             \t\n"  
-         : : "r" ( n )          // uses (reads) n         
-      ); 
-   }
    
    template< ticks_type t >
    static void HWLIB_INLINE wait_ticks_template(){   
@@ -398,8 +402,10 @@ struct _clocking_foundation :
    }      
 };
 
-using waiting  = _timing_waiting_builder< _clocking_foundation >;
-using clocking = _timing_clocking_builder< _clocking_foundation >;
+// ========= services
+
+using waiting  = _timing_waiting_builder< _timing_foundation >;
+using clocking = _timing_clocking_builder< _timing_foundation >;
 
 }; // struct chip_sam3xa
 

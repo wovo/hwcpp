@@ -3,7 +3,19 @@ HwCpp Getting Started
 
 <!-- update table_of_contents( input ) -->
 
+  - [1 Introduction](#toc-anchor-0)
+
+  - [2 Download and install](#toc-anchor-1)
+
+  - [3 First use](#toc-anchor-2)
+
+    - [3.1 Bmptk](#toc-anchor-3)
+
+    - [3.2 CodeLite](#toc-anchor-4)
+
 <!-- update end -->
+
+<a name="toc-anchor-0"></a>
 
 # 1 Introduction
 
@@ -21,13 +33,15 @@ at least the following:
 This document explains how to get started with HwCpp using bmptk and CodeLite,
 for now only for windows.
 
+<a name="toc-anchor-1"></a>
+
 # 2 Download and install
 
 Download and install:
  - Python 3.6 from http://www.python.org to C:/python36
  - CodeLite from https://codelite.org (I used 11.0.0)
  - Git from https://git-scm.com/download/win
- - GCC for windows native from https://mingw-w64.org/doku.php/download/mingw-builds to
+ - GCC for windows native from http://www.msys2.org (x86_64) to C:\msys64
  - GCC for avr8 from http://blog.zakkemble.co.uk/avr-gcc-builds/ to
  - GCC for arm/cortex from http://gnutoolchains.com/arm-eabi/ to
  - ST-LINK tool from http://www.st.com/content/st_com/en/products/development-tools/stm32-programmers/stsw-link004.html 
@@ -44,7 +58,11 @@ Add the bmptk/tools directory to your PATH.
 When you installed on of the applications to a different directory, you
 must edit hwcpp/
 
+<a name="toc-anchor-2"></a>
+
 # 3 First use
+
+<a name="toc-anchor-3"></a>
 
 ## 3.1 Bmptk
 
@@ -57,6 +75,8 @@ must edit hwcpp/
    - If bmptk-make can't be found, you didn't add the bmptk/tools directory to your PATH.
    - If you get a 'The system cannot find the path specified' error you either 
    didn't install thge MingW toolchain, or the ....
+
+<a name="toc-anchor-4"></a>
 
 ## 3.2 CodeLite
 

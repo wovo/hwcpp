@@ -50,7 +50,9 @@ The compilers I currently use are (gcc 7.2.0):
 -----------------------------------------------------------------------------
 
 Notes & ToDo
-- uno uart?
+- formatted int out: remove redundancies
+- software xmit uart
+- cortexes busy wait (without timer)
 - dacs
 - other uarts
 - check arduino shield: should be 16x2?

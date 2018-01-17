@@ -11,7 +11,7 @@
 #############################################################################
 
 # settings common to this part of the subdirectory tree
-TARGET             ?= atmega328p
+TARGET             ?= atmega328
 SERIAL_PORT        ?= COM4
 CONSOLE_BAUDRATE   := 2400
 

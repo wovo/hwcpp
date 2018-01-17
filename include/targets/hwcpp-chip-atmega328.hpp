@@ -1,6 +1,6 @@
 // ==========================================================================
 //
-// file : hwcpp-chipo-atmega328.hpp
+// file : hwcpp-chip-atmega328.hpp
 //
 // HAL for the atmega328 AVR chip
 //
@@ -40,6 +40,9 @@ static void HWLIB_INLINE init(){
    } else if constexpr ( clock == 16'000'000 ){
       // 16 MHz crystal	   
 	  
+   } else if constexpr ( clock == 8'000'000 ){
+      // 16 MHz crystal	   
+	  
    } else if constexpr ( clock == 1'000'000 ){
       // 1 MHz crystal	   
 	  
@@ -51,12 +54,10 @@ static void HWLIB_INLINE init(){
 		 "clock is supported for atmega328.");
    }		 
 
-    // set up timer with prescaler = 8
-    TCCR1B |= ( 1 << CS11 );
+    // set up timer without prescaler (input=CPU clock)
+    TCCR1B = 0x01;
   
-    // initialize counter
-    TCNT1 = 0;
-  }
+}
    
    
 // ==========================================================================
@@ -229,6 +230,8 @@ using uart = formatter< _stream_builder< _uart_foundation >>;
 //
 // ==========================================================================
 
+// ========= timer1
+
 static inline uint16_t    last_low = 0;
 static inline ticks_type  high = 0;
 
@@ -247,120 +250,127 @@ static ticks_type now_ticks(){
    return ( low | high ); 
 } 
 
+// ========= inline small delay
+
+template< ticks_type n >
+static void HWLIB_INLINE inline_small_delay(){
+       
+   static_assert( n < 16 );
+       
+   if constexpr ( n > 7 ){
+      __asm volatile(                  
+         "call _hwlib_avr_ret"     
+      );        
+   }
+
+   constexpr ticks_type t = ( n % 8 );   
+       
+   if constexpr ( t  == 0 ){
+      // nothing
+         
+   } else if constexpr ( t == 1 ){
+      __asm volatile(                  
+         "   nop     \t\n"  
+      );           
+              
+   } else if constexpr ( t == 2 ){
+      __asm volatile(                  
+         "   rjmp 1f     \t\n"  
+         "1:             \t\n"   
+      );           
+         
+   } else if constexpr ( t == 3 ){
+      __asm volatile(                  
+         "   rjmp 1f     \t\n"  
+         "1: nop         \t\n"   
+      );           
+         
+   } else if constexpr ( t == 4 ){
+      __asm volatile(                  
+         "   rjmp 1f     \t\n"  
+         "1: rjmp 2f     \t\n"   
+         "2:             \t\n"   
+      );           
+         
+   } else if constexpr ( t == 5 ){
+      __asm volatile(                  
+         "   rjmp 1f     \t\n"  
+         "1: rjmp 2f     \t\n"   
+         "2: nop         \t\n"   
+      );           
+         
+   } else if constexpr ( t == 6 ){
+      __asm volatile(                  
+         "   rjmp 1f     \t\n"  
+         "1: rjmp 2f     \t\n"   
+         "2: rjmp 3f     \t\n"   
+         "3:             \t\n"   
+      );           
+         
+   } else if constexpr ( t == 7 ){
+      __asm volatile(                  
+         "   rjmp 1f     \t\n"  
+         "1: rjmp 2f     \t\n"   
+         "2: rjmp 3f     \t\n"   
+         "3: nop         \t\n"   
+      );           
+         
+   }
+}
+
+// ========= busy wait
+
+// call overhead is LDI, LDI, CALL, CP, CPC, BRGE/t, RET => 15
+static constexpr auto call_overhead = 15;
+static constexpr auto chunk = 8192;
+static constexpr auto one_loop = 7;
+
+static void busy_wait_ticks_asm( int n ){ 
+    // first int parameter is passd in r24/r25
+    __asm volatile(                       // clocks
+       "1:  cp    r1, r24         \t\n"   // 1
+       "    cpc   r1, r25         \t\n"   // 1
+       "    brge  2f              \t\n"   // 1
+       "    sbiw  r24, 7          \t\n"   // 2 
+       "    rjmp  1b              \t\n"   // 2
+       "2:                        \t\n"   // 7 total
+       : : "r" ( n )                      // uses (reads) n
+   ); 
+}
+
+// ========= waiting foundation
+
 struct _waiting_foundation :
    _timing_waiting_foundation< std::ratio< clock, 1 > >
 {
+   using chip = chip_atmega328< clock >;    
 	
    static void init(){
-      chip_atmega328< clock >::init();
+      chip::init();
    }	
-
-   // call overhead is LDI, LDI, CALL, CP, CPC, BRGE/t, RET => 15
-   static constexpr auto call_overhead = 15;
-   static constexpr auto chunk = 8192;
-   static constexpr auto one_loop = 7;
-
-   static void wait_ticks_asm( int n ){ 
-       // first int parameter is passd in r24/r25
-       __asm volatile(                       // clocks
-          "1:  cp    r1, r24         \t\n"   // 1
-          "    cpc   r1, r25         \t\n"   // 1
-          "    brge  2f              \t\n"   // 1
-          "    sbiw  r24, 7          \t\n"   // 2 
-          "    rjmp  1b              \t\n"   // 2
-          "2:                        \t\n"   // 7 total
-          : : "r" ( n )                      // uses (reads) n
-      ); 
-   }
 
    static void HWLIB_NO_INLINE wait_ticks_function( ticks_type n ){     
 
       while( n > chunk ){
-         wait_ticks_asm( chunk - call_overhead );
+         chip::busy_wait_ticks_asm( chunk - call_overhead );
          n -= chunk;  
       }
       if( n > 0 ){
-         wait_ticks_asm( n - call_overhead );
+         chip::busy_wait_ticks_asm( n - call_overhead );
       }
    }  
-   
-   template< ticks_type n >
-   static void HWLIB_INLINE small_delay(){
-       
-      static_assert( n < 16 );
-       
-      if constexpr ( n > 7 ){
-         __asm volatile(                  
-            "call _hwlib_avr_ret"     
-         );        
-      }
-
-      constexpr ticks_type t = ( n % 8 );   
-       
-      if constexpr ( t  == 0 ){
-         // nothing
-         
-      } else if constexpr ( t == 1 ){
-         __asm volatile(                  
-            "   nop     \t\n"  
-         );           
-              
-      } else if constexpr ( t == 2 ){
-         __asm volatile(                  
-            "   rjmp 1f     \t\n"  
-            "1:             \t\n"   
-         );           
-         
-      } else if constexpr ( t == 3 ){
-         __asm volatile(                  
-            "   rjmp 1f     \t\n"  
-            "1: nop         \t\n"   
-         );           
-         
-      } else if constexpr ( t == 4 ){
-         __asm volatile(                  
-            "   rjmp 1f     \t\n"  
-            "1: rjmp 2f     \t\n"   
-            "2:             \t\n"   
-         );           
-         
-      } else if constexpr ( t == 5 ){
-         __asm volatile(                  
-            "   rjmp 1f     \t\n"  
-            "1: rjmp 2f     \t\n"   
-            "2: nop         \t\n"   
-         );           
-         
-      } else if constexpr ( t == 6 ){
-         __asm volatile(                  
-            "   rjmp 1f     \t\n"  
-            "1: rjmp 2f     \t\n"   
-            "2: rjmp 3f     \t\n"   
-            "3:             \t\n"   
-         );           
-         
-      } else if constexpr ( t == 7 ){
-         __asm volatile(                  
-            "   rjmp 1f     \t\n"  
-            "1: rjmp 2f     \t\n"   
-            "2: rjmp 3f     \t\n"   
-            "3: nop         \t\n"   
-         );           
-         
-      }
-   }
    
    template< ticks_type t >
    static void HWLIB_INLINE wait_ticks_template(){
       if constexpr ( t < call_overhead ){    
-          small_delay< t >();
+          chip::inline_small_delay< t >();
           
       } else if constexpr ( t <= chunk ){  
 
          constexpr ticks_type remaining = t - call_overhead;
           
-         small_delay< remaining % one_loop >();
-         wait_ticks_asm( remaining - ( remaining % one_loop) );   
+         chip::inline_small_delay< remaining % one_loop >();
+         chip::busy_wait_ticks_asm( remaining - ( remaining % one_loop) );   
          
       } else {
          wait_ticks_function( t ); 
@@ -368,7 +378,49 @@ struct _waiting_foundation :
    };	  
 };
 
-using waiting = _timing_waiting_builder< _waiting_foundation >;   
+// ========= clocking foundation
+
+struct _clocking_foundation :
+   _timing_clocking_foundation< std::ratio< clock, 1 > >
+{
+   using chip = chip_atmega328< clock >;      
+	
+   static void init(){
+      chip::init();
+   }	
+
+   static ticks_type HWLIB_INLINE now_ticks(){
+      return chip::now_ticks();
+   }
+
+   static void HWLIB_NO_INLINE  wait_ticks_function( ticks_type n ){     
+      ticks_type t = now_ticks() + n;
+      while( now_ticks() < t ){}
+   } 
+   
+   template< ticks_type t >
+   static void HWLIB_INLINE wait_ticks_template(){
+      if constexpr ( t < call_overhead ){    
+          chip::inline_small_delay< t >();
+          
+      } else if constexpr ( t <= 2'000 ){  
+
+         constexpr ticks_type remaining = t - call_overhead;
+          
+         chip::inline_small_delay< remaining % one_loop >();
+         chip::busy_wait_ticks_asm( remaining - ( remaining % one_loop) );   
+         
+      } else {
+         wait_ticks_function( t ); 
+      }         
+   };	  
+};
+
+// ========= services
+
+using waiting  = _timing_waiting_builder< _waiting_foundation >;   
+using clocking = _timing_clocking_builder< _clocking_foundation >;   
+using timing   = clocking;   
 
 }; // struct atmega328
 

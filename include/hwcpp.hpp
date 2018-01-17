@@ -15,32 +15,43 @@
 #ifndef HWCPP_INCLUDED
 #define HWCPP_INCLUDED
 
+#ifdef HWCPP_TARGET_atmega328
+   #define _HWCPP_TARGET_OK
+   #include "targets/hwcpp-target-atmega328.hpp"
+#endif
+
 #ifdef HWCPP_TARGET_samx3a
+   #define _HWCPP_TARGET_OK
    #include "targets/hwcpp-target-samx3a.hpp"
 #endif
 
 #ifdef HWCPP_TARGET_arduino_uno
+   #define _HWCPP_TARGET_OK
    #include "targets/hwcpp-target-arduino-uno.hpp"
 #endif
 
 #ifdef HWCPP_TARGET_arduino_due
+   #define _HWCPP_TARGET_OK
    #include "targets/hwcpp-target-arduino-due.hpp"
 #endif
 
 #ifdef HWCPP_TARGET_blue_pill
+   #define _HWCPP_TARGET_OK
    #include "targets/hwcpp-target-blue-pill.hpp"
 #endif
 
 #ifdef HWCPP_TARGET_blue_brick
+   #define _HWCPP_TARGET_OK
    #include "targets/hwcpp-target-blue-brick.hpp"
 #endif
 
 #ifdef HWCPP_TARGET_native
+   #define _HWCPP_TARGET_OK
    #include "targets/hwcpp-target-native.hpp"
 #endif
 
-#ifndef HWCPP_TARGET
-   #include "core/hwcpp-all.hpp"
+#ifndef _HWCPP_TARGET_OK
+   #error no valid HWCPP_TARGET_*
 #endif
 
 #endif // #ifndef HWCPP_INCLUDED

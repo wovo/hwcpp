@@ -30,7 +30,7 @@
       <Project Name="fast-toggle" ConfigName="Release"/>
     </WorkspaceConfiguration>
   </BuildMatrix>
-  <Project Name="hello-cout" Path="hello-cout/_codelite.project" Active="Yes"/>
+  <Project Name="hello-cout" Path="hello-cout/_codelite.project" Active="No"/>
   <BuildMatrix>
     <WorkspaceConfiguration Name="Release" Selected="yes">
       <Project Name="hello-cout" ConfigName="Release"/>
@@ -48,7 +48,7 @@
       <Project Name="lcd-12x2" ConfigName="Release"/>
     </WorkspaceConfiguration>
   </BuildMatrix>
-  <Project Name="lcd-16x1" Path="lcd-16x1/_codelite.project" Active="No"/>
+  <Project Name="lcd-16x1" Path="lcd-16x1/_codelite.project" Active="Yes"/>
   <BuildMatrix>
     <WorkspaceConfiguration Name="Release" Selected="yes">
       <Project Name="lcd-16x1" ConfigName="Release"/>
@@ -136,6 +136,12 @@
   <BuildMatrix>
     <WorkspaceConfiguration Name="Release" Selected="yes">
       <Project Name="led-6-walk-2" ConfigName="Release"/>
+    </WorkspaceConfiguration>
+  </BuildMatrix>
+  <Project Name="performance" Path="performance/_codelite.project" Active="No"/>
+  <BuildMatrix>
+    <WorkspaceConfiguration Name="Release" Selected="yes">
+      <Project Name="performance" ConfigName="Release"/>
     </WorkspaceConfiguration>
   </BuildMatrix>
   <Project Name="potmeter" Path="potmeter/_codelite.project" Active="No"/>

@@ -13,7 +13,7 @@ int main( void ){
       "\fLine 1 ======== end.\n"
       "And line 2 likewise.\n"
       "This is line 3;\n"
-      "And finally line 4!\n";
+      "And finally line 4!\n"
    );
 
 }
