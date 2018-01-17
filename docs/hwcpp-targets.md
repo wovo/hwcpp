@@ -443,6 +443,7 @@ Both use the SysTick timer.
 
 - [Manufacturer's page](http://www.st.com/en/microcontrollers/stm32f103c8.html)
 - [stm32f103C8 datasheet](http://www.st.com/content/ccc/resource/technical/document/datasheet/33/d4/6f/1d/df/0b/4c/6d/CD00161566.pdf/files/CD00161566.pdf/jcr:content/translations/en.CD00161566.pdf)
+- [stm32f103C8 reference manual](http://www.st.com/content/ccc/resource/technical/document/reference_manual/59/b9/ba/7f/11/af/43/d5/CD00171190.pdf/files/CD00171190.pdf/jcr:content/translations/en.CD00171190.pdf)
 - [stm32f103C8 product specification](http://www.st.com/content/ccc/resource/technical/document/datasheet/33/d4/6f/1d/df/0b/4c/6d/CD00161566.pdf/files/CD00161566.pdf/jcr:content/translations/en.CD00161566.pdf)
 - [GCC for ARM/Cortex](http://gnutoolchains.com/arm-eabi/)
 
