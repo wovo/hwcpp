@@ -165,7 +165,7 @@ Currently, HwCpp offers nothing specific to the native target.
 
 ### 3.1.1 Specifying this target
 
-<table>
+<table border="1">
 <tr><td>  bmptk makefile line           </td>
    <td>      TARGET := atmega328                  </td></tr>
 <tr><td>  compiler command line define  </td>
