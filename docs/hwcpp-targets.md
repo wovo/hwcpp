@@ -3,6 +3,7 @@ HwCpp Targets
 
 <!--
 TO DO list
+- style is visible...
 - uno timer-based delay
 - native: timing and uart?
 - complete the board descriptions
@@ -13,8 +14,12 @@ TO DO list
 - kramdown.bat
 - named toc anchors?
 - hierachical TOCs?
+- stm32f407vet6 512 Mb FLASH, 192 Kb RAM, 168 MHz, Cortex-M4 (FPU,
+- STM32_F4VE board
+- https://www.aliexpress.com/item/M4-STM32F407VGT6-STM32F407VET6-Development-Board-Learning-Board-FSMC-DM9000-TFT-module/32805741770.html?ws_ab_test=searchweb0_0,searchweb201602_1_10152_10151_10065_10344_10068_10342_10343_10059_10340_10314_10341_10534_100031_10084_10604_10083_10103_10304_10307_10615_10301_10142,searchweb201603_6,ppcSwitch_5&algo_expid=df3a0b99-f79d-4670-a53c-1aba05946d61-22&algo_pvid=df3a0b99-f79d-4670-a53c-1aba05946d61&priceBeautifyAB=1
 -->
 
+<table>
 <style>
 table{
     border-collapse: collapse;
@@ -31,6 +36,7 @@ td{
     padding: 5px;
 }
 </style>
+</table>
 
 <!-- update table_of_contents( input, 3 ) -->
 
