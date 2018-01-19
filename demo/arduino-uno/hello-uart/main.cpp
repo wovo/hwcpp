@@ -1,7 +1,7 @@
 #include "hwcpp.hpp"
 
 using target = hwcpp::target<>;
-using timing = target::waiting;
+using timing = target::timing;
 using uart   = target::uart;
 
 int main(){ 

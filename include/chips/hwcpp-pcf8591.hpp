@@ -25,8 +25,8 @@ struct pcf8591 :
    static uint_fast8_t _read( uint_fast8_t channel ){
    
       // select the correct channel
-      uint8_t control = ( configuration & ( ~ 0x03 )) + channel; 
-      bus::write( base + address, & control, 1 ); 
+      uint8_t control[ 1 ] = { ( configuration & ( ~ 0x03 )) + channel }; 
+      bus::write( base + address, control, 1 ); 
       
       // read results, note that the first byte is the 
       // *previous* ADC result, the second byte is what we want

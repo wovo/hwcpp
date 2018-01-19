@@ -217,12 +217,14 @@ struct formatter :
          write( s.content );
       }   
 
-      static void write(  int16_t x ){ write( x ); }
-      static void write( uint16_t x ){ write( x ); }
-      static void write(  int32_t x ){ write( x ); }
-      static void write( uint32_t x ){ write( x ); }
-      static void write(  int64_t x ){ write( x ); }
-      static void write( uint64_t x ){ write( x ); }
+      static void write(   int8_t x ){ _write( x ); }
+      static void write(  uint8_t x ){ _write( x ); }
+      static void write(  int16_t x ){ _write( x ); }
+      static void write( uint16_t x ){ _write( x ); }
+      static void write(  int32_t x ){ _write( x ); }
+      static void write( uint32_t x ){ _write( x ); }
+      static void write(  int64_t x ){ _write( x ); }
+      static void write( uint64_t x ){ _write( x ); }
 };
 
 

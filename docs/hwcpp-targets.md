@@ -9,6 +9,7 @@ TO DO list
 - complete the board descriptions
 - other name for blue brick
 - blue brick resources
+- uno I2C pins??
 - stm32f407 board
 - arduino nano
 - http://en.mxchip.com/product/wifi_product/38
@@ -606,6 +607,11 @@ At the moment, only busy waiting is available.
 <tr><td> LED </td>
       <td> led   </td><td> pin_out  </td><td> d13  </td></tr>  
 </table>
+
+The Arduino Uno has two pins designated at I2C SCL and SDA,
+but there are no on-board pull-ups on these pins.
+(Pull-ups would have interfered with the pins primary purpose
+of A/D inputs.)
 
 <a name="toc-anchor-34"></a>
 

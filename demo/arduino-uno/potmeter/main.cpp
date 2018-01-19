@@ -17,7 +17,7 @@ int main( void ){
    
    for(;;){
       timing::ms<500 >::wait();
-	  cout << adc::get() << "\n";
+	  cout << "adc = " << adc::get() << " (dec)\n";
    }
 
 }

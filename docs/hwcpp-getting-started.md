@@ -41,11 +41,17 @@ Download and install:
  - Python 3.6 from http://www.python.org to C:/python36
  - CodeLite from https://codelite.org (I used 11.0.0)
  - Git from https://git-scm.com/download/win
- - GCC for windows native from http://www.msys2.org (x86_64) to C:\msys64
- - GCC for avr8 from http://blog.zakkemble.co.uk/avr-gcc-builds/ to
- - GCC for arm/cortex from http://gnutoolchains.com/arm-eabi/ to
+ - GCC for windows native from http://www.msys2.org (x86_64) 
+   to C:\msys64
+ - GCC for avr8 from http://blog.zakkemble.co.uk/avr-gcc-builds/ , 
+   copy the zip content to C:\Program Files .
+ - GCC for arm/cortex from http://gnutoolchains.com/arm-eabi/ 
+   to
  - ST-LINK tool from http://www.st.com/content/st_com/en/products/development-tools/stm32-programmers/stsw-link004.html 
    to C:/Program Files (x86)/STMicroelectronics/STM32 ST-LINK Utility
+   
+I had to run the various installers as administrator, and afterwards
+my virusscanner still refuses to run some tools untill I told it to hush up.
 
 
 Create a directory of your choice. 

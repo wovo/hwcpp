@@ -84,6 +84,13 @@ static constexpr regs * port_data[] = {
    &PORTD
 };
    
+static constexpr regs * port_in[] = { 
+//   &PINA,
+   &PINB,
+   &PINC,
+   &PIND
+};
+   
 static constexpr regs * port_direction[] = { 
 //   &DDRA,
    &DDRB,
@@ -105,7 +112,7 @@ struct _pin_in_out_foundation :
          *port_direction[ (int)p ] &= ~ ( 0x1U << pin );
       } else {
          *port_direction[ (int)p ] |= ( 0x1U << pin );
-     }
+      }
    }
    
    static void HWLIB_INLINE set_direct( bool v ){
@@ -116,8 +123,8 @@ struct _pin_in_out_foundation :
       }
    }
 
-   static bool HWLIB_INLINE get_direct(){
-      return ( *port_data[ (int)p ] & ( 0x1U << pin ) ) != 0;
+   static bool HWLIB_INLINE get_direct(){	   
+      return ( *port_in[ (int)p ] & ( 0x1U << pin ) ) != 0;
    }
    
 };
