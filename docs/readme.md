@@ -43,6 +43,7 @@ My experiences with printing markdown files:
    direct pdf after 'gem install prawn' 'gem install prawn-table', but rubbish.
    html OK, pictures!, requires style to get page borders.
    usefull as html-table sanitizer?
+   Doesn't handle triple-quote code blocks.
 
 - grip : 
    local, requires python, no idea how to run this :(

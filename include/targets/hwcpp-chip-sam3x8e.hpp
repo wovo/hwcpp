@@ -19,7 +19,7 @@
 namespace hwcpp {
     
 template< uint_fast64_t clock >    
-struct chip_sam3xa {
+struct chip_sam3x8e {
 	
 	
 // ==========================================================================
@@ -91,7 +91,7 @@ struct _pin_in_out_foundation :
 {
 	
    static void HWLIB_INLINE init(){
-      hwcpp::chip_sam3xa< clock >::init();
+      hwcpp::chip_sam3x8e< clock >::init();
    }
    
    static void HWLIB_INLINE direction_set_direct( pin_direction d ){
@@ -131,7 +131,7 @@ using _pin_in_out = _box_builder< _pin_in_out_foundation< P, pin > >;
 	
 static void _adc_init_common(){
     
-   hwcpp::chip_sam3xa< clock >::init();
+   hwcpp::chip_sam3x8e< clock >::init();
         
    // enable the clock to the ADC (peripheral # 37, in the 2nd PCER)
    PMC->PMC_PCER1 = ( 0x01 << ( 37 - 32 ) );
@@ -219,7 +219,7 @@ struct _uart_foundation :
 	
    static void init(){
        
-      hwcpp::chip_sam3xa< clock >::init();       
+      hwcpp::chip_sam3x8e< clock >::init();       
 
       // enable the clock to port A
       PMC->PMC_PCER0 = 1 << ID_PIOA;
@@ -374,11 +374,11 @@ struct _timing_foundation :
    _timing_clocking_foundation< std::ratio< clock, 1 > >
 {
    static void init(){
-      chip_sam3xa< clock >::init();
+      chip_sam3x8e< clock >::init();
    }	
    
    static ticks_type now_ticks(){
-      return chip_sam3xa< clock >::now_ticks();
+      return chip_sam3x8e< clock >::now_ticks();
    }      
    
    static void HWLIB_NO_INLINE  wait_ticks_function( ticks_type n ){     
@@ -407,7 +407,7 @@ struct _timing_foundation :
 using waiting  = _timing_waiting_builder< _timing_foundation >;
 using clocking = _timing_clocking_builder< _timing_foundation >;
 
-}; // struct chip_sam3xa
+}; // struct chip_sam3x8e
 
 }; // namespace hwcpp
 

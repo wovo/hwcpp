@@ -4,14 +4,10 @@ HwCpp Targets
 <!--
 TO DO list
 - plain chip targets
-- uno timer-based delay
 - native: timing and uart?
 - complete the board descriptions
 - other name for blue brick
 - blue brick resources
-- uno I2C pins??
-- stm32f407 board
-- arduino nano
 - http://en.mxchip.com/product/wifi_product/38
 - exact type of uart, does it still have input??
 - kramdown.bat
@@ -24,7 +20,7 @@ TO DO list
 
 <!--
 nice, but markdown displays this as text :(
-<table border="1" style="border-collapse: collapse;" >
+<table cellpadding="5"  border="1" style="border-collapse: collapse;" >
 <style>
 table{
     border-collapse: collapse;
@@ -57,17 +53,17 @@ td{ border:1px solid #000000; padding: 5px; }
         [3.1.3 Clock](#toc-anchor-8)
         [3.1.4 Timing](#toc-anchor-9)
         [3.1.5 IO items](#toc-anchor-10)
-        [3.1.6 example](#toc-anchor-11)
+        [3.1.6 Example](#toc-anchor-11)
         [3.1.7 Resources](#toc-anchor-12)
 
-    - [3.2 atSam3x8e](#toc-anchor-13)
+    - [3.2 sam3x8e](#toc-anchor-13)
 
       - [3.2.1 Specifying this target](#toc-anchor-14)
         [3.2.2 Target properties](#toc-anchor-15)
         [3.2.3 Clock](#toc-anchor-16)
         [3.2.4 Timing](#toc-anchor-17)
         [3.2.5 IO items](#toc-anchor-18)
-        [3.2.6 example](#toc-anchor-19)
+        [3.2.6 Example](#toc-anchor-19)
         [3.2.7 Resources](#toc-anchor-20)
 
     - [3.3 stm32f103C8](#toc-anchor-21)
@@ -76,7 +72,7 @@ td{ border:1px solid #000000; padding: 5px; }
         [3.3.2 Target properties](#toc-anchor-23)
         [3.3.3 Clock](#toc-anchor-24)
         [3.3.4 IO items](#toc-anchor-25)
-        [3.3.5 example](#toc-anchor-26)
+        [3.3.5 Example](#toc-anchor-26)
         [3.3.6 Resources](#toc-anchor-27)
 
   - [4 Board targets](#toc-anchor-28)
@@ -87,7 +83,7 @@ td{ border:1px solid #000000; padding: 5px; }
         [4.1.2 Target properties](#toc-anchor-31)
         [4.1.3 Clock](#toc-anchor-32)
         [4.1.4 IO items](#toc-anchor-33)
-        [4.1.5 example](#toc-anchor-34)
+        [4.1.5 Example](#toc-anchor-34)
         [4.1.6 Resources](#toc-anchor-35)
 
     - [4.2 Arduino Due](#toc-anchor-36)
@@ -119,7 +115,8 @@ td{ border:1px solid #000000; padding: 5px; }
 
 This document describes the targets supported by HwCpp.
 A target is either a (micro-controller) chip, 
-or a board with such a chip (and probably some other items).
+or a board with such a chip (and probably some other items),
+or native.
 
 The preferred way to use HwCpp is to include hwcpp.hpp in
 the (single) source file, and specify the target on the
@@ -146,7 +143,7 @@ targets/hwcpp-chip-*target-name*.hpp file directly.
 
 ### 2.0.1 Specifying this target
 
-<table border="1" style="border-collapse: collapse;" >
+<table cellpadding="5" border="1" style="border-collapse: collapse;" >
 <tr><td>  bmptk makefile line           </td>
    <td>      TARGET := native                  </td></tr>
 <tr><td>  compiler command line define  </td>
@@ -159,7 +156,8 @@ targets/hwcpp-chip-*target-name*.hpp file directly.
 
 ### 2.0.2 Target properties
 
-HwCpp can build for the native target.
+HwCpp can build for the native target, which is the system
+(Windows or Linux) you are using.
 This might be useful for module tests, but is otherwise of little use.
 Currently, HwCpp offers nothing specific to the native target.
 
@@ -185,7 +183,7 @@ Currently, HwCpp offers nothing specific to the native target.
 
 ### 3.1.1 Specifying this target
 
-<table border="1" style="border-collapse: collapse;" >
+<table cellpadding="5" border="1" style="border-collapse: collapse;" >
 <tr><td>  bmptk makefile line           </td>
    <td>      TARGET := atmega328                  </td></tr>
 <tr><td>  compiler command line define  </td>
@@ -198,7 +196,7 @@ Currently, HwCpp offers nothing specific to the native target.
 
 ### 3.1.2 Target properties
 
-<table border="1" style="border-collapse: collapse;" >
+<table cellpadding="5" border="1" style="border-collapse: collapse;" >
 <tr><td>   RAM     </td><td>   2k          </td></tr>
 <tr><td>   FLASH   </td><td>  32k          </td></tr>
 <tr><td>   EEPROM  </td><td>   1k          </td></tr>
@@ -210,7 +208,8 @@ Currently, HwCpp offers nothing specific to the native target.
 
 This is an 8-bit AVR chip, popularized by the Arduino Uno.
 The AVR architecture has separate code and data address spaces.
-At C++ level this means that const data ends up in RAM 
+At C++ level this means that const data 
+(including literal struings!) ends up in RAM 
 (instead of in ROM) because
 pointers can only point into RAM, not into ROM.
 You can still store constant data in ROM (using 
@@ -224,12 +223,12 @@ or address it using special functions.
 
 The clock can be either internal (1 MHz or 8 Mhz) or external
 (Xtal up to 20 MHz). This is done in the configuration fuses,
-which are NOT under program control.
+which are not under program control.
 Hence the clock frequency has no default (it must specified explicitly), 
 and HwCpp assumes that you do this correctly.
 
-<table border="1" style="border-collapse: collapse;" >
-<tr><td rowspan="3"> supported clock parameter values </td>
+<table cellpadding="5" border="1" style="border-collapse: collapse;" >
+<tr><td rowspan="4"> supported clock parameter values </td>
        <td> 1'000'000  </td></tr>
    <tr><td> 8'000'000 </td></tr>
    <tr><td> 16'000'000 </td></tr>
@@ -247,7 +246,7 @@ the clock-based waiting is 50-100 clock ticks.
 Hence waiting-based timing might be attractive
 for applications that don't need the clocking service.
 
-<table border="1" style="border-collapse: collapse;" >
+<table cellpadding="5"  border="1" style="border-collapse: collapse;" >
 <tr>
    <th> Item name </th> 
    <th> HwCpp concept </th>
@@ -261,7 +260,7 @@ for applications that don't need the clocking service.
 
 ### 3.1.5 IO items
 
-<table border="1" style="border-collapse: collapse;" >
+<table cellpadding="5"  border="1" style="border-collapse: collapse;" >
 <tr>
    <th> Service </th>
    <th> Item name </th> 
@@ -293,7 +292,6 @@ for applications that don't need the clocking service.
 ### 3.1.6 Example
 
 <!-- update example( input, "atmega328/blink/main.cpp" ) -->
-
 ~~~C++
 #include "hwcpp.hpp"
 
@@ -318,31 +316,31 @@ int main( void ){
 <!-- -------------------------------------------------------------------- -->
 <!-- -------------------------------------------------------------------- -->
 
-<a name="atsam3x8e"></a>
+<a name="sam3x8e"></a>
 <a name="toc-anchor-13"></a>
 
-## 3.2 atSam3x8e
+## 3.2 sam3x8e
 
-![atsam3x8e chip](images/atsam3x8e.png)
+![sam3x8e chip](images/sam3x8e.png)
 
 <a name="toc-anchor-14"></a>
 
 ### 3.2.1 Specifying this target
 
-<table border="1" style="border-collapse: collapse;" >
+<table cellpadding="5"  border="1" style="border-collapse: collapse;" >
 <tr><td>  bmptk makefile line           </td>
-   <td>      TARGET := atsam3x8e                  </td></tr>
+   <td>      TARGET := sam3x8e                  </td></tr>
 <tr><td>  compiler command line define  </td>
-   <td>      -DHWCPP_TARGET_atsam3x8e             </td></tr>
+   <td>      -DHWCPP_TARGET_sam3x8e             </td></tr>
 <tr><td>  direct include                </td>
-   <td>      #include "hwcpp-target-atsam3x8e"    </td></tr>
+   <td>      #include "hwcpp-target-sam3x8e"    </td></tr>
 </table>
 
 <a name="toc-anchor-15"></a>
 
 ### 3.2.2 Target properties
 
-<table border="1" style="border-collapse: collapse;" >
+<table cellpadding="5"  border="1" style="border-collapse: collapse;" >
 <tr><td>   RAM     </td><td>   96k               </td></tr>
 <tr><td>   FLASH   </td><td>  256k               </td></tr>
 <tr><td>   GPIO    </td><td>   103               </td></tr>
@@ -362,7 +360,7 @@ With a 12 Mhz crystal and the PLL the clock can be set to 84 MHz
 by the application.
 The clock frequency has no default (it must specified explicitly).
 
-<table border="1" style="border-collapse: collapse;" >
+<table cellpadding="5"  border="1" style="border-collapse: collapse;" >
 <tr><td rowspan="2"> supported clock parameter values </td>
        <td> 8'000'000                           </td></tr>
    <tr><td> 84'000'000 (assumes 12MHz crystal)  </td></tr>
@@ -375,7 +373,7 @@ The clock frequency has no default (it must specified explicitly).
 Busy waiting and clock-based waiting are available.
 Both use the SysTick timer.
 
-<table border="1" style="border-collapse: collapse;" >
+<table cellpadding="5"  border="1" style="border-collapse: collapse;" >
 <tr>
    <th> Item name </th> 
    <th> HwCpp concept </th>
@@ -389,13 +387,46 @@ Both use the SysTick timer.
 
 ### 3.2.5 IO items
 
-=> TBW
+<table cellpadding="5"  border="1" style="border-collapse: collapse;" >
+<tr>
+   <th> Service </th>
+   <th> Item name </th> 
+   <th> HwCpp concept </th>
+   <th> Shares GPIO </th>
+</tr>  
+<tr><td> GPIO  </td><td> a0 .. a29, b0 .. b31, c0 .. c30, d0 .. d10  </td>
+   <td> pin_in_out </td><td></td></tr>
+<tr><td> ADC   </td><td> ad0 .. ad15  </td>
+   <td> adc<12>    </td><td> a2, a3, a4, a6, a22, a23, a24, a16, b17 .. b21 </td></tr>
+<tr><td rowspan="4"> I2C   </td>
+      <td> scl   </td><td> pin_oc  </td><td> b13  </td></tr>
+      <td> sda   </td><td> pin_oc  </td><td> b12  </td></tr>
+      <td> scl1  </td><td> pin_oc  </td><td> a18  </td></tr>
+  <tr><td> sda1  </td><td> pin_oc  </td><td> a17  </td></tr>
+<tr><td rowspan="3"> UART  </td>
+      <td> uart   </td>
+         <td> formatted char in-out stream  </td>
+            <td> d0, d1  </td></tr>
+  <tr><td> tx   </td><td> pin_out  </td><td> a9  </td></tr>
+  <tr><td> rx   </td><td> pin_in   </td><td> a8  </td></tr>
+</table>
+
+The analog input a15 is internally connected to the temperature sensor.
 
 <a name="toc-anchor-19"></a>
 
-### 3.2.6 example
+### 3.2.6 Example
 
-=> TBW
+<!-- update example( input, "sam3x8e/blink/main.cpp" ) -->
+~~~C++
+#include "hwcpp.hpp"
+
+using target = hwcpp::target< 84'000'000 >;
+
+int main( void ){
+   hwcpp::blink< target::b27, target::waiting::ms< 200 > >();
+}
+~~~
 
 <a name="toc-anchor-20"></a>
 
@@ -420,7 +451,7 @@ Both use the SysTick timer.
 
 ### 3.3.1 Specifying this target
 
-<table border="1" style="border-collapse: collapse;" >
+<table cellpadding="5"  border="1" style="border-collapse: collapse;" >
 <tr><td>  bmptk makefile line           </td>
    <td>      TARGET := stm32f103c8                </td></tr>
 <tr><td>  compiler command line define  </td>
@@ -433,7 +464,7 @@ Both use the SysTick timer.
 
 ### 3.3.2 Target properties
 
-<table border="1" style="border-collapse: collapse;" >
+<table cellpadding="5"  border="1" style="border-collapse: collapse;" >
 <tr><td>   RAM     </td><td>   20k               </td></tr>
 <tr><td>   FLASH   </td><td>   64k               </td></tr>
 <tr><td>   GPIO    </td><td>    37               </td></tr>
@@ -454,7 +485,7 @@ With an 8 Mhz crystal and the PLL the clock can be set to 72 MHz
 by the application.
 The clock frequency has no default (it must specified explicitly).
 
-<table border="1" style="border-collapse: collapse;" >
+<table cellpadding="5"  border="1" style="border-collapse: collapse;" >
 <tr><td rowspan="2"> supported clock parameter values </td>
        <td> 8'000'000                            </td></tr>
    <tr><td> 72'000'000 (assumes 12MHz crystal)   </td></tr>
@@ -463,7 +494,7 @@ The clock frequency has no default (it must specified explicitly).
 Busy waiting and clock-based waiting are available.
 Both use the SysTick timer.
 
-<table border="1" style="border-collapse: collapse;" >
+<table cellpadding="5"  border="1" style="border-collapse: collapse;" >
 <tr>
    <th> Item name </th> 
    <th> HwCpp concept </th>
@@ -481,7 +512,7 @@ Both use the SysTick timer.
 
 <a name="toc-anchor-26"></a>
 
-### 3.3.5 example
+### 3.3.5 Example
 
 => TBW
 
@@ -516,7 +547,7 @@ Both use the SysTick timer.
 
 ### 4.1.1 Specifying this target
 
-<table border="1" style="border-collapse: collapse;" >
+<table cellpadding="5"  border="1" style="border-collapse: collapse;" >
 <tr><td>  bmptk makefile line           </td>
    <td>      TARGET := arduino_uno                </td></tr>
 <tr><td>  compiler command line define  </td>
@@ -529,7 +560,7 @@ Both use the SysTick timer.
 
 ### 4.1.2 Target properties
 
-<table border="1" style="border-collapse: collapse;" >
+<table cellpadding="5"  border="1" style="border-collapse: collapse;" >
 <tr><td>  Micro-controller  </td>
    <td> <A HREF="#atmega328">atmega328</A> </td></tr>
 <tr><td>  Clock             </td><td> Xtal 16 MHz                </td></tr>
@@ -577,14 +608,14 @@ If you change the crystal or the clock fuses
 you could specify another frequency supported by the
 [atMega328](#atmega328) target.
 
-<table border="1" style="border-collapse: collapse;" >
+<table cellpadding="5"  border="1" style="border-collapse: collapse;" >
 <tr><td rowspan="1"> default clock parameter values </td>
        <td> 16'000'000                            </td></tr>
 </table>
 
 At the moment, only busy waiting is available.
 
-<table border="1" style="border-collapse: collapse;" >
+<table cellpadding="5"  border="1" style="border-collapse: collapse;" >
 <tr>
    <th> Item name </th> 
    <th> HwCpp concept </th>
@@ -597,7 +628,7 @@ At the moment, only busy waiting is available.
 
 ### 4.1.4 IO items
 
-<table border="1" style="border-collapse: collapse;" >
+<table cellpadding="5"  border="1" style="border-collapse: collapse;" >
 <tr>
    <th> Service </th>
    <th> Item name </th> 
@@ -625,7 +656,7 @@ of A/D inputs.)
 
 <a name="toc-anchor-34"></a>
 
-### 4.1.5 example
+### 4.1.5 Example
 
 => TBW
 
@@ -655,7 +686,7 @@ of A/D inputs.)
 
 ### 4.2.1 Specifying this target
 
-<table border="1" style="border-collapse: collapse;" >
+<table cellpadding="5"  border="1" style="border-collapse: collapse;" >
 <tr><td>  bmptk makefile line           </td>
    <td>      TARGET := arduino_due                </td></tr>
 <tr><td>  compiler command line define  </td>
@@ -668,9 +699,9 @@ of A/D inputs.)
 
 ### 4.2.2 Target properties
 
-<table border="1" style="border-collapse: collapse;" >
+<table cellpadding="5"  border="1" style="border-collapse: collapse;" >
 <tr><td>  Micro-controller  </td>
-   <td> <A HREF="#atsam3x8e">atsam3x8e</A>    </td></tr>
+   <td> <A HREF="#sam3x8e">sam3x8e</A>    </td></tr>
 <tr><td>  Clock             </td><td> Xtal 12 MHz => 84 MHz      </td></tr>
 <tr><td>  Digital IO pins   </td><td> d0 .. d76 (3.3V)           </td></tr>
 <tr><td>  Analog input pins </td><td> a0 .. a11 (overlap)        </td></tr>
@@ -680,16 +711,16 @@ of A/D inputs.)
 </table>
 
 This Arduino board has the same form factor as the Arduino Mega, 
-but uses the much more powerful atSam3xa Cortex-M3 micro-controller.
+but uses the much more powerful sam3xa Cortex-M3 micro-controller.
 Note that unlike the Mega the IO voltage of the Due is 3.3V.
 
 The connector pin names are the Arduino pin names, which
 have no relation with the chip pin names.
 
 The Due has two USB connectors. Both can be used to power the board.
-The 'native' USB connector connects directly to the atsam3x8e USB interface. 
+The 'native' USB connector connects directly to the sam3x8e USB interface. 
 The 'programming' USB connector connects to a dedicated AVR chip 
-that takes care of the USB interface and programming the atsam3x8e.
+that takes care of the USB interface and programming the sam3x8e.
 This programming process is started by setting the USB-serial interface
 to 1200 baud, so take care not to use that baudrate in your application.
 The programming process can be done hands-off. 
@@ -705,7 +736,7 @@ The chip starts on the 8 Mhz internal clock.
 With the 12 Mhz crystal and the PLL the clock can be set to 84 MHz,
 which is the default.
 
-<table border="1" style="border-collapse: collapse;" >
+<table cellpadding="5"  border="1" style="border-collapse: collapse;" >
 <tr><td rowspan="2"> supported clock parameter values </td>
        <td> 8'000'000                           </td></tr>
    <tr><td> 84'000'000 (default              )  </td></tr>
@@ -714,7 +745,7 @@ which is the default.
 Busy waiting and clock-based waiting are available.
 Both use the SysTick timer.
 
-<table border="1" style="border-collapse: collapse;" >
+<table cellpadding="5"  border="1" style="border-collapse: collapse;" >
 <tr>
    <th> Item name </th> 
    <th> HwCpp concept </th>
@@ -728,7 +759,7 @@ Both use the SysTick timer.
 
 ### 4.2.4 IO items
 
-<table border="1" style="border-collapse: collapse;" >
+<table cellpadding="5"  border="1" style="border-collapse: collapse;" >
 <tr>
    <th> Service </th>
    <th> Item name </th> 
@@ -761,7 +792,7 @@ Both use the SysTick timer.
 
 ### 4.2.5 Resources
 
-- [atsam3x8e target](#atsam3x8e)
+- [sam3x8e target](#sam3x8e)
 - [Due page at arduino.cc](https://store.arduino.cc/arduino-due)
 - [Reference schematic from arduino.cc](https://www.arduino.cc/en/uploads/Main/arduino-Due-schematic.pdf)
 - [Due pinout](images/arduino-due-pinout.png)
@@ -780,7 +811,7 @@ Both use the SysTick timer.
 
 ### 4.3.1 Specifying this target
 
-<table border="1" style="border-collapse: collapse;" >
+<table cellpadding="5"  border="1" style="border-collapse: collapse;" >
 <tr><td>  bmptk makefile line           </td>
    <td>      TARGET := blue_pill                  </td></tr>
 <tr><td>  compiler command line define  </td>
@@ -832,7 +863,7 @@ not straight.
 
 ### 4.4.1 Specifying this target
 
-<table border="1" style="border-collapse: collapse;" >
+<table cellpadding="5"  border="1" style="border-collapse: collapse;" >
 <tr><td>  bmptk makefile line           </td>
    <td>      TARGET := blue_brick                 </td></tr>
 <tr><td>  compiler command line define  </td>

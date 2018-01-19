@@ -20,9 +20,9 @@
    #include "targets/hwcpp-target-atmega328.hpp"
 #endif
 
-#ifdef HWCPP_TARGET_samx3a
+#ifdef HWCPP_TARGET_sam3x8e
    #define _HWCPP_TARGET_OK
-   #include "targets/hwcpp-target-samx3a.hpp"
+   #include "targets/hwcpp-target-sam3x8e.hpp"
 #endif
 
 #ifdef HWCPP_TARGET_arduino_uno

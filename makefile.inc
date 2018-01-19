@@ -111,13 +111,15 @@ HEADERS           += hwcpp-tests.hpp
 
 # HwCpp HAL files
 
-HEADERS           += hwcpp-chip-sam3xa.hpp 
+HEADERS           += hwcpp-chip-sam3x8e.hpp 
 HEADERS           += hwcpp-chip-sam3xa.inc
-HEADERS           += hwcpp-target-sam3xa.hpp 
+HEADERS           += hwcpp-target-sam3x8e.hpp 
 HEADERS           += hwcpp-target-arduino-due.hpp 
 
 HEADERS           += hwcpp-chip-atmega328.hpp 
 HEADERS           += hwcpp-target-atmega328.hpp 
+
+HEADERS           += hwcpp-target-sam3x8e.hpp 
 HEADERS           += hwcpp-target-arduino-uno.hpp 
 
 HEADERS           += hwcpp-chip-stm32f103.hpp 

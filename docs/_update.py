@@ -10,7 +10,7 @@ def example( input, file_name ):
    # open quote line
    line = input.pop( 0 )
    result.append( line )
-   if not line.startswith( "```" ):
+   if not line.startswith( "~~~" ):
       print( "no quote block after example call" )
       exit();
 
@@ -25,7 +25,7 @@ def example( input, file_name ):
 
    # skip quoted source lines
    line = input.pop( 0 )
-   while not line.startswith( "```" ):
+   while not line.startswith( "~~~" ):
       line = input.pop( 0 )   
    result.append( line )
    
@@ -144,7 +144,7 @@ def update( file_name ):
          else:
             f.write( line )   
  	
-update( "hwcpp-getting-started.md" )
-update( "hwcpp-primer.md" )
-update( "hwcpp-reference.md" )
+#update( "hwcpp-getting-started.md" )
+#update( "hwcpp-primer.md" )
+#update( "hwcpp-reference.md" )
 update( "hwcpp-targets.md" )

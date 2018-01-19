@@ -6,7 +6,7 @@
 //
 // ==========================================================================
 
-#include "hwcpp-chip-sam3xa.hpp"
+#include "hwcpp-chip-sam3x8e.hpp"
 
 namespace hwcpp {
    
@@ -15,7 +15,7 @@ struct target_arduino_due :
    chip_sam3xa< clock >    
 {       
     
-using chip = chip_sam3xa< clock >;
+using chip = chip_sam3x8e< clock >;
 
 #define make_pin_in_out( NAME, PORT, PIN)      \
    using NAME  = typename chip:: template      \
