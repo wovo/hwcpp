@@ -10,18 +10,19 @@ namespace hwcpp {
 template< is_i2c_bus bus, uint8_t address = 0x48 >
 struct ads1115 {
     
-   static void init(){
-      bus::init();
-   }
-   
    static void adr( uint8_t a ){
       uint8_t cmd[ 1 ] = { a };
       bus::write( address, cmd, 1 );
    }
    
-   static void wr( uint8_t a, uint8_t d ){
-      uint8_t cmd[ 2 ] = { a, d };
-      bus::write( address, cmd, 2 );
+   static void wr( uint8_t a, uint8_t d1, uint8_t d2 ){
+      uint8_t cmd[ 3 ] = { a, d1, d2 };
+      bus::write( address, cmd, 3 );
+   }
+   
+   static void init(){
+      bus::init();
+      wr( 1, 0x44, 0x83 );
    }
    
    static int get(){   

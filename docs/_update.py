@@ -8,7 +8,11 @@ def example( input, file_name ):
    result = []
    
    # open quote line
-   result.append( input.pop( 0 ) )
+   line = input.pop( 0 )
+   result.append( line )
+   if not line.startswith( "```" ):
+      print( "no quote block after example call" )
+      exit();
 
    # insert the quoted file
    with open( example_files_path + file_name, "r" ) as f:
@@ -20,7 +24,7 @@ def example( input, file_name ):
    # result.append( "example[%s]" % file_name )
 
    # skip quoted source lines
-   line = input.pop( 0 )		 
+   line = input.pop( 0 )
    while not line.startswith( "```" ):
       line = input.pop( 0 )   
    result.append( line )
@@ -53,7 +57,7 @@ def num_add( num, n ):
       num.pop()
    while len( num ) < n:
       num.append( 0 )
-   # print( n, num )
+   print( n, num )
    num[ n - 1 ] = num[ n - 1 ] + 1
    return num
 

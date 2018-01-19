@@ -294,6 +294,16 @@ for applications that don't need the clocking service.
 
 <!-- update example( input, "atmega328/blink/main.cpp" ) -->
 
+```C++
+#include "hwcpp.hpp"
+
+using target = hwcpp::target< 16'000'000 >;
+
+int main( void ){
+   hwcpp::blink< target::b5, target::waiting::ms< 200 > >();
+}
+```
+
 <a name="toc-anchor-12"></a>
 
 ### 3.1.7 Resources
