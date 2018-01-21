@@ -18,10 +18,16 @@
       <Project Name="empty" ConfigName="Release"/>
     </WorkspaceConfiguration>
   </BuildMatrix>
-  <Project Name="fast-toggle" Path="fast-toggle/_codelite.project" Active="Yes"/>
+  <Project Name="fast-toggle" Path="fast-toggle/_codelite.project" Active="No"/>
   <BuildMatrix>
     <WorkspaceConfiguration Name="Release" Selected="yes">
       <Project Name="fast-toggle" ConfigName="Release"/>
+    </WorkspaceConfiguration>
+  </BuildMatrix>
+  <Project Name="hello" Path="hello/_codelite.project" Active="Yes"/>
+  <BuildMatrix>
+    <WorkspaceConfiguration Name="Release" Selected="yes">
+      <Project Name="hello" ConfigName="Release"/>
     </WorkspaceConfiguration>
   </BuildMatrix>
   <Project Name="kitt7" Path="kitt7/_codelite.project" Active="No"/>

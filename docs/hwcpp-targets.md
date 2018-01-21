@@ -3,8 +3,11 @@ HwCpp Targets
 
 <!--
 TO DO list
-- plain chip targets
-- native: timing and uart?
+- <p style="page-break-before: always;">&nbsp;</p>
+- stm32 adc
+- stm32 uart
+- front page, picture, copyright, version
+- plain chip target linux
 - complete the board descriptions
 - other name for blue brick
 - blue brick resources
@@ -34,6 +37,64 @@ td{ border:1px solid #000000; padding: 5px; }
 -->
 
 <!-- update example_path( "../demo/" ) -->
+
+
+*****************************************************************************
+
+<a name="toc-anchor-0"></a>
+
+# 1 Introduction
+
+This document describes the targets supported by HwCpp.
+A target is either a (micro-controller) chip, 
+or a board with such a chip (and probably some other items),
+or native.
+
+The preferred way to use HwCpp is to include hwcpp.hpp in
+the (single) source file, and specify the target on the
+compiler command line as -DHWCPP_TARGET_*target_name*
+
+When bmptk is used, the target is specified in the Makefile as
+
+TARGET := *target_name*
+
+and bmptk will put the appropriate define on the command line.
+
+This makes it possible to use the same source for different targets,
+provided that they offer the same resources under the same names. 
+The folowing code will blink the LED on any traget board that
+has a default clock frequency and a default LED.
+
+<!-- update example( input, "arduino-due/blink/main.cpp" ) -->
+~~~C++
+#include "hwcpp.hpp"
+
+using target = hwcpp::target<>;
+
+int main( void ){
+   hwcpp::blink< target::b5, target::waiting::ms< 200 > >();
+}
+~~~
+
+Alternatively, the application source file can include the 
+targets/hwcpp-chip-*target-name*.hpp file directly.
+This makes the source explicitly state its target.
+
+<!-- update example( input, "arduino-due/blink-explicit-target/main.cpp" ) -->
+~~~C++
+#include "hwcpp.hpp"
+
+using target = hwcpp::target<>;
+
+int main( void ){
+   hwcpp::blink< target::b5, target::waiting::ms< 200 > >();
+}
+~~~
+
+
+*****************************************************************************
+
+# Content
 
 <!-- update table_of_contents( input, 3 ) -->
 
@@ -66,7 +127,7 @@ td{ border:1px solid #000000; padding: 5px; }
         [3.2.6 Example](#toc-anchor-19)
         [3.2.7 Resources](#toc-anchor-20)
 
-    - [3.3 stm32f103C8](#toc-anchor-21)
+    - [3.3 stm32f103c8](#toc-anchor-21)
 
       - [3.3.1 Specifying this target](#toc-anchor-22)
         [3.3.2 Target properties](#toc-anchor-23)
@@ -106,34 +167,8 @@ td{ border:1px solid #000000; padding: 5px; }
 
 <!-- update end -->
 
-<!-- -------------------------------------------------------------------- -->
-<!-- -------------------------------------------------------------------- -->
 
-<a name="toc-anchor-0"></a>
-
-# 1 Introduction
-
-This document describes the targets supported by HwCpp.
-A target is either a (micro-controller) chip, 
-or a board with such a chip (and probably some other items),
-or native.
-
-The preferred way to use HwCpp is to include hwcpp.hpp in
-the (single) source file, and specify the target on the
-compiler command line as -DHWCPP_TARGET_*target_name*
-
-When bmptk is used, the target is specified in the Makefile as
-
-TARGET := *target_name*
-
-and bmptk will put the appropriate define on the command line.
-
-Alternatively, the application source file can include the 
-targets/hwcpp-chip-*target-name*.hpp file directly.
-
-
-<!-- -------------------------------------------------------------------- -->
-<!-- -------------------------------------------------------------------- -->
+*****************************************************************************
 
 <a name="toc-anchor-1"></a>
 
@@ -157,20 +192,34 @@ targets/hwcpp-chip-*target-name*.hpp file directly.
 ### 2.0.2 Target properties
 
 HwCpp can build for the native target, which is the system
-(Windows or Linux) you are using.
+(Windows. Linux is not yet supported) you are using.
 This might be useful for module tests, but is otherwise of little use.
-Currently, HwCpp offers nothing specific to the native target.
+
+For compatibility with other targets, a clocking timing service and a
+uart are provided.
+
+### 3.1.6 Example
+
+<!-- update example( input, "native/hello/main.cpp" ) -->
+~~~C++
+#include "hwcpp.hpp"
+
+using target = hwcpp::target< 16'000'000 >;
+
+int main( void ){
+   hwcpp::blink< target::b5, target::waiting::ms< 200 > >();
+}
+~~~
 
 
-<!-- -------------------------------------------------------------------- -->
-<!-- -------------------------------------------------------------------- -->
+*****************************************************************************
 
 <a name="toc-anchor-4"></a>
 
 # 3 Chip targets
 
-<!-- -------------------------------------------------------------------- -->
-<!-- -------------------------------------------------------------------- -->
+
+*****************************************************************************
 
 <a name="atmega328"></a>
 <a name="toc-anchor-5"></a>
@@ -201,12 +250,14 @@ Currently, HwCpp offers nothing specific to the native target.
 <tr><td>   FLASH   </td><td>  32k          </td></tr>
 <tr><td>   EEPROM  </td><td>   1k          </td></tr>
 <tr><td>   GPIO    </td><td>   23          </td></tr>
+<tr><td>   ADC     </td><td>   6 x 10 bit  </td></tr>
 <tr><td>   CPU     </td><td>   8 bit AVR   </td></tr>
 <tr><td>   CLOCK   </td>
    <td>   up to 8 MHz internal, up to 20 MHz Xtal    </td></tr>
 </table>
 
 This is an 8-bit AVR chip, popularized by the Arduino Uno.
+
 The AVR architecture has separate code and data address spaces.
 At C++ level this means that const data 
 (including literal struings!) ends up in RAM 
@@ -216,6 +267,11 @@ You can still store constant data in ROM (using
 [PROGMEM](http://www.nongnu.org/avr-libc/user-manual/pgmspace.html) ), 
 but you must copy it to RAM before use, 
 or address it using special functions. 
+
+The AVR compile doesn't implement C++ exceptions, it must be used with
+the -fnoexceptions option. 
+This is fine for HwCpp, which doesn't use exceptions, 
+but it means that the application code can't use exceptions either.
 
 <a name="toc-anchor-8"></a>
 
@@ -235,6 +291,7 @@ and HwCpp assumes that you do this correctly.
    <tr><td> 20'000'000 </td></tr>
 </table>
 
+[a name="atmega328-timing"]
 <a name="toc-anchor-9"></a>
 
 ### 3.1.4 Timing
@@ -313,8 +370,7 @@ int main( void ){
 - [GCC for AVR8](http://blog.zakkemble.co.uk/avr-gcc-builds/)
 
 
-<!-- -------------------------------------------------------------------- -->
-<!-- -------------------------------------------------------------------- -->
+*****************************************************************************
 
 <a name="sam3x8e"></a>
 <a name="toc-anchor-13"></a>
@@ -344,12 +400,17 @@ int main( void ){
 <tr><td>   RAM     </td><td>   96k               </td></tr>
 <tr><td>   FLASH   </td><td>  256k               </td></tr>
 <tr><td>   GPIO    </td><td>   103               </td></tr>
+<tr><td>   ADC     </td><td>   15 x 12 bit       </td></tr>
 <tr><td>   CPU     </td><td>  32 bit Cortex-M3   </td></tr>
 <tr><td>   CLOCK   </td>
    <td>   8 MHz internal, up to 84 MHz with Xtal and PLL  </td></tr>
 </table>
 
 This is a 32-bit Cortex-M3 chip, popularized by the Arduino Due.
+
+The target has a watchdog that is enabled at startup. 
+Calling the target's init() function (directly or via the init() of
+one of the services) disables the watchdog.
 
 <a name="toc-anchor-16"></a>
 
@@ -400,8 +461,8 @@ Both use the SysTick timer.
    <td> adc<12>    </td><td> a2, a3, a4, a6, a22, a23, a24, a16, b17 .. b21 </td></tr>
 <tr><td rowspan="4"> I2C   </td>
       <td> scl   </td><td> pin_oc  </td><td> b13  </td></tr>
-      <td> sda   </td><td> pin_oc  </td><td> b12  </td></tr>
-      <td> scl1  </td><td> pin_oc  </td><td> a18  </td></tr>
+  <tr><td> sda   </td><td> pin_oc  </td><td> b12  </td></tr>
+  <tr><td> scl1  </td><td> pin_oc  </td><td> a18  </td></tr>
   <tr><td> sda1  </td><td> pin_oc  </td><td> a17  </td></tr>
 <tr><td rowspan="3"> UART  </td>
       <td> uart   </td>
@@ -433,19 +494,18 @@ int main( void ){
 ### 3.2.7 Resources
 
 - [Manufacturer's page](http://www.microchip.com/wwwproducts/en/ATsam3x8e)
-- [SAM3X/SAM3A series datasheet](http://ww1.microchip.com/downloads/en/DeviceDoc/Atmel-11057-32-bit-Cortex-M3-Microcontroller-SAM3X-SAM3A_Datasheet.pdf)
+- [sam3x/sam3a series datasheet](http://ww1.microchip.com/downloads/en/DeviceDoc/Atmel-11057-32-bit-Cortex-M3-Microcontroller-SAM3X-SAM3A_Datasheet.pdf)
 - [GCC for ARM/Cortex](http://gnutoolchains.com/arm-eabi/)
 
 
-<!-- -------------------------------------------------------------------- -->
-<!-- -------------------------------------------------------------------- -->
+*****************************************************************************
 
 <a name="stm32f103c8"></a>
 <a name="toc-anchor-21"></a>
 
-## 3.3 stm32f103C8
+## 3.3 stm32f103c8
 
-![stm32f103C8 chip](images/stm32f103c8.png)
+![stm32f103c8 chip](images/stm32f103c8.png)
 
 <a name="toc-anchor-22"></a>
 
@@ -468,6 +528,7 @@ int main( void ){
 <tr><td>   RAM     </td><td>   20k               </td></tr>
 <tr><td>   FLASH   </td><td>   64k               </td></tr>
 <tr><td>   GPIO    </td><td>    37               </td></tr>
+<tr><td>   ADC     </td><td>  10 x 12 bit        </td></tr>
 <tr><td>   CPU     </td><td>  32 bit Cortex-M3   </td></tr>
 <tr><td>   CLOCK   </td>
    <td>   8 MHz internal, up to 72 MHz with Xtal and PLL  </td></tr>
@@ -491,6 +552,10 @@ The clock frequency has no default (it must specified explicitly).
    <tr><td> 72'000'000 (assumes 12MHz crystal)   </td></tr>
 </table>
 
+<a name="toc-anchor-9"></a>
+
+### 3.1.4 Timing
+
 Busy waiting and clock-based waiting are available.
 Both use the SysTick timer.
 
@@ -508,34 +573,59 @@ Both use the SysTick timer.
 
 ### 3.3.4 IO items
 
-=> TBW
+<table cellpadding="5"  border="1" style="border-collapse: collapse;" >
+<tr>
+   <th> Service </th>
+   <th> Item name </th> 
+   <th> HwCpp concept </th>
+   <th> Shares GPIO </th>
+</tr>  
+<tr><td> GPIO  </td><td> a0 .. a15, b0 .. b15, c13 </td>
+   <td> pin_in_out </td><td></td></tr>
+<tr><td> ADC   </td><td> ad0 .. ad15  </td>
+   <td> adc<12>    </td><td> ? </td></tr>
+<tr><td rowspan="3"> UART  </td>
+      <td> uart   </td>
+         <td> formatted char in-out stream  </td>
+            <td> d0, d1  </td></tr>
+  <tr><td> tx   </td><td> pin_out  </td><td> a9  </td></tr>
+  <tr><td> rx   </td><td> pin_in   </td><td> a10  </td></tr>
+</table>
 
 <a name="toc-anchor-26"></a>
 
 ### 3.3.5 Example
 
-=> TBW
+<!-- update example( input, "stm32f103c8/blink/main.cpp" ) -->
+~~~C++
+#include "hwcpp.hpp"
+
+using target = hwcpp::target< 84'000'000 >;
+
+int main( void ){
+   hwcpp::blink< target::b27, target::waiting::ms< 200 > >();
+}
+~~~
 
 <a name="toc-anchor-27"></a>
 
 ### 3.3.6 Resources
 
 - [Manufacturer's page](http://www.st.com/en/microcontrollers/stm32f103c8.html)
-- [stm32f103C8 datasheet](http://www.st.com/content/ccc/resource/technical/document/datasheet/33/d4/6f/1d/df/0b/4c/6d/CD00161566.pdf/files/CD00161566.pdf/jcr:content/translations/en.CD00161566.pdf)
-- [stm32f103C8 reference manual](http://www.st.com/content/ccc/resource/technical/document/reference_manual/59/b9/ba/7f/11/af/43/d5/CD00171190.pdf/files/CD00171190.pdf/jcr:content/translations/en.CD00171190.pdf)
-- [stm32f103C8 product specification](http://www.st.com/content/ccc/resource/technical/document/datasheet/33/d4/6f/1d/df/0b/4c/6d/CD00161566.pdf/files/CD00161566.pdf/jcr:content/translations/en.CD00161566.pdf)
+- [stm32f103c8 datasheet](http://www.st.com/content/ccc/resource/technical/document/datasheet/33/d4/6f/1d/df/0b/4c/6d/CD00161566.pdf/files/CD00161566.pdf/jcr:content/translations/en.CD00161566.pdf)
+- [stm32f103c8 reference manual](http://www.st.com/content/ccc/resource/technical/document/reference_manual/59/b9/ba/7f/11/af/43/d5/CD00171190.pdf/files/CD00171190.pdf/jcr:content/translations/en.CD00171190.pdf)
+- [stm32f103c8 product specification](http://www.st.com/content/ccc/resource/technical/document/datasheet/33/d4/6f/1d/df/0b/4c/6d/CD00161566.pdf/files/CD00161566.pdf/jcr:content/translations/en.CD00161566.pdf)
 - [GCC for ARM/Cortex](http://gnutoolchains.com/arm-eabi/)
 
 
-<!-- -------------------------------------------------------------------- -->
-<!-- -------------------------------------------------------------------- -->
+*****************************************************************************
 
 <a name="toc-anchor-28"></a>
 
 # 4 Board targets
 
-<!-- -------------------------------------------------------------------- -->
-<!-- -------------------------------------------------------------------- -->
+
+*****************************************************************************
 
 <a name="toc-anchor-29"></a>
 
@@ -588,15 +678,15 @@ by the RTS and DTR lines of the serial interface.
 
 ![Arduino Nano board](images/arduino-nano.png)
 
-The Arduino Nano is essentially the Arduino Uno but on a small
-DIP-style PCB, and without the DC power option. 
+The Arduino Nano is essentially the Arduino Uno on a small
+DIP-style PCB, without the DC power option. 
 It can be used with the HwCpp Arduino Uno target.
 
 - Nano's are often shipped without the Arduino bootloader:
   In that case you can use the Arduino IDE and a programmer 
   (for instance an USBAsp) to download the bootloader.
-- Beside the standard 5V/16MHz Nano there is also a version
-  with an 8MHz crystal that is meant to be used at 3.3V.
+- Beside the standard 5V/16MHz Nano there is a version
+  with an 8MHz crystal that can be used at 3.3V.
 
 <a name="toc-anchor-32"></a>
 
@@ -609,19 +699,26 @@ you could specify another frequency supported by the
 [atMega328](#atmega328) target.
 
 <table cellpadding="5"  border="1" style="border-collapse: collapse;" >
-<tr><td rowspan="1"> default clock parameter values </td>
-       <td> 16'000'000                            </td></tr>
+<tr><td rowspan="1"> supported clock parameter values </td>
+       <td> 16'000'000 (default) </td></tr>
 </table>
 
-At the moment, only busy waiting is available.
+<a name="toc-anchor-9"></a>
+
+### 3.1.4 Timing
+
+Busy waiting and clock-based waiting are available.
+Check the [atmega328 timing](#atmega328-timing) section
+for more information.
 
 <table cellpadding="5"  border="1" style="border-collapse: collapse;" >
 <tr>
    <th> Item name </th> 
    <th> HwCpp concept </th>
 </tr>  
-<tr><td> timing   </td><td> waiting </td></tr>
-<tr><td> waiting  </td><td> waiting </td></tr>
+<tr><td> timing    </td><td> clocking  </td></tr>
+<tr><td> waiting   </td><td> waiting   </td></tr>
+<tr><td> clocking  </td><td> clocking  </td></tr>
 </table>
 
 <a name="toc-anchor-33"></a>
@@ -658,7 +755,16 @@ of A/D inputs.)
 
 ### 4.1.5 Example
 
-=> TBW
+<!-- update example( input, "arduino-uno/blink/main.cpp" ) -->
+~~~C++
+#include "hwcpp.hpp"
+
+using target = hwcpp::target< 84'000'000 >;
+
+int main( void ){
+   hwcpp::blink< target::b27, target::waiting::ms< 200 > >();
+}
+~~~
 
 <a name="toc-anchor-35"></a>
 
@@ -666,15 +772,12 @@ of A/D inputs.)
 
 - [atMega328 target](#atmega328)
 - [Uno page at arduino.cc](https://store.arduino.cc/usa/arduino-uno-rev3)
-- [Reference schematic from arduino.cc](https://www.arduino.cc/en/uploads/Main/arduino-uno-schematic.pdf)
-- [Uno pinout](images/arduino-uno-pinout.png)
-- [Nano pinout](images/arduino-nano-pinout.png)
+- [Arduino uno reference schematic from arduino.cc](https://www.arduino.cc/en/uploads/Main/arduino-uno-schematic.pdf)
+- [Arduino uno pinout](images/arduino-uno-pinout.png)
+- [Arduino nano pinout](images/arduino-nano-pinout.png)
 
 
-<!-- -------------------------------------------------------------------- -->
-<!-- -------------------------------------------------------------------- -->
-
-
+*****************************************************************************
 
 <a name="toc-anchor-36"></a>
 
@@ -742,6 +845,10 @@ which is the default.
    <tr><td> 84'000'000 (default              )  </td></tr>
 </table>
 
+<a name="toc-anchor-9"></a>
+
+### 3.1.4 Timing
+
 Busy waiting and clock-based waiting are available.
 Both use the SysTick timer.
 
@@ -788,18 +895,32 @@ Both use the SysTick timer.
       <td> led   </td><td> pin_out  </td><td> d13  </td></tr>
 </table>
 
+<a name="toc-anchor-34"></a>
+
+### 4.1.5 Example
+
+<!-- update example( input, "arduino-due/blink/main.cpp" ) -->
+~~~C++
+#include "hwcpp.hpp"
+
+using target = hwcpp::target< 84'000'000 >;
+
+int main( void ){
+   hwcpp::blink< target::b27, target::waiting::ms< 200 > >();
+}
+~~~
+
 <a name="toc-anchor-41"></a>
 
 ### 4.2.5 Resources
 
 - [sam3x8e target](#sam3x8e)
 - [Due page at arduino.cc](https://store.arduino.cc/arduino-due)
-- [Reference schematic from arduino.cc](https://www.arduino.cc/en/uploads/Main/arduino-Due-schematic.pdf)
-- [Due pinout](images/arduino-due-pinout.png)
+- [Arduino due reference schematic from arduino.cc](https://www.arduino.cc/en/uploads/Main/arduino-Due-schematic.pdf)
+- [Arduino due pinout](images/arduino-due-pinout.png)
 
 
-<!-- -------------------------------------------------------------------- -->
-<!-- -------------------------------------------------------------------- -->
+*****************************************************************************
 
 <a name="toc-anchor-42"></a>
 
@@ -820,8 +941,23 @@ Both use the SysTick timer.
    <td>      #include "hwcpp-target-blue-pill"    </td></tr>
 </table>
 
+<a name="toc-anchor-38"></a>
+
+### 4.2.2 Target properties
+
+<table cellpadding="5"  border="1" style="border-collapse: collapse;" >
+<tr><td>  Micro-controller  </td>
+   <td> <A HREF="#sam3x8e">sam3x8e</A>    </td></tr>
+<tr><td>  Clock             </td><td> Xtal  8 MHz => 72 MHz      </td></tr>
+<tr><td>  Digital IO pins   </td><td> d0 .. a15, b0, b1, b3 .. b15, c13 (3.3V) </td></tr>
+<tr><td>  Analog input pins </td><td> a0 .. a11 (overlap)        </td></tr>
+<tr><td>  Downloading       </td><td> serial, programmer         </td></tr>
+<tr><td>  Power             </td><td> USB, direct (5V, 3.3V)     </td></tr>
+<tr><td>  Peripherals       </td><td> LED                        </td></tr>
+</table>
+
 This is a popular and very cheap board with the 
-stm32f103C8 micro-controller. 
+stm32f103c8 micro-controller. 
 
 The board has a micro-usb connector which is connected to the
 chip's USB slave pins and can power the board,  but
@@ -837,7 +973,94 @@ My preferred way to program this board is using a
 This requires a four-wire connection, which is (unfortunately)
 not straight.
 
-=> TWB picture of connection
+![Blue Pill board](images/blue-pill-programming.png)
+
+The board has no direct way to do serial communication with the host.
+A simple way to add this is to use a cheap usb-serial converter.
+I prefer the kind that has a 3.3V/5V jumper to select the interface
+voltage. 
+The Tx and Rx pins happen to be in the right position 
+for a direct connection
+(assuming that the ground is provided by the programmer).
+
+
+### 4.2.3 Clock
+
+The chip starts on the 8 Mhz internal clock.
+With the 12 Mhz crystal and the PLL the clock can be set to 84 MHz,
+which is the default.
+
+<table cellpadding="5"  border="1" style="border-collapse: collapse;" >
+<tr><td rowspan="2"> supported clock parameter values </td>
+       <td> 8'000'000                           </td></tr>
+   <tr><td> 84'000'000 (default              )  </td></tr>
+</table>
+
+<a name="toc-anchor-9"></a>
+
+### 3.1.4 Timing
+
+Busy waiting and clock-based waiting are available.
+Both use the SysTick timer.
+
+<table cellpadding="5"  border="1" style="border-collapse: collapse;" >
+<tr>
+   <th> Item name </th> 
+   <th> HwCpp concept </th>
+</tr>  
+<tr><td> timing    </td><td> clocking  </td></tr>
+<tr><td> waiting   </td><td> waiting   </td></tr>
+<tr><td> clocking  </td><td> clocking  </td></tr>
+</table>
+
+<a name="toc-anchor-40"></a>
+
+### 4.2.4 IO items
+
+<table cellpadding="5"  border="1" style="border-collapse: collapse;" >
+<tr>
+   <th> Service </th>
+   <th> Item name </th> 
+   <th> HwCpp concept </th>
+   <th> Shares GPIO </th>
+</tr>  
+<tr><td> GPIO  </td><td> d0 .. d76  </td>
+   <td> pin_in_out </td><td></td></tr>
+<tr><td> ADC   </td><td> a0 .. a11  </td>
+   <td> adc<12>    </td><td> d54 .. d65 </td></tr>
+<tr><td rowspan="2"> UART </td>
+      <td> tx   </td><td> pin_out  </td><td> d1  </td></tr>
+  <tr><td> rx   </td><td> pin_in   </td><td> d0  </td></tr>
+<tr><td rowspan="4"> I2C </td>
+      <td> scl   </td><td> pin_oc   </td><td> d21  </td></tr>
+  <tr><td> sda   </td><td> pin_oc   </td><td> d20  </td></tr>
+  <tr><td> scl1  </td><td> pin_oc   </td><td> d71  </td></tr>
+  <tr><td> sda1  </td><td> pin_oc   </td><td> d70  </td></tr>
+<tr><td rowspan="5"> SPI </td>
+      <td> sck   </td><td> pin_out  </td><td> d74  </td></tr>
+  <tr><td> miso  </td><td> pin_in   </td><td> d76  </td></tr>
+  <tr><td> mosi  </td><td> pin_out  </td><td> d75  </td></tr>
+  <tr><td> cs0   </td><td> pin_out  </td><td> d10  </td></tr>
+  <tr><td> cs1   </td><td> pin_out  </td><td> d4  </td></tr>
+<tr><td> LED </td>
+      <td> led   </td><td> pin_out  </td><td> d13  </td></tr>
+</table>
+
+<a name="toc-anchor-34"></a>
+
+### 4.1.5 Example
+
+<!-- update example( input, "arduino-due/blink/main.cpp" ) -->
+~~~C++
+#include "hwcpp.hpp"
+
+using target = hwcpp::target< 84'000'000 >;
+
+int main( void ){
+   hwcpp::blink< target::b27, target::waiting::ms< 200 > >();
+}
+~~~
+
 
 <a name="toc-anchor-44"></a>
 
@@ -846,12 +1069,11 @@ not straight.
 - [stm32f103c8 target](#stm32f103c8)
 - [Wiki page](http://wiki.stm32duino.com/index.php?title=Blue_Pill)
 - [Programming with an ST-LINK V2](https://github.com/rogerclarkmelbourne/Arduino_STM32/wiki/Programming-an-STM32F103XXX-with-a-generic-"ST-Link-V2"-programmer-from-Linux)
-- [Reference schematic](images/blue-pill-circuit.png)
+- [Blue pill reference schematic](images/blue-pill-circuit.png)
 - [Blue pill pinout](images/blue-pill-pinout.png)
 
 
-<!-- -------------------------------------------------------------------- -->
-<!-- -------------------------------------------------------------------- -->
+*****************************************************************************
 
 <a name="toc-anchor-45"></a>
 
@@ -878,7 +1100,7 @@ TF-card, 8-pin FLASH chip,
 ESP8266, NRF24L01, SW1053/W5500, OLED/TFT, bluetooth serial
 
 This is a no-name board that is available on various sites. 
-It uses the same stm32f103C8 chip as the Blue Pill, hence
+It uses the same stm32f103c8 chip as the Blue Pill, hence
 I call it the Blue Brick. 
 The main attraction of this board it that has some on-board 
 peripherals (which can either be present or not),

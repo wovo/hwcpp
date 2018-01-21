@@ -6,21 +6,21 @@
 //
 // ==========================================================================
 
-#include "hwcpp-chip-stm32f103.hpp"
+#include "hwcpp-chip-stm32f103c8.hpp"
 
 namespace hwcpp {
     
 template< uint64_t clock >
 struct target_blue_pill :
-   chip_stm32f103< clock >    
+   chip_stm32f103c8< clock >    
 {       
 	
-   using chip = chip_stm32f103< clock >;
+   using chip = chip_stm32f103c8< clock >;
 	
 // ========= chip pins ==========
 
 #define make_pin_in_out( NAME, PORT, PIN ) \
-   using NAME  = typename chip:: template pin_in_out< chip::port::PORT, PIN >
+   using NAME  = typename chip:: template _pin_in_out< chip::_port::PORT, PIN >
 
    make_pin_in_out(   a0,  a,   0 );
    make_pin_in_out(   a1,  a,   1 );

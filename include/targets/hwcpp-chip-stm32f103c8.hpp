@@ -29,7 +29,7 @@ void HWLIB_RAM_FUNCTION stm32_ram_busy_delay( int32_t n ){
 }   
 
 template< uint64_t clock >
-struct chip_stm32f103 {
+struct chip_stm32f103c8 {
 	
 static constexpr uint64_t HWLIB_INLINE mask( int size ){
    return ( 0x01 << ( size + 1 )) - 1;
@@ -91,7 +91,9 @@ static void init(){
    // enable the clock to all GPIO ports	
    RCC->APB2ENR |= 
       RCC_APB2ENR_IOPAEN | RCC_APB2ENR_IOPBEN | 
-      RCC_APB2ENR_IOPCEN | RCC_APB2ENR_IOPDEN;	
+      RCC_APB2ENR_IOPCEN | RCC_APB2ENR_IOPDEN |
+      RCC_APB2ENR_AFIOEN |
+      RCC_APB2ENR_USART1EN;	
 	  
    // start the systick timer      
    SysTick->CTRL  = 0;         // stop the timer
@@ -109,21 +111,21 @@ static void init(){
 //
 // ==========================================================================
 
-enum class port {
+enum class _port {
    a,
    b, 
    c, 
    d
 };	
 
-static constexpr GPIO_TypeDef * port_block[] = { 
+static constexpr GPIO_TypeDef * _port_block[] = { 
    (GPIO_TypeDef *) GPIOA_BASE,
    (GPIO_TypeDef *) GPIOB_BASE,
    (GPIO_TypeDef *) GPIOC_BASE,
    (GPIO_TypeDef *) GPIOD_BASE
 };
 
-template< port p, uint32_t pin >
+template< _port p, uint32_t pin >
 struct _pin_in_out_foundation : 
    _pin_in_out_root 
 {
@@ -134,15 +136,15 @@ struct _pin_in_out_foundation :
    static void config( uint32_t v ){
       auto volatile & config_word = 
 	     ( pin < 8 ) 
-		    ? port_block[ (int) p ]->CRL 
-			: port_block[ (int) p ]->CRH;	   
+		    ? _port_block[ (int) p ]->CRL 
+			: _port_block[ (int) p ]->CRH;	   
       config_word = 
 	     ( v << config_offset ) 
 		 | ( config_word & ~( 0xF << config_offset ));
    }	   
 	
    static void HWLIB_INLINE init(){
-      hwcpp::chip_stm32f103< clock >::init();   
+      hwcpp::chip_stm32f103c8< clock >::init();   
    }
   
    static void HWLIB_INLINE direction_set_direct( pin_direction d ){
@@ -150,18 +152,76 @@ struct _pin_in_out_foundation :
    }
    
    static void HWLIB_INLINE set_direct( bool v ){
-      port_block[ (int) p ]->BSRR = ( v ? mask : ( mask << 16 ));	   
+      _port_block[ (int) p ]->BSRR = ( v ? mask : ( mask << 16 ));	   
    }
 
    static bool HWLIB_INLINE get_direct(){
-      return (( port_block[ (int) p ]->IDR & mask ) != 0 );   
+      return (( _port_block[ (int) p ]->IDR & mask ) != 0 );   
    }
 };
 
 // ========= GPIO constructor used in the actual targets
 
-template< port p, uint32_t pin >
-using pin_in_out = _box_builder< _pin_in_out_foundation< p, pin > >;	
+template< _port p, uint32_t pin >
+using _pin_in_out = _box_builder< _pin_in_out_foundation< p, pin > >;	
+
+
+// ==========================================================================
+//
+// LIBRARY-INTERNAL
+//
+// UART
+//
+// ==========================================================================
+
+struct _uart_foundation :
+   _stream_out_root< char >,
+   _stream_in_root< char >
+{
+    
+   using value_type = char; // would otherwise be ambiguous
+	
+   static void init(){   
+       
+      // don't do this over and over	
+      _HWCPP_RUN_ONCE;       
+	   
+      //gpio_set_outmode(GPIO_PORT_A, GPIO_PIN9, GPIO_ALT_PUSHPULL, GPIO_OUT_50M);
+      
+  // Config Alternate Function
+  AFIO->MAPR     &= ~(1<<2);
+
+  // Config GPIO A
+  GPIOA->CRH     &= ~(0xFFUL << 4);
+  GPIOA->CRH     |=  (0x0BUL << 4);
+  GPIOA->CRH     |=  (0x04UL << 8);      
+ 
+      uint32_t divider = clock / ( HWCPP_UART_BAUDRATE * 16 );
+      USART1->BRR = divider << 4;
+      
+      USART1->CR3 = 0;
+      USART1->CR2 = 0;
+      USART1->CR1 = ( 0x1 << 13 ) | ( 0x1 << 3 ) | ( 0x1 << 2 );
+   }	
+
+   static bool HWLIB_INLINE read_blocks(){
+      return !( USART1->SR & ( 0x1 << 5 ));
+   }
+
+   static char HWLIB_INLINE read_direct_unchecked(){
+      return USART1->DR;
+   }
+
+   static bool HWLIB_INLINE write_blocks(){
+      return !( USART1->SR & ( 0x1 << 7 ));
+   }
+
+   static void HWLIB_INLINE write_direct_unchecked( char c ){
+       USART1->DR = c;
+   }   
+};
+
+using uart = formatter< _stream_builder< _uart_foundation >>;
 
 
 // ==========================================================================
@@ -203,7 +263,7 @@ struct _clocking_foundation :
    _timing_clocking_foundation< std::ratio< clock, 1 > >
 {
    static void init(){
-      chip_stm32f103< clock >::init();
+      chip_stm32f103c8< clock >::init();
    }	
    
    static void wait_ticks_function( ticks_type n ){     
@@ -351,7 +411,7 @@ struct _clocking_foundation :
 using waiting = _timing_waiting_builder< _clocking_foundation >;
 using clocking = _timing_clocking_builder< _clocking_foundation >;
 
-}; // struct stm32f103
+}; // struct stm32f103c8
 
 }; // namespace hwcpp
 

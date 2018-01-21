@@ -50,7 +50,9 @@ The compilers I currently use are (gcc 7.2.0):
 -----------------------------------------------------------------------------
 
 Notes & ToDo
+- put 
 - test pin in!
+- test uart input, for all targets
 - formatted int out: remove redundancies
 - software xmit uart
 - cortexes busy wait (without timer)

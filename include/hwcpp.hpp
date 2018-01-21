@@ -25,6 +25,11 @@
    #include "targets/hwcpp-target-sam3x8e.hpp"
 #endif
 
+#ifdef HWCPP_TARGET_stm32f103c8
+   #define _HWCPP_TARGET_OK
+   #include "targets/hwcpp-target-stm32f103c8.hpp"
+#endif
+
 #ifdef HWCPP_TARGET_arduino_uno
    #define _HWCPP_TARGET_OK
    #include "targets/hwcpp-target-arduino-uno.hpp"

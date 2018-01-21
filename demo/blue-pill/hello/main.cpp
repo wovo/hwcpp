@@ -5,10 +5,12 @@ using timing = target::timing;
 using uart   = target::uart;
 
 int main(){ 
-   hwcpp::ostream< uart > cout;  
+   timing::init();    
+   uart::init();
    
    for(;;){
-      cout << "Hello world!\n";
-	  timing::ms< 500 >::wait();
+      uart::write( "Hello world!\n" );
+	  timing::ms< 1'000 >::wait();
    }	  
 }
+

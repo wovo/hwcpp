@@ -122,8 +122,8 @@ HEADERS           += hwcpp-target-atmega328.hpp
 HEADERS           += hwcpp-target-sam3x8e.hpp 
 HEADERS           += hwcpp-target-arduino-uno.hpp 
 
-HEADERS           += hwcpp-chip-stm32f103.hpp 
-HEADERS           += hwcpp-target-stm32f103.hpp 
+HEADERS           += hwcpp-chip-stm32f103c8.hpp 
+HEADERS           += hwcpp-target-stm32f103c8.hpp 
 HEADERS           += hwcpp-target-blue-pill.hpp 
 HEADERS           += hwcpp-target-blue-brick.hpp 
 

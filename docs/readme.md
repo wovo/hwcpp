@@ -44,6 +44,7 @@ My experiences with printing markdown files:
    html OK, pictures!, requires style to get page borders.
    usefull as html-table sanitizer?
    Doesn't handle triple-quote code blocks.
+   Code blocks don't stand out very well.
 
 - grip : 
    local, requires python, no idea how to run this :(

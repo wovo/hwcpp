@@ -11,10 +11,8 @@
 #############################################################################
 
 # settings common to this part of the subdirectory tree
-TARGET             ?= blue_pill
-
-# optional serial connection
-SERIAL_PORT        ?= COM4
+TARGET             ?= stm32f103c8
+SERIAL_PORT        ?= COM2
 CONSOLE_BAUDRATE   := 2400
 
 # set RELATIVE to the next higher directory and defer to the Makefile.link
