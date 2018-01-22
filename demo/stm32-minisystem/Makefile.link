@@ -11,7 +11,7 @@
 #############################################################################
 
 # settings common to this part of the subdirectory tree
-TARGET             ?= blue_brick
+TARGET             ?= stm32_minisystem
 
 # set RELATIVE to the next higher directory and defer to the Makefile.link
 RELATIVE           := $(RELATIVE)../

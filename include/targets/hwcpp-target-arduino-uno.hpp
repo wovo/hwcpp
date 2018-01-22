@@ -44,7 +44,7 @@ struct target_arduino_uno :
    make_pin_in_out(   d16,  c,  2 );
    make_pin_in_out(   d17,  c,  3 );
    make_pin_in_out(   d18,  c,  4 );
-   make_pin_in_out(   d19,  c,  4 );
+   make_pin_in_out(   d19,  c,  5 );
    
    make_pin_adc(    a0,  0 );
    make_pin_adc(    a1,  1 );

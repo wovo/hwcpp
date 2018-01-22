@@ -45,9 +45,9 @@
    #include "targets/hwcpp-target-blue-pill.hpp"
 #endif
 
-#ifdef HWCPP_TARGET_blue_brick
+#ifdef HWCPP_TARGET_stm32_minisystem
    #define _HWCPP_TARGET_OK
-   #include "targets/hwcpp-target-blue-brick.hpp"
+   #include "targets/hwcpp-target-stm32-minisystem.hpp"
 #endif
 
 #ifdef HWCPP_TARGET_native

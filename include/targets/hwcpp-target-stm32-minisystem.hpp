@@ -6,21 +6,21 @@
 //
 // ==========================================================================
 
-#include "hwcpp-chip-stm32f103.hpp"
+#include "hwcpp-chip-stm32f103c8.hpp"
 
 namespace hwcpp {
     
 template< uint64_t clock >
 struct target_blue_brick :
-   chip_stm32f103< clock >    
+   chip_stm32f103c8< clock >    
 {       
 	
-   using chip = chip_stm32f103< clock >;
+   using chip = chip_stm32f103c8< clock >;
 	
 // ========= chip pins ==========
 
 #define make_pin_in_out( NAME, PORT, PIN ) \
-   using NAME  = typename chip:: template pin_in_out< chip::port::PORT, PIN >
+   using NAME  = typename chip:: template _pin_in_out< chip::_port::PORT, PIN >
 
    make_pin_in_out(   a0,  a,   0 );
    make_pin_in_out(   a1,  a,   1 );
@@ -34,6 +34,10 @@ struct target_blue_brick :
    make_pin_in_out(   a9,  a,   7 );
    make_pin_in_out(  a10,  a,  10 );
    make_pin_in_out(  a11,  a,  11 );
+   make_pin_in_out(  a12,  a,  12 );
+   make_pin_in_out(  a13,  a,  13 );
+   make_pin_in_out(  a14,  a,  14 );
+   make_pin_in_out(  a15,  a,  15 );
 
    make_pin_in_out(   b0,  b,   0 );
    make_pin_in_out(   b1,  b,   1 );
@@ -52,11 +56,10 @@ struct target_blue_brick :
    make_pin_in_out(  b14,  b,  14 );
    make_pin_in_out(  b15,  b,  15 );
 
-   make_pin_in_out(  c13,  c,  13 );
-
 #undef make_pin_in_out	
     
-   using led = invert< pin_out< a1 > >;
+   using led     = pin_out< a1 >;
+   using button  = invert< pin_in< a8 > >;
    
    using waiting = typename chip::waiting;	  
    using timing = waiting; 

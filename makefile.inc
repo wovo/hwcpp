@@ -125,7 +125,7 @@ HEADERS           += hwcpp-target-arduino-uno.hpp
 HEADERS           += hwcpp-chip-stm32f103c8.hpp 
 HEADERS           += hwcpp-target-stm32f103c8.hpp 
 HEADERS           += hwcpp-target-blue-pill.hpp 
-HEADERS           += hwcpp-target-blue-brick.hpp 
+HEADERS           += hwcpp-target-stm32-minisystem.hpp 
 
 # add Catch
 # (used by some of the tests)

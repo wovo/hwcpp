@@ -47,7 +47,7 @@ Download and install:
    copy the zip content to C:\Program Files .
  - GCC for arm/cortex from http://gnutoolchains.com/arm-eabi/ 
    to
- - ST-LINK tool from http://www.st.com/content/st_com/en/products/development-tools/stm32-programmers/stsw-link004.html 
+ - ST-LINK utility from http://www.st.com/content/st_com/en/products/development-tools/hardware-development-tools/development-tool-hardware-for-mcus/debug-hardware-for-mcus/debug-hardware-for-stm32-mcus/st-link-v2.html
    to C:/Program Files (x86)/STMicroelectronics/STM32 ST-LINK Utility
    
 I had to run the various installers as administrator, and afterwards

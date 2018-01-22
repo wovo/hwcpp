@@ -3,25 +3,54 @@ HwCpp Primer
 
 <!-- update example_path( "../demo/" ) -->
 
-<!-- update table_of_contents( input ) -->
 
-<!-- update end -->
+*****************************************************************************
 
+<a name="toc-anchor-0"></a>
 
-:# 1 Introduction
+# 1 Introduction
 
 HwCpp is a library for writing micro-controller applications. 
 This document provides a gentle introduction to using HwCpp.
 Basic C++ and hardware knowledge is assumed, but nothing too advanced.
 
 
-:# 2 Blink a led
+*****************************************************************************
+
+<a name="toc-anchor-1"></a>
+
+# 2 Content
+
+<!-- update table_of_contents( input ) -->
+
+  - [1 Introduction](#toc-anchor-0)
+
+  - [2 Content](#toc-anchor-1)
+
+  - [3 Blink a led](#toc-anchor-2)
+
+  - [4 Kitt](#toc-anchor-3)
+
+  - [5 More fun with LEDs](#toc-anchor-4)
+
+  - [6 Input and output pins](#toc-anchor-5)
+
+  - [7 Character output](#toc-anchor-6)
+
+<!-- update end -->
+
+
+*****************************************************************************
+
+<a name="toc-anchor-2"></a>
+
+# 3 Blink a led
 
 Blinking a LED is the "Hello world!" equivalent for micro-controllers,
 so let's start with that.
 
 <!-- update example( input, "arduino-uno/blink-for-loop/main.cpp" ) -->
-```C++
+~~~C++
 #include "hwcpp.hpp"
 
 using target = hwcpp::target<>;
@@ -39,26 +68,25 @@ int main(){
       timing::ms< 200 >::wait();
    }
 }
-```
+~~~
 
 A typical HwCpp application is a single main.cpp file that includes 
 and combines the parts of the application. 
 
-```C++
+~~~C++
 #include "hwcpp.hpp"
-```
+~~~
 
 The default way to specify which target is used 
 is to put that information in
 the makefile, which passes it to the compiler as a command-line macro.
 The application just includes "hwcpp.hpp", which includes 
 the appropriate target-specific parts of HwCpp. 
-Alternatively, the application can include the target-specific HwCpp
-file directly.
 
-```C++
+
+~~~C++
 using target = hwcpp::target<>;
-```
+~~~
 
 All hwcpp stuff is inside the namespace hwcpp. 
 This includes the target<> template, which is, 
@@ -68,27 +96,27 @@ By default, the target will use the highest clock speed possible,
 but in some cases you can specify a slower clock speed as template parameter.
 In this case we don't, so the target will run full-speed.
 
-```C++
+~~~C++
 using timing = target::timing;
-```
+~~~
 
 Most things in HwCpp are classes, not objects, 
 so :: is used to select a thing within another thing. 
 The line above selects the default timing service offered by
 our target as the timing we will use.
 
-```C++
+~~~C++
 using led    = target::led;
-```
+~~~
 
 This blinky application is written for a target board that has an
 on board default LED. This is the case for the currently supported
 targets boards (Arduino Uno, Arduino Due, Blue Pill).
 
-```C++
+~~~C++
    led::init();
    timing::init();
-```
+~~~
 
 Most 'things' in HwCpp are classes, not objects, but the play roughly the 
 same role objects do in standard OO style applications.
@@ -98,29 +126,29 @@ by calling their ::init() function.
 *All* cto's must be initialialized in this way before they are used.
 Here we initialize the tow cto's we will use: the timing and the LED.
 
-```C++
+~~~C++
    for(;;){
       . . .
    }
-```
+~~~
 
 A micro-controller application has no Operating System to return to, 
 hence it typically contains a never-ending loop.
 We can probably bike-shed forever about the best way to write
 such a loop, but I prefer for(;;) so that is what you will see.
    
-```C++
+~~~C++
       led::set( 1 );
       . . .
       led::set( 0 );  
-```
+~~~
 
 The LED cto has a ::set() function that accepts a single bool value
 and makes its pin high or low according to the parameter.
 
-```C++
+~~~C++
       timing::ms< 200 >::wait();
-```
+~~~
 
 The timing cto has a set of macro's (ns<>, us<>, ms<>, s<>) 
 that are used to specify a duration of the specified amount of time.
@@ -141,7 +169,9 @@ And because the timing is now mentioned only once
 the using... line for that can be omitted.
 
 [](python example( input, "../demo/arduino-uno/blink-blink-1/main.cpp" ) )
-```C++
+~~~C++
+<a name="toc-anchor-1"></a>
+
 #include "hwcpp.hpp"
 
 using target = hwcpp::target<>;
@@ -152,7 +182,7 @@ int main(){
       target::timing::ms< 200 > 
    >();
 }
-```
+~~~
 
 The using... line for the target could be omitted too, but 
 the target is mentioned twice, so in my taste omitting that
@@ -160,7 +190,7 @@ line produces a blinky that is shorter,
 but slightly less pleasing to the eye.
 
 <!-- update example( input, "arduino-uno/blink-blink-2/main.cpp" ) -->
-```C++
+~~~C++
 #include "hwcpp.hpp"
 
 int main(){ 
@@ -169,16 +199,18 @@ int main(){
       hwcpp::target<>::timing::ms< 200 > 
    >();
 }
-```
+~~~
 
-:# 3 Kitt
+<a name="toc-anchor-3"></a>
+
+# 4 Kitt
 
 After blinking a single LED, the next step is to do something with a bunch of LEDs. 
 The Kitt display (one LED back-and-forth, from the Knightrider series) 
 is the standard example for this.
 
 <!-- update example( input, "arduino-uno/led-6-kitt/main.cpp" ) -->
-```C++
+~~~C++
 #include "hwcpp.hpp"
 
 using target = hwcpp::target<>;
@@ -196,7 +228,7 @@ using pins = hwcpp::port_out<
 int main(){ 
    hwcpp::kitt< pins, timing::ms< 50 > >();
 }
-```
+~~~
 
 The supported target boards don't have a string of LEDs, 
 so instead the pins that connect to the LEDs are specified.
@@ -205,7 +237,7 @@ hence the Arduino pin names are used.
 (Alternatively, the pin names of the atMega328 chip could be used.)
 I used six pins are are conveniently located next to a ground pin.
 
-```C++
+~~~C++
 using pins = hwcpp::port_out< 
    target::d8,
    target::d9,
@@ -214,21 +246,23 @@ using pins = hwcpp::port_out<
    target::d12,
    target::d13
 >;
-```
+~~~
 
 The 6 pins are combined into a port_out.
 A port is an (ordered) bundle of pins, 
 and 'out' indicates that the port can be used only as output. 
 
-```C++
+~~~C++
    hwcpp::kitt< pins, timing::ms< 50 > >();
-```
+~~~
 
 We could write the kitt functionality ourselves, but HwCpp has a 
 function template for that, which requires a port and a duration. 
 We pass those parameters, call the function, and kitt is alive.
 
-:# 4 More fun with LEDs
+<a name="toc-anchor-4"></a>
+
+# 5 More fun with LEDs
 
 Blinking can be made more interesting by blinking more than just a single LED.
 A bunch of pins can be combined into a something that walks and quacks like
@@ -238,7 +272,7 @@ we need is to combine them into a single 'pin', and pass that pin
 to the blink function.
 
 <!-- update example( input, "arduino-uno/led-6-together/main.cpp" ) -->
-```C++
+~~~C++
 #include "hwcpp.hpp"
 
 using target = hwcpp::target<>;
@@ -256,7 +290,7 @@ using pins = hwcpp::fanout<
 int main(){ 
    hwcpp::blink< pins, timing::ms< 200 > >();
 }
-```
+~~~
 
 The hwcpp::invert<> template can be used to create a pin that inverses
 the behavior of the pin it decorates. If we invert the first
@@ -264,7 +298,7 @@ three pins this way before passing them to fanout, the LEDs
 alternate left-right.
 
 <!-- update example( input, "arduino-uno/led-6-left-right-1/main.cpp" ) -->
-```C++
+~~~C++
 #include "hwcpp.hpp"
 
 using target = hwcpp::target<>;
@@ -282,14 +316,14 @@ using pins = hwcpp::fanout<
 int main(){ 
    hwcpp::blink< pins, timing::ms< 200 > >();
 }
-```
+~~~
 
 A different (but totally equivalent) way to get this effect is to
 first combine the two groups of three LEDs, then invert one,
 and finally combine the two groups.
 
 <!-- update example( input, "arduino-uno/led-6-left-right-2/main.cpp" ) -->
-```C++
+~~~C++
 #include "hwcpp.hpp"
 
 using target = hwcpp::target<>;
@@ -309,12 +343,12 @@ using pins = hwcpp::fanout<
 int main(){ 
    hwcpp::blink< pins, timing::ms< 200 > >();
 }
-```
+~~~
 
 A simple variation alternates between the even and odd LEDs.
 
 <!-- update example( input, "arduino-uno/led-6-even-odd/main.cpp" ) -->
-```C++
+~~~C++
 #include "hwcpp.hpp"
 
 using target = hwcpp::target<>;
@@ -332,14 +366,14 @@ using pins = hwcpp::fanout<
 int main(){ 
    hwcpp::blink< pins, timing::ms< 200 > >();
 }
-```
+~~~
 
 Another nice pattern is the inside-to-outside. 
 The base for this is the walk<> function, 
 which is like Kitt, but only forward.
 
 <!-- update example( input, "arduino-uno/led-6-walk-1/main.cpp" ) -->
-```C++
+~~~C++
 #include "hwcpp.hpp"
 
 using target = hwcpp::target<>;
@@ -357,14 +391,14 @@ using pins = hwcpp::port_out<
 int main(){ 
    hwcpp::walk< pins, timing::ms< 50 > >();
 }
-```
+~~~
 
 If you don't like the direction in which the pattern walks,
 you could of course change the order in which the pins are mentioned
 in the port_out constructor, but it is easier to use hwcpp::mirror<>.
 
 <!-- update example( input, "arduino-uno/led-6-walk-2/main.cpp" ) -->
-```C++
+~~~C++
 #include "hwcpp.hpp"
 
 using target = hwcpp::target<>;
@@ -382,7 +416,7 @@ using pins = hwcpp::port_out<
 int main(){ 
    hwcpp::walk< hwcpp::mirror< pins >, timing::ms< 50 > >();
 }
-```
+~~~
 
 To get inside-to-outside, we create two ports of three LEDs,
 one in the reverse order and the other in the normal order.
@@ -392,7 +426,7 @@ Running walk<> on this port creates the intended effect.
 => fanout doesn't work yet for ports
 
 <!-- update example( input, "arduino-uno/led-6-inside-out-1/main.cpp" ) -->
-```C++
+~~~C++
 #include "hwcpp.hpp"
 
 using target = hwcpp::target<>;
@@ -412,14 +446,14 @@ using pins = hwcpp::pfanout<
 int main(){ 
    hwcpp::walk< pins, timing::ms< 200 > >();
 }
-```
+~~~
 
 An alternative is to create the two sub-ports both
 in the standard pin order, but apply mirror<> to one 
 of them before the two ports are combined by fanout<>.
 
 <!-- update example( input, "arduino-uno/led-6-inside-out-2/main.cpp" ) -->
-```C++
+~~~C++
 #include "hwcpp.hpp"
 
 using target = hwcpp::target<>;
@@ -439,13 +473,17 @@ using pins = hwcpp::pfanout<
 int main(){ 
    hwcpp::walk< pins, timing::ms< 200 > >();
 }
-```
+~~~
 
 - add dummy pins
 
-:# 5 Input and output pins
+<a name="toc-anchor-5"></a>
 
-:# 6 Character output
+# 6 Input and output pins
+
+<a name="toc-anchor-6"></a>
+
+# 7 Character output
 
 Even embedded programmers want their applications to talk.
 Most embedded targets have at least a serial (UART) connection,
@@ -457,7 +495,7 @@ it has write() functions that accept the common types
 (bool, char, ints, char *, formatters, etc).
 
 <!-- update example( input, "arduino-uno/hello-uart/main.cpp" ) -->
-```C++
+~~~C++
 #include "hwcpp.hpp"
 
 using target = hwcpp::target<>;
@@ -474,7 +512,7 @@ int main(){
    }	  
 }
 
-```
+~~~
 
 The uart is configured for HWCPP_UART_BAUDRATE, or (when that
 macro is not defined) BMPTK_BAUDRATE.
@@ -492,7 +530,7 @@ Currently bmptk doen't support global objects with a non-trivial constructor,
 hence such a cout object must be created locally.
 
 <!-- update example( input, "arduino-uno/hello-cout/main.cpp" ) -->
-```C++
+~~~C++
 #include "hwcpp.hpp"
 
 using target = hwcpp::target<>;
@@ -509,7 +547,7 @@ int main(){
    }	  
 }
 
-```
+~~~
 
 A common character output for embedded systems is the hd44780 character LCD.
 To create a cto for such a display you must provide
@@ -521,7 +559,7 @@ It is assumed that the RW (select read or write) pin is tied low
 (to ground, only write operations).
 
 <!-- update example( input, "arduino-uno/lcd-16x1/main.cpp" ) -->
-```C++
+~~~C++
 #include "hwcpp.hpp"
 
 using target = hwcpp::target<>;
@@ -541,7 +579,7 @@ int main( void ){
    lcd::init();
    lcd::write( "\fHello my world!" ); 
 }
-```
+~~~
 
 When you use an Arduino Uno with the common lcd-with-buttons shield you can 
 use the HwCpp definition for that shield, which takes care of selecting the right pins.
@@ -549,7 +587,7 @@ The shield cto contains a pin for the backlight, and the lcd itself.
 For my shield, the backlight had to be enabled for the LCD to be readable.
 
 <!-- update example( input, "arduino-uno/lcd-20x4-shield/main.cpp" ) -->
-```C++
+~~~C++
 #include "hwcpp.hpp"
 
 using target = hwcpp::target<>;
@@ -569,7 +607,7 @@ int main( void ){
    );
 
 }
-```
+~~~
 
 The LCD examples used "\f", which clears the LCD and puts the cursor at
 the top-left position.

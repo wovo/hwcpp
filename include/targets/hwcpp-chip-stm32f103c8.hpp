@@ -140,17 +140,13 @@ struct _pin_in_out_foundation :
 			: _port_block[ (int) p ]->CRH;	   
       config_word = 
 	     ( v << config_offset ) 
-		 | ( config_word & ~( 0xF << config_offset ));
+		 | ( config_word & ~( 0x0F << config_offset ));
    }	   
 	
    static void HWLIB_INLINE init(){
       hwcpp::chip_stm32f103c8< clock >::init();   
    }
   
-   static void HWLIB_INLINE direction_set_direct( pin_direction d ){
-      config( ( d == pin_direction::input ) ? 0x08 : 0x03 );
-   }
-   
    static void HWLIB_INLINE set_direct( bool v ){
       _port_block[ (int) p ]->BSRR = ( v ? mask : ( mask << 16 ));	   
    }
@@ -158,6 +154,16 @@ struct _pin_in_out_foundation :
    static bool HWLIB_INLINE get_direct(){
       return (( _port_block[ (int) p ]->IDR & mask ) != 0 );   
    }
+
+   static void HWLIB_INLINE direction_set_direct( pin_direction d ){
+      if( d == pin_direction::input ){
+         config( 0x08 );
+         set_direct( 1 ); // pull-up
+      } else {
+         config( 0x03 );
+      }
+   }
+   
 };
 
 // ========= GPIO constructor used in the actual targets
@@ -174,54 +180,77 @@ using _pin_in_out = _box_builder< _pin_in_out_foundation< p, pin > >;
 //
 // ==========================================================================
 
+template< uint32_t uart_address >
 struct _uart_foundation :
    _stream_out_root< char >,
    _stream_in_root< char >
 {
     
    using value_type = char; // would otherwise be ambiguous
-	
+   static constexpr auto uart = (USART_TypeDef *) uart_address;
+
    static void init(){   
        
       // don't do this over and over	
       _HWCPP_RUN_ONCE;       
-	   
+   
       //gpio_set_outmode(GPIO_PORT_A, GPIO_PIN9, GPIO_ALT_PUSHPULL, GPIO_OUT_50M);
-      
-  // Config Alternate Function
-  AFIO->MAPR     &= ~(1<<2);
 
-  // Config GPIO A
-  GPIOA->CRH     &= ~(0xFFUL << 4);
-  GPIOA->CRH     |=  (0x0BUL << 4);
-  GPIOA->CRH     |=  (0x04UL << 8);      
- 
-      uint32_t divider = clock / ( HWCPP_UART_BAUDRATE * 16 );
-      USART1->BRR = divider << 4;
+      if constexpr ( uart_address == USART1_BASE ){
       
-      USART1->CR3 = 0;
-      USART1->CR2 = 0;
-      USART1->CR1 = ( 0x1 << 13 ) | ( 0x1 << 3 ) | ( 0x1 << 2 );
-   }	
+         // Config Alternate Function
+         AFIO->MAPR     &= ~(1<<2);
+
+         // Config GPIO A
+         GPIOA->CRH     &= ~(0xFFUL << 4);
+         GPIOA->CRH     |=  (0x0BUL << 4);
+         GPIOA->CRH     |=  (0x04UL << 8);      
+
+      } else {
+
+         // Config Alternate Function
+         AFIO->MAPR     &= ~(1<<3);
+
+         // Config GPIO A
+         GPIOA->CRL     &= ~(0xFFUL << 4);
+         GPIOA->CRL     |=  (0x0BUL << 4);
+         GPIOA->CRL     |=  (0x04UL << 8);      
+      }
+
+      uint32_t divider = clock / ( HWCPP_UART_BAUDRATE * 16 );
+      uart->BRR = divider << 4;
+      
+      uart->CR3 = 0;
+      uart->CR2 = 0;
+      uart->CR1 = ( 0x1 << 13 ) | ( 0x1 << 3 ) | ( 0x1 << 2 );
+   }
 
    static bool HWLIB_INLINE read_blocks(){
-      return !( USART1->SR & ( 0x1 << 5 ));
+      return !( uart->SR & ( 0x1 << 5 ));
    }
 
    static char HWLIB_INLINE read_direct_unchecked(){
-      return USART1->DR;
+      return uart->DR;
    }
 
    static bool HWLIB_INLINE write_blocks(){
-      return !( USART1->SR & ( 0x1 << 7 ));
+      return !( uart->SR & ( 0x1 << 7 ));
    }
 
    static void HWLIB_INLINE write_direct_unchecked( char c ){
-       USART1->DR = c;
+       uart->DR = c;
    }   
 };
 
-using uart = formatter< _stream_builder< _uart_foundation >>;
+using uu1 = _uart_foundation< (uint32_t) USART1_BASE >;
+using uart1 = formatter< _stream_builder< uu1 >>;
+
+using uu2 = _uart_foundation< (uint32_t) USART1_BASE >;
+using uart2 = formatter< _stream_builder< uu2 >>;
+
+//using uart1 = formatter< _stream_builder< _uart_foundation< (uint32_t) USART1_BASE >>;
+// using uart2 = formatter< _stream_builder< _uart_foundation< (uint32_t) USART2_BASE >>;
+using uart  = uart1;
 
 
 // ==========================================================================
@@ -264,31 +293,31 @@ struct _clocking_foundation :
 {
    static void init(){
       chip_stm32f103c8< clock >::init();
-   }	
+   }
    
    static void wait_ticks_function( ticks_type n ){     
       ticks_type t = now_ticks() + n;
       while( now_ticks() < t ){}
    }  
-   
+
    static constexpr auto inline_delay_max = 10;
    template< ticks_type t >
    static void HWLIB_INLINE inline_delay(){
-              
+
       if constexpr ( t  == 0 ){
          // nothing
-         
+
       } else if constexpr ( t == 1 ){
          __asm volatile(                  
             "   nop     \t\n"  
          );           
-              
+
       } else if constexpr ( t == 2 ){
          __asm volatile(                  
             "   nop     \t\n"  
             "   nop     \t\n"  
          ); 
-		 
+
       } else if constexpr ( t == 3 ){
          __asm volatile(                  
             "   nop     \t\n"  
@@ -303,7 +332,7 @@ struct _clocking_foundation :
             "   nop     \t\n"  
             "   nop     \t\n"  
          ); 
-		 
+
       } else if constexpr ( t == 5 ){
          __asm volatile(                  
             "   nop     \t\n"  

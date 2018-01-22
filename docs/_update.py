@@ -11,7 +11,7 @@ def example( input, file_name ):
    line = input.pop( 0 )
    result.append( line )
    if not line.startswith( "~~~" ):
-      print( "no quote block after example call" )
+      print( "no quote block after example call [%s]" % line )
       exit();
 
    # insert the quoted file
@@ -57,7 +57,7 @@ def num_add( num, n ):
       num.pop()
    while len( num ) < n:
       num.append( 0 )
-   print( n, num )
+#   print( n, num )
    num[ n - 1 ] = num[ n - 1 ] + 1
    return num
 
@@ -93,11 +93,11 @@ def update( file_name ):
          line = line.replace( "-->", "" )	
          result = result + eval( line )
 		    		
-      elif line.startswith( "```" ):
+      elif line.startswith( "~~~" ):
          result.append( line )
          line = input.pop( 0 )	
          result.append( line )	 
-         while not line.startswith( "```" ):
+         while not line.startswith( "~~~" ):
             line = input.pop( 0 )   
             result.append( line )         
 	  
@@ -144,7 +144,7 @@ def update( file_name ):
          else:
             f.write( line )   
  	
-#update( "hwcpp-getting-started.md" )
-#update( "hwcpp-primer.md" )
-#update( "hwcpp-reference.md" )
+update( "hwcpp-getting-started.md" )
+update( "hwcpp-primer.md" )
+update( "hwcpp-reference.md" )
 update( "hwcpp-targets.md" )
