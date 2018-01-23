@@ -111,7 +111,7 @@ using led    = target::led;
 
 This blinky application is written for a target board that has an
 on board default LED. This is the case for the currently supported
-targets boards (Arduino Uno, Arduino Due, Blue Pill).
+targets boards (Arduino Uno, Arduino Due, Blue Pill, STM32 minisystem).
 
 ~~~C++
    led::init();
@@ -120,11 +120,11 @@ targets boards (Arduino Uno, Arduino Due, Blue Pill).
 
 Most 'things' in HwCpp are classes, not objects, but the play roughly the 
 same role objects do in standard OO style applications.
-Objects are initialized by their constructors, HwCpp classes,
+Objects are initialized by their constructors. HwCpp classes,
 which are called Compile Time Objects (cto's), are initialized
 by calling their ::init() function. 
 *All* cto's must be initialialized in this way before they are used.
-Here we initialize the tow cto's we will use: the timing and the LED.
+Here we initialize the two cto's we will use: the timing and the LED.
 
 ~~~C++
    for(;;){
@@ -154,6 +154,9 @@ The timing cto has a set of macro's (ns<>, us<>, ms<>, s<>)
 that are used to specify a duration of the specified amount of time.
 Such a duration cto has a ::wait() function that will wait for
 the appropriate amount of time.
+Duration cto's are a little bit special in that they have an
+init() function, but when the init() of their timing service has
+been called it is not required to call the init() of the duration.
 
 The point of a library is to make writing applications easier,
 so HwCpp has a blink<> function template that can be used to write a 
@@ -268,7 +271,7 @@ Blinking can be made more interesting by blinking more than just a single LED.
 A bunch of pins can be combined into a something that walks and quacks like
 a single (output) pin with the hwcpp::fanout<> template. 
 To blink the six LEDs of the kitt example in usinson, all
-we need is to combine them into a single 'pin', and pass that pin
+we need is to do is combine them into a single 'pin', and pass that pin
 to the blink function.
 
 <!-- update example( input, "arduino-uno/led-6-together/main.cpp" ) -->
@@ -488,7 +491,7 @@ int main(){
 Even embedded programmers want their applications to talk.
 Most embedded targets have at least a serial (UART) connection,
 which is (in the absence of a real debugger) often used for debug logging.
-The cto for this (default) uart is available target::uart. 
+The cto for this (default) uart is available as target::uart. 
 
 It is a formatted character output, which means that 
 it has write() functions that accept the common types
@@ -515,7 +518,8 @@ int main(){
 ~~~
 
 The uart is configured for HWCPP_UART_BAUDRATE, or (when that
-macro is not defined) BMPTK_BAUDRATE.
+macro is not defined) BMPTK_BAUDRATE 
+(or, when that isn't defined either, 9600 baud).
 When you use bmptk, this will be set to a sensible value and
 after downloading a terminal window will be started with that
 baudrate. 
@@ -523,7 +527,7 @@ If you don't use bmptk you must define the baudrate
 macro at the compiler command line, 
 and start your terminal application accordingly.
 
-If you prefer to use << operators, you can make a cout object
+If you prefer to use &lt;&lt; operators, you can make a cout object
 from a uart and use that object. 
 The object constructor takes care of calling init() on the uart.
 Currently bmptk doen't support global objects with a non-trivial constructor,
@@ -549,7 +553,7 @@ int main(){
 
 ~~~
 
-A common character output for embedded systems is the hd44780 character LCD.
+Another common character output for embedded systems is the hd44780 character LCD.
 To create a cto for such a display you must provide
 the pins that connect to the RS (register select), E (enable), 
 a port_out for the D4..D8 pins (the 4 high data inputs), 
@@ -612,10 +616,10 @@ int main( void ){
 The LCD examples used "\f", which clears the LCD and puts the cursor at
 the top-left position.
 This is part of the console functionality of an lCD.
-It extends a formatted character output, extended with a notion of how 
+It extends a character output with a notion of how 
 many rows and columns of characters it has. 
-This can be used through functions like clear() and goto_xy(),
-but also (and perhaps most easily) be by data 
+This can be used through functions (clear(), goto_xy())
+but also (and perhaps most easily) be by data embedded
 in the character stream:
 
  - "\n" : cursor to next line, first position

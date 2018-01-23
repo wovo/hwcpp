@@ -50,6 +50,8 @@ The compilers I currently use are (gcc 7.2.0):
 -----------------------------------------------------------------------------
 
 Notes & ToDo
+- pin_out from port, writes to all?
+- console sub-consoles?
 - put 
 - test pin in!
 - test uart input, for all targets
