@@ -76,6 +76,7 @@ HEADERS           += hwcpp-port-fanout.hpp
 
 HEADERS           += hwcpp-adc.hpp 
 HEADERS           += hwcpp-dac.hpp 
+HEADERS           += hwcpp-graphics.hpp 
 
 HEADERS           += hwcpp-stream-builder.hpp 
 HEADERS           += hwcpp-stream-out-formatting.hpp 
@@ -96,6 +97,11 @@ HEADERS           += hwcpp-string.hpp
 HEADERS           += hwcpp-pcf8574.hpp
 HEADERS           += hwcpp-pcf8591.hpp
 HEADERS           += hwcpp-hd44780.hpp 
+HEADERS           += hwcpp-ssd1306.hpp 
+
+# HwCpp supported displays
+
+HEADERS           += hwcpp-oleds.hpp 
 
 
 # HwCpp supported arduino shields

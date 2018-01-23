@@ -141,6 +141,10 @@ namespace hwcpp {
    #include "core/hwcpp-adc.hpp"
    #include "core/hwcpp-dac.hpp"
    
+   // ======== graphics
+   
+   #include "core/hwcpp-graphics.hpp"
+
    // ======== streams
    
    #include "core/hwcpp-stream-builder.hpp"
