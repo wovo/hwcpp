@@ -24,6 +24,12 @@
       <Project Name="blink-for-loop" ConfigName="Release"/>
     </WorkspaceConfiguration>
   </BuildMatrix>
+  <Project Name="echo" Path="echo/_codelite.project" Active="No"/>
+  <BuildMatrix>
+    <WorkspaceConfiguration Name="Release" Selected="yes">
+      <Project Name="echo" ConfigName="Release"/>
+    </WorkspaceConfiguration>
+  </BuildMatrix>
   <Project Name="empty" Path="empty/_codelite.project" Active="No"/>
   <BuildMatrix>
     <WorkspaceConfiguration Name="Release" Selected="yes">

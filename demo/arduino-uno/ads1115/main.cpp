@@ -1,5 +1,8 @@
 #include "hwcpp.hpp"
 
+auto min( auto x, auto y ){ return x > y ? y : x; }
+auto max( auto x, auto y ){ return x > y ? x : y; }
+
 using target   = hwcpp::target<>;
 using timing   = target::timing;
 using i2c_bus  = hwcpp::i2c_bus_bb_scl_sda< target::scl, target::sda, timing >;
@@ -40,6 +43,31 @@ struct ads1115 {
 
 using adc = hwcpp::ads1115< i2c_bus >;
 
+int sample(){
+   const int n = 100;
+   int s[ n ];
+   int l = 0x7FFF, h = 0;
+   for( auto & x : s ){
+      x = adc::get();
+      timing::ms< 1 >::wait();       
+      l = min( l, x );
+      h = max( h, x );
+   }
+   if(0){
+   for( auto x : s ){
+      uart::write( x );
+      uart::write( "\n" );
+   }
+   uart::write( h );
+   uart::write( "   " );
+   uart::write( l );
+   uart::write( "   " );
+   uart::write( h - l );
+   uart::write( "\n" );
+   }
+   return h - l;
+}
+
 int main( void ){
    hwcpp::ostream< uart > cout;    
    timing::init();
@@ -48,7 +76,7 @@ int main( void ){
    for(;;){
       uart::write( "Hello world!\n" );      
       timing::ms< 500 >::wait();
-      volatile int x = adc::get();
+      volatile int x = sample();
       cout << "adc = " << x << "\n";
    }
 
