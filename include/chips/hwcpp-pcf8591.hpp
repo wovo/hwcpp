@@ -18,7 +18,10 @@ struct pcf8591 :
    static constexpr uint_fast8_t base = 0x48;	
    static inline uint_fast8_t configuration;
 	
-   static void init(){
+   static void HWCPP_INLINE init(){
+      static_assert( 
+         bus.profile.f =< 100'000,
+         "The maximum I2C bus frequency for this chip is 100 kHz" );
       bus::init();       
    }
    

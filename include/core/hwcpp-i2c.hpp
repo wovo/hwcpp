@@ -86,8 +86,9 @@ struct i2c_bus_bb_scl_sda :
 {
 private:
 
-   using scl = pin_oc< scl_arg >;
-   using sda = pin_oc< sda_arg >;  
+   using scl      = pin_oc< scl_arg >;
+   using sda      = pin_oc< sda_arg >; 
+   using profile  = _profile;
    
    static void write_bit( bool x ){
       scl::set( 0 );
@@ -166,7 +167,7 @@ public:
       scl::init();
       sda::init();
       
-      scl::set( 1 );   		
+      scl::set( 1 );
       sda::set( 1 );
    }
    
@@ -195,3 +196,49 @@ public:
    }      
 	  
 };// i2c_bus_bb_scl_sda
+
+// ==========================================================================
+//
+// i2c channel
+//
+// ==========================================================================  
+
+struct i2c_channel_marker :
+   not_instantiable
+{ 
+   static constexpr bool is_i2c_channel = true;
+};
+
+template< typename T >
+concept bool is_i2c_channel(){
+   return T::is_i2c_channel;
+}
+
+// ========== channel constructor
+
+template< 
+   is_i2xc_bus     _bus, 
+   uint8_t         _address
+>
+struct i2c_channel :
+   i2c_channel_marker
+{
+private:
+
+   static auto constexpr address = _address;
+   using bus                     = _bus;
+   using profile                 = _bus.profile;
+
+   static void HWCPP_INLINE init(){
+      bus::init();
+   }
+
+   static void HWCPP_INLINE write( const uint8_t data[], int n ){
+      bus::write( data, n );
+   }           
+   
+   static void HWCPP_INLINE read( uint8_t data[], int n ){
+      bus::read( data, n );
+   } 
+   
+}; // i2c_channel
