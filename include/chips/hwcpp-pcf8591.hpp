@@ -20,7 +20,7 @@ struct pcf8591 :
 	
    static void HWCPP_INLINE init(){
       static_assert( 
-         bus.profile.f =< 100'000,
+         bus::profile::f <= 100'000,
          "The maximum I2C bus frequency for this chip is 100 kHz" );
       bus::init();       
    }
@@ -47,11 +47,11 @@ struct pcf8591 :
       _adc_root< 8 >         
    {
 	   
-      static void HWLIB_INLINE init(){
+      static void HWCPP_INLINE init(){
          pcf8591< bus, address >::init();
       }
 
-      static value_type HWLIB_INLINE get_direct(){
+      static value_type HWCPP_INLINE get_direct(){
          return pcf8591< bus, address >::_read( channel );
       }	   
       	   

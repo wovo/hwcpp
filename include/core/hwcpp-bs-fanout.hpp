@@ -12,7 +12,7 @@
 // check the pins for an example.
 //
 // It is the responsibility of that specific type to provide only
-// pins that are valid for the adapt<>, and to break the HWLIB_INLINE 
+// pins that are valid for the adapt<>, and to break the HWCPP_INLINE 
 // chain by using _box_no_inline<>.
 //
 // LIBRARY-INTERNAL
@@ -46,33 +46,33 @@ template<
    template< typename > class adapt 
 > struct _bs_fanout< adapt > {
    
-   static void HWLIB_INLINE init(){}
+   static void HWCPP_INLINE init(){}
    
-   static void HWLIB_INLINE set( auto v ){ 
+   static void HWCPP_INLINE set( auto v ){ 
       (void) v;
    }
    
-   static void HWLIB_INLINE set_direct( auto v ){ 
+   static void HWCPP_INLINE set_direct( auto v ){ 
       (void) v; 
    }
    
-   static void HWLIB_INLINE set_buffered( auto v ){ 
+   static void HWCPP_INLINE set_buffered( auto v ){ 
       (void) v; 
    }
    
-   static void HWLIB_INLINE write( auto v ){ 
+   static void HWCPP_INLINE write( auto v ){ 
       (void) v; 
    }
    
-   static void HWLIB_INLINE write_direct( auto v ){ 
+   static void HWCPP_INLINE write_direct( auto v ){ 
       (void) v; 
    }
    
-   static void HWLIB_INLINE write_buffered( auto v ){ 
+   static void HWCPP_INLINE write_buffered( auto v ){ 
       (void) v; 
    }
    
-   static void HWLIB_INLINE flush(){}
+   static void HWCPP_INLINE flush(){}
 };
 
 
@@ -92,52 +92,52 @@ struct _bs_fanout< adapt, _minion, _tail... > :
    
    // ========= init   
 	
-   static void HWLIB_INLINE init() { 
+   static void HWCPP_INLINE init() { 
       minion::init();
       tail::init(); 
    }
    
    // ========= set
       
-   static void HWLIB_INLINE set( _vt v ) {
+   static void HWCPP_INLINE set( _vt v ) {
       minion::set_buffered( v );
       tail::set_buffered( v );
 	  minion::flush();
    }
       
-   static void HWLIB_INLINE set_direct( _vt v ) {
+   static void HWCPP_INLINE set_direct( _vt v ) {
       minion::set_buffered( v );
       tail::set_buffered( v );
 	  minion::flush();
    }
       
-   static void HWLIB_INLINE set_buffered( _vt v ) {
+   static void HWCPP_INLINE set_buffered( _vt v ) {
       minion::set_buffered( v );
       tail::set_buffered( v );
    }
    
    // ========= write
       
-   static void HWLIB_INLINE write( _vt v ) {
+   static void HWCPP_INLINE write( _vt v ) {
       minion::write_buffered( v );
       tail::write_buffered( v );
 	  minion::flush();
    }
       
-   static void HWLIB_INLINE write_direct( _vt v ) {
+   static void HWCPP_INLINE write_direct( _vt v ) {
       minion::write_buffered( v );
       tail::write_buffered( v );
 	  minion::flush();
    }
       
-   static void HWLIB_INLINE write_buffered( _vt v ) {
+   static void HWCPP_INLINE write_buffered( _vt v ) {
       minion::write_buffered( v );
       tail::write_buffered( v );
    }
    
    // ========= flush
       
-   static void HWLIB_INLINE flush() {
+   static void HWCPP_INLINE flush() {
       minion::flush();
       tail::flush();
    }

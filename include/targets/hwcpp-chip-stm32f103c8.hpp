@@ -20,7 +20,7 @@ namespace hwcpp {
 // Alignment doesn't seem to affect this.
 // Note: can't be static inside the struct, because 
 // that causes the RAM attribute to be (silently) ignored.
-void HWLIB_RAM_FUNCTION stm32_ram_busy_delay( int32_t n ){
+void HWCPP_RAM_FUNCTION stm32_ram_busy_delay( int32_t n ){
    __asm volatile(                  
       "1: subs.w  r0, #6     \t\n"  
       "   bgt 1b             \t\n"  
@@ -31,11 +31,11 @@ void HWLIB_RAM_FUNCTION stm32_ram_busy_delay( int32_t n ){
 template< uint64_t clock >
 struct chip_stm32f103c8 {
 	
-static constexpr uint64_t HWLIB_INLINE mask( int size ){
+static constexpr uint64_t HWCPP_INLINE mask( int size ){
    return ( 0x01 << ( size + 1 )) - 1;
 }
 
-static void HWLIB_INLINE field_set( auto & v, int start, int size, int value ){
+static void HWCPP_INLINE field_set( auto & v, int start, int size, int value ){
    v = ( v & ( mask( start) << size )) | ( value << start );
 }
 
@@ -143,19 +143,19 @@ struct _pin_in_out_foundation :
 		 | ( config_word & ~( 0x0F << config_offset ));
    }	   
 	
-   static void HWLIB_INLINE init(){
+   static void HWCPP_INLINE init(){
       hwcpp::chip_stm32f103c8< clock >::init();   
    }
   
-   static void HWLIB_INLINE set_direct( bool v ){
+   static void HWCPP_INLINE set_direct( bool v ){
       _port_block[ (int) p ]->BSRR = ( v ? mask : ( mask << 16 ));	   
    }
 
-   static bool HWLIB_INLINE get_direct(){
+   static bool HWCPP_INLINE get_direct(){
       return (( _port_block[ (int) p ]->IDR & mask ) != 0 );   
    }
 
-   static void HWLIB_INLINE direction_set_direct( pin_direction d ){
+   static void HWCPP_INLINE direction_set_direct( pin_direction d ){
       if( d == pin_direction::input ){
          config( 0x08 );
          set_direct( 1 ); // pull-up
@@ -187,7 +187,7 @@ struct _uart_foundation :
 {
     
    using value_type = char; // would otherwise be ambiguous
-   static constexpr auto uart = (USART_TypeDef *) uart_address;
+   #define _UART ((USART_TypeDef *) uart_address )
 
    static void init(){   
        
@@ -218,28 +218,30 @@ struct _uart_foundation :
       }
 
       uint32_t divider = clock / ( HWCPP_UART_BAUDRATE * 16 );
-      uart->BRR = divider << 4;
+      _UART->BRR = divider << 4;
       
-      uart->CR3 = 0;
-      uart->CR2 = 0;
-      uart->CR1 = ( 0x1 << 13 ) | ( 0x1 << 3 ) | ( 0x1 << 2 );
+      _UART->CR3 = 0;
+      _UART->CR2 = 0;
+      _UART->CR1 = ( 0x1 << 13 ) | ( 0x1 << 3 ) | ( 0x1 << 2 );
    }
 
-   static bool HWLIB_INLINE read_blocks(){
-      return !( uart->SR & ( 0x1 << 5 ));
+   static bool HWCPP_INLINE read_blocks(){
+      return !( _UART->SR & ( 0x1 << 5 ));
    }
 
-   static char HWLIB_INLINE read_direct_unchecked(){
-      return uart->DR;
+   static char HWCPP_INLINE read_direct_unchecked(){
+      return _UART->DR;
    }
 
-   static bool HWLIB_INLINE write_blocks(){
-      return !( uart->SR & ( 0x1 << 7 ));
+   static bool HWCPP_INLINE write_blocks(){
+      return !( _UART->SR & ( 0x1 << 7 ));
    }
 
-   static void HWLIB_INLINE write_direct_unchecked( char c ){
-       uart->DR = c;
+   static void HWCPP_INLINE write_direct_unchecked( char c ){
+       _UART->DR = c;
    }   
+   
+   #undef _UART
 };
 
 using uu1 = _uart_foundation< (uint32_t) USART1_BASE >;
@@ -263,7 +265,7 @@ using uart  = uart1;
 
 // ========= SysTick ==========
 
-static uint_fast64_t HWLIB_NO_INLINE now_ticks(){	
+static uint_fast64_t HWCPP_NO_INLINE now_ticks(){	
    
    static unsigned int last_low = 0;
    static unsigned long long int high = 0;
@@ -302,7 +304,7 @@ struct _clocking_foundation :
 
    static constexpr auto inline_delay_max = 10;
    template< ticks_type t >
-   static void HWLIB_INLINE inline_delay(){
+   static void HWCPP_INLINE inline_delay(){
 
       if constexpr ( t  == 0 ){
          // nothing
@@ -412,7 +414,7 @@ struct _clocking_foundation :
    // Alignment doesn't seem to change the timing.
    // Hence to get consistent timing the same code is used, 
    // but run from RAM (stm32_ram_busy_delay).
-   static void HWLIB_NO_INLINE stm32_flash_busy_delay( int32_t n ){
+   static void HWCPP_NO_INLINE stm32_flash_busy_delay( int32_t n ){
       __asm volatile(                  
          "   .align 4           \t\n"  
          "1: subs.w  r0, #3     \t\n"   
@@ -422,7 +424,7 @@ struct _clocking_foundation :
    }   
       
    template< ticks_type t >
-   static void HWLIB_INLINE wait_ticks_template(){   
+   static void HWCPP_INLINE wait_ticks_template(){   
        
       if constexpr ( t <= inline_delay_max ){
          inline_delay< t >();    

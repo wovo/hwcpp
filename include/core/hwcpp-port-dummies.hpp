@@ -27,17 +27,17 @@ struct _port_in_out_dummy_foundation :
 
    using _vt = typename _port_out_root< n >::value_type;
    
-   static void HWLIB_INLINE init(){}   
+   static void HWCPP_INLINE init(){}   
 
-   static void HWLIB_INLINE set_direct( _vt v ){ 
+   static void HWCPP_INLINE set_direct( _vt v ){ 
       (void) v; 
    }      
 	  
-   static _vt HWLIB_INLINE get_direct(){ 
+   static _vt HWCPP_INLINE get_direct(){ 
       return 0; 
    }      
 	  
-   static void HWLIB_INLINE direction_set_direct( pin_direction d ){
+   static void HWCPP_INLINE direction_set_direct( pin_direction d ){
       (void) d; 
    }
 };

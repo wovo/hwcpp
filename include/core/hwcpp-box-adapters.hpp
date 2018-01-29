@@ -111,7 +111,7 @@ struct _box_in< T > :
    _box_get_filter< T > 
 {
     
-   static void HWLIB_INLINE init(){
+   static void HWCPP_INLINE init(){
       T::init(); 
       T::direction_set( pin_direction::input );
    }	

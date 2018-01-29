@@ -49,11 +49,11 @@ concept bool is_invertible = requires {
 struct invertible_bitwise :
    invertible
 { 
-   static bool HWLIB_INLINE invert_value( bool v ){ 
+   static bool HWCPP_INLINE invert_value( bool v ){ 
       return ! v; 
    }
    
-   static auto HWLIB_INLINE invert_value( auto v ){ 
+   static auto HWCPP_INLINE invert_value( auto v ){ 
       return ~ v; 
    }
 };
@@ -64,7 +64,7 @@ template< typename T >
 struct invertible_interval :
    invertible
 { 
-   static auto HWLIB_INLINE invert_value( auto v ){ 
+   static auto HWCPP_INLINE invert_value( auto v ){ 
       return T::lowest + ( T::highest - v ); 
    }
 };
@@ -85,13 +85,13 @@ struct _invert_set_wrapper< T > : T {
 	
    using _vt = typename T::value_type;
     
-   static void HWLIB_INLINE set( _vt v ){ 
+   static void HWCPP_INLINE set( _vt v ){ 
       T::set( T::invert_value( v ) ); }
        
-   static void HWLIB_INLINE set_direct( _vt v ){ 
+   static void HWCPP_INLINE set_direct( _vt v ){ 
       T::set_direct( T::invert_value( v ) ); }
       
-   static void HWLIB_INLINE set_buffered( _vt v ){ 
+   static void HWCPP_INLINE set_buffered( _vt v ){ 
       T::set_buffered( T::invert_value( v ) ); }
 };	
 
@@ -109,13 +109,13 @@ template< typename T > struct _invert_get_wrapper : T {};
 template< _has_box_in_functions T >
 struct _invert_get_wrapper< T > : T {
     
-   	static auto HWLIB_INLINE get(){ 
+   	static auto HWCPP_INLINE get(){ 
        return T::invert_value( T::get() ); }
        
-   	static auto HWLIB_INLINE get_direct(){ 
+   	static auto HWCPP_INLINE get_direct(){ 
        return T::invert_value( T::get_direct() ); }
 	   
-   	static auto HWLIB_INLINE get_buffered(){ 
+   	static auto HWCPP_INLINE get_buffered(){ 
        return T::invert_value( T::get_buffered() ); }
 };	
 

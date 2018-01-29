@@ -70,7 +70,7 @@ struct _clocking_foundation :
       chip::init();
    }	
 
-   static ticks_type HWLIB_INLINE now_ticks(){
+   static ticks_type HWCPP_INLINE now_ticks(){
       // https://stackoverflow.com/questions/1695288/getting-the-current-time-in-milliseconds-from-the-system-clock-in-windows	 
       FILETIME ft_now;
       GetSystemTimeAsFileTime( &ft_now );
@@ -78,13 +78,13 @@ struct _clocking_foundation :
       return ll_now / 10;
    }
 
-   static void HWLIB_NO_INLINE  wait_ticks_function( ticks_type n ){     
+   static void HWCPP_NO_INLINE  wait_ticks_function( ticks_type n ){     
       ticks_type t = now_ticks() + n;
       while( now_ticks() < t ){}
    } 
    
    template< ticks_type t >
-   static void HWLIB_INLINE wait_ticks_template(){
+   static void HWCPP_INLINE wait_ticks_template(){
       wait_ticks_function( t );         
    };	  
 };

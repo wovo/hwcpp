@@ -98,6 +98,7 @@ HEADERS           += hwcpp-pcf8574.hpp
 HEADERS           += hwcpp-pcf8591.hpp
 HEADERS           += hwcpp-hd44780.hpp 
 HEADERS           += hwcpp-ssd1306.hpp 
+HEADERS           += hwcpp-nrf24l01.hpp 
 
 # HwCpp supported displays
 
@@ -108,6 +109,7 @@ HEADERS           += hwcpp-oleds.hpp
 
 HEADERS           += hwcpp-lcd-buttons.hpp 
 HEADERS           += hwcpp-joystick-buttons.hpp 
+HEADERS           += hwcpp-funduino-joystick.hpp 
 HEADERS           += hwcpp-i2c-lcd.hpp 
 
 # etc

@@ -26,7 +26,7 @@ struct _port_out_buffer_root {
    using _vt = typename uint_t< n >::fast;
    static inline _vt write_buffer;
    
-   static void HWLIB_INLINE set_buffered( _vt x ){
+   static void HWCPP_INLINE set_buffered( _vt x ){
       write_buffer = x;   
    }   	      
 };
@@ -40,7 +40,7 @@ struct _port_in_buffer_root {
    using _vt = typename uint_t< n >::fast;    
    static inline _vt read_buffer;
    
-   static _vt HWLIB_INLINE get_buffered() {
+   static _vt HWCPP_INLINE get_buffered() {
       return read_buffer;  
    }   
 };

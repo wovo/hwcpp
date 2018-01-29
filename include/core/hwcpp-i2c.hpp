@@ -79,16 +79,17 @@ template<
    can_pin_oc scl_arg, 
    can_pin_oc sda_arg, 
    is_waiting timing, 
-   is_i2c_profile profile = i2c_profile_100kHz
+   is_i2c_profile _profile = i2c_profile_100kHz
 >
 struct i2c_bus_bb_scl_sda :
    i2c_bus_marker
 {
-private:
+   using profile  = _profile;
+
+   private:
 
    using scl      = pin_oc< scl_arg >;
    using sda      = pin_oc< sda_arg >; 
-   using profile  = _profile;
    
    static void write_bit( bool x ){
       scl::set( 0 );
@@ -217,7 +218,7 @@ concept bool is_i2c_channel(){
 // ========== channel constructor
 
 template< 
-   is_i2xc_bus     _bus, 
+   is_i2c_bus      _bus, 
    uint8_t         _address
 >
 struct i2c_channel :
@@ -227,17 +228,17 @@ private:
 
    static auto constexpr address = _address;
    using bus                     = _bus;
-   using profile                 = _bus.profile;
+   using profile                 = typename _bus::profile;
 
-   static void HWCPP_INLINE init(){
+   static void init(){
       bus::init();
    }
 
-   static void HWCPP_INLINE write( const uint8_t data[], int n ){
+   static void write( const uint8_t data[], int n ){
       bus::write( data, n );
    }           
    
-   static void HWCPP_INLINE read( uint8_t data[], int n ){
+   static void read( uint8_t data[], int n ){
       bus::read( data, n );
    } 
    

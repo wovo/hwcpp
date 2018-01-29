@@ -157,11 +157,11 @@ struct formatter :
       T::init();       
    }
    
-   static void HWLIB_INLINE write( char c ){
+   static void HWCPP_INLINE write( char c ){
       T::write( c );
    }	  
    
-   static void HWLIB_INLINE fill( int_fast16_t n ){
+   static void HWCPP_INLINE fill( int_fast16_t n ){
       while( n-- > 0 ){
          T::write( format.fill_char );
       }         

@@ -30,7 +30,7 @@
 template< bool & value >
 struct _pin_out_value {
    
-   static void HWLIB_INLINE set_direct( bool v ){ 
+   static void HWCPP_INLINE set_direct( bool v ){ 
       value = v; 
    }    
 };
@@ -45,7 +45,7 @@ struct pin_out_value :
 template< bool & value >
 struct _pin_in_value { 
    
-   static bool HWLIB_INLINE get_direct(){ 
+   static bool HWCPP_INLINE get_direct(){ 
       return value; 
    }    
 };
@@ -62,7 +62,7 @@ struct _pin_in_out_value :
    _pin_out_value< value >,
    _pin_in_value< value >
 {    
-   static void HWLIB_INLINE direction_set_direct( pin_direction d ){
+   static void HWCPP_INLINE direction_set_direct( pin_direction d ){
       direction_value = d;
    }
 };

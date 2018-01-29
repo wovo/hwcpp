@@ -123,7 +123,7 @@ struct pin_in< T > :
    _box_set_filter< T >  
 {
     
-   static void HWLIB_INLINE init(){
+   static void HWCPP_INLINE init(){
 	  T::init(); 
       T::set_direct( 1 );
    }
@@ -155,29 +155,29 @@ struct pin_in_out< T > :
    _box_get_filter< T >  
 {
     
-   static void HWLIB_INLINE direction_set( pin_direction d ){
+   static void HWCPP_INLINE direction_set( pin_direction d ){
       if( d == pin_direction::input ){
          T::set( 1 );
       }   
    }    
    
-   static void HWLIB_INLINE direction_direct( pin_direction d ){
+   static void HWCPP_INLINE direction_direct( pin_direction d ){
       if( d == pin_direction::input ){
          T::set_direct( 1 );
       }       
    }    
 
-   static void HWLIB_INLINE direction_set_buffered( pin_direction d ){
+   static void HWCPP_INLINE direction_set_buffered( pin_direction d ){
       if( d == pin_direction::input ){
          T::set_buffered( 1 );
       }         
    }    
    
-   static void HWLIB_INLINE direction_flush(){
+   static void HWCPP_INLINE direction_flush(){
       T::flush();       
    } 
         
-   static void HWLIB_INLINE init(){
+   static void HWCPP_INLINE init(){
 	  T::init(); 
       T::set_direct( 0 );
    }
@@ -213,7 +213,7 @@ struct pin_oc< T > :
    _box_get_filter< T >  
 {
     
-   static void HWLIB_INLINE set( bool v ){
+   static void HWCPP_INLINE set( bool v ){
        if( v ){
           T::direction_set( pin_direction::input );   
        } else {
@@ -222,7 +222,7 @@ struct pin_oc< T > :
        }
    }
    
-   static void HWLIB_INLINE set_direct( bool v ){
+   static void HWCPP_INLINE set_direct( bool v ){
        if( v ){
           T::direction_set_direct( pin_direction::input );   
        } else {
@@ -231,7 +231,7 @@ struct pin_oc< T > :
        }
    }
    
-   static void HWLIB_INLINE set_buffered( bool v ){
+   static void HWCPP_INLINE set_buffered( bool v ){
        if( v ){
           T::direction_set_buffered( pin_direction::input );   
        } else {
@@ -240,12 +240,12 @@ struct pin_oc< T > :
        }
    }
    
-   static void HWLIB_INLINE flush(){
+   static void HWCPP_INLINE flush(){
       T::direction_flush();
       T::flush();
    }       
             
-   static void HWLIB_INLINE init(){
+   static void HWCPP_INLINE init(){
 	  T::init(); 
       T::direction_set_direct( pin_direction::input );
    }

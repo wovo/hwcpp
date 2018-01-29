@@ -17,7 +17,7 @@ struct pcf8574_generic :
 {
    static void HWCPP_INLINE init(){
       static_assert( 
-         bus.profile.f =< 100'000,
+         bus::profile::f <= 100'000,
          "The maximum I2C bus frequency for this chip is 100 kHz" );
       bus::init();       
    }
