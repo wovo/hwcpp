@@ -1,15 +1,15 @@
-HwCpp Primer
-===
+<p style="font-size:160px">HwCpp Primer</p>
 
-![just a cat on a keyboard](images/spikey.png)
+<p><img src="images/spikey.png" alt="just a cat on a keyboard" /></p>
 
-author: Wouter van Ooijen
+<p style="font-size:120px"></p>
 
-most recent version: check github.com/wovo/hwcpp
-
-license: Attribution-NonCommercial 2.5 Generic (CC BY-NC 2.5)
-
-[https://creativecommons.org/licenses/by-nc/2.5](https://creativecommons.org/licenses/by-nc/2.5)
+<table cellpadding="5" border="1" style="border-collapse: collapse;">
+<tr><td> author    </td><td> Wouter van Ooijen  (wouter.vanooijen@hu.nl)     </td></tr>
+<tr><td> version   </td><td> work in pogress :)     </td></tr>
+<tr><td> location  </td><td> github.com/wovo/hwcpp  </td></tr>
+<tr><td> license   </td><td> CC BY-NC 2.5           </td></tr>
+</table>
 
 <!-- update example_path( "../demo/" ) -->
 
@@ -20,7 +20,7 @@ TO DO list
 - input pins
 - LCD schield must be 16x2
 - non-flickering LCD example
-- images for LCD and input/output
+- image for LCD "HwCpp formatted character output"
 - terminal (stream) input
 -->
 
@@ -39,6 +39,9 @@ This document provides a gentle introduction to using HwCpp.
 Basic C++ and hardware knowledge is assumed, but nothing too advanced.
 Getting HwCpp to work is not covered in this document
 (check the 'getting started' document).
+
+This document is licenced under the CC BY-NC 2.5:
+[creativecommons.org/licenses/by-nc/2.5](creativecommons.org/licenses/by-nc/2.5).
 
 
 <p style="page-break-before: always;">&nbsp;</p>
@@ -535,7 +538,105 @@ int main(){
 
 # 6 Input and output pins
 
-![a pile of leds](images/pil-of-leds.png)
+![4x4 foil keypad](images/foil-keypad.png)
+
+The pins of a micro-controller can in most cases be used in two
+directions: in input mode, or in output mode, 
+under control of the application. 
+Such a pin is an input_output pin.
+To use it, it must first be initialized and then the direction must be set.
+Then its set() or get() functions can be used (depending on
+the direction).
+
+<!-- update example( input, "arduino-due/led-on-gpio/main.cpp" ) -->
+~~~C++
+#include "hwcpp.hpp"
+
+using pin = hwcpp::target<>::d13;
+
+int main(){ 
+   pin::init();
+   pin::direction_set( hwcpp::pin_direction::output );
+   pin::set( 1 );
+}
+~~~
+
+Most applications will use a specific pin in one of the directions
+for the whole application. 
+In such a case it makes sense to restrict the pin to the appropriate
+direction. 
+This prevent inadvertent use of the wrong functions, and
+the init() call takes care of setting the direction
+(when needed).
+
+<!-- update example( input, "arduino-due/led-on-output/main.cpp" ) -->
+~~~C++
+#include "hwcpp.hpp"
+
+using pin = hwcpp::pin_out< hwcpp::target<>::d13 >;
+
+int main(){ 
+   pin::init();
+   pin::set( 1 );
+}
+~~~
+
+When a pin cto is passed to a function (as a template argument)
+for use as an output pin, the function should accept both
+output and input-output pins. 
+This would cause a small problem for the function: for
+an input-output pin it should call direction_set(), but an
+output pin doesn't support that function.
+The pin_out<> decorator solves that problem: it converts
+the argument pin to an output pin. Calling init() on that
+(output) pin takes care of setting the direction when that
+is needed.
+
+<!-- update example( input, "arduino-due/led-on-function/main.cpp" ) -->
+~~~C++
+#include "hwcpp.hpp"
+
+using pin = hwcpp::target<>::d13;
+
+template< template _pin >
+void set(){
+   using pin = hwcpp::pin_out< _pin >;
+   pin::init();
+   pin::set( 1 );
+}
+
+int main(){ 
+   set< pin >();
+}
+~~~
+
+A 'typename' template argument will accept any type, 
+even a totally inappropriate one like int.
+The compiler will eventually find out that an int doesn't 
+support the operations that are done inside the function, but 
+the generated error message will not be pretty.
+
+A concept can be used to restrict the accepted template arguments.
+For a pin that is to be an argument to pin_out the appropriate concept
+is can_pin_out.
+
+<!-- update example( input, "arduino-due/led-on-concept/main.cpp" ) -->
+~~~C++
+#include "hwcpp.hpp"
+
+using pin = hwcpp::target<>::d13;
+
+template< hwcpp::can_pin_out _pin >
+void set(){
+   using pin = hwcpp::pin_out< _pin >;
+   pin::init();
+   pin::set( 1 );
+}
+
+int main(){ 
+   set< pin >();
+}
+~~~
 
 
 <p style="page-break-before: always;">&nbsp;</p>

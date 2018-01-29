@@ -12,7 +12,7 @@ TO DO list
 - native sub-TOC should be on one line
 - stm32 adc
 - stm32 uart
-- front page, picture, copyright, version
+- title page
 - target rapi with leds
 - complete the board descriptions
 - blue brick resources

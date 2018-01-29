@@ -34,7 +34,7 @@ My experiences with printing markdown files:
    copy text, produces chaos
 
 - gitprint: 
-   link, reasonable, no images, TOC without line-breaks (repairable)
+   link, reasonable, no images
 
 - https://atom.io/packages/markdown-pdf :
    local, but I don't see how to use it (WTF is Atom?)
@@ -45,6 +45,7 @@ My experiences with printing markdown files:
    usefull as html-table sanitizer?
    Doesn't handle triple-quote code blocks.
    Code blocks don't stand out very well.
+   Terminates a batch file after one conversion??
 
 - grip : 
    local, requires python, no idea how to run this :(
@@ -53,4 +54,3 @@ My experiences with printing markdown files:
    local, requires various other tools, pictures!, but no html tables :)
 
 Best workaround so far: use kramdown to make html and print that from a browser.
-(lacks any page boundaries)
