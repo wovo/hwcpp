@@ -1,19 +1,16 @@
 HwCpp Getting Started
 ===
 
-<!-- update table_of_contents( input ) -->
+![just a cat on a keyboard](images/spikey.png)
 
-  - [1 Introduction](#toc-anchor-0)
+<!-- update example_path( "../demo/" ) -->
 
-  - [2 Download and install](#toc-anchor-1)
+<!--
+TO DO list
+- 
+-->
 
-  - [3 First use](#toc-anchor-2)
-
-    - [3.1 Bmptk](#toc-anchor-3)
-
-    - [3.2 CodeLite](#toc-anchor-4)
-
-<!-- update end -->
+*****************************************************************************
 
 <a name="toc-anchor-0"></a>
 
@@ -32,6 +29,24 @@ at least the following:
 
 This document explains how to get started with HwCpp using bmptk and CodeLite,
 for now only for windows.
+
+*****************************************************************************
+
+<!-- update table_of_contents( input ) -->
+
+  - [1 Introduction](#toc-anchor-0)
+
+  - [2 Download and install](#toc-anchor-1)
+
+  - [3 First use](#toc-anchor-2)
+
+    - [3.1 Bmptk](#toc-anchor-3)
+
+    - [3.2 CodeLite](#toc-anchor-4)
+
+<!-- update end -->
+
+
 
 <a name="toc-anchor-1"></a>
 

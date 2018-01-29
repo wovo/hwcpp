@@ -3,16 +3,17 @@ HwCpp Targets
 
 ![just a cat on a keyboard](images/spikey.png)
 
+<!-- update example_path( "../demo/" ) -->
+
 <!--
 TO DO list
 - stm32 uarts
 - check minisystem led, switch
 - native sub-TOC should be on one line
-- <p style="page-break-before: always;">&nbsp;</p>
 - stm32 adc
 - stm32 uart
 - front page, picture, copyright, version
-- plain chip target linux
+- target rapi with leds
 - complete the board descriptions
 - blue brick resources
 - http://en.mxchip.com/product/wifi_product/38
@@ -72,87 +73,91 @@ or native.
 
   - [3 Specifying the target](#toc-anchor-2)
 
-  - [4 Native](#toc-anchor-3)
+  - [4 Hosted targets](#toc-anchor-3)
 
-    - [4.1 Specifying this target](#toc-anchor-4)
+    - [4.1 Native](#toc-anchor-4)
 
-    - [4.2 Target properties](#toc-anchor-5)
+    - [4.2 Specifying this target](#toc-anchor-5)
 
-    - [4.3 Example](#toc-anchor-6)
+    - [4.3 Target properties](#toc-anchor-6)
 
-  - [5 Chip targets](#toc-anchor-7)
+    - [4.4 Example](#toc-anchor-7)
 
-    - [5.1 atMega328](#toc-anchor-8)
+    - [4.5 Native](#toc-anchor-8)
 
-      - [5.1.1 Specifying this target](#toc-anchor-9)
-        [5.1.2 Target properties](#toc-anchor-10)
-        [5.1.3 Clock](#toc-anchor-11)
-        [5.1.4 Timing](#toc-anchor-12)
-        [5.1.5 IO items](#toc-anchor-13)
-        [5.1.6 Example](#toc-anchor-14)
-        [5.1.7 Resources](#toc-anchor-15)
+  - [5 Chip targets](#toc-anchor-9)
 
-    - [5.2 sam3x8e](#toc-anchor-16)
+    - [5.1 atMega328](#toc-anchor-10)
 
-      - [5.2.1 Specifying this target](#toc-anchor-17)
-        [5.2.2 Target properties](#toc-anchor-18)
-        [5.2.3 Clock](#toc-anchor-19)
-        [5.2.4 Timing](#toc-anchor-20)
-        [5.2.5 IO items](#toc-anchor-21)
-        [5.2.6 Example](#toc-anchor-22)
-        [5.2.7 Resources](#toc-anchor-23)
+      - [5.1.1 Specifying this target](#toc-anchor-11)
+        [5.1.2 Target properties](#toc-anchor-12)
+        [5.1.3 Clock](#toc-anchor-13)
+        [5.1.4 Timing](#toc-anchor-14)
+        [5.1.5 IO items](#toc-anchor-15)
+        [5.1.6 Example](#toc-anchor-16)
+        [5.1.7 Resources](#toc-anchor-17)
 
-    - [5.3 stm32f103c8](#toc-anchor-24)
+    - [5.2 sam3x8e](#toc-anchor-18)
 
-      - [5.3.1 Specifying this target](#toc-anchor-25)
-        [5.3.2 Target properties](#toc-anchor-26)
-        [5.3.3 Clock](#toc-anchor-27)
-        [5.3.4 Timing](#toc-anchor-28)
-        [5.3.5 IO items](#toc-anchor-29)
-        [5.3.6 Example](#toc-anchor-30)
-        [5.3.7 Resources](#toc-anchor-31)
+      - [5.2.1 Specifying this target](#toc-anchor-19)
+        [5.2.2 Target properties](#toc-anchor-20)
+        [5.2.3 Clock](#toc-anchor-21)
+        [5.2.4 Timing](#toc-anchor-22)
+        [5.2.5 IO items](#toc-anchor-23)
+        [5.2.6 Example](#toc-anchor-24)
+        [5.2.7 Resources](#toc-anchor-25)
 
-  - [6 Board targets](#toc-anchor-32)
+    - [5.3 stm32f103c8](#toc-anchor-26)
 
-    - [6.1 Arduino Uno](#toc-anchor-33)
+      - [5.3.1 Specifying this target](#toc-anchor-27)
+        [5.3.2 Target properties](#toc-anchor-28)
+        [5.3.3 Clock](#toc-anchor-29)
+        [5.3.4 Timing](#toc-anchor-30)
+        [5.3.5 IO items](#toc-anchor-31)
+        [5.3.6 Example](#toc-anchor-32)
+        [5.3.7 Resources](#toc-anchor-33)
 
-      - [6.1.1 Specifying this target](#toc-anchor-34)
-        [6.1.2 Target properties](#toc-anchor-35)
-        [6.1.3 Clock](#toc-anchor-36)
-        [6.1.4 Timing](#toc-anchor-37)
-        [6.1.5 IO items](#toc-anchor-38)
-        [6.1.6 Example](#toc-anchor-39)
-        [6.1.7 Resources](#toc-anchor-40)
+  - [6 Board targets](#toc-anchor-34)
 
-    - [6.2 Arduino Due](#toc-anchor-41)
+    - [6.1 Arduino Uno](#toc-anchor-35)
 
-      - [6.2.1 Specifying this target](#toc-anchor-42)
-        [6.2.2 Target properties](#toc-anchor-43)
-        [6.2.3 Clock](#toc-anchor-44)
-        [6.2.4 Timing](#toc-anchor-45)
-        [6.2.5 IO items](#toc-anchor-46)
-        [6.2.6 Example](#toc-anchor-47)
-        [6.2.7 Resources](#toc-anchor-48)
+      - [6.1.1 Specifying this target](#toc-anchor-36)
+        [6.1.2 Target properties](#toc-anchor-37)
+        [6.1.3 Clock](#toc-anchor-38)
+        [6.1.4 Timing](#toc-anchor-39)
+        [6.1.5 IO items](#toc-anchor-40)
+        [6.1.6 Example](#toc-anchor-41)
+        [6.1.7 Resources](#toc-anchor-42)
 
-    - [6.3 Blue Pill](#toc-anchor-49)
+    - [6.2 Arduino Due](#toc-anchor-43)
 
-      - [6.3.1 Specifying this target](#toc-anchor-50)
-        [6.3.2 Target properties](#toc-anchor-51)
-        [6.3.3 Clock](#toc-anchor-52)
-        [6.3.4 Timing](#toc-anchor-53)
-        [6.3.5 IO items](#toc-anchor-54)
-        [6.3.6 Example](#toc-anchor-55)
-        [6.3.7 Resources](#toc-anchor-56)
+      - [6.2.1 Specifying this target](#toc-anchor-44)
+        [6.2.2 Target properties](#toc-anchor-45)
+        [6.2.3 Clock](#toc-anchor-46)
+        [6.2.4 Timing](#toc-anchor-47)
+        [6.2.5 IO items](#toc-anchor-48)
+        [6.2.6 Example](#toc-anchor-49)
+        [6.2.7 Resources](#toc-anchor-50)
 
-    - [6.4 stm32 minisystem](#toc-anchor-57)
+    - [6.3 Blue Pill](#toc-anchor-51)
 
-      - [6.4.1 Specifying this target](#toc-anchor-58)
-        [6.4.2 Target properties](#toc-anchor-59)
-        [6.4.3 Clock](#toc-anchor-60)
-        [6.4.4 Timing](#toc-anchor-61)
-        [6.4.5 IO items](#toc-anchor-62)
-        [6.4.6 Example](#toc-anchor-63)
-        [6.4.7 Resources](#toc-anchor-64)
+      - [6.3.1 Specifying this target](#toc-anchor-52)
+        [6.3.2 Target properties](#toc-anchor-53)
+        [6.3.3 Clock](#toc-anchor-54)
+        [6.3.4 Timing](#toc-anchor-55)
+        [6.3.5 IO items](#toc-anchor-56)
+        [6.3.6 Example](#toc-anchor-57)
+        [6.3.7 Resources](#toc-anchor-58)
+
+    - [6.4 stm32 minisystem](#toc-anchor-59)
+
+      - [6.4.1 Specifying this target](#toc-anchor-60)
+        [6.4.2 Target properties](#toc-anchor-61)
+        [6.4.3 Clock](#toc-anchor-62)
+        [6.4.4 Timing](#toc-anchor-63)
+        [6.4.5 IO items](#toc-anchor-64)
+        [6.4.6 Example](#toc-anchor-65)
+        [6.4.7 Resources](#toc-anchor-66)
 
 <!-- update end -->
 
@@ -215,11 +220,13 @@ int main(){
 
 Hosted targets create an application for the system you are developing on.
 
-## Native
-
 <a name="toc-anchor-4"></a>
 
-## 4.1 Specifying this target
+## 4.1 Native
+
+<a name="toc-anchor-5"></a>
+
+## 4.2 Specifying this target
 
 <table cellpadding="5" border="1" style="border-collapse: collapse;" >
 <tr><td>  bmptk makefile line           </td>
@@ -230,9 +237,9 @@ Hosted targets create an application for the system you are developing on.
    <td>      #include "hwcpp-target-native"    </td></tr>
 </table>
 
-<a name="toc-anchor-5"></a>
+<a name="toc-anchor-6"></a>
 
-## 4.2 Target properties
+## 4.3 Target properties
 
 HwCpp can build for the native target, which is the system
 (Windows. Linux is not yet supported) you are using.
@@ -241,9 +248,9 @@ This might be useful for module tests, but is otherwise of little use.
 For compatibility with other targets, a clocking timing service and a
 uart are provided.
 
-<a name="toc-anchor-6"></a>
+<a name="toc-anchor-7"></a>
 
-## 4.3 Example
+## 4.4 Example
 
 <!-- update example( input, "native/hello/main.cpp" ) -->
 ~~~C++
@@ -265,12 +272,14 @@ int main(){
 
 *****************************************************************************
 
-## Native
+<a name="toc-anchor-8"></a>
+
+## 4.5 Native
 
 
 *****************************************************************************
 
-<a name="toc-anchor-7"></a>
+<a name="toc-anchor-9"></a>
 
 # 5 Chip targets
 
@@ -278,13 +287,13 @@ int main(){
 *****************************************************************************
 
 <a name="atmega328"></a>
-<a name="toc-anchor-8"></a>
+<a name="toc-anchor-10"></a>
 
 ## 5.1 atMega328
 
 ![atMega328 chip](images/atmega328.png)
 
-<a name="toc-anchor-9"></a>
+<a name="toc-anchor-11"></a>
 
 ### 5.1.1 Specifying this target
 
@@ -297,7 +306,7 @@ int main(){
    <td>      #include "hwcpp-target-atmega328"    </td></tr>
 </table>
 
-<a name="toc-anchor-10"></a>
+<a name="toc-anchor-12"></a>
 
 ### 5.1.2 Target properties
 
@@ -329,7 +338,7 @@ the -fnoexceptions option.
 This is fine for HwCpp, which doesn't use exceptions, 
 but it means that the application code can't use exceptions either.
 
-<a name="toc-anchor-11"></a>
+<a name="toc-anchor-13"></a>
 
 ### 5.1.3 Clock
 
@@ -348,7 +357,7 @@ and HwCpp assumes that you do this correctly.
 </table>
 
 [a name="atmega328-timing"]
-<a name="toc-anchor-12"></a>
+<a name="toc-anchor-14"></a>
 
 ### 5.1.4 Timing
 
@@ -369,7 +378,7 @@ for applications that don't need the clocking service.
 <tr><td> clocking  </td><td> clocking  </td></tr>
 </table>
 
-<a name="toc-anchor-13"></a>
+<a name="toc-anchor-15"></a>
 
 ### 5.1.5 IO items
 
@@ -400,7 +409,7 @@ for applications that don't need the clocking service.
   <tr><td> rx   </td><td> pin_in   </td><td> d0  </td></tr>
 </table>
 
-<a name="toc-anchor-14"></a>
+<a name="toc-anchor-16"></a>
 
 ### 5.1.6 Example
 
@@ -415,7 +424,7 @@ int main( void ){
 }
 ~~~
 
-<a name="toc-anchor-15"></a>
+<a name="toc-anchor-17"></a>
 
 ### 5.1.7 Resources
 
@@ -429,13 +438,13 @@ int main( void ){
 *****************************************************************************
 
 <a name="sam3x8e"></a>
-<a name="toc-anchor-16"></a>
+<a name="toc-anchor-18"></a>
 
 ## 5.2 sam3x8e
 
 ![sam3x8e chip](images/sam3x8e.png)
 
-<a name="toc-anchor-17"></a>
+<a name="toc-anchor-19"></a>
 
 ### 5.2.1 Specifying this target
 
@@ -448,7 +457,7 @@ int main( void ){
    <td>      #include "hwcpp-target-sam3x8e"    </td></tr>
 </table>
 
-<a name="toc-anchor-18"></a>
+<a name="toc-anchor-20"></a>
 
 ### 5.2.2 Target properties
 
@@ -468,7 +477,7 @@ The target has a watchdog that is enabled at startup.
 Calling the target's init() function (directly or via the init() of
 one of the services) disables the watchdog.
 
-<a name="toc-anchor-19"></a>
+<a name="toc-anchor-21"></a>
 
 ### 5.2.3 Clock
 
@@ -483,7 +492,7 @@ The clock frequency has no default (it must specified explicitly).
    <tr><td> 84'000'000 (assumes 12MHz crystal)  </td></tr>
 </table>
 
-<a name="toc-anchor-20"></a>
+<a name="toc-anchor-22"></a>
 
 ### 5.2.4 Timing
 
@@ -500,7 +509,7 @@ Both use the SysTick timer.
 <tr><td> clocking  </td><td> clocking  </td></tr>
 </table>
 
-<a name="toc-anchor-21"></a>
+<a name="toc-anchor-23"></a>
 
 ### 5.2.5 IO items
 
@@ -530,7 +539,7 @@ Both use the SysTick timer.
 
 The analog input a15 is internally connected to the temperature sensor.
 
-<a name="toc-anchor-22"></a>
+<a name="toc-anchor-24"></a>
 
 ### 5.2.6 Example
 
@@ -545,7 +554,7 @@ int main( void ){
 }
 ~~~
 
-<a name="toc-anchor-23"></a>
+<a name="toc-anchor-25"></a>
 
 ### 5.2.7 Resources
 
@@ -557,13 +566,13 @@ int main( void ){
 *****************************************************************************
 
 <a name="stm32f103c8"></a>
-<a name="toc-anchor-24"></a>
+<a name="toc-anchor-26"></a>
 
 ## 5.3 stm32f103c8
 
 ![stm32f103c8 chip](images/stm32f103c8.png)
 
-<a name="toc-anchor-25"></a>
+<a name="toc-anchor-27"></a>
 
 ### 5.3.1 Specifying this target
 
@@ -576,7 +585,7 @@ int main( void ){
    <td>      #include "hwcpp-target-stm32f103c8"  </td></tr>
 </table>
 
-<a name="toc-anchor-26"></a>
+<a name="toc-anchor-28"></a>
 
 ### 5.3.2 Target properties
 
@@ -593,7 +602,7 @@ int main( void ){
 This is a 32-bit Cortex-M3 chip, popularized by the Arduino Maple,
 and used in al sorts of cheap Chinese boards, like the Blue Pill.
 
-<a name="toc-anchor-27"></a>
+<a name="toc-anchor-29"></a>
 
 ### 5.3.3 Clock
 
@@ -608,7 +617,7 @@ The clock frequency has no default (it must specified explicitly).
    <tr><td> 72'000'000 (assumes 12MHz crystal)   </td></tr>
 </table>
 
-<a name="toc-anchor-28"></a>
+<a name="toc-anchor-30"></a>
 
 ### 5.3.4 Timing
 
@@ -625,7 +634,7 @@ Both use the SysTick timer.
 <tr><td> clocking  </td><td> clocking  </td></tr>
 </table>
 
-<a name="toc-anchor-29"></a>
+<a name="toc-anchor-31"></a>
 
 ### 5.3.5 IO items
 
@@ -648,7 +657,7 @@ Both use the SysTick timer.
   <tr><td> rx   </td><td> pin_in   </td><td> a10  </td></tr>
 </table>
 
-<a name="toc-anchor-30"></a>
+<a name="toc-anchor-32"></a>
 
 ### 5.3.6 Example
 
@@ -663,7 +672,7 @@ int main( void ){
 }
 ~~~
 
-<a name="toc-anchor-31"></a>
+<a name="toc-anchor-33"></a>
 
 ### 5.3.7 Resources
 
@@ -676,20 +685,20 @@ int main( void ){
 
 *****************************************************************************
 
-<a name="toc-anchor-32"></a>
+<a name="toc-anchor-34"></a>
 
 # 6 Board targets
 
 
 *****************************************************************************
 
-<a name="toc-anchor-33"></a>
+<a name="toc-anchor-35"></a>
 
 ## 6.1 Arduino Uno
 
 ![Arduino Uno board](images/arduino-uno.png)
 
-<a name="toc-anchor-34"></a>
+<a name="toc-anchor-36"></a>
 
 ### 6.1.1 Specifying this target
 
@@ -702,7 +711,7 @@ int main( void ){
    <td>      #include "hwcpp-target-arduino-uno"  </td></tr>
 </table>
 
-<a name="toc-anchor-35"></a>
+<a name="toc-anchor-37"></a>
 
 ### 6.1.2 Target properties
 
@@ -746,7 +755,7 @@ It can be used with the HwCpp Arduino Uno target.
 - The nano use the USB *mini* connector, not the
   more common normal or micro connectors.
 
-<a name="toc-anchor-36"></a>
+<a name="toc-anchor-38"></a>
 
 ### 6.1.3 Clock
 
@@ -761,7 +770,7 @@ you could specify another frequency supported by the
        <td> 16'000'000 (default) </td></tr>
 </table>
 
-<a name="toc-anchor-37"></a>
+<a name="toc-anchor-39"></a>
 
 ### 6.1.4 Timing
 
@@ -779,7 +788,7 @@ for more information.
 <tr><td> clocking  </td><td> clocking  </td></tr>
 </table>
 
-<a name="toc-anchor-38"></a>
+<a name="toc-anchor-40"></a>
 
 ### 6.1.5 IO items
 
@@ -819,7 +828,7 @@ but there are no on-board pull-ups on these pins.
 (Pull-ups would have interfered with the pins primary purpose
 of A/D inputs.)
 
-<a name="toc-anchor-39"></a>
+<a name="toc-anchor-41"></a>
 
 ### 6.1.6 Example
 
@@ -837,7 +846,7 @@ int main(){
 }
 ~~~
 
-<a name="toc-anchor-40"></a>
+<a name="toc-anchor-42"></a>
 
 ### 6.1.7 Resources
 
@@ -850,13 +859,13 @@ int main(){
 
 *****************************************************************************
 
-<a name="toc-anchor-41"></a>
+<a name="toc-anchor-43"></a>
 
 ## 6.2 Arduino Due
 
 ![Arduino Due board](images/arduino-due.png)
 
-<a name="toc-anchor-42"></a>
+<a name="toc-anchor-44"></a>
 
 ### 6.2.1 Specifying this target
 
@@ -869,7 +878,7 @@ int main(){
    <td>      #include "hwcpp-target-arduino-due"  </td></tr>
 </table>
 
-<a name="toc-anchor-43"></a>
+<a name="toc-anchor-45"></a>
 
 ### 6.2.2 Target properties
 
@@ -902,7 +911,7 @@ The programming process can be done hands-off.
 When an Arduino Due is powered, it does NOT automatically run the 
 programmed application: a reset is required.
 
-<a name="toc-anchor-44"></a>
+<a name="toc-anchor-46"></a>
 
 ### 6.2.3 Clock
 
@@ -916,7 +925,7 @@ which is the default.
    <tr><td> 84'000'000 (default              )  </td></tr>
 </table>
 
-<a name="toc-anchor-45"></a>
+<a name="toc-anchor-47"></a>
 
 ### 6.2.4 Timing
 
@@ -933,7 +942,7 @@ Both use the SysTick timer.
 <tr><td> clocking  </td><td> clocking  </td></tr>
 </table>
 
-<a name="toc-anchor-46"></a>
+<a name="toc-anchor-48"></a>
 
 ### 6.2.5 IO items
 
@@ -968,7 +977,7 @@ Both use the SysTick timer.
 
 The I2C pins (scl, sda) have on-board 1k5 pull-up resistors to 3.3V.
 
-<a name="toc-anchor-47"></a>
+<a name="toc-anchor-49"></a>
 
 ### 6.2.6 Example
 
@@ -984,7 +993,7 @@ int main(){
 }
 ~~~
 
-<a name="toc-anchor-48"></a>
+<a name="toc-anchor-50"></a>
 
 ### 6.2.7 Resources
 
@@ -996,13 +1005,13 @@ int main(){
 
 *****************************************************************************
 
-<a name="toc-anchor-49"></a>
+<a name="toc-anchor-51"></a>
 
 ## 6.3 Blue Pill
 
 ![Blue Pill board](images/blue-pill.png)
 
-<a name="toc-anchor-50"></a>
+<a name="toc-anchor-52"></a>
 
 ### 6.3.1 Specifying this target
 
@@ -1015,7 +1024,7 @@ int main(){
    <td>      #include "hwcpp-target-blue-pill"    </td></tr>
 </table>
 
-<a name="toc-anchor-51"></a>
+<a name="toc-anchor-53"></a>
 
 ### 6.3.2 Target properties
 
@@ -1060,7 +1069,7 @@ for a direct connection
 (assuming that the ground is provided by the programmer).
 
 
-<a name="toc-anchor-52"></a>
+<a name="toc-anchor-54"></a>
 
 ### 6.3.3 Clock
 
@@ -1074,7 +1083,7 @@ which is the default.
    <tr><td> 84'000'000 (default              )  </td></tr>
 </table>
 
-<a name="toc-anchor-53"></a>
+<a name="toc-anchor-55"></a>
 
 ### 6.3.4 Timing
 
@@ -1091,7 +1100,7 @@ Both use the SysTick timer.
 <tr><td> clocking  </td><td> clocking  </td></tr>
 </table>
 
-<a name="toc-anchor-54"></a>
+<a name="toc-anchor-56"></a>
 
 ### 6.3.5 IO items
 
@@ -1113,7 +1122,7 @@ Both use the SysTick timer.
       <td> led   </td><td> pin_out  </td><td> c13  </td></tr>
 </table>
 
-<a name="toc-anchor-55"></a>
+<a name="toc-anchor-57"></a>
 
 ### 6.3.6 Example
 
@@ -1130,7 +1139,7 @@ int main(){
 ~~~
 
 
-<a name="toc-anchor-56"></a>
+<a name="toc-anchor-58"></a>
 
 ### 6.3.7 Resources
 
@@ -1143,13 +1152,13 @@ int main(){
 
 *****************************************************************************
 
-<a name="toc-anchor-57"></a>
+<a name="toc-anchor-59"></a>
 
 ## 6.4 stm32 minisystem
 
 ![STM32 minisystem](images/stm32-minisystem.png)
 
-<a name="toc-anchor-58"></a>
+<a name="toc-anchor-60"></a>
 
 ### 6.4.1 Specifying this target
 
@@ -1163,7 +1172,7 @@ int main(){
 </table>
 
 
-<a name="toc-anchor-59"></a>
+<a name="toc-anchor-61"></a>
 
 ### 6.4.2 Target properties
 
@@ -1212,7 +1221,7 @@ The board has no direct way to do serial communication with the host,
 but the uart1 and uart2 pins are available on two connectors.
 
 
-<a name="toc-anchor-60"></a>
+<a name="toc-anchor-62"></a>
 
 ### 6.4.3 Clock
 
@@ -1226,7 +1235,7 @@ which is the default.
    <tr><td> 84'000'000 (default              )  </td></tr>
 </table>
 
-<a name="toc-anchor-61"></a>
+<a name="toc-anchor-63"></a>
 
 ### 6.4.4 Timing
 
@@ -1243,7 +1252,7 @@ Both use the SysTick timer.
 <tr><td> clocking  </td><td> clocking  </td></tr>
 </table>
 
-<a name="toc-anchor-62"></a>
+<a name="toc-anchor-64"></a>
 
 ### 6.4.5 IO items
 
@@ -1265,7 +1274,7 @@ Both use the SysTick timer.
       <td> led   </td><td> pin_out  </td><td> c13  </td></tr>
 </table>
 
-<a name="toc-anchor-63"></a>
+<a name="toc-anchor-65"></a>
 
 ### 6.4.6 Example
 
@@ -1282,7 +1291,7 @@ int main(){
 ~~~
 
 
-<a name="toc-anchor-64"></a>
+<a name="toc-anchor-66"></a>
 
 ### 6.4.7 Resources
 

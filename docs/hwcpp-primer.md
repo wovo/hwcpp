@@ -1,8 +1,31 @@
 HwCpp Primer
 ===
 
+![just a cat on a keyboard](images/spikey.png)
+
+author: Wouter van Ooijen
+
+most recent version: check github.com/wovo/hwcpp
+
+license: Attribution-NonCommercial 2.5 Generic (CC BY-NC 2.5)
+
+[https://creativecommons.org/licenses/by-nc/2.5](https://creativecommons.org/licenses/by-nc/2.5)
+
 <!-- update example_path( "../demo/" ) -->
 
+<!--
+TO DO list
+- fanout for ports
+- walk with dummy pins for funny effects (gap in the middle, etc)
+- input pins
+- LCD schield must be 16x2
+- non-flickering LCD example
+- images for LCD and input/output
+- terminal (stream) input
+-->
+
+
+<p style="page-break-before: always;">&nbsp;</p>
 
 *****************************************************************************
 
@@ -10,10 +33,15 @@ HwCpp Primer
 
 # 1 Introduction
 
-HwCpp is a library for writing micro-controller applications. 
+HwCpp is a library for writing close-to-the-hardware 
+(bare metal) micro-controller applications. 
 This document provides a gentle introduction to using HwCpp.
 Basic C++ and hardware knowledge is assumed, but nothing too advanced.
+Getting HwCpp to work is not covered in this document
+(check the 'getting started' document).
 
+
+<p style="page-break-before: always;">&nbsp;</p>
 
 *****************************************************************************
 
@@ -40,11 +68,15 @@ Basic C++ and hardware knowledge is assumed, but nothing too advanced.
 <!-- update end -->
 
 
+<p style="page-break-before: always;">&nbsp;</p>
+
 *****************************************************************************
 
 <a name="toc-anchor-2"></a>
 
 # 3 Blink a led
+
+![getting an arduino led to blink and then losing interest](images/getting-an-arduino-led-to-blink.png)
 
 Blinking a LED is the "Hello world!" equivalent for micro-controllers,
 so let's start with that.
@@ -171,10 +203,8 @@ those lines.
 And because the timing is now mentioned only once 
 the using... line for that can be omitted.
 
-[](python example( input, "../demo/arduino-uno/blink-blink-1/main.cpp" ) )
+<!-- update example( input, "arduino-uno/blink-blink-1/main.cpp" ) -->
 ~~~C++
-<a name="toc-anchor-1"></a>
-
 #include "hwcpp.hpp"
 
 using target = hwcpp::target<>;
@@ -204,9 +234,16 @@ int main(){
 }
 ~~~
 
+
+<p style="page-break-before: always;">&nbsp;</p>
+
+*****************************************************************************
+
 <a name="toc-anchor-3"></a>
 
 # 4 Kitt
+
+![kitt display](images/kitt.png)
 
 After blinking a single LED, the next step is to do something with a bunch of LEDs. 
 The Kitt display (one LED back-and-forth, from the Knightrider series) 
@@ -238,7 +275,7 @@ so instead the pins that connect to the LEDs are specified.
 This application is for the Arduino Uno target, 
 hence the Arduino pin names are used.
 (Alternatively, the pin names of the atMega328 chip could be used.)
-I used six pins are are conveniently located next to a ground pin.
+I used six pins are conveniently located next to a ground pin.
 
 ~~~C++
 using pins = hwcpp::port_out< 
@@ -253,7 +290,7 @@ using pins = hwcpp::port_out<
 
 The 6 pins are combined into a port_out.
 A port is an (ordered) bundle of pins, 
-and 'out' indicates that the port can be used only as output. 
+and '_out' indicates that the port can be used only as output. 
 
 ~~~C++
    hwcpp::kitt< pins, timing::ms< 50 > >();
@@ -263,14 +300,21 @@ We could write the kitt functionality ourselves, but HwCpp has a
 function template for that, which requires a port and a duration. 
 We pass those parameters, call the function, and kitt is alive.
 
+
+<p style="page-break-before: always;">&nbsp;</p>
+
+*****************************************************************************
+
 <a name="toc-anchor-4"></a>
 
 # 5 More fun with LEDs
 
+![a pile of leds](images/pile-of-leds.png)
+
 Blinking can be made more interesting by blinking more than just a single LED.
 A bunch of pins can be combined into a something that walks and quacks like
 a single (output) pin with the hwcpp::fanout<> template. 
-To blink the six LEDs of the kitt example in usinson, all
+To blink the six LEDs of the kitt example in unison, all
 we need is to do is combine them into a single 'pin', and pass that pin
 to the blink function.
 
@@ -295,7 +339,7 @@ int main(){
 }
 ~~~
 
-The hwcpp::invert<> template can be used to create a pin that inverses
+The hwcpp::invert<> decorator template can be used to create a pin that inverses
 the behavior of the pin it decorates. If we invert the first
 three pins this way before passing them to fanout, the LEDs
 alternate left-right.
@@ -321,7 +365,7 @@ int main(){
 }
 ~~~
 
-A different (but totally equivalent) way to get this effect is to
+A different way to get the same effect is to
 first combine the two groups of three LEDs, then invert one,
 and finally combine the two groups.
 
@@ -373,7 +417,7 @@ int main(){
 
 Another nice pattern is the inside-to-outside. 
 The base for this is the walk<> function, 
-which is like Kitt, but only forward.
+which is like kitt, but only forward.
 
 <!-- update example( input, "arduino-uno/led-6-walk-1/main.cpp" ) -->
 ~~~C++
@@ -421,7 +465,7 @@ int main(){
 }
 ~~~
 
-To get inside-to-outside, we create two ports of three LEDs,
+To get an inside-to-outside display, we create two ports of three LEDs,
 one in the reverse order and the other in the normal order.
 These two ports are combined by fanout<> to get a single port.
 Running walk<> on this port creates the intended effect.
@@ -454,6 +498,8 @@ int main(){
 An alternative is to create the two sub-ports both
 in the standard pin order, but apply mirror<> to one 
 of them before the two ports are combined by fanout<>.
+I prefer this versuion because the pins are in order,
+and the mirroring is explicit.
 
 <!-- update example( input, "arduino-uno/led-6-inside-out-2/main.cpp" ) -->
 ~~~C++
@@ -480,20 +526,34 @@ int main(){
 
 - add dummy pins
 
+
+<p style="page-break-before: always;">&nbsp;</p>
+
+*****************************************************************************
+
 <a name="toc-anchor-5"></a>
 
 # 6 Input and output pins
 
+![a pile of leds](images/pil-of-leds.png)
+
+
+<p style="page-break-before: always;">&nbsp;</p>
+
+*****************************************************************************
+
 <a name="toc-anchor-6"></a>
 
 # 7 Character output
+
+![a pile of leds](images/pil-of-leds.png)
 
 Even embedded programmers want their applications to talk.
 Most embedded targets have at least a serial (UART) connection,
 which is (in the absence of a real debugger) often used for debug logging.
 The cto for this (default) uart is available as target::uart. 
 
-It is a formatted character output, which means that 
+A uart is a formatted character output, which means that 
 it has write() functions that accept the common types
 (bool, char, ints, char *, formatters, etc).
 
@@ -523,15 +583,16 @@ macro is not defined) BMPTK_BAUDRATE
 When you use bmptk, this will be set to a sensible value and
 after downloading a terminal window will be started with that
 baudrate. 
-If you don't use bmptk you must define the baudrate
-macro at the compiler command line, 
+If you don't use bmptk you can define the baudrate
+macro at the compiler command line (or live with the default of 9600), 
 and start your terminal application accordingly.
 
 If you prefer to use &lt;&lt; operators, you can make a cout object
 from a uart and use that object. 
 The object constructor takes care of calling init() on the uart.
 Currently bmptk doen't support global objects with a non-trivial constructor,
-hence such a cout object must be created locally.
+hence such a cout object must be created locally
+(but it can be passed around).
 
 <!-- update example( input, "arduino-uno/hello-cout/main.cpp" ) -->
 ~~~C++
@@ -586,9 +647,10 @@ int main( void ){
 ~~~
 
 When you use an Arduino Uno with the common lcd-with-buttons shield you can 
-use the HwCpp definition for that shield, which takes care of selecting the right pins.
+use the HwCpp definition for that shield, which takes care of selecting the right pins
+and the LCD size (16 characters x 2 lines).
 The shield cto contains a pin for the backlight, and the lcd itself.
-For my shield, the backlight had to be enabled for the LCD to be readable.
+For my shield, the LCD backlight had to be enabled for the LCD to be readable.
 
 <!-- update example( input, "arduino-uno/lcd-20x4-shield/main.cpp" ) -->
 ~~~C++
@@ -615,11 +677,11 @@ int main( void ){
 
 The LCD examples used "\f", which clears the LCD and puts the cursor at
 the top-left position.
-This is part of the console functionality of an lCD.
+This is part of the console functionality of an LCD.
 It extends a character output with a notion of how 
 many rows and columns of characters it has. 
 This can be used through functions (clear(), goto_xy())
-but also (and perhaps most easily) be by data embedded
+but also (and perhaps most easily) be done via data embedded
 in the character stream:
 
  - "\n" : cursor to next line, first position
@@ -627,6 +689,11 @@ in the character stream:
  - "\v" : cursor to first line, first position
  - "\f" : as "\v", but also clears the display
  - "\tXXYY" : cursor to column XX, row YY. X and Y are decimal characters.
+
+The obvious way to rewrite an LCD is to use "\f" and then write the 
+lines of text, each terminated by a "\n".
+This creates some flickering, so it is often better to use "\v",
+and terminate each line with "\r".
          }	
 (example for this using 40x4?)
 
