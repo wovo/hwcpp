@@ -79,7 +79,7 @@ template<
    can_pin_oc scl_arg, 
    can_pin_oc sda_arg, 
    is_waiting timing, 
-   is_i2c_profile profile = i2c_profile_100kHz
+   is_i2c_profile _profile = i2c_profile_100kHz
 >
 struct i2c_bus_bb_scl_sda :
    i2c_bus_marker
@@ -202,7 +202,7 @@ public:
 // i2c channel
 //
 // ==========================================================================  
-
+/*
 struct i2c_channel_marker :
    not_instantiable
 { 
@@ -217,7 +217,7 @@ concept bool is_i2c_channel(){
 // ========== channel constructor
 
 template< 
-   is_i2xc_bus     _bus, 
+   is_i2c_bus     _bus, 
    uint8_t         _address
 >
 struct i2c_channel :
@@ -227,7 +227,7 @@ private:
 
    static auto constexpr address = _address;
    using bus                     = _bus;
-   using profile                 = _bus.profile;
+   using profile                 = _bus:: typename profile;
 
    static void HWCPP_INLINE init(){
       bus::init();
@@ -242,3 +242,4 @@ private:
    } 
    
 }; // i2c_channel
+*/
