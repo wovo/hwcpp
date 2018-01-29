@@ -28,15 +28,15 @@ struct _pin_in_out_foundation : _pin_in_out_root {
    
    static void init(){}
    
-   static void HWLIB_INLINE direction_set_direct( pin_direction d ){
+   static void HWCPP_INLINE direction_set_direct( pin_direction d ){
       (void) d;	  
    }
    
-   static void HWLIB_INLINE set_direct( bool v ){
+   static void HWCPP_INLINE set_direct( bool v ){
       (void) v;
    }
 
-   static bool HWLIB_INLINE get_direct(){ 
+   static bool HWCPP_INLINE get_direct(){ 
       return 0; 
    }
 };

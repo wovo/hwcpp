@@ -50,6 +50,7 @@ The compilers I currently use are (gcc 7.2.0):
 -----------------------------------------------------------------------------
 
 Notes & ToDo
+- print unsigned char -1 hangs on due
 - pin_out from port, writes to all?
 - console sub-consoles?
 - put 

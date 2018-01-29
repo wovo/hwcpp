@@ -246,7 +246,7 @@ concept bool _is_box_in_out_interval = requires {
 template< typename T >
 struct _init_filter { 
     
-   static void HWLIB_INLINE init(){ 
+   static void HWCPP_INLINE init(){ 
       T::init(); 
    }     
 }; 
@@ -258,18 +258,18 @@ struct _box_set_filter {
 
    using _value_type = typename T::value_type;
     
-   static void HWLIB_INLINE set( _value_type v ){ 
+   static void HWCPP_INLINE set( _value_type v ){ 
       T::set( v ); 
    }
-   static void HWLIB_INLINE set_direct( _value_type v ){ 
+   static void HWCPP_INLINE set_direct( _value_type v ){ 
       T::set_direct( v ); 
    }
    
-   static void HWLIB_INLINE set_buffered( _value_type v ){ 
+   static void HWCPP_INLINE set_buffered( _value_type v ){ 
       T::set_buffered( v ); 
    }
    
-   static void HWLIB_INLINE flush(){ 
+   static void HWCPP_INLINE flush(){ 
       T::flush(); 
    }
 };    
@@ -281,18 +281,18 @@ struct _box_get_filter {
 
    using _value_type = typename T::value_type;
     
-   static _value_type HWLIB_INLINE get(){ 
+   static _value_type HWCPP_INLINE get(){ 
       return T::get(); 
    }
-   static _value_type HWLIB_INLINE get_direct(){ 
+   static _value_type HWCPP_INLINE get_direct(){ 
       return T::get_direct(); 
    }
    
-   static _value_type HWLIB_INLINE get_buffered(){ 
+   static _value_type HWCPP_INLINE get_buffered(){ 
       return T::get_buffered(); 
    }
    
-   static void HWLIB_INLINE refresh(){ 
+   static void HWCPP_INLINE refresh(){ 
       T::refresh(); 
    }
 }; 
@@ -302,19 +302,19 @@ struct _box_get_filter {
 template< typename T >
 struct _box_direction_filter { 
    
-   static void HWLIB_INLINE direction_set( pin_direction d ){ 
+   static void HWCPP_INLINE direction_set( pin_direction d ){ 
       T::direction_set( d ); 
    }
    
-   static void HWLIB_INLINE direction_set_direct( pin_direction d ){ 
+   static void HWCPP_INLINE direction_set_direct( pin_direction d ){ 
       T::direction_set_direct( d ); 
    }
    
-   static void HWLIB_INLINE direction_set_buffered( pin_direction d ){ 
+   static void HWCPP_INLINE direction_set_buffered( pin_direction d ){ 
       T::direction_set_buffered( d ); 
    }
    
-   static void HWLIB_INLINE direction_flush(){ 
+   static void HWCPP_INLINE direction_flush(){ 
       T::direction_flush(); 
    }
 }; 

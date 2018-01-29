@@ -90,25 +90,25 @@ struct _pin_in_out_foundation :
    _pin_in_out_root 
 {
 	
-   static void HWLIB_INLINE init(){
+   static void HWCPP_INLINE init(){
       hwcpp::chip_sam3x8e< clock >::init();
    }
    
-   static void HWLIB_INLINE direction_set_direct( pin_direction d ){
+   static void HWCPP_INLINE direction_set_direct( pin_direction d ){
       ( ( d == pin_direction::input )
          ? ((Pio*)P)->PIO_ODR 
          : ((Pio*)P)->PIO_OER 
       )  = ( 0x1U << pin );
    }
    
-   static void HWLIB_INLINE set_direct( bool v ){
+   static void HWCPP_INLINE set_direct( bool v ){
       ( v 
          ? ((Pio*)P)->PIO_SODR 
          : ((Pio*)P)->PIO_CODR 
       )  = ( 0x1U << pin );	   
    }
 
-   static bool HWLIB_INLINE get_direct(){
+   static bool HWCPP_INLINE get_direct(){
       return ( ((Pio*)P)->PIO_PDSR & ( 0x1U << pin ) ) != 0;	   
    }
 };
@@ -187,11 +187,11 @@ struct _pin_adc_foundation :
 	
    using _value_type = typename _adc_root< 12 >::value_type;
 	
-   static void HWLIB_INLINE init(){
+   static void HWCPP_INLINE init(){
 	  _adc_init_common(); 
    }
 
-   static _value_type HWLIB_INLINE get_direct(){
+   static _value_type HWCPP_INLINE get_direct(){
       return _adc_get_common( channel, 0x01 << channel );
    }	      
 };
@@ -252,19 +252,19 @@ struct _uart_foundation :
       hw_uart->UART_CR = UART_CR_RXEN | UART_CR_TXEN;      
    }	
 
-   static bool HWLIB_INLINE read_blocks(){	
+   static bool HWCPP_INLINE read_blocks(){	
       return ( hw_uart->UART_SR & 0x01 ) == 0;
    }
 
-   static char HWLIB_INLINE read_direct_unchecked(){
+   static char HWCPP_INLINE read_direct_unchecked(){
       return hw_uart->UART_RHR; 
    }
 
-   static bool HWLIB_INLINE write_blocks(){
+   static bool HWCPP_INLINE write_blocks(){
       return ( hw_uart->UART_SR & 0x02 ) == 0;
    }
 
-   static void HWLIB_INLINE write_direct_unchecked( char c ){
+   static void HWCPP_INLINE write_direct_unchecked( char c ){
       hw_uart->UART_THR = c;
    }
    	
@@ -304,7 +304,7 @@ static ticks_type now_ticks(){
 
 static constexpr auto inline_delay_max = 6;
 template< ticks_type t >
-static void HWLIB_INLINE inline_delay(){
+static void HWCPP_INLINE inline_delay(){
               
    if constexpr ( t  == 0 ){
       // nothing
@@ -359,7 +359,7 @@ static void HWLIB_INLINE inline_delay(){
 
 // ========= busy loop wait
 
-static void HWLIB_NO_INLINE busy_delay( int32_t n ){
+static void HWCPP_NO_INLINE busy_delay( int32_t n ){
    __asm volatile(                  
       "   .align 4           \t\n"  
       "1: subs.w  r0, #3     \t\n"  
@@ -381,13 +381,13 @@ struct _timing_foundation :
       return chip_sam3x8e< clock >::now_ticks();
    }      
    
-   static void HWLIB_NO_INLINE  wait_ticks_function( ticks_type n ){     
+   static void HWCPP_NO_INLINE  wait_ticks_function( ticks_type n ){     
       ticks_type t = now_ticks() + n;
       while( now_ticks() < t ){}
    }  
    
    template< ticks_type t >
-   static void HWLIB_INLINE wait_ticks_template(){   
+   static void HWCPP_INLINE wait_ticks_template(){   
        
       if constexpr ( t <= inline_delay_max ){
          inline_delay< t >();    

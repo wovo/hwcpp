@@ -54,7 +54,7 @@
       <Project Name="patterns7" ConfigName="Release"/>
     </WorkspaceConfiguration>
   </BuildMatrix>
-  <Project Name="pcf8574a-blink" Path="pcf8574a-blink/_codelite.project" Active="No"/>
+  <Project Name="pcf8574a-blink" Path="pcf8574a-blink/_codelite.project" Active="Yes"/>
   <BuildMatrix>
     <WorkspaceConfiguration Name="Release" Selected="yes">
       <Project Name="pcf8574a-blink" ConfigName="Release"/>

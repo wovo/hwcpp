@@ -139,7 +139,7 @@ struct _timing_waiting_builder :
          T::init();		  
 	  }	   
 	  
-	  static void HWLIB_INLINE wait(){
+	  static void HWCPP_INLINE wait(){
          T::template wait_ticks_template< _ticks >();
 	  }
 	   

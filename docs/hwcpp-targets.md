@@ -1,6 +1,8 @@
 HwCpp Targets
 ===
 
+![just a cat on a keyboard](images/spikey.png)
+
 <!--
 TO DO list
 - stm32 uarts
@@ -46,6 +48,9 @@ td{ border:1px solid #000000; padding: 5px; }
 <a name="toc-anchor-0"></a>
 
 # 1 Introduction
+
+HwCpp is a library for close-to-the-hardware programming.
+It can be found at www.github.com/wovo/hwcpp.
 
 This document describes the targets supported by HwCpp.
 A target is either a (micro-controller) chip, 
@@ -206,7 +211,11 @@ int main(){
 
 <a name="toc-anchor-3"></a>
 
-# 4 Native
+# 4 Hosted targets
+
+Hosted targets create an application for the system you are developing on.
+
+## Native
 
 <a name="toc-anchor-4"></a>
 
@@ -253,6 +262,10 @@ int main(){
    }	  
 }
 ~~~
+
+*****************************************************************************
+
+## Native
 
 
 *****************************************************************************

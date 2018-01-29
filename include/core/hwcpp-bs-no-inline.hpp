@@ -22,7 +22,7 @@
 //
 // FILE-INTERNAL
 //
-// break the HWLIB_INLINE for specific sets of functions
+// break the HWCPP_INLINE for specific sets of functions
 //
 // ==========================================================================
 
@@ -177,7 +177,7 @@ struct _no_inline_stream_in_wrapper< T > : T {
 //
 // LIBRARY-INTERNAL
 //
-// break the chain of HWLIB_INLINE for a box class
+// break the chain of HWCPP_INLINE for a box class
 // 
 // usage examples: _box_fanout, port-from-pins
 //

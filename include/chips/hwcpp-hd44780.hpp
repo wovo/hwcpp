@@ -73,11 +73,11 @@ private:
            
 public:
 
-   static void HWLIB_INLINE command( uint_fast8_t cmd ){
+   static void HWCPP_INLINE command( uint_fast8_t cmd ){
       write8( 0, cmd );
    }
 
-   static void HWLIB_INLINE data( uint_fast8_t chr ){
+   static void HWCPP_INLINE data( uint_fast8_t chr ){
       write8( 1, chr );
    }
 
@@ -122,11 +122,11 @@ public:
 	  cursor_y = y;
    }
    
-   static bool HWLIB_INLINE write_blocks(){
+   static bool HWCPP_INLINE write_blocks(){
       return false;
    }
 
-   static void HWLIB_INLINE flush(){}
+   static void HWCPP_INLINE flush(){}
 
    static void write_direct_unchecked( char chr ){
 

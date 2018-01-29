@@ -105,17 +105,17 @@ struct _stream_add_out_buffered_wrapper< T > : T {
 	
    using _vt = typename T::value_type;
 	
-   static void HWLIB_INLINE write( _vt v ){
+   static void HWCPP_INLINE write( _vt v ){
        T::write_direct( v );
    }
    
    // write_direct provided by T
    
-   static void HWLIB_INLINE write_buffered( _vt v ){
+   static void HWCPP_INLINE write_buffered( _vt v ){
        T::write_direct( v );
    }
    
-   static void HWLIB_INLINE flush(){}	
+   static void HWCPP_INLINE flush(){}	
 };
 
 
@@ -142,12 +142,12 @@ struct _stream_add_out_direct_wrapper< T > : T {
 	
    using _vt = typename T::value_type;	
    
-   static void HWLIB_INLINE set( _vt v ){
+   static void HWCPP_INLINE set( _vt v ){
        T::write_buffered( v );
        T::flush();
    }
    
-   static void HWLIB_INLINE write_direct( _vt v ){
+   static void HWCPP_INLINE write_direct( _vt v ){
        T::write_buffered( v );
        T::flush();
    }
@@ -179,17 +179,17 @@ struct _stream_add_in_buffered_wrapper< T > : T {
 	
    using _vt = typename T::value_type;	
 	
-   static _vt HWLIB_INLINE get(){
+   static _vt HWCPP_INLINE get(){
       return T::read_direct();
    }       
    
   // read_direct provided by T
    
-   static _vt HWLIB_INLINE read_buffered(){
+   static _vt HWCPP_INLINE read_buffered(){
       return T::read_direct();
    }       
    
-   static void HWLIB_INLINE refresh(){}	
+   static void HWCPP_INLINE refresh(){}	
 };
 
 
@@ -216,12 +216,12 @@ struct _stream_add_in_direct_wrapper< T > : T {
 	
    using _vt = typename T::value_type;	
    
-   static _vt HWLIB_INLINE get(){
+   static _vt HWCPP_INLINE get(){
       T::refresh();       
       return T::read_buffered();
    }      
    
-   static _vt HWLIB_INLINE read_direct(){
+   static _vt HWCPP_INLINE read_direct(){
       T::refresh();       
       return T::read_buffered();
    }      

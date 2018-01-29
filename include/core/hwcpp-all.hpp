@@ -170,11 +170,14 @@ namespace hwcpp {
    #include "chips/hwcpp-pcf8574.hpp"
    #include "chips/hwcpp-pcf8591.hpp"
    #include "chips/hwcpp-hd44780.hpp"
+//   #include "chips/hwcpp-ssd1306.hpp"
+   #include "chips/hwcpp-nrf24l01.hpp"
    
    namespace shields {   
 
       #include "shields/hwcpp-lcd-buttons.hpp"
-      //#include "shields/hwcpp-joystick-buttons.hpp"
+      #include "shields/hwcpp-joystick-buttons.hpp"
+      #include "shields/hwcpp-funduino-joystick.hpp"
       #include "shields/hwcpp-i2c-lcd.hpp"
    
    } // namespace shields   

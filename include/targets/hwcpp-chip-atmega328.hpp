@@ -15,7 +15,7 @@
 
 namespace hwcpp {
     
-extern "C" void HWLIB_NO_INLINE _hwlib_avr_ret(){}
+extern "C" void HWCPP_NO_INLINE _HWCPP_avr_ret(){}
     
 template< uint64_t clock >	
 struct chip_atmega328 {
@@ -29,7 +29,7 @@ struct chip_atmega328 {
 //
 // ==========================================================================	
 
-static void HWLIB_INLINE init(){
+static void HWCPP_INLINE init(){
 
    // don't do this over and over	
    _HWCPP_RUN_ONCE;	
@@ -103,11 +103,11 @@ struct _pin_in_out_foundation :
    _pin_in_out_root 
 {
 	
-   static void HWLIB_INLINE init(){
+   static void HWCPP_INLINE init(){
       hwcpp::chip_atmega328< clock >::init();
    }
    
-   static void HWLIB_INLINE direction_set_direct( pin_direction d ){
+   static void HWCPP_INLINE direction_set_direct( pin_direction d ){
       if( d == pin_direction::input ){
          *port_direction[ (int)p ] &= ~ ( 0x1U << pin );
       } else {
@@ -115,7 +115,7 @@ struct _pin_in_out_foundation :
       }
    }
    
-   static void HWLIB_INLINE set_direct( bool v ){
+   static void HWCPP_INLINE set_direct( bool v ){
       if( v ){
          *port_data[ (int)p ] |= ( 0x1U << pin );
       } else {
@@ -123,7 +123,7 @@ struct _pin_in_out_foundation :
       }
    }
 
-   static bool HWLIB_INLINE get_direct(){	   
+   static bool HWCPP_INLINE get_direct(){	   
       return ( *port_in[ (int)p ] & ( 0x1U << pin ) ) != 0;
    }
    
@@ -209,19 +209,19 @@ struct _uart_foundation :
 	  UCSR0B = (1<<RXEN0)|(1<<TXEN0);
    }	
 
-   static bool HWLIB_INLINE read_blocks(){
+   static bool HWCPP_INLINE read_blocks(){
       return !( UCSR0A & ( 0x01<<RXC0 ));
    }
 
-   static char HWLIB_INLINE read_direct_unchecked(){
+   static char HWCPP_INLINE read_direct_unchecked(){
       return UDR0; 
    }
 
-   static bool HWLIB_INLINE write_blocks(){
+   static bool HWCPP_INLINE write_blocks(){
       return !( UCSR0A & ( 0x01 << UDRE0 ));
    }
 
-   static void HWLIB_INLINE write_direct_unchecked( char c ){
+   static void HWCPP_INLINE write_direct_unchecked( char c ){
       UDR0 = c;
    }   
 };
@@ -260,13 +260,13 @@ static ticks_type now_ticks(){
 // ========= inline small delay
 
 template< ticks_type n >
-static void HWLIB_INLINE inline_small_delay(){
+static void HWCPP_INLINE inline_small_delay(){
        
    static_assert( n < 16 );
        
    if constexpr ( n > 7 ){
       __asm volatile(                  
-         "call _hwlib_avr_ret"     
+         "call _HWCPP_avr_ret"     
       );        
    }
 
@@ -356,7 +356,7 @@ struct _waiting_foundation :
       chip::init();
    }	
 
-   static void HWLIB_NO_INLINE wait_ticks_function( ticks_type n ){     
+   static void HWCPP_NO_INLINE wait_ticks_function( ticks_type n ){     
 
       while( n > chunk ){
          chip::busy_wait_ticks_asm( chunk - call_overhead );
@@ -368,7 +368,7 @@ struct _waiting_foundation :
    }  
    
    template< ticks_type t >
-   static void HWLIB_INLINE wait_ticks_template(){
+   static void HWCPP_INLINE wait_ticks_template(){
       if constexpr ( t < call_overhead ){    
           chip::inline_small_delay< t >();
           
@@ -396,17 +396,17 @@ struct _clocking_foundation :
       chip::init();
    }	
 
-   static ticks_type HWLIB_INLINE now_ticks(){
+   static ticks_type HWCPP_INLINE now_ticks(){
       return chip::now_ticks();
    }
 
-   static void HWLIB_NO_INLINE  wait_ticks_function( ticks_type n ){     
+   static void HWCPP_NO_INLINE  wait_ticks_function( ticks_type n ){     
       ticks_type t = now_ticks() + n;
       while( now_ticks() < t ){}
    } 
    
    template< ticks_type t >
-   static void HWLIB_INLINE wait_ticks_template(){
+   static void HWCPP_INLINE wait_ticks_template(){
       if constexpr ( t < call_overhead ){    
           chip::inline_small_delay< t >();
           

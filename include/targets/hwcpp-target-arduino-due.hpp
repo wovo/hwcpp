@@ -12,7 +12,7 @@ namespace hwcpp {
    
 template< uint64_t clock >
 struct target_arduino_due :
-   chip_sam3xa< clock >    
+   chip_sam3x8e< clock >    
 {       
     
 using chip = chip_sam3x8e< clock >;

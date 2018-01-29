@@ -42,7 +42,7 @@ struct _buffered_box_out_wrapper< T > : T {
 	
    using _vt = typename T::value_type;	
    
-   static void HWLIB_INLINE set( _vt v ){
+   static void HWCPP_INLINE set( _vt v ){
       T::set_buffered( v );
    }	  
 };
@@ -57,7 +57,7 @@ struct _direct_box_out_wrapper< T > : T {
 	
    using _vt = typename T::value_type;	
    
-   static void HWLIB_INLINE set( _vt v ){
+   static void HWCPP_INLINE set( _vt v ){
       T::set_direct( v );
    }	  
 };
@@ -72,7 +72,7 @@ struct _buffered_stream_out_wrapper< T > : T {
 	
    using _vt = typename T::value_type;	
    
-   static void HWLIB_INLINE write( _vt v ){
+   static void HWCPP_INLINE write( _vt v ){
       T::write_buffered( v );
    }	  
 };
@@ -87,7 +87,7 @@ struct _direct_stream_out_wrapper< T > : T {
 	
    using _vt = typename T::value_type;	
    
-   static void HWLIB_INLINE write( _vt v ){
+   static void HWCPP_INLINE write( _vt v ){
       T::write_direct( v );
    }	  
 };
@@ -100,7 +100,7 @@ struct _buffered_box_in_wrapper : T {};
 template< _has_box_in_functions T >
 struct _buffered_box_in_wrapper< T > : T {
    
-   static auto HWLIB_INLINE get(){
+   static auto HWCPP_INLINE get(){
       return T::get_buffered();
    }	  
 };
@@ -113,7 +113,7 @@ struct _direct_box_in_wrapper : T {};
 template< _has_box_in_functions T >
 struct _direct_box_in_wrapper< T > : T {
    
-   static auto HWLIB_INLINE get(){
+   static auto HWCPP_INLINE get(){
       return T::get_direct();
    }  
 };
@@ -126,7 +126,7 @@ struct _buffered_stream_in_wrapper : T {};
 template< _has_stream_in_functions T >
 struct _buffered_stream_in_wrapper< T > : T {
 	   
-   static auto HWLIB_INLINE read(){
+   static auto HWCPP_INLINE read(){
       return T::read_buffered();
    }	  
 };
@@ -139,7 +139,7 @@ struct _direct_stream_in_wrapper : T {};
 template< _has_stream_in_functions T >
 struct _direct_stream_in_wrapper< T > : T {
    
-   static auto HWLIB_INLINE read(){
+   static auto HWCPP_INLINE read(){
       return T::read_direct();
    }  
 };
@@ -152,7 +152,7 @@ struct _buffered_direction_wrapper : T {};
 template< _has_box_direction_functions T >
 struct _buffered_direction_wrapper< T > : T {
 	
-   static void HWLIB_INLINE direction_set( pin_direction d ){
+   static void HWCPP_INLINE direction_set( pin_direction d ){
       T::direction_set_buffered( d );
    }	  
 };
@@ -165,7 +165,7 @@ struct _direct_direction_wrapper : T {};
 template< _has_box_direction_functions T >
 struct _direct_direction_wrapper< T > : T {
 	
-   static void HWLIB_INLINE direction_set( pin_direction d ){
+   static void HWCPP_INLINE direction_set( pin_direction d ){
       T::direction_set_direct( d );
    }
 };

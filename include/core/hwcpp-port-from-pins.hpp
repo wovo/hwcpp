@@ -31,7 +31,7 @@
 template< typename pin, typename tail >
 struct _port_recurse_init : tail {
 	
-  static void HWLIB_INLINE init() { 
+  static void HWCPP_INLINE init() { 
       pin::init();
       tail::init(); 
   }	
@@ -44,22 +44,22 @@ struct _port_recurse_set : tail {
 	
    using _vt = typename tail::value_type;
 	
-   static void HWLIB_INLINE set( _vt v ) {
+   static void HWCPP_INLINE set( _vt v ) {
       pin::set_buffered( ( v & 0x01 ) != 0 );
       tail::set( (_vt) ( v >> 1 ) );
 	  pin::flush();
    }
       
-   static void HWLIB_INLINE set_direct( _vt v ) {
+   static void HWCPP_INLINE set_direct( _vt v ) {
       set( v );	   
    }
       
-   static void HWLIB_INLINE set_buffered( _vt v ) {
+   static void HWCPP_INLINE set_buffered( _vt v ) {
       pin::set_buffered( ( v & 0x01 ) != 0 );
       tail::set_buffered( (_vt) ( v >> 1 ) );
    }
       
-   static void HWLIB_INLINE flush() {
+   static void HWCPP_INLINE flush() {
       pin::flush();
       tail::flush();
    }
@@ -73,26 +73,26 @@ struct _port_recurse_get : tail {
 	
    using _vt = typename tail::value_type;
 	
-   static _vt HWLIB_INLINE get() {
+   static _vt HWCPP_INLINE get() {
       pin::refresh();	    
       return (_vt)
 	     pin::get_buffered()
          | ( tail::get_buffered() << 1 );
    }
       
-   static _vt HWLIB_INLINE get_direct() {
+   static _vt HWCPP_INLINE get_direct() {
       return (_vt)
 	     ( pin::get_direct()
             | ( tail::get_direct() << 1 ) );
    }
       
-   static _vt HWLIB_INLINE get_buffered() {
+   static _vt HWCPP_INLINE get_buffered() {
       return (_vt)
 	     ( pin::get_buffered()
             | ( tail::get_buffered() << 1 ) );
    }
       
-   static void HWLIB_INLINE refresh() {
+   static void HWCPP_INLINE refresh() {
       pin::refresh();
       tail::refresh();
    }
@@ -103,23 +103,23 @@ struct _port_recurse_get : tail {
 template< typename pin, typename tail >
 struct _port_recurse_direction : tail {
 	
-   static void HWLIB_INLINE direction_set( pin_direction d ){
+   static void HWCPP_INLINE direction_set( pin_direction d ){
       pin::direction_set_buffered( d );
       tail::direction_set_buffered( d ); 
       pin::direction_flush();
    }    
    
-   static void HWLIB_INLINE direction_direct( pin_direction d ){
+   static void HWCPP_INLINE direction_direct( pin_direction d ){
       pin::direction_set_direct( d );
       tail::direction_set_direct( d );         
    }    
 
-   static void HWLIB_INLINE direction_set_buffered( pin_direction d ){
+   static void HWCPP_INLINE direction_set_buffered( pin_direction d ){
       pin::direction_set_buffered( d );
       tail::direction_set_buffered( d );    
    }    
    
-   static void HWLIB_INLINE direction_flush(){
+   static void HWCPP_INLINE direction_flush(){
       pin::direction_flush();
       tail::direction_flush();   
    } 

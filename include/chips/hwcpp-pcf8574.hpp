@@ -15,18 +15,18 @@ template< is_i2c_bus bus, int address >
 struct pcf8574_generic :
    port_oc_buffer_root< 8 >
 {
-   static void HWLIB_INLINE init(){
+   static void HWCPP_INLINE init(){
       static_assert( 
-         bus::profile.f << 100'000,
+         bus::profile::f <= 100'000,
          "The maximum I2C bus frequency for this chip is 100 kHz" );
       bus::init();       
    }
      
-   static void HWLIB_INLINE flush(){
+   static void HWCPP_INLINE flush(){
       bus::write( address, & write_buffer, 1 ); 
    }
    
-   static void HWLIB_INLINE refresh(){
+   static void HWCPP_INLINE refresh(){
       bus::read( address, & read_buffer, 1 ); 
    }	  
 };	
