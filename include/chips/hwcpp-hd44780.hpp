@@ -153,8 +153,8 @@ public:
       rs::set( 0 );
       timing::template ms< 40 >::wait();
 
-      // interface initialisation: make sure the LCD is in 4 bit mode
-      // (magical sequence, taken from the HD44780 datasheet)
+      // interface initialization: make sure the LCD is in 4 bit mode
+      // (magical sequence, taken from the HD44780 data-sheet)
       write4( 0x03 );
       timing::template ms< 5 >::wait();
       write4( 0x03 );
@@ -162,7 +162,7 @@ public:
       write4( 0x03 );
       write4( 0x02 );     // now we are in 4 bit mode
 
-      // functional initialisation
+      // functional initialization
       command( 0x28 );    // 4 bit mode, 2 lines, 5x8 font
       command( 0x0C );    // display on, no cursor, no blink
       clear();            // clear display, 'cursor' home

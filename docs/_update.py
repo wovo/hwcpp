@@ -4,7 +4,7 @@
 
 example_files_path = ""
 
-def example( input, file_name ):
+def example( input, file_name, marker = "" ):
    result = []
    
    # open quote line
@@ -15,11 +15,15 @@ def example( input, file_name ):
       exit();
 
    # insert the quoted file
+   selected = ( marker == "" )
    with open( example_files_path + file_name, "r" ) as f:
       for line in f:
          if not line.endswith( "\n" ):
             line += "\n"
-         result.append( line )
+         if marker != "" and line.find( marker ) > 0:
+            selected = not selected
+         elif selected:
+            result.append( line )
 
    # result.append( "example[%s]" % file_name )
 

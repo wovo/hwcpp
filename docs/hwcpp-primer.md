@@ -1,8 +1,11 @@
-<p style="font-size:160px">HwCpp Primer</p>
 
-<p><img src="images/spikey.png" alt="just a cat on a keyboard" /></p>
 
-<p style="font-size:120px"></p>
+<p style="font-size:120px">HwCpp Primer</p>
+
+![my desktop is a mess](images/desktop-mess.png)
+
+<p>&nbsp;</p>
+<p>&nbsp;</p>
 
 <table cellpadding="5" border="1" style="border-collapse: collapse;">
 <tr><td> author    </td><td> Wouter van Ooijen  (wouter.vanooijen@hu.nl)     </td></tr>
@@ -15,13 +18,15 @@
 
 <!--
 TO DO list
+- spikey groter
 - fanout for ports
-- walk with dummy pins for funny effects (gap in the middle, etc)
 - input pins
 - LCD schield must be 16x2
 - non-flickering LCD example
 - image for LCD "HwCpp formatted character output"
 - terminal (stream) input
+- A/D conversion, led bar, keys from LCD shield
+- keypad read and translate in hwcpp, add to chapter
 -->
 
 
@@ -33,10 +38,14 @@ TO DO list
 
 # 1 Introduction
 
+<p><img src="images/spikey.png" alt="just a cat on a keyboard" /></p>
+
 HwCpp is a library for writing close-to-the-hardware 
 (bare metal) micro-controller applications. 
 This document provides a gentle introduction to using HwCpp.
 Basic C++ and hardware knowledge is assumed, but nothing too advanced.
+The document is organized to minimize forward references.
+
 Getting HwCpp to work is not covered in this document
 (check the 'getting started' document).
 
@@ -62,7 +71,7 @@ This document is licenced under the CC BY-NC 2.5:
 
   - [4 Kitt](#toc-anchor-3)
 
-  - [5 More fun with LEDs](#toc-anchor-4)
+  - [5 Fun with more LEDs using fanout<>](#toc-anchor-4)
 
   - [6 Input and output pins](#toc-anchor-5)
 
@@ -129,7 +138,8 @@ through makefile/macro/hwcpp.hpp magic, the target micro-controller
 or board you are building your application for.
 By default, the target will use the highest clock speed possible, 
 but in some cases you can specify a slower clock speed as template parameter.
-In this case we don't, so the target will run full-speed.
+In this case no template parameter is given, 
+so the target will run full-speed.
 
 ~~~C++
 using timing = target::timing;
@@ -139,13 +149,16 @@ Most things in HwCpp are classes, not objects,
 so :: is used to select a thing within another thing. 
 The line above selects the default timing service offered by
 our target as the timing we will use.
+A timing service is what you need to wait for a specific
+amount of time.
 
 ~~~C++
 using led    = target::led;
 ~~~
 
 This blinky application is written for a target board that has an
-on board default LED. This is the case for the currently supported
+on board default LED. 
+This is the case for the most boards, including all currently supported
 targets boards (Arduino Uno, Arduino Due, Blue Pill, STM32 minisystem).
 
 ~~~C++
@@ -155,11 +168,12 @@ targets boards (Arduino Uno, Arduino Due, Blue Pill, STM32 minisystem).
 
 Most 'things' in HwCpp are classes, not objects, but the play roughly the 
 same role objects do in standard OO style applications.
-Objects are initialized by their constructors. HwCpp classes,
-which are called Compile Time Objects (cto's), are initialized
-by calling their ::init() function. 
+Objects are initialized by their constructors. 
+HwCpp classes, which are called Compile Time Objects (cto's), 
+are initialized by calling their ::init() function. 
 *All* cto's must be initialialized in this way before they are used.
 Here we initialize the two cto's we will use: the timing and the LED.
+(If they in turn use otrher cto's, it is their duty to initialized those.)
 
 ~~~C++
    for(;;){
@@ -303,6 +317,40 @@ We could write the kitt functionality ourselves, but HwCpp has a
 function template for that, which requires a port and a duration. 
 We pass those parameters, call the function, and kitt is alive.
 
+A kitt display can be made more 'lively' by introducting an 'off'
+period before a next LED light up. This can be done
+by putting a pin_out_dummy between the LEDs (and at the ends).
+This pin_out_dummy is a pin-out cto (you wouldn't have guessed)
+that has a put() function that does nothing.
+
+<!-- update example( input, "arduino-uno/led-6-kitt-skip/main.cpp" ) -->
+~~~C++
+#include "hwcpp.hpp"
+
+using target = hwcpp::target<>;
+using timing = target::waiting;
+
+using pins = hwcpp::port_out< 
+   hwcpp::pin_out_dummy,
+   target::d8,
+   hwcpp::pin_out_dummy,
+   target::d9,
+   hwcpp::pin_out_dummy,
+   target::d10,
+   hwcpp::pin_out_dummy,
+   target::d11,
+   hwcpp::pin_out_dummy,
+   target::d12,
+   hwcpp::pin_out_dummy,
+   target::d13,
+   hwcpp::pin_out_dummy
+>;
+
+int main(){ 
+   hwcpp::kitt< pins, timing::ms< 80 > >();
+}
+~~~
+
 
 <p style="page-break-before: always;">&nbsp;</p>
 
@@ -310,7 +358,7 @@ We pass those parameters, call the function, and kitt is alive.
 
 <a name="toc-anchor-4"></a>
 
-# 5 More fun with LEDs
+# 5 Fun with more LEDs using fanout<>
 
 ![a pile of leds](images/pile-of-leds.png)
 
@@ -527,7 +575,38 @@ int main(){
 }
 ~~~
 
-- add dummy pins
+Another nice pattern is left-blink-twice, right-blink-twice.
+This can be constructed by using kitt instead of blink, with
+one dummy pin at each end, and a few more in the middle 
+(to get a longer pause between the left and right double-blinks).
+
+<!-- update example( input, "arduino-uno/led-6-left-right-skip/main.cpp" ) -->
+~~~C++
+#include "hwcpp.hpp"
+
+using target = hwcpp::target<>;
+using timing = target::waiting;
+
+using pins = hwcpp::port_out< 
+   hwcpp::pin_out_dummy,
+   hwcpp::fanout< 
+      target::d8,
+      target::d9,
+      target::d10 >,
+   hwcpp::pin_out_dummy,
+   hwcpp::pin_out_dummy,
+   hwcpp::pin_out_dummy,
+   hwcpp::fanout< 
+      target::d11,
+      target::d12,
+      target::d13 >,
+   hwcpp::pin_out_dummy
+>;
+
+int main(){ 
+   hwcpp::kitt< pins, timing::ms< 200 > >();
+}
+~~~
 
 
 <p style="page-break-before: always;">&nbsp;</p>
@@ -584,7 +663,7 @@ int main(){
 When a pin cto is passed to a function (as a template argument)
 for use as an output pin, the function should accept both
 output and input-output pins. 
-This would cause a small problem for the function: for
+But this would cause a problem for the function: for
 an input-output pin it should call direction_set(), but an
 output pin doesn't support that function.
 The pin_out<> decorator solves that problem: it converts
@@ -635,6 +714,83 @@ void set(){
 
 int main(){ 
    set< pin >();
+}
+~~~
+
+A typical keypad is organized in a matrix. 
+For a 4 x 4 keypad, there are 4 horizontal lines and 4 vertical lines,
+with a switch at each intersection.
+
+![keypad matrix](images/keypad-matrix.png)
+
+Such a matrix keypad is read by scanning. 
+The vertical lines are connected to input pins with a pull-up.
+The horizontal lines are connected to pins that are used in
+open-collector mode: they are either input
+(no effect in the line), or output an low.
+In turn, each line is the output while the other three are input.
+When a switch is closed, this will be detected when its horizontal line
+is output and low, because it will draw its column line low.
+
+For easy vieuwing, the function encodes the key that is pressed
+as 100 * row + column, where row and column are counted from 1.
+
+<!-- update example( input, "arduino-due/keypad-diy/main.cpp", "##function" ) -->
+~~~C++
+template< 
+   hwcpp::can_port_oc _rows, 
+   hwcpp::can_port_in _columns >
+int keypad_read(){
+   using rows = hwcpp::port_oc< _rows >;
+   using columns = hwcpp::port_in< _columns >;    
+   rows::init();
+   columns::init();
+   timing::init();
+   for( int i = 0; i < rows::n_pins; ++i ){
+      rows::set( ~ ( 0x01 << i ) );
+      //delay::wait();
+      auto c = ~ columns::get();
+      for( int j = 0; j < columns::n_pins; ++j ){
+         if( ( c & ( 0x01 << j ) ) != 0 ){ 
+            return 10 * ( i + 1 ) + j + 1;
+         }            
+      }         
+   }   
+   return 0;
+}
+~~~
+
+The rest of the application creates the row and column ports,
+calls the function, and prints the return value if it is different
+from the previous call. 
+The uart (which is decribed in a next section) is used to show the values.
+
+<!-- update example( input, "arduino-due/keypad-diy/main.cpp", "##main" ) -->
+~~~C++
+using rows = hwcpp::port_oc<
+   target::d58,
+   target::d59,
+   target::d60,
+   target::d61 >;   
+
+using columns = hwcpp::port_in<
+   target::d54,
+   target::d55,
+   target::d56,
+   target::d57 >;
+
+int main(){ 
+   hwcpp::ostream< target::uart > cout; 
+   timing::ms< 1'000 >::wait();  
+   cout << "keypad demo\n";
+   int previous = 0;    
+   for(;;){
+      auto k = keypad_read< rows, columns >();
+      if( k != previous ){
+         cout << "k=" << (int32_t) k << "\n";
+         previous = k;
+      }         
+   }   
 }
 ~~~
 

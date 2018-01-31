@@ -48,5 +48,6 @@ struct port_in_out< port > :
 template< can_port_oc port > 
 struct port_oc< port > :
    _port_oc_root< port::n_pins >,
-   _box_in_out< port >
+   _box_out< port >,
+   _box_in< port >
 {};

@@ -11,12 +11,12 @@ int main(){
    
    for(;;){
       timing::ms< 1000 >::wait();
-	  cout << "\v" << ++n << "\a\n\n";
+	  cout << "\v" << (int32_t)  ++n << "\a\n\n";
       cout << "t";
       auto t1 = timing::now_ticks();
       cout << "=";
       auto t2 = timing::now_ticks();
-      cout << (int) ( timing::ns_from_ticks( t2 - t1 ) / 1'000 ) << "us";
+      cout << (int32_t) ( timing::ns_from_ticks( t2 - t1 ) / 1'000 ) << "us";
    }
 }
 

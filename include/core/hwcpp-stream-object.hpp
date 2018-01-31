@@ -99,7 +99,7 @@ struct ostream :
    
    template< typename V >
    auto & write( V v ){
-      T::write( v );  
+      T::write( v );
       return *this;	  
    }  
    

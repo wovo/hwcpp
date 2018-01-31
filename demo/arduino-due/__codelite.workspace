@@ -66,6 +66,12 @@
       <Project Name="joystick-buttons-shield" ConfigName="Release"/>
     </WorkspaceConfiguration>
   </BuildMatrix>
+  <Project Name="keypad" Path="keypad/_codelite.project" Active="No"/>
+  <BuildMatrix>
+    <WorkspaceConfiguration Name="Release" Selected="yes">
+      <Project Name="keypad" ConfigName="Release"/>
+    </WorkspaceConfiguration>
+  </BuildMatrix>
   <Project Name="keypad-diy" Path="keypad-diy/_codelite.project" Active="No"/>
   <BuildMatrix>
     <WorkspaceConfiguration Name="Release" Selected="yes">
@@ -96,7 +102,13 @@
       <Project Name="led-on" ConfigName="Release"/>
     </WorkspaceConfiguration>
   </BuildMatrix>
-  <Project Name="led-on-function" Path="led-on-function/_codelite.project" Active="Yes"/>
+  <Project Name="led-on-concept" Path="led-on-concept/_codelite.project" Active="No"/>
+  <BuildMatrix>
+    <WorkspaceConfiguration Name="Release" Selected="yes">
+      <Project Name="led-on-concept" ConfigName="Release"/>
+    </WorkspaceConfiguration>
+  </BuildMatrix>
+  <Project Name="led-on-function" Path="led-on-function/_codelite.project" Active="No"/>
   <BuildMatrix>
     <WorkspaceConfiguration Name="Release" Selected="yes">
       <Project Name="led-on-function" ConfigName="Release"/>
@@ -126,7 +138,7 @@
       <Project Name="patterns4" ConfigName="Release"/>
     </WorkspaceConfiguration>
   </BuildMatrix>
-  <Project Name="pcf8574a-lcd" Path="pcf8574a-lcd/_codelite.project" Active="No"/>
+  <Project Name="pcf8574a-lcd" Path="pcf8574a-lcd/_codelite.project" Active="Yes"/>
   <BuildMatrix>
     <WorkspaceConfiguration Name="Release" Selected="yes">
       <Project Name="pcf8574a-lcd" ConfigName="Release"/>
