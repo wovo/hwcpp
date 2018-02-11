@@ -50,6 +50,8 @@ The compilers I currently use are (gcc 7.2.0):
 -----------------------------------------------------------------------------
 
 Notes & ToDo
+- check riot-os.org
+- https://sourceforge.net/p/stm32flash/wiki/Home/ ipv st-proprietary
 - direct LCD's dont work - but pcf8574 works!
 - print due int problem
 - print unsigned char -1 hangs on due
