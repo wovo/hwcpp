@@ -163,7 +163,8 @@ using chip = chip_sam3x8e< clock >;
 #undef make_pin_adc
 
    using waiting = typename chip::waiting;	  
-   using timing = waiting;	  
+   using clocking = typename chip::clocking;	  
+   using timing = clocking;	  
    
 }; // template<...> struct target_arduino_due
 

@@ -50,14 +50,15 @@ The compilers I currently use are (gcc 7.2.0):
 -----------------------------------------------------------------------------
 
 Notes & ToDo
+- due pcf8591
+- due compile all
+- blue pill compile all
+- port fanout now takes n-pins from the first, should be max?
 - check riot-os.org
 - https://sourceforge.net/p/stm32flash/wiki/Home/ ipv st-proprietary
 - direct LCD's dont work - but pcf8574 works!
-- print due int problem
-- print unsigned char -1 hangs on due
 - pin_out from port, writes to all?
 - console sub-consoles?
-- put 
 - test pin in!
 - test uart input, for all targets
 - formatted int out: remove redundancies
@@ -70,7 +71,6 @@ Notes & ToDo
 - updater: copyright, etc
 - add 'number of loops' to blink, kitt, walk
 - combine mirror and invert mechanics?
-- fanout for ports - how to use the same name?
 - ws2812 doesn't work??
 - due in-line delays only up to 6, stm32 up to 10
 - suppress stm32 asm warning

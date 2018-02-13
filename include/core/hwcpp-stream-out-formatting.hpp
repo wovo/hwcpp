@@ -191,40 +191,64 @@ struct formatter :
    }   
       
    template< typename Tx >      
-   static void _write( Tx x ){
-         _print_reverse< 70 > s;
-         
-         bool minus = ( x < 0 );
-         if( x > 0 ){ x = -x; }
+   static void _write_unsigned( Tx x ){
+      _print_reverse< 70 > s;
        
-         if( x == 0 ){
-            s.add_digit( 0, format.hex_base );
-         }
+      if( x == 0 ){
+          s.add_digit( 0, format.hex_base );
+      }
 		 
-         while( x != 0 ){
-            s.add_digit( (char) ( ( - x ) % format.numerical_radix ), format.hex_base );
-            x = - ( - x / format.numerical_radix );
-         }
+      while( x != 0 ){
+         s.add_digit( (char) ( x % format.numerical_radix ), format.hex_base );
+         x = x / format.numerical_radix;
+      }
 		 
-         s.add_prefix( format );
+      s.add_prefix( format );
          
-         if( minus ){
-            s.add_char( '-' );
-         } else if( format.show_pos ){
-            s.add_char( '+' );
-         }        
+      if( format.show_pos ){
+         s.add_char( '+' );
+      }        
          
-         write( s.content );
-      }   
+      write( s.content );
+   }   
 
-      static void write(   int8_t x ){ _write( x ); }
-      static void write(  uint8_t x ){ _write( x ); }
-      static void write(  int16_t x ){ _write( x ); }
-      static void write( uint16_t x ){ _write( x ); }
-      static void write(  int32_t x ){ _write( x ); }
-      static void write( uint32_t x ){ _write( x ); }
-      static void write(  int64_t x ){ _write( x ); }
-      static void write( uint64_t x ){ _write( x ); }
+   template< typename Tx >      
+   static void _write_signed( Tx x ){
+      _print_reverse< 70 > s;
+      
+      bool minus = ( x < 0 );
+      if( x > 0 ){ x = -x; }
+       
+       if( x == 0 ){
+          s.add_digit( 0, format.hex_base );
+      }
+		 
+      while( x != 0 ){
+         s.add_digit( (char) ( ( - x ) % format.numerical_radix ), format.hex_base );
+         x = - ( - x / format.numerical_radix );
+      }
+		 
+      s.add_prefix( format );
+         
+      if( minus ){
+         s.add_char( '-' );
+      } else if( format.show_pos ){
+         s.add_char( '+' );
+      }        
+         
+      write( s.content );
+   }   
+
+   static void write(  unsigned char      x ){ _write_unsigned( x ); }
+   static void write(    signed char      x ){ _write_signed( x );   }
+   static void write(  unsigned short     x ){ _write_unsigned( x ); }
+   static void write(    signed short     x ){ _write_signed( x );   }
+   static void write(  unsigned int       x ){ _write_unsigned( x ); }
+   static void write(    signed int       x ){ _write_signed( x );   }
+   static void write(  unsigned long      x ){ _write_unsigned( x ); }
+   static void write(    signed long      x ){ _write_signed( x );   }
+   static void write(  unsigned long long x ){ _write_unsigned( x ); }
+   static void write(    signed long long x ){ _write_signed( x );   }
 };
 
 

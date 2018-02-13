@@ -5,13 +5,17 @@ using timing = target::waiting;
 
 using pins = hwcpp::fanout< 
    hwcpp::port_out< 
-      target::d10,
-      target::d9,
-      target::d8 >,
+      target::b11,
+      target::b10,
+      target::b1,
+      target::b0,
+      hwcpp::pin_out_dummy
+   >,      
    hwcpp::port_out< 
-      target::d11,
-      target::d12,
-      target::d13 >
+      target::a5,
+      target::a6,
+      target::a7 
+   >
 >;
 
 int main(){ 

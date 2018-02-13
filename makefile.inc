@@ -64,7 +64,6 @@ HEADERS           += hwcpp-pins.hpp
 HEADERS           += hwcpp-pin-adapters.hpp 
 HEADERS           += hwcpp-pin-dummies.hpp 
 HEADERS           += hwcpp-pin-fixed.hpp 
-HEADERS           += hwcpp-pin-fanout.hpp 
 HEADERS           += hwcpp-pin-variables.hpp 
 
 HEADERS           += hwcpp-ports.hpp 
@@ -72,7 +71,6 @@ HEADERS           += hwcpp-port-adapters.hpp
 HEADERS           += hwcpp-port-dummies.hpp 
 HEADERS           += hwcpp-port-from-pins.hpp 
 HEADERS           += hwcpp-port-from-buffers.hpp 
-HEADERS           += hwcpp-port-fanout.hpp 
 
 HEADERS           += hwcpp-adc.hpp 
 HEADERS           += hwcpp-dac.hpp 

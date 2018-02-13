@@ -36,25 +36,37 @@
       <Project Name="hello-uart" ConfigName="Release"/>
     </WorkspaceConfiguration>
   </BuildMatrix>
-  <Project Name="kitt7" Path="kitt7/_codelite.project" Active="No"/>
-  <BuildMatrix>
-    <WorkspaceConfiguration Name="Release" Selected="yes">
-      <Project Name="kitt7" ConfigName="Release"/>
-    </WorkspaceConfiguration>
-  </BuildMatrix>
-  <Project Name="led" Path="led/_codelite.project" Active="Yes"/>
+  <Project Name="led" Path="led/_codelite.project" Active="No"/>
   <BuildMatrix>
     <WorkspaceConfiguration Name="Release" Selected="yes">
       <Project Name="led" ConfigName="Release"/>
     </WorkspaceConfiguration>
   </BuildMatrix>
-  <Project Name="patterns7" Path="patterns7/_codelite.project" Active="No"/>
+  <Project Name="led7-even-odd" Path="led7-even-odd/_codelite.project" Active="No"/>
   <BuildMatrix>
     <WorkspaceConfiguration Name="Release" Selected="yes">
-      <Project Name="patterns7" ConfigName="Release"/>
+      <Project Name="led7-even-odd" ConfigName="Release"/>
     </WorkspaceConfiguration>
   </BuildMatrix>
-  <Project Name="pcf8574a-blink" Path="pcf8574a-blink/_codelite.project" Active="Yes"/>
+  <Project Name="led7-inside-out" Path="led7-inside-out/_codelite.project" Active="No"/>
+  <BuildMatrix>
+    <WorkspaceConfiguration Name="Release" Selected="yes">
+      <Project Name="led7-inside-out" ConfigName="Release"/>
+    </WorkspaceConfiguration>
+  </BuildMatrix>
+  <Project Name="led7-kitt" Path="led7-kitt/_codelite.project" Active="No"/>
+  <BuildMatrix>
+    <WorkspaceConfiguration Name="Release" Selected="yes">
+      <Project Name="led7-kitt" ConfigName="Release"/>
+    </WorkspaceConfiguration>
+  </BuildMatrix>
+  <Project Name="led7-kitt2" Path="led7-kitt2/_codelite.project" Active="No"/>
+  <BuildMatrix>
+    <WorkspaceConfiguration Name="Release" Selected="yes">
+      <Project Name="led7-kitt2" ConfigName="Release"/>
+    </WorkspaceConfiguration>
+  </BuildMatrix>
+  <Project Name="pcf8574a-blink" Path="pcf8574a-blink/_codelite.project" Active="No"/>
   <BuildMatrix>
     <WorkspaceConfiguration Name="Release" Selected="yes">
       <Project Name="pcf8574a-blink" ConfigName="Release"/>
@@ -66,7 +78,7 @@
       <Project Name="pcf8574a-kitt8" ConfigName="Release"/>
     </WorkspaceConfiguration>
   </BuildMatrix>
-  <Project Name="performance" Path="performance/_codelite.project" Active="No"/>
+  <Project Name="performance" Path="performance/_codelite.project" Active="Yes"/>
   <BuildMatrix>
     <WorkspaceConfiguration Name="Release" Selected="yes">
       <Project Name="performance" ConfigName="Release"/>

@@ -15,8 +15,8 @@ template< is_i2c_bus bus, uint_fast8_t address = 0 >
 struct pcf8591 :
    port_oc_buffer_root< 8 >
 {
-   static constexpr uint_fast8_t base = 0x48;	
-   static inline uint_fast8_t configuration;
+   static constexpr uint8_t base = 0x48;	
+   static inline uint8_t configuration;
 	
    static void HWCPP_INLINE init(){
       static_assert( 
@@ -28,7 +28,7 @@ struct pcf8591 :
    static uint_fast8_t _read( uint_fast8_t channel ){
    
       // select the correct channel
-      uint8_t control[ 1 ] = { ( configuration & ( ~ 0x03 )) + channel }; 
+      uint8_t control[ 1 ] = { ( configuration & ( ~ 0x03 )) | (uint8_t)channel }; 
       bus::write( base + address, control, 1 ); 
       
       // read results, note that the first byte is the 

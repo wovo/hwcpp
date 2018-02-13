@@ -2,7 +2,7 @@
 //
 // file : hwcpp-bs-fanout.hpp
 //
-// fanout behaviour for box and stream classes
+// fanout behavior for box and stream classes
 //
 // A fanout combination of output boxes writes the same value
 // to all boxes.
@@ -143,3 +143,38 @@ struct _bs_fanout< adapt, _minion, _tail... > :
    }
    
 };
+
+
+// ==========================================================================
+//
+// fanout<> concepts and implementation
+//
+// ==========================================================================
+
+
+template< typename ... Ts >
+concept bool _is_fanoutable_pins = 
+   ( sizeof...( Ts ) > 0 )
+   && ( can_pin_out< Ts > && ... );
+
+template< typename ... Ts >
+concept bool _is_fanoutable_ports = 
+   ( sizeof...( Ts ) > 0 ) 
+   && ( can_port_out< Ts > && ... );  
+
+template< typename ... Ts > requires 
+    _is_fanoutable_pins< Ts... > 
+    || _is_fanoutable_ports< Ts... >
+struct fanout;
+
+template< can_pin_out first, can_pin_out... pins >
+struct fanout< first, pins...  > :
+   _pin_out_root,
+   _no_inline_wrapper< _bs_fanout< pin_out, first, pins... > >
+{};
+
+template< can_port_out first, can_port_out... ports >
+struct fanout< first, ports... > :
+   _port_out_root< first::n_pins >,
+   _no_inline_wrapper< _bs_fanout< port_out, first, ports... > >
+{};

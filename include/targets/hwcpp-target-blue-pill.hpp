@@ -59,7 +59,8 @@ struct target_blue_pill :
    using led = invert< pin_out< c13 > >;
    
    using waiting = typename chip::waiting;	  
-   using timing = waiting; 
+   using clocking = typename chip::clocking;	  
+   using timing = clocking; 
    
 }; // template<...> struct target_blue_pill
 

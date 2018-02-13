@@ -110,7 +110,6 @@ namespace hwcpp {
    #include "core/hwcpp-bs-box.hpp"
    #include "core/hwcpp-bs-stream.hpp"
    #include "core/hwcpp-bs-buffering.hpp"
-   #include "core/hwcpp-bs-fanout.hpp"
    #include "core/hwcpp-bs-no-inline.hpp"
    
    #include "core/hwcpp-box-adapters.hpp"
@@ -124,7 +123,6 @@ namespace hwcpp {
    #include "core/hwcpp-pin-adapters.hpp"
    #include "core/hwcpp-pin-dummies.hpp"
    #include "core/hwcpp-pin-fixed.hpp"
-   #include "core/hwcpp-pin-fanout.hpp"
    #include "core/hwcpp-pin-variables.hpp"
    
    // ======== ports
@@ -134,7 +132,11 @@ namespace hwcpp {
    #include "core/hwcpp-port-dummies.hpp"
    #include "core/hwcpp-port-from-pins.hpp"
    #include "core/hwcpp-port-from-buffers.hpp"
-   #include "core/hwcpp-port-fanout.hpp"
+
+   // ======== requires pin and port concepts
+
+   #include "core/hwcpp-bs-fanout.hpp"
+
    
    // ======== other boxes
    
