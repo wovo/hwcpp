@@ -165,6 +165,7 @@ namespace hwcpp {
    // ======== ??
    
    #include "core/hwcpp-i2c.hpp"
+   #include "core/hwcpp-spi.hpp"
    #include "core/hwcpp-console.hpp"
 //   #include "core/hwcpp-string.hpp"
    

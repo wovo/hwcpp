@@ -86,6 +86,7 @@ HEADERS           += hwcpp-timing-clocking.hpp
 //HEADERS           += hwcpp-timing-ticker.hpp 
 
 HEADERS           += hwcpp-i2c.hpp 
+HEADERS           += hwcpp-spi.hpp 
 HEADERS           += hwcpp-console.hpp 
 HEADERS           += hwcpp-string.hpp 
 
