@@ -39,6 +39,7 @@
 #include <algorithm>
 #include <ratio>
 #include <type_traits>
+#include <array>
 
 
 // ==========================================================================

@@ -42,8 +42,8 @@ concept bool is_mirrorable = requires {
    T::_is_mirrorable; 
 };
 
-// ========== mixin class for bitwise mirrorable boxes
 
+// ========== mixin class for bitwise mirrorable boxes
 
 template< uint64_t _n_bits >
 struct mirrorable_bitwise :

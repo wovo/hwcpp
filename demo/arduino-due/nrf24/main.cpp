@@ -25,19 +25,19 @@ int main(){
    timing::init();
    nrf::init();
    
-   cout << "status = " << hwcpp::hex << (uint32_t) nrf::status_read() << "\n";
-   cout << "feature=" << hwcpp::hex << (uint32_t) nrf::register_read( nrf::reg::feature ) << "\n";
-   nrf::register_write( nrf::reg::feature, 0x07 );
-   cout << "feature=" << hwcpp::hex << (uint32_t) nrf::register_read( nrf::reg::feature ) << "\n";
+   cout << "status = " << hwcpp::hex << (uint32_t) nrf::status() << "\n";
+   cout << "feature=" << hwcpp::hex << (uint32_t) nrf::read( nrf::reg::feature ) << "\n";
+   nrf::write( nrf::reg::feature, 0x07 );
+   cout << "feature=" << hwcpp::hex << (uint32_t) nrf::read( nrf::reg::feature ) << "\n";
    nrf::extensions_toggle();
-   cout << "status = " << hwcpp::hex << (uint32_t) nrf::status_read() << "\n";
-   cout << "feature=" << hwcpp::hex << (uint32_t) nrf::register_read( nrf::reg::feature ) << "\n";
-   nrf::register_write( nrf::reg::feature, 0x07 );
-   cout << "feature=" << hwcpp::hex << (uint32_t) nrf::register_read( nrf::reg::feature ) << "\n";
-   cout << "status R = " << hwcpp::hex << (uint32_t) nrf::register_read( nrf::reg::status ) << "\n";
+   cout << "status = " << hwcpp::hex << (uint32_t) nrf::status() << "\n";
+   cout << "feature=" << hwcpp::hex << (uint32_t) nrf::read( nrf::reg::feature ) << "\n";
+   nrf::write( nrf::reg::feature, 0x07 );
+   cout << "feature=" << hwcpp::hex << (uint32_t) nrf::read( nrf::reg::feature ) << "\n";
+   cout << "status R = " << hwcpp::hex << (uint32_t) nrf::read( nrf::reg::status ) << "\n";
 
    if(0) for(;;){
-      auto x = nrf::status_read();
+      auto x = nrf::status();
       (void)x;
       cout << "status = " << hwcpp::hex << (uint32_t) x << "\n";
       timing::ms< 1'000 >::wait();

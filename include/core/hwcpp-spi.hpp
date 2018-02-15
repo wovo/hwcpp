@@ -24,12 +24,17 @@ struct spi_bus_bb_sclk_miso_mosi {
 	  timing::init();
    }
    
+   //for now: 1 MHz
    static void wait_half_period(){
       timing::template ns< 500 >::wait();
    }
    
+   // implement other SPI modes
    template< typename data_type, int bits = 8 >
-   static void write_and_read_single( data_type d_out, data_type & d_in ){
+   static void write_and_read_single( 
+      data_type d_out, 
+      data_type & d_in 
+   ){
       d_in = 0;
       for( uint_fast8_t i = 0; i < bits; ++i ){
          mosi::set( ( d_out & ( 0x01 << ( bits - 1 ) ) ) != 0 );		  
@@ -39,25 +44,30 @@ struct spi_bus_bb_sclk_miso_mosi {
          d_out = d_out << 1;
          d_in = d_in << 1;
          d_in |= ( miso::get() ? 0x01 : 0x00 );
-         // if( miso::get()){ d_in |= 0x01; }
          sclk::set( 0 );
       }		  
       mosi::set( 0 );
    }
    
-   // flyweight!
-   template< typename sel > // , size_t n >
+   template< size_t n > 
    static void write_and_read( 
-      const uint8_t data_out[], 
-      uint8_t data_in[],
-      uint_fast8_t n
+      const std::array< uint8_t, n > & data_out, 
+            std::array< uint8_t, n > & data_in
    ){
-
-      sel::set( 0 );
       for( uint_fast8_t i = 0; i < n; ++i ){
          write_and_read_single( data_out[ i ], data_in[ i ] );
       }      
       wait_half_period();
+   }   
+   
+   // flyweight handling of chip select
+   template< typename sel, size_t n > 
+   static void write_and_read( 
+      const std::array< uint8_t, n > & data_out, 
+            std::array< uint8_t, n > & data_in
+   ){
+      sel::set( 0 );
+      write_and_read( data_out, data_in );
       sel::set( 1 );
       wait_half_period();
    }   

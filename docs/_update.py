@@ -4,8 +4,9 @@
 
 example_files_path = ""
 
-def example( input, file_name, marker = "" ):
+def example( input, file_name, marker = "", quote = 0 ):
    result = []
+   count = 0
    
    # open quote line
    line = input.pop( 0 )
@@ -22,8 +23,15 @@ def example( input, file_name, marker = "" ):
             line += "\n"
          if marker != "" and line.find( marker ) > 0:
             selected = not selected
+            if selected and quote:
+               count = int( line.split( marker )[ 1 ].strip().split( " " )[ 0 ] )
          elif selected:
             result.append( line )
+            if count > 0:
+               count = count - 1
+               if count == 0:
+                  selected = false
+                  result = result.replace( "{", "" )
 
    # result.append( "example[%s]" % file_name )
 
@@ -34,6 +42,9 @@ def example( input, file_name, marker = "" ):
    result.append( line )
    
    return result
+
+def quote( input, file_name, marker ):
+   return example( input, file_name, marker, 1 )
    
 def example_path( path ):
    global example_files_path
@@ -149,6 +160,7 @@ def update( file_name ):
             f.write( line )   
  	
 update( "hwcpp-getting-started.md" )
+update( "hwcpp-nrf24l01.md" )
 update( "hwcpp-primer.md" )
 update( "hwcpp-reference.md" )
 update( "hwcpp-targets.md" )

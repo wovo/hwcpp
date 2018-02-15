@@ -530,7 +530,7 @@ Running walk<> on this port creates the intended effect.
 using target = hwcpp::target<>;
 using timing = target::waiting;
 
-using pins = hwcpp::pfanout< 
+using pins = hwcpp::fanout< 
    hwcpp::port_out< 
       target::d10,
       target::d9,
@@ -559,7 +559,7 @@ and the mirroring is explicit.
 using target = hwcpp::target<>;
 using timing = target::waiting;
 
-using pins = hwcpp::pfanout< 
+using pins = hwcpp::fanout< 
    hwcpp::mirror< hwcpp::port_out< 
       target::d8,
       target::d9,
