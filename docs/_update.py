@@ -24,14 +24,17 @@ def example( input, file_name, marker = "", quote = 0 ):
          if marker != "" and line.find( marker ) > 0:
             selected = not selected
             if selected and quote:
-               count = int( line.split( marker )[ 1 ].strip().split( " " )[ 0 ] )
+               n = line.split( marker )[ 1 ].strip().split( " " )[ 0 ].strip()
+               print( "[%s] %s" % ( n, line ))
+               if n != "":
+                  count = int( n )
          elif selected:
-            result.append( line )
             if count > 0:
                count = count - 1
                if count == 0:
-                  selected = false
-                  result = result.replace( "{", "" )
+                  selected = 0
+                  line = line.replace( "{", ";" )
+            result.append( line )
 
    # result.append( "example[%s]" % file_name )
 

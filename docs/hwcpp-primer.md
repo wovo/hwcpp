@@ -1,6 +1,5 @@
-
-
-<p style="font-size:120px">HwCpp Primer</p>
+<p style="font-size:60px">HwCpp</p>
+<p style="font-size:120px">Primer</p>
 
 ![my desktop is a mess](images/desktop-mess.png)
 
