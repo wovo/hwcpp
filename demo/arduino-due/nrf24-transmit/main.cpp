@@ -68,8 +68,12 @@ int main(){
    for(;;){
        
       nrf::interrupts_clear();
+      nrf::write( nrf::cmd::flush_tx );
       cout 
          << "@ status = " 
+         << hwcpp::hex << nrf::read( nrf::reg::status )
+         << "\n"
+         << "@ fifo_status = " 
          << hwcpp::hex << nrf::read( nrf::reg::status )
          << "\n";
       

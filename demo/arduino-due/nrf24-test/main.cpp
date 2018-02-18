@@ -108,11 +108,11 @@ int main(){
    cout << "\nwrite to setup_aw register\n";   
    nrf::write( nrf::reg::setup_aw, 0x00 );
    check( "setup_aw 0", 0x00, nrf::read( nrf::reg::setup_aw ) );
-   nrf::configure( nrf::pipe_address_length::three_bytes );
+   nrf::configure( nrf::address_length::three_bytes );
    check( "setup_aw 1", 0x01, nrf::read( nrf::reg::setup_aw ) );
-   nrf::configure( nrf::pipe_address_length::four_bytes );
+   nrf::configure( nrf::address_length::four_bytes );
    check( "setup_aw 1", 0x02, nrf::read( nrf::reg::setup_aw ) );
-   nrf::configure( nrf::pipe_address_length::five_bytes );
+   nrf::configure( nrf::address_length::five_bytes );
    check( "setup_aw 1", 0x03, nrf::read( nrf::reg::setup_aw ) );
    
    cout << "\nwrite to setup_retr register\n";   
@@ -221,25 +221,29 @@ int main(){
    cout << "\ntransmit with ack\n"; 
    nrf::write( nrf::reg::feature, 0x07 ); 
    nrf::write( nrf::reg::en_aa, 0x3F ); 
-   nrf::write( nrf::reg::setup_retr, 0x05 ); 
+   nrf::write( nrf::reg::setup_retr, 0x07 ); 
    nrf::mode_transmit();  
    nrf::lost_packets_reset();
    nrf::write( nrf::cmd::w_tx_payload, 0xAA ); timing::ms< 10 >::wait();
-   check( "retransmitted packets 5", 0x05, nrf::retransmitted_packets_count() );
    check( "lost packets 1", 0x01, nrf::lost_packets_count() );
-   check( "fifo status - empty", 0x01, nrf::read( nrf::reg::fifo_status ) ); // why??
+   check( "retransmitted packets 7", 0x07, nrf::retransmitted_packets_count() );
+   check( "fifo status - not empty", 0x01, nrf::read( nrf::reg::fifo_status ) ); 
    check( "status", 0x1E, nrf::read( nrf::reg::status ) );
    nrf::interrupts_clear();
    check( "status", 0x0E, nrf::read( nrf::reg::status ) );
+   nrf::write( nrf::cmd::flush_tx ); 
+   check( "fifo status - empty", 0x11, nrf::read( nrf::reg::fifo_status ) ); 
+   // 2nd packet
    nrf::write( nrf::reg::setup_retr, 0x03 ); 
    nrf::write( nrf::cmd::w_tx_payload, 0xAA ); timing::ms< 10 >::wait();
-   check( "retransmitted packets 3", 0x03, nrf::retransmitted_packets_count() );
    check( "lost packets 0", 0x02, nrf::lost_packets_count() );
-   check( "fifo status - empty", 0x01, nrf::read( nrf::reg::fifo_status ) ); // why??
+   check( "retransmitted packets 3", 0x03, nrf::retransmitted_packets_count() );
+   check( "fifo status - not empty", 0x01, nrf::read( nrf::reg::fifo_status ) ); 
    check( "status", 0x1E, nrf::read( nrf::reg::status ) );
    nrf::interrupts_clear();
    check( "status", 0x0E, nrf::read( nrf::reg::status ) );
-   
+   nrf::write( nrf::cmd::flush_tx ); 
+   check( "fifo status - empty", 0x11, nrf::read( nrf::reg::fifo_status ) );    
 
 //   check( "initial status", 0x0E, nrf::read( nrf::reg::status ) );
 
