@@ -13,7 +13,7 @@
 # settings common to this part of the subdirectory tree
 TARGET             ?= arduino_due
 SERIAL_PORT        ?= COM2
-CONSOLE_BAUDRATE   := 2400
+CONSOLE_BAUDRATE   := 19200
 
 # set RELATIVE to the next higher directory and defer to the Makefile.link
 RELATIVE           := $(RELATIVE)../

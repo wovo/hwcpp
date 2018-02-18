@@ -33,36 +33,68 @@ void test_status(){
 
 }
 
-nrf::air_configuration air_conf = { 
-    channel         : 0,
-    air_data_rate   : 1,
-    crc_length      : 2,
-    power           : 3,
-    lna             : 1,
-    address_length  : 5
-};    
+   
 
 int main(){ 
-   hwcpp::ostream< uart > cout;
-   timing::ms< 1000>::wait();
-   cout << "NRF24L01 test \n";
-    
    timing::init();
    led::init();
+   hwcpp::ostream< uart > cout;
+   timing::ms< 1000>::wait();
+   cout << "NRF24L01 test - transmitter\n";
+    
+   std::array< uint8_t, 5 > tx_addr = { 0xE7, 0xE7, 0xE7, 0xE7, 0xE7 };
+   nrf::air_configuration air_conf = { 
+      nrf::channel{ 70 },
+      nrf::rate::r1Mb,
+      nrf::crc::two_bytes,
+      nrf::power::p_18dbm,
+      nrf::lna::high,
+      nrf::address_length::five_bytes
+   };    
+   
    nrf::init();
    nrf::configure( air_conf );
+   nrf::write( nrf::reg::feature, 0x07 );
+   nrf::write( nrf::reg::en_aa, 0x3F );
+   nrf::write( nrf::reg::dynpd, 0x3F );
+   nrf::write( nrf::reg::en_rxaddr, 0x3F );   
+   nrf::write( nrf::reg::tx_addr, tx_addr );
+   nrf::write( nrf::reg::rx_addr_p0, tx_addr );
+   nrf::write( nrf::reg::rx_addr_p1, tx_addr );
+   
    nrf::mode_transmit();
 
    uint8_t n = 0;
    for(;;){
+       
+      nrf::interrupts_clear();
+      cout 
+         << "@ status = " 
+         << hwcpp::hex << nrf::read( nrf::reg::status )
+         << "\n";
+      
+      // transmit 'a' ... 'z'
+      std::array< uint8_t, 32 > msg;
+      n = ( n + 1 ) % 26;
+      msg[ 0 ] = 'a' + n;
+      nrf::transmit_message_once( msg );
+      
+      // pulse the LED
       led::set( 1 );
       timing::ms< 200 >::wait();
       led::set( 0 );
       
-      std::array< uint8_t, 32 > msg;
-      n = ( n + 1 ) % 26;
-      msg[ 0 ] = 'a' + n;
-      nrf::transmit_message( msg );
+      // log some info
+      cout 
+         << "config = " 
+         << hwcpp::hex << nrf::read( nrf::reg::config )
+         << "\n"
+         << "status = " 
+         << hwcpp::hex << nrf::read( nrf::reg::status )
+         << "\n"
+         << "fifo_status = " 
+         << hwcpp::hex << nrf::read( nrf::reg::fifo_status )
+         << "\n\n"; 
     
       timing::ms< 1'000 >::wait();
    }      

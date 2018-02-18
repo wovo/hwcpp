@@ -32,15 +32,6 @@ void test_status(){
    cout << "status R = " << hwcpp::hex << (uint32_t) nrf::read( nrf::reg::status ) << "\n";
 }
 
-nrf::air_configuration air_conf = { 
-    channel         : 0,
-    air_data_rate   : 1,
-    crc_length      : 2,
-    power           : 3,
-    lna             : 1,
-    address_length  : 5
-};    
-
 int main(){ 
    hwcpp::ostream< uart > cout;
    timing::ms< 1000>::wait();
@@ -48,19 +39,50 @@ int main(){
     
    timing::init();
    led::init();
+   
+   std::array< uint8_t, 5 > tx_addr = { 0xE7, 0xE7, 0xE7, 0xE7, 0xE7 };
+   nrf::air_configuration air_conf = { 
+      nrf::channel{ 70 },
+      nrf::rate::r1Mb,
+      nrf::crc::two_bytes,
+      nrf::power::p_18dbm,
+      nrf::lna::high,
+      nrf::address_length::five_bytes
+   };    
+   
    nrf::init();
    nrf::configure( air_conf );
-   nrf::mode_receive();
+   nrf::write( nrf::reg::feature, 0x07 );
+   nrf::write( nrf::reg::en_aa, 0x3F );
+   nrf::write( nrf::reg::dynpd, 0x3F );
+   nrf::write( nrf::reg::en_rxaddr, 0x3F );   
+   nrf::write( nrf::reg::tx_addr, tx_addr );
+   nrf::write( nrf::reg::rx_addr_p0, tx_addr );
+   nrf::write( nrf::reg::rx_addr_p1, tx_addr );
    
-   test_status();
+   
+   //test_status();
 
    for(;;){
       std::array< uint8_t, 32 > msg;
       uint8_t p, n;
-      if( nrf::receive( n, msg, p )){
-         cout << "rx=" << (char) msg[ 0 ] << "\n";
+      if(0)if( nrf::receive( n, msg, p )){
+         cout << "********** rx=" << (char) msg[ 0 ] << "\n";
       }          
-      timing::ms< 1'00 >::wait();
+      
+      // log some info
+      cout 
+         << "config = " 
+         << hwcpp::hex << nrf::read( nrf::reg::config )
+         << "\n"
+         << "status = " 
+         << hwcpp::hex << nrf::read( nrf::reg::status )
+         << "\n"
+         << "fifo_status = " 
+         << hwcpp::hex << nrf::read( nrf::reg::fifo_status )
+         << "\n\n";      
+      
+      timing::ms< 1'000 >::wait();
    }      
 }
 

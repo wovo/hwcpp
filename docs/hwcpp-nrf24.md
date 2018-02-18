@@ -434,16 +434,20 @@ and writing this register.
    static void lost_packets_reset();
 ~~~~
 
-The pipe_autoack() function configures for each
-data pipe whether automatic retransmission is used or not.
+The pipe_autoack() functions configures for a
+pipe whether automatic retransmission is used or not.
+The feature can be enabled or disabled for all pipes
+at once, or for a specific pipe (0..5).
 
 <!-- update quote( input, "", "##pipe-autoack" ) -->
 ~~~C++
    static void pipe_autoack( uint8_t pipe, bool enabled );
 ~~~~
 
-The pipe_enable() function configures for each
+The pipe_enable() function configures for a
 data pipe whether it is used or not.
+This can be done for all pipes
+at once, or for a specific pipe (0..5).
 
 <!-- update quote( input, "", "##pipe-enable" ) -->
 ~~~C++

@@ -218,6 +218,9 @@ struct _uart_foundation :
    static inline Uart * hw_uart = UART;
 	
    static void init(){
+	   
+      // don't do this over and over	
+      _HWCPP_RUN_ONCE	   
        
       hwcpp::chip_sam3x8e< clock >::init();       
 

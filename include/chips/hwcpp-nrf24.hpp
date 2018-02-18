@@ -50,6 +50,7 @@ struct nrf24l01_spi_ce_csn {
       csn::init();
       ce::set( 0 );
       csn::set( 1 );   
+	  timing::init();
       timing:: template ms< 50 >::wait();     
    }
    
@@ -73,7 +74,7 @@ struct nrf24l01_spi_ce_csn {
    // quote ##commands
 
    // quote ##fcommand 1 
-   static uint_fast8_t write( cmd c ){
+   static uint_fast8_t write( const cmd c ){
       const std::array< uint8_t, 1 >  write_data = { (uint8_t) c };
       std::array< uint8_t, 1 > read_data;
       bus:: template write_and_read< csn >( write_data, read_data );      
@@ -81,7 +82,7 @@ struct nrf24l01_spi_ce_csn {
    }
 
    // quote ##fcommand 1 
-   static uint_fast8_t write( cmd c, uint8_t d ){
+   static uint_fast8_t write( const cmd c, const uint8_t d ){
       const std::array< uint8_t, 2 >  write_data = { (uint8_t) c, d };
       std::array< uint8_t, 2 > read_data;
       bus:: template write_and_read< csn >( write_data, read_data );
@@ -90,7 +91,7 @@ struct nrf24l01_spi_ce_csn {
 
    // quote ##fcommand 2 
    template< range_1_32 n >
-   static uint_fast8_t write( cmd c, const std::array< uint8_t, n > & d ){
+   static uint_fast8_t write( const cmd c, const std::array< uint8_t, n > & d ){
       std::array< uint8_t, n + 1 > write_data = { (uint8_t) c };
       for( uint_fast8_t i = 0; i < n; ++i ){
          write_data[ i + 1 ] = d[ i ];
@@ -102,7 +103,7 @@ struct nrf24l01_spi_ce_csn {
    
    // quote ##read-write 1
    template< range_1_32 n >
-   static void read( cmd c, std::array< uint8_t, n > & d ){
+   static void read( const cmd c, std::array< uint8_t, n > & d ){
       const std::array< uint8_t, n + 1 > write_data = { (uint8_t) c };
       std::array< uint8_t, n + 1 > read_data;
       bus:: template write_and_read< csn >( write_data, read_data );
@@ -158,7 +159,7 @@ struct nrf24l01_spi_ce_csn {
    static const uint8_t fifo_status_rx_empty = 0x01;
 
    // quote ##read-write 1
-   static uint8_t read( reg r ){
+   static uint8_t read( const reg r ){
       const std::array< uint8_t, 2 > write_data = { 
          (uint8_t) ( (uint8_t) cmd::read_reg | (uint8_t) r ), 
          0 };
@@ -169,18 +170,18 @@ struct nrf24l01_spi_ce_csn {
 
    // quote ##read-write 2 
    template< size_t n >
-   static void read( reg r, std::array< uint8_t, n > & d ){
+   static void read( const reg r, std::array< uint8_t, n > & d ){
       std::array< uint8_t, n + 1 > write_data = {  
          (uint8_t) ( (uint8_t) cmd::write_reg | (uint8_t) r ) };
       std::array< uint8_t, n + 1 > read_data;
       bus:: template write_and_read< csn >( write_data, read_data );      
-      for( int i = 0; i < n; ++i ){
+      for( uint_fast8_t i = 0; i < n; ++i ){
          d[ i ] = read_data[ i + 1 ];
       }   
    }
    
    // quote ##read-write 1
-   static void write( reg r, uint8_t d ){
+   static void write( const reg r, uint8_t d ){
       const std::array< uint8_t, 2 >  write_data = {  
          (uint8_t) ( (uint8_t) cmd::write_reg | (uint8_t) r ), 
          d };
@@ -190,74 +191,178 @@ struct nrf24l01_spi_ce_csn {
 
    // quote ##read-write 2 
    template< size_t n >
-   static void write( reg r, const std::array< uint8_t, n > & d ){
+   static void write( const reg r, const std::array< uint8_t, n > & d ){
       std::array< uint8_t, n + 1 > write_data = {  
          (uint8_t) ( (uint8_t) cmd::write_reg | (uint8_t) r ) };
-      for( int i = 0; i < n; ++i ){
+      for( uint_fast8_t i = 0; i < n; ++i ){
          write_data[ i + 1 ] = d[ i ];
       }   
       std::array< uint8_t, n + 1 > read_data;
       bus:: template write_and_read< csn >( write_data, read_data );      
    }
 
-// ========== mid-level (individual features) interface
+// ========== mid-level (individual register fields) interface
  
+   // ========= status register
+
    // quote ##status 1
    static uint_fast8_t status(){
       return write( cmd::nop );  
    }   
-
-   // quote ##extensions 1
-   static void extensions_toggle(){
-      (void) write( cmd::activate, 0x73 );             
-   }
-
+      
    // quote ##interrupts 1   
    static void interrupts_clear(){
       uint8_t value = read( reg::status );
       write( reg::status, value ); 
    }   
-
-   // quote ##channel 1
-   static void channel( uint8_t ch ){
-     // MSB must be 0
-     write( reg::rf_ch, ch & 0x7E );
-   }
-
-   // quote ##air-data-rate 1
-   static void air_data_rate( uint_fast8_t rate ){
-      ce::set( 0 );
-      uint8_t value = read( reg::rf_setup );
-      value &= 0xF7;
-      if( rate > 1 ){
-         value |= 0x08;  
-      }
-      write( reg::rf_setup, value );
-      ce::set( 1 );
-   }
-
-   // quote ##crc-length 1
-   static void crc_length( uint8_t len ){
-      len = std::max( len, (uint8_t) 2 );
+   
+   // quote ##crc-length 2
+   enum class crc { none, one_byte, two_bytes }; 
+   static void configure( const crc x ){
       uint8_t val = read( reg::config );
-      if( len == 0 ){
-         val &= 0xF3;
-         write( reg::en_aa, 0 );
-      } else {
-         write( reg::en_aa, 0x3F );
-         val &= 0xFB;
-         if( val == 2 ){
+      val &= 0xF3;
+      if( x != crc::none ){
+		 val |= 0x08;
+         if( x == crc::two_bytes ){
             val |= 0x04; 
          }   
       }  
       write( reg::config, val );
    }
 
-   // quote ##address-length 1
-   static void address_length( uint8_t len ){
-      len = std::clamp( len, (uint8_t) 3, (uint8_t) 5 );
-      write( reg::setup_aw, len - 2  );   
+   // ========= en_aa register
+
+   // quote ##pipe-autoack 1
+   static void pipe_autoack( const bool enabled ){
+      write( reg::en_aa, enabled ? 0x7F : 0x00  ); 
    }
+
+   // quote ##pipe-autoack 1
+   static void pipe_autoack( const uint8_t pipe, const bool enabled ){
+      if( pipe <= 5 ){
+	     uint8_t val = read( reg::en_aa ); 
+         if( enabled ){
+            val |= 1 << pipe;
+         } else {
+            val &= ~ ( 1 << pipe );
+         }
+         write( reg::en_aa, val ); 
+      }
+   }
+
+   // ========= en_rx_rxaddr register
+   
+   // quote ##pipe-enable 1
+   static void pipe_enable( const bool enabled ){
+      write( reg::en_rxaddr, enabled ? 0x7F : 0x00  ); 	    
+   }
+
+   // quote ##pipe-enable 1
+   static void pipe_enable( const uint8_t pipe, const bool enabled ){
+      if( pipe <= 5 ){	   
+      uint8_t val = read( reg::en_rxaddr ); 
+         if( enabled ){
+            val |= 1 << pipe;
+         } else {
+            val &= ~ ( 1 << pipe );
+         }
+         write( reg::en_rxaddr, val ); 
+      }		 
+   }
+   
+   // ========= setup_aw register
+
+   // quote ##address-length 3
+   enum class address_length : uint8_t{ 
+      three_bytes = 1, four_bytes = 2, five_bytes = 3 };
+   static void configure( const address_length x ){
+      write( reg::setup_aw, (uint8_t) x  );   
+   }
+
+   // ========= setup_retr register
+   
+   // quote ##retransmit 2
+   struct retransmission_attempts { uint8_t v; };
+   static void configure( const retransmission_attempts x ){
+      uint8_t value = read( reg::setup_retr );
+      value &= 0xF0;
+      value |= std::min( x.v, (uint8_t) 15 );
+      write( reg::setup_retr, value  );	  
+   }
+   
+   // quote ##retransmit 2
+   struct retransmission_delay_250us { uint8_t v; };
+   static void configure( const retransmission_delay_250us x ){
+      uint8_t value = read( reg::setup_retr );
+      value &= 0x0F;
+      value |= std::min( (uint8_t) ( x.v - 1 ), (uint8_t) 15 ) << 4;
+      write( reg::setup_retr, value  );	  
+   }
+
+   // ========= rf_ch register
+   
+   // quote ##channel 2
+   struct channel { uint8_t v; };   
+   static void configure( const channel ch ){
+     // MSB must be 0
+     write( reg::rf_ch, std::min( ch.v, (uint8_t) 0x7F ));
+   }   
+
+   // ========= rf_setup register
+   
+   // quote ##air-data-rate 2
+   enum class rate { r1Mb, r2Mb };
+   static void configure( rate x ){
+      uint8_t value = read( reg::rf_setup );
+      value &= 0xF7;
+      if( x == rate::r2Mb ){
+         value |= 0x08;  
+      }
+      write( reg::rf_setup, value );
+   }
+   
+   // quote ##power 2
+   enum class power :uint8_t { p_18dbm = 0, p_12dbm = 1, p_6dbm = 2, p_0dbm = 3 };   
+   static void configure( const power v ){
+      uint8_t val = read( reg::rf_setup ); 
+      val &= 0xF9; 
+      val |= ( (uint8_t) v << 1 );
+      write( reg::rf_setup, val ); 
+   }
+
+   // quote ##lna 2
+   enum class lna { low, high };
+   static void configure( const lna v ){
+      uint8_t val = read( reg::rf_setup ); 
+      if( v == lna::low ){ 
+         val &= 0xFE; 
+      } else { 
+         val |= 0x01; 
+      }
+      write( reg::rf_setup, val ); 
+   }
+
+   // ========= 
+   
+   // quote ##retransmit-count 1
+   static uint_fast8_t retransmitted_packets_count(){
+      return read( reg::observe_tx ) & 0x0F;   
+   }
+
+   // quote ##lost-packets-count 1
+   static uint_fast8_t lost_packets_count(){
+      return ( read( reg::observe_tx ) >> 4 ) & 0x0F;   
+   }
+
+   // quote ##lost-packets-reset 1
+   static void lost_packets_reset(){
+      uint8_t val = read( reg::rf_ch );  
+      write( reg::rf_ch, val );    
+   }
+   
+   // ========= 
+
+   
 
    // quote ##tx-fifo-full 1
    static bool transmit_fifo_full(){
@@ -294,93 +399,13 @@ struct nrf24l01_spi_ce_csn {
       write( reg::tx_addr, address );   
    } 
 
-   // quote ##retransmit-count 1
-   static uint_fast8_t retransmit_count(){
-      return read( reg::observe_tx ) & 0x0F;   
-   }
-
-   // quote ##lost-packets-count 1
-   static uint_fast8_t lost_packets_count(){
-      return ( read( reg::observe_tx ) >> 4 ) & 0x0F;   
-   }
-
-   // quote ##pipe-autoack 1
-   static void pipe_autoack( uint8_t pipe, bool enabled ){
-      uint8_t val = read( reg::en_aa ); 
-      pipe = std::max( pipe, (uint8_t) 5 );   
-      if( enabled ){
-         val |= 1 << pipe;
-      } else {
-         val &= ~ ( 1 << pipe );
-      }
-      write( reg::en_aa, val ); 
-   }
-
-   // quote ##pipe-enable 1
-   static void pipe_enable( uint8_t pipe, bool enabled ){
-      uint8_t val = read( reg::en_rxaddr ); 
-      pipe = std::max( pipe, (uint8_t) 5 ); 
-      if( enabled ){
-         val |= 1 << pipe;
-      } else {
-         val &= ~ ( 1 << pipe );
-      }
-      write( reg::en_rxaddr, val ); 
-   }
-
-   // quote ##lost-packets-reset 1
-   static void lost_packets_reset(){
-      uint8_t val = read( reg::rf_ch );  
-      write( reg::rf_ch, val );    
-   }
-
-   // quote ##retransmit-delay-attempts 1
-   static void retransmit_delay_attempts( uint8_t d, uint8_t n ){
-      d = std::max( d, (uint8_t) 15 ); 
-      n = std::max( n, (uint8_t) 15 ); 
-      write( reg::setup_retr, n | ( d << 4 ) );
-   }
-
-   // quote ##lna 1
-   static void lna_high(){
-      uint8_t val = read( reg::rf_setup ); 
-      val |= 0x01;
-      write( reg::rf_setup, val ); 
-   }
-
-   // quote ##lna 1
-   static void lna_low(){
-      uint8_t val = read( reg::rf_setup ); 
-      val &= 0xFE;
-      write( reg::rf_setup, val ); 
-   }
-
-   // quote ##lna 1
-   static void lna( uint8_t x ){
-      if( x == 0 ){ 
-         lna_low(); 
-      } else { 
-         lna_high(); 
-      }
-   }
-
-   // quote ##power 1
-   static void power( uint8_t level ){
-      level = std::max( level, (uint8_t) 3 );
-      ce::set( 0 );
-      uint8_t val = read( reg::rf_setup ); 
-      val &= 0xF9; 
-      val |= ( level << 1 );
-      write( reg::rf_setup, val ); 
-      ce::set( 1 );
-   }
 
 
 /*
 - needs enaa_x
 - needs feature eanbled
    static void channel_payload_size( uint8_t channel, uint8_t size ){
-      size = std::max( size, (uint8_t) 32 );
+      size = std::min( size, (uint8_t) 32 );
       uint8_t val = read( reg::dynpd );  
       if( size == 0 ){
          val |= 1 << channel;
@@ -414,6 +439,13 @@ struct nrf24l01_spi_ce_csn {
    static void transmit_message_once( std::array< uint8_t, n > data ){
       write( cmd::w_tx_payload_noack, data );
    }
+   
+      // quote ##extensions 1
+   static void extensions_toggle(){
+      (void) write( cmd::activate, 0x73 );             
+   }
+   
+
     
 // ========== high-level (use cases) interface
 
@@ -421,7 +453,7 @@ struct nrf24l01_spi_ce_csn {
    static void mode_receive(){
    
       // flush receive queue 
-      write( cmd::flush_tx );
+      write( cmd::flush_rx );
       interrupts_clear();
    
       // switch to receive mode
@@ -437,7 +469,7 @@ struct nrf24l01_spi_ce_csn {
    static void mode_transmit(){
    
       // flush transmit queue
-      write( cmd::flush_rx );
+      write( cmd::flush_tx );
       interrupts_clear();
    
       // switch to transmit mode
@@ -453,7 +485,7 @@ struct nrf24l01_spi_ce_csn {
    static void mode_standby(){
       ce::set( 0 );
       uint8_t value = read( reg::config );
-      value |= 0x02; // set PWR_UP bit
+      value |= 0x02; // set PWR_UP
       write( reg::config, value );
    }
 
@@ -467,22 +499,24 @@ struct nrf24l01_spi_ce_csn {
 
    // quote ##air-configuration 8
    struct air_configuration {
-      uint_fast8_t channel;
-      uint_fast8_t air_data_rate;
-      uint_fast8_t crc_length;
-      uint_fast8_t power;
-      uint_fast8_t lna;
-      uint_fast8_t address_length;
+      channel         ch;
+      rate            adr;
+      crc             c;
+      power           pwr;
+      lna             l;
+      address_length  al;
    };
 
    // quote ##air-configuration 1
    static void configure( const air_configuration conf ){
-      channel( conf.channel );
-      air_data_rate( conf.air_data_rate );
-      crc_length( conf.crc_length );
-      power( conf.power );
-      lna( conf.lna );
-      address_length( conf.address_length );
+      ce::set( 0 );      
+      configure( conf.ch );
+      configure( conf.adr );
+      configure( conf.c );
+      configure( conf.pwr );
+      configure( conf.l );
+      configure( conf.al );
+	  ce::set( 1 );
    }
 
    struct configuration {
