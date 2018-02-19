@@ -35,7 +35,7 @@ void test_status(){
 int main(){ 
    hwcpp::ostream< uart > cout;
    timing::ms< 1000>::wait();
-   cout << "NRF24L01 test \n";
+   cout << "NRF24L01 test - receive\n";
     
    timing::init();
    led::init();
@@ -52,36 +52,36 @@ int main(){
    
    nrf::init();
    nrf::configure( air_conf );
-   nrf::write( nrf::reg::feature, 0x07 );
-   nrf::write( nrf::reg::en_aa, 0x3F );
+   nrf::write( nrf::reg::feature, 0x00 );
+   nrf::write( nrf::reg::en_aa, 0x00 );
    nrf::write( nrf::reg::dynpd, 0x3F );
    nrf::write( nrf::reg::en_rxaddr, 0x3F );   
+   nrf::write( nrf::reg::setup_retr, 0x00 );   
    nrf::write( nrf::reg::tx_addr, tx_addr );
    nrf::write( nrf::reg::rx_addr_p0, tx_addr );
    nrf::write( nrf::reg::rx_addr_p1, tx_addr );
    
-   
-   //test_status();
-
+   nrf::mode_receive();
    for(;;){
       std::array< uint8_t, 32 > msg;
       uint8_t p, n;
-      if(0)if( nrf::receive( n, msg, p )){
-         cout << "********** rx=" << (char) msg[ 0 ] << "\n";
+      if( nrf::receive( n, msg, p )){
+         cout << "\n********** rx=" << (char) msg[ 0 ] << "\n\n";
       }          
       
       // log some info
       cout 
-         << "config = " 
+         << "config (F) = " 
          << hwcpp::hex << nrf::read( nrf::reg::config )
          << "\n"
-         << "status = " 
+         << "status (E) = " 
          << hwcpp::hex << nrf::read( nrf::reg::status )
          << "\n"
-         << "fifo_status = " 
+         << "fifo_status (11) = " 
          << hwcpp::hex << nrf::read( nrf::reg::fifo_status )
          << "\n\n";      
-      
+         
+      nrf::interrupts_clear();
       timing::ms< 1'000 >::wait();
    }      
 }

@@ -2,15 +2,22 @@
 
 using target   = hwcpp::target<>;
 using timing   = target::clocking;
+using uart     = target::uart;
 using i2c_bus  = hwcpp::i2c_bus_bb_scl_sda< target::scl, target::sda, timing >;
 using lcd      = hwcpp::shields::i2c_lcd< i2c_bus, 20, 4, timing >;
 
 int main(){ 
+   hwcpp::ostream< uart > serial;
    hwcpp::ostream< lcd > cout;
-   int n  = 0;
    
+   // wait for the console on the PC to start
+   timing::ms< 1'000 >::wait();   
+   
+   serial << "I2C LCD timing test\n";
+   
+   int n  = 0;
    for(;;){
-      timing::ms< 1000 >::wait();
+      timing::ms< 1'000 >::wait();
 	  cout << "\v" << (int32_t)  ++n << "\a\n\n";
       cout << "t";
       auto t1 = timing::now_ticks();

@@ -234,7 +234,7 @@ struct nrf24l01_spi_ce_csn {
 
    // quote ##pipe-autoack 1
    static void pipe_autoack( const bool enabled ){
-      write( reg::en_aa, enabled ? 0x7F : 0x00  ); 
+      write( reg::en_aa, enabled ? 0x3F : 0x00  ); 
    }
 
    // quote ##pipe-autoack 1
@@ -431,13 +431,17 @@ struct nrf24l01_spi_ce_csn {
    // quote ##transmit 2
    template< range_1_32 n >
    static void transmit_message( std::array< uint8_t, n > data ){
+      ce::set( 0 );
       write( cmd::w_tx_payload, data );
+      ce::set( 1 );
    }
    
    // quote ##transmit 2
    template< range_1_32 n >
    static void transmit_message_once( std::array< uint8_t, n > data ){
+      ce::set( 0 );
       write( cmd::w_tx_payload_noack, data );
+      ce::set( 1 );
    }
    
       // quote ##extensions 1
@@ -452,10 +456,6 @@ struct nrf24l01_spi_ce_csn {
    // quote ##modes 1
    static void mode_receive(){
    
-      // flush receive queue 
-      write( cmd::flush_rx );
-      interrupts_clear();
-   
       // switch to receive mode
       ce::set( 0 );
       uint8_t value = read( reg::config );
@@ -463,14 +463,14 @@ struct nrf24l01_spi_ce_csn {
       value |= 0x02; // set PWR_UP bit
       write( reg::config, value );
       ce::set( 1 );
+
+      // flush receive queue 
+      write( cmd::flush_rx );
+      interrupts_clear();
    }
 
    // quote ##modes 1
    static void mode_transmit(){
-   
-      // flush transmit queue
-      write( cmd::flush_tx );
-      interrupts_clear();
    
       // switch to transmit mode
       ce::set( 0 );
@@ -479,6 +479,11 @@ struct nrf24l01_spi_ce_csn {
       value |= 0x02; // set PWR_UP bit
       write( reg::config, value );
       ce::set( 1 );
+
+      // flush transmit queue
+      write( cmd::flush_tx );
+      interrupts_clear();
+   
    }
 
    // quote ##modes 1
@@ -516,7 +521,6 @@ struct nrf24l01_spi_ce_csn {
       configure( conf.pwr );
       configure( conf.l );
       configure( conf.al );
-	  ce::set( 1 );
    }
 
    struct configuration {

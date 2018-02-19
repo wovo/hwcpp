@@ -46,7 +46,16 @@ int main(){
    
    nrf::init();
    
+   // Some chips seem to *internally* force EN_CRC high when
+   // one of the EN_AA bits is high, others seem to do this
+   // only *internally*.
+   
+   // On some chips, the EN_AA high bits are forced 00, on other
+   // chips they are writable.
+   
    cout << "\nconfig register manipulation\n";
+   nrf::write( nrf::reg::config, nrf::read( nrf::reg::config ) ); // clear interrupts
+   nrf::write( nrf::reg::en_aa, 0x00 ); // disable auto-acks   
    nrf::write( nrf::reg::config, 0x00 );
    nrf::mode_receive();
    check( "receive config", 0x03, nrf::read( nrf::reg::config ) );
@@ -172,16 +181,17 @@ int main(){
    check( "rf_setup lna low", 0x0E, nrf::read( nrf::reg::rf_setup ) );
  
    cout << "\nstatus: tx fifo while receiving\n";   
+   //nrf::write( nrf::reg::feature, 0x07 );
    nrf::mode_receive();
    nrf::write( nrf::cmd::flush_tx );
    nrf::write( nrf::cmd::flush_rx );
    check( "status - empty", 0x0E, nrf::read( nrf::reg::status ) );
    check( "fifo status - empty", 0x11, nrf::read( nrf::reg::fifo_status ) );
-   nrf::write( nrf::cmd::w_tx_payload_noack, 0xAA );
+   nrf::write( nrf::cmd::w_tx_payload, 0xAA ); timing::ms< 10 >::wait();
    check( "status - 1 in tx fifo", 0x0E, nrf::read( nrf::reg::status ) );
    check( "fifo status - 1 in tx fifo", 0x01, nrf::read( nrf::reg::fifo_status ) );
-   nrf::write( nrf::cmd::w_tx_payload_noack, 0xAA );
-   nrf::write( nrf::cmd::w_tx_payload_noack, 0xAA );
+   nrf::write( nrf::cmd::w_tx_payload_noack, 0xAA ); timing::ms< 10 >::wait();
+   nrf::write( nrf::cmd::w_tx_payload_noack, 0xAA ); timing::ms< 10 >::wait();
    nrf::write( nrf::cmd::flush_rx );
    check( "status - 3 in tx fifo", 0x0F, nrf::read( nrf::reg::status ) );
    check( "fifo status - 3 in tx fifo", 0x21, nrf::read( nrf::reg::fifo_status ) );
@@ -224,6 +234,7 @@ int main(){
    nrf::write( nrf::reg::setup_retr, 0x07 ); 
    nrf::mode_transmit();  
    nrf::lost_packets_reset();
+   check( "lost packets 0", 0x00, nrf::lost_packets_count() );
    nrf::write( nrf::cmd::w_tx_payload, 0xAA ); timing::ms< 10 >::wait();
    check( "lost packets 1", 0x01, nrf::lost_packets_count() );
    check( "retransmitted packets 7", 0x07, nrf::retransmitted_packets_count() );

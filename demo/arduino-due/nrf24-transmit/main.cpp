@@ -54,10 +54,11 @@ int main(){
    
    nrf::init();
    nrf::configure( air_conf );
-   nrf::write( nrf::reg::feature, 0x07 );
-   nrf::write( nrf::reg::en_aa, 0x3F );
+   nrf::write( nrf::reg::feature, 0x00 );
+   nrf::write( nrf::reg::en_aa, 0x00 );
    nrf::write( nrf::reg::dynpd, 0x3F );
    nrf::write( nrf::reg::en_rxaddr, 0x3F );   
+   nrf::write( nrf::reg::setup_retr, 0x00 );   
    nrf::write( nrf::reg::tx_addr, tx_addr );
    nrf::write( nrf::reg::rx_addr_p0, tx_addr );
    nrf::write( nrf::reg::rx_addr_p1, tx_addr );
@@ -81,7 +82,7 @@ int main(){
       std::array< uint8_t, 32 > msg;
       n = ( n + 1 ) % 26;
       msg[ 0 ] = 'a' + n;
-      nrf::transmit_message_once( msg );
+      nrf::transmit_message( msg );
       
       // pulse the LED
       led::set( 1 );
