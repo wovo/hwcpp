@@ -111,19 +111,19 @@ struct _timing_waiting_builder :
    }   
    
    static void wait_ns( ns_type n ){
-      wait_ticks( _root::ticks_from_ns( n ) ); 
+      wait_ticks( ticks_from_ns( n ) ); 
    }
    
    static void wait_us( ns_type n ){
-      wait_ticks( _root::ticks_from_ns( n * 1'000ULL ) );	    	   
+      wait_ticks( ticks_from_ns( n * 1'000ULL ) );	    	   
    }
 
    static void wait_ms( ns_type n ){
-      wait_ticks( _root::ticks_from_ns( n * 1'000'000ULL ) );	    	   
+      wait_ticks( ticks_from_ns( n * 1'000'000ULL ) );	    	   
    }
 
    static void wait_s( ns_type n ){
-      wait_ticks( _root::ticks_from_ns( n * 1'000'000'000ULL ) );	    	   
+      wait_ticks( ticks_from_ns( n * 1'000'000'000ULL ) );	    	   
    }   
    
    //========== duration template
