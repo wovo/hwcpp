@@ -13,7 +13,7 @@
 
 template< is_i2c_bus bus, int address >
 struct pcf8574_generic :
-   port_oc_buffer_root< 8 >
+   _port_oc_buffer_root< 8 >
 {
    static void HWCPP_INLINE init(){
       static_assert( 

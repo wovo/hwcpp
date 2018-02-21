@@ -13,7 +13,7 @@
 
 template< is_i2c_bus bus, uint_fast8_t address = 0 >
 struct pcf8591 :
-   port_oc_buffer_root< 8 >
+   _port_oc_buffer_root< 8 >
 {
    static constexpr uint8_t base = 0x48;	
    static inline uint8_t configuration;
