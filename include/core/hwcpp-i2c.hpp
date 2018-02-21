@@ -14,6 +14,21 @@
 //
 // ==========================================================================
 
+template< typename T >
+concept bool is_uint8 = std::is_same< 
+   T, uint8_t >::value; 
+
+template< typename T >
+concept bool is_uint8_iterator = std::is_same< 
+   std::remove_reference_t< decltype( *std::begin( std::declval< T& >() ) ) >, 
+   uint8_t >::value;
+
+template< typename T >
+concept bool _provides_uint8 = 
+   is_uint8< T >  
+   || is_uint8_iterator< T >; 
+
+
 struct i2c_profile_root {
    static constexpr bool is_i2c_profile = true;
 };
@@ -179,6 +194,43 @@ public:
          read_ack();
          write_byte( data[ i ] );
       }               
+      read_ack();
+      write_stop();
+   }           
+
+template< _provides_uint8 T >
+static void write_one_element( T );
+
+static void write_one_element( uint8_t x ){
+   for( int i = 0; i < 8; ++i ){
+      read_ack();
+      write_byte( i );
+   }    
+}
+
+template< is_uint8_iterator T >
+static void write_one_element( T a ){
+   for( const auto x : a ){
+      write_element( x );
+   }
+}
+
+template< _provides_uint8 T >
+static void write_element( T a ){
+   write_one_element( a );
+}
+
+template< _provides_uint8 T, _provides_uint8... Ts >
+static void write_element( T a, Ts... as ){
+   write_one_element( a );
+   write_element( as... );   
+}
+
+   template< _provides_uint8... Ts >
+   static void write( uint8_t address, Ts... items ){
+      write_start();
+      write_byte( address << 1 );
+      write_element( items... );           
       read_ack();
       write_stop();
    }           
