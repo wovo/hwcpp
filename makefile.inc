@@ -98,6 +98,7 @@ HEADERS           += hwcpp-pcf8591.hpp
 HEADERS           += hwcpp-hd44780.hpp 
 HEADERS           += hwcpp-ssd1306.hpp 
 HEADERS           += hwcpp-nrf24.hpp 
+HEADERS           += hwcpp-rc522.hpp 
 
 # HwCpp supported displays
 

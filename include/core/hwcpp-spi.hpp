@@ -29,7 +29,7 @@ struct spi_bus_bb_sclk_miso_mosi {
       timing::template ns< 500 >::wait();
    }
    
-   // implement other SPI modes
+   // must implement other SPI modes
    template< typename data_type, int bits = 8 >
    static void write_and_read_single( 
       data_type d_out, 

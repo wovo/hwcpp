@@ -10,11 +10,16 @@ using i2c_bus  = hwcpp::i2c_bus_bb_scl_sda< target::scl, target::sda, timing >;
 struct pca9685 {
    using bus = i2c_bus;
    inline static const uint_fast8_t base = 0x40;     
-   inline static const uint_fast8_t address = 0x3F;     
+   inline static const uint_fast8_t address = 0x3F;    
+
+   
    
    static void init(){
       bus::init();
-      // bus::write( base + address, 0x00, 0x00 ); ->internal compiler error
+      std::array< uint8_t, 2 > mode1 = { 0x00, 0x00 };
+      std::array< uint8_t, 2 > mode2 = { 0x00, 0x04 };
+      bus::write( base + address, mode1 ); 
+      bus::write( base + address, mode2 ); 
    }
    
    
@@ -25,7 +30,7 @@ struct pca9685 {
 
 int main(){ 
    hwcpp::ostream< uart > cout;
-   using pca = cpa9685;
+   using pca = pca9685;
    pca::init();
    
    for(;;){

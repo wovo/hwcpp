@@ -196,8 +196,21 @@ public:
       }               
       read_ack();
       write_stop();
+   }   
+   
+   template< size_t n >
+   static void write( uint8_t address, const std::array< uint8_t, n > & data ){
+      write_start();
+      write_byte( address << 1 );
+      for( int i = 0; i < n; ++i ){
+         read_ack();
+         write_byte( data[ i ] );
+      }               
+      read_ack();
+      write_stop();
    }           
 
+/*
 template< _provides_uint8 T >
 static void write_one_element( T );
 
@@ -234,8 +247,23 @@ static void write_element( T a, Ts... as ){
       read_ack();
       write_stop();
    }           
+*/
    
    static void read( uint8_t address, uint8_t data[], int n ){
+      write_start();
+      write_byte( ( address << 1 ) | 0x01 );    
+      read_ack();
+      for( int i = 0; i < n; ){
+         data[ i ] = read_byte();
+         if( ++i < n ){
+            write_ack();
+         }            
+      }               
+      write_stop();
+   }      
+	  
+   template< size_t n >
+   static void read( uint8_t address, const std::array< uint8_t, n > & data ){
       write_start();
       write_byte( ( address << 1 ) | 0x01 );    
       read_ack();
