@@ -17,29 +17,32 @@ using rfid = hwcpp::rc522_spi_ss_rst<
    timing
 >;
 
-void show_random_id(){
+void show_registers() {
    hwcpp::ostream< uart > cout;    
-   std::array< uint8_t, 10 > id = { 0 };
-   rfid::generate_random_id( id );
-   for( auto x : id ){
-      cout << hwcpp::hex << x << " ";
-   }
-   cout << "\n";
+   cout << "cmd=" << hwcpp::hex << rfid::read( rfid::reg::CommandReg ) << "\n";
+   cout << "irq=" << hwcpp::hex << rfid::read( rfid::reg::ComIrqReg ) << "\n";
+   cout << "err=" << hwcpp::hex << rfid::read( rfid::reg::ErrorReg ) << "\n";
+   cout << "fif=" << hwcpp::hex << rfid::read( rfid::reg::FIFOLevelReg ) << "\n"; 
 }
 
 void show_card(){
    hwcpp::ostream< uart > cout;    
-   if( ! rfid::tag_present() ){
+   if(0) if( ! rfid::tag_present() ){
       cout << "no tag\n";
       return;
    }
    cout << "\ntag detected\n";
    
-   cout << "cmd=" << hwcpp::hex << rfid::read( rfid::reg::CommandReg ) << "\n";
-   cout << "int=" << hwcpp::hex << rfid::read( rfid::reg::ComIrqReg ) << "\n";
-   cout << "err=" << hwcpp::hex << rfid::read( rfid::reg::ErrorReg ) << "\n";
-   cout << "fif=" << hwcpp::hex << rfid::read( rfid::reg::FIFOLevelReg ) << "\n";
-   
+   std::array< uint8_t, 4 > id;
+   if( ! rfid::tag_id_get( id ) ){
+      cout << "get id failed\n";
+      show_registers();
+      return;
+   }
+   for( const auto d : id ){
+      cout << hwcpp::hex << d << " ";
+   }
+   cout << "\n";   
 } 
 
 int main(){ 
@@ -53,7 +56,6 @@ int main(){
       cout << "chip detected\n";   
       for(;;){
          timing::ms< 1'000 >::wait();
-         show_random_id();
          show_card();
       };
    } else {

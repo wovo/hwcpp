@@ -176,7 +176,7 @@ namespace hwcpp {
    #include "chips/hwcpp-hd44780.hpp"
 //   #include "chips/hwcpp-ssd1306.hpp"
    #include "chips/hwcpp-nrf24.hpp"
-   #include "chips/hwcpp-rc522.hpp"
+   #include "chips/hwcpp-mfrc522.hpp"
    
    namespace shields {   
 

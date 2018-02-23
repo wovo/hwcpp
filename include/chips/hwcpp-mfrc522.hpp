@@ -1,6 +1,6 @@
 // ==========================================================================
 //
-// file : hwcpp-rc522.hpp
+// file : hwcpp-mfrc522.hpp
 //
 // ==========================================================================
 //
@@ -20,7 +20,7 @@
 //
 // PUBLIC
 //
-// interface for an rc522 RFID reader
+// interface for an mfrc522 RFID reader
 //
 // ==========================================================================
 
@@ -120,7 +120,7 @@ struct rc522_spi_ss_rst {
    template< size_t n >
    static void read( reg r, std::array< uint8_t, n > & data ){
       std::array< uint8_t, n + 1 > output;
-      std::array< uint8_t, n + 1 > input = { 42 };
+      std::array< uint8_t, n + 1 > input;
       for( unsigned int i = 0; i < n; i++ ){
          output[ i ] = (uint8_t) ( 0x80 | ( (uint8_t) r << 1));
       }
@@ -182,17 +182,17 @@ struct rc522_spi_ss_rst {
       }
       return true;
    }
-   
-   static void generate_random_id( std::array< uint8_t, 10 > & output ){
-      write( cmd::Idle );
-      timing:: template ms< 50 >::wait();  
-      write( cmd::GenerateRandomID );
-      timing:: template ms< 50 >::wait();  
-      write( cmd::Mem );
-      timing:: template ms< 50 >::wait();  
-      read( reg::FIFODataReg, output ); 
+
+   static void fifo_clear(){
+      write( reg::FIFOLevelReg, 0x80 );
    }
-   
+  
+   template< size_t n >
+   static void fifo_write( const std::array< uint8_t, n > & data ){
+      fifo_clear();
+      write( reg::FIFODataReg, data );
+   }
+    
    template< size_t n, size_t m >
    static bool communicate(
       cmd command,
@@ -201,87 +201,59 @@ struct rc522_spi_ss_rst {
    ){
  
       write( cmd::Idle );
-      write( reg::FIFOLevelReg, 0x80 );
-      //write( reg::FIFODataReg, output );
-      //write( reg::BitFramingReg, command == cmd::Transceive ? 0x87 : 0x07 );
-      //write( reg::CollReg, 0x00 );  
-      //write( reg::ComIrqReg, 0x7F );              
-      //write( command );
-      write( cmd::GenerateRandomID );
+      fifo_write( output );
+      write( reg::CollReg, 0x00 );  
+      write( reg::ComIrqReg, 0x7F );              
+      write( command );
+      if( command == cmd::Transceive ){
+          write( reg::BitFramingReg, 0x87 );
+      }
       
-      timing:: template ms< 50 >::wait();  
-        
-      (void)command;
-      (void)input;
-      (void)output;
+      timing:: template ms< 1 >::wait();  
 
-/*
-        if(0) for (int i = 2000; i > 0;) {
-            n = read( reg::ComIrqReg );
-            if (n & waitIRq ) {
-                break;
-            }
-            if (n & 0x01 ) {
-                return 0;
-            }
-            if (--i == 0 ) {
-                return 0;
-            }
-        }
-*/
-        
-//        auto errorRegValue = read( reg::ErrorReg );
-//        if (errorRegValue & 0x13) {
-//            return false;
-//        }
+      if( ! ( read( reg::ComIrqReg ) & 0x20 )){
+         // nothing received
+         return false;
+      }
 
-/*
-        if (backData && backLen) {
-            n = ReadReg(FIFOLevelReg);
-            if (n > *backLen || n == 0) {
-                return 0;
-            }
-            *backLen = n;
-            ReadReg(FIFODataReg, n, backData);
-            _validBits = (byte) (ReadReg(ControlReg) & 0x07);
-            if (validBits) {
-                *validBits = _validBits;
-            }
-        }
+      if( ( read( reg::ErrorReg ) & 0x13 ) != 0x00 ){
+         // some error
+         return false;
+      }
 
-        if (errorRegValue & 0x08) {
-            return 0;
-        }
+      if( read( reg::FIFOLevelReg ) < m ){
+         // not enough data 
+         return false;
+      }
 
-        if (backData && backLen && checkCRC) {
-            byte controlBuffer[2];
-            if (!calculate_crc(&backData[0], (byte) (*backLen - 2), &controlBuffer[0])) {
-                return 0;
-            }
-            if ((backData[*backLen - 2] != controlBuffer[0]) || (backData[*backLen - 1] != controlBuffer[1])) {
-                return 0;
-            }
-        }
-*/
-        return true;
-    }   
-   
+      read( reg::FIFODataReg, input );
+
+      return true;
+   }   
+
    static bool tag_present() {
-        //byte buffer[2];
-        //byte len = sizeof(buffer);
-        //byte validBits = 7;
+      const std::array< uint8_t, 1 > output = { 0x26 };
+      std::array< uint8_t, 2 > input = {};
 
-        std::array< uint8_t, 1 > output = { 0x26 };
-        std::array< uint8_t, 2 > input = { 0x26 };
-        if( !communicate( cmd::Transceive, output, input ) ){
-            return false;
-        }
-        //if( len != 2 || validBits != 0 ) {
-        //    return 0;
-        //}
-        return true;
-    }
+      write( reg::BitFramingReg, 0x07 );
+      if( !communicate( cmd::Transceive, output, input ) ){
+         return false;
+      }
+
+      return true;
+   }
     
+   static bool tag_id_get( std::array< uint8_t, 4 > & result ){
+      const std::array< uint8_t, 2 > output = { 0x93, 0x20 };
+
+      write( reg::BitFramingReg, 0 );
+      if( !communicate( cmd::Transceive, output, result )){
+          return false;
+      }
+
+      return true;
+   }
+   
    static void soft_reset() {
       write( cmd::SoftReset );
       timing:: template us< 50 >::wait();
@@ -301,17 +273,15 @@ struct rc522_spi_ss_rst {
       timing:: template ms< 50 >::wait(); 
       soft_reset(); 
 
-      write( reg::TModeReg, 0x80 );
-      write( reg::TPrescalerReg, 0x9A );
-      write( reg::TReloadRegH, 0x03 );
-      write( reg::TReloadRegL, 0xE8 );
-      write( reg::TxASKReg, 0x40 );
-      write( reg::ModeReg, 0x3D );
-
-      //auto value = read( TxControlReg );
-      //if ((value & 0x03) != 0x03) {
-      //   SetBitMask(TxControlReg, 0x03);
-      //}   
+      write( reg::TModeReg,       0x8D );
+      write( reg::TPrescalerReg,  0x3E );
+      write( reg::TReloadRegH,    0x00 );
+      write( reg::TReloadRegL,      30 );
+      write( reg::TxASKReg,       0x40 );
+      write( reg::ModeReg,        0x3D );
+      write( reg::ModeReg,        0x3D );
+      write( reg::RFCfgReg,       0x40 );
+      write( reg::TxControlReg,   0x83 ); 
    }
 
 }; //struct rc522_spi_ss_rst

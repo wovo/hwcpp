@@ -45,7 +45,7 @@ struct spi_bus_bb_sclk_miso_mosi {
          d_in = d_in << 1;
          d_in |= ( miso::get() ? 0x01 : 0x00 );
          sclk::set( 0 );
-      }		  
+      } 
       mosi::set( 0 );
    }
    
