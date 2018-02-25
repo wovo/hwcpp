@@ -27,22 +27,39 @@ void show_registers() {
 
 void show_card(){
    hwcpp::ostream< uart > cout;    
-   if(0) if( ! rfid::tag_present() ){
+   cout << "\n";
+   
+   if( ! rfid::new_card_present() ){
       cout << "no tag\n";
       return;
    }
-   cout << "\ntag detected\n";
+   //show_registers();
+   cout << "tag detected\n";
    
-   std::array< uint8_t, 4 > id;
+   if( ! rfid::select_card() ){
+      cout << "could not select card\n";
+      return;    
+   }
+   //show_registers();
+   cout << "card selected\n"; 
+   
+   for( const auto d : rfid::card_uid ){
+      cout << hwcpp::hex << d << " ";
+   }
+   cout << "\n";  
+   
+/*   std::array< uint8_t, 4 > id;
    if( ! rfid::tag_id_get( id ) ){
       cout << "get id failed\n";
       show_registers();
       return;
    }
+   show_registers();
    for( const auto d : id ){
       cout << hwcpp::hex << d << " ";
    }
    cout << "\n";   
+*/    
 } 
 
 int main(){ 

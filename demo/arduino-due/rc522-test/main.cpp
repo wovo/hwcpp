@@ -35,39 +35,6 @@ void check_function( int line, const char *s, int a, int b ){
    cout << "\n";
 }
 
-void show_random_id(){
-   hwcpp::ostream< uart > cout;    
-   std::array< uint8_t, 10 > id = { 1,2,3,4,5,6,7,8,9,0 };
-   rfid::generate_random_id( id );
-
-   cout << "ver=" << hwcpp::hex << rfid::read( rfid::reg::VersionReg ) << "\n";
-   cout << "cmd=" << hwcpp::hex << rfid::read( rfid::reg::CommandReg ) << "\n";
-   cout << "int=" << hwcpp::hex << rfid::read( rfid::reg::ComIrqReg ) << "\n";
-   cout << "err=" << hwcpp::hex << rfid::read( rfid::reg::ErrorReg ) << "\n";
-   cout << "fif=" << hwcpp::hex << rfid::read( rfid::reg::FIFOLevelReg ) << "\n";
-   
-   for( auto x : id ){
-      cout << hwcpp::hex << x << " ";
-   }
-   cout << "\n";
-}
-
-void show_card(){
-   hwcpp::ostream< uart > cout;    
-   if( ! rfid::tag_present() ){
-      cout << "no tag\n";
-      return;
-   }
-   cout << "\ntag detected\n";
-   
-   cout << "irq=" << hwcpp::hex << rfid::read( rfid::reg::ComIrqReg ) << "\n";
-   cout << "ver=" << hwcpp::hex << rfid::read( rfid::reg::VersionReg ) << "\n";
-   cout << "cmd=" << hwcpp::hex << rfid::read( rfid::reg::CommandReg ) << "\n";
-   cout << "err=" << hwcpp::hex << rfid::read( rfid::reg::ErrorReg ) << "\n";
-   cout << "fif=" << hwcpp::hex << rfid::read( rfid::reg::FIFOLevelReg ) << "\n";
-   
-} 
-
 int main(){ 
    timing::init();
    timing::ms< 1000 >::wait();
@@ -196,6 +163,37 @@ int main(){
       rfid::write( rfid::reg::FIFOLevelReg, 0x80 );
       rfid::write( rfid::cmd::Mem );
    }
+
+   cout << "\nCRC\n";      
+   rfid::write( rfid::reg::FIFOLevelReg, 0x80 );
+   std::array< uint8_t, 5 > crc_data = { 0xA1, 0xA2, 0xA3, 0xA4, 0xA5 };
+   rfid::write( rfid::reg::FIFODataReg, crc_data ); 
+   rfid::write( rfid::reg::ModeReg, 0x3F ); 
+   rfid::write( rfid::reg::DivIrqReg, 0x7F );
+   check( "no irq", 0x00, rfid::read( rfid::reg::DivIrqReg ) ); 
+   rfid::write( rfid::cmd::CalcCRC );     
+   timing::ms< 1 >::wait();
+   check( "irq", 0x04, rfid::read( rfid::reg::DivIrqReg ) ); 
+   cout 
+      << "CRC (90 C8) = " 
+      << hwcpp::hex << rfid::read( rfid::reg::CRCResultRegH ) 
+      << " " 
+      << hwcpp::hex << rfid::read( rfid::reg::CRCResultRegL ) 
+      << "\n"; 
+   rfid::write( rfid::cmd::Idle );      
+   rfid::write( rfid::reg::FIFOLevelReg, 0x80 );
+   rfid::write( rfid::reg::FIFODataReg, crc_data ); 
+   rfid::write( rfid::reg::FIFODataReg, crc_data ); 
+   rfid::write( rfid::cmd::CalcCRC );     
+   timing::ms< 1 >::wait();
+   check( "irq", 0x04, rfid::read( rfid::reg::DivIrqReg ) ); 
+   cout 
+      << "CRC (5F D8) = " 
+      << hwcpp::hex << rfid::read( rfid::reg::CRCResultRegH ) 
+      << " " 
+      << hwcpp::hex << rfid::read( rfid::reg::CRCResultRegL ) 
+      << "\n"; 
+   rfid::write( rfid::cmd::Idle );      
    
    cout << "\nerrors = " << hwcpp::dec << error_count << "\n";
 }

@@ -105,6 +105,7 @@
 namespace hwcpp {
 
    #include "core/hwcpp-basics.hpp"
+   #include "core/hwcpp-buffer.hpp"
    
    // ========= box/stream common
    

@@ -48,6 +48,7 @@ endif
 HEADERS           += hwcpp.hpp
 HEADERS           += hwcpp-all.hpp
 HEADERS           += hwcpp-basics.hpp 
+HEADERS           += hwcpp-buffer.hpp 
 
 HEADERS           += hwcpp-bs-box.hpp 
 HEADERS           += hwcpp-bs-stream.hpp 
