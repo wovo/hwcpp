@@ -27,7 +27,7 @@ TI-SOFTWARE        ?= C:/ti-software
 
 # add ourselves
 HWCPP              ?= $(RELATIVE)
-include            $(RELATIVE)makefile.inc
+include            $(RELATIVE)Makefile.inc
 
 # add Catch
 SEARCH             += $(HWCPP)/../Catch/include
