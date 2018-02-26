@@ -1,0 +1,1 @@
+This directory makes HwCpp usable as an Arduino library.

@@ -12,8 +12,8 @@
 //
 // ============================================================================
 
-#ifndef HWCPP_INCLUDED
-#define HWCPP_INCLUDED
+#ifndef _HWCPP_INCLUDED
+#define _HWCPP_INCLUDED
 
 #ifdef HWCPP_TARGET_atmega328
    #define _HWCPP_TARGET_OK
@@ -59,4 +59,4 @@
    #error no valid HWCPP_TARGET_*
 #endif
 
-#endif // #ifndef HWCPP_INCLUDED
+#endif // #ifndef _HWCPP_INCLUDED

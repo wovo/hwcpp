@@ -27,8 +27,10 @@ at least the following:
  - scripts to invoke the various tools with appropriate parameters
  - (optionally) an IDE to edit the source and invoke the scripts
 
-This document explains how to get started with HwCpp using bmptk and CodeLite,
-for now only for windows.
+This document explains how to get started with HwCpp using either
+  - bmptk and CodeLite,
+  - the Arduino IDE 
+for now, both only for windows.
 
 *****************************************************************************
 
@@ -50,7 +52,56 @@ for now only for windows.
 
 <a name="toc-anchor-1"></a>
 
-# 2 Download and install
+# 2 Using the Arduino IDE
+
+By itself, the Arduino IDE will use an old version of the compiler, 
+and the C++ language version is set to C++11. 
+For HwCpp C++17 and concepts are required, hence you
+must install a differet compiler toolchain, and change
+the language version. 
+
+Do these steps:
+ - install the Arduino IDE
+ - for AVR targets (Arduino Uno, Nano, Micro, etc.) 
+    - go to the directory arduino/hardware/tools, 
+      rename the avr directory to avr-old
+    - create a new avr directory, and copy the var-old/tools directory in it
+    - get GCC for avr8 from http://blog.zakkemble.co.uk/avr-gcc-builds/ , 
+      copy the zip content to arduino/hardware/tools/avr.
+    - go to the directory 
+      arduino/hardware/arduino/avr and use a text 
+      editor to create the file platform.local.txt with the single line
+~~~
+   compiler.cpp.extra_flags= -std=c++17 -fconcepts
+~~~ 
+   - for Cortex targets (Arduino Due, Blue Pill, etc.) 
+     start the IDE, go to Tools -> Board -> Boards Manager, 
+     and install support for "Arduino SAM Boards" and "STM32Fxx/GD32Fxx boards"
+   - install the GCC for arm/cortex from 
+     https://developer.arm.com/open-source/gnu-toolchain/gnu-rm/downloads
+     and remember where it was put
+   - find where the Arduino IDE has hidden the arm gcc compiler, most likely 
+     something like
+     C:\Users\<your user name>\AppData\Local\Arduino15\packages\arduino\tools   
+   - Rename the arm-none-eabi-gcc to arm-none-eabi-gcc-old
+   - Copy the GCC you installed to that tools directory, replacing the one
+     the Arduino IDE installed
+   - in the ....\packages\arduino\tools\hardware\sam\1.6.11 directory,
+     use a text editor to create a platform.local.txt file with the one line
+~~~
+   compiler.cpp.extra_flags= -std=c++17 -fconcepts
+~~~ 	 
+	 
+	 
+	 
+
+   editor to create the file platform.local.txt with the single line
+~~~
+   compiler.cpp.extra_flags= -std=c++17 -fconcepts
+~~~
+ - copy this file to the arduino/hardware/arduino
+
+# 2 Using BMPTK and CodeLite
 
 Download and install:
  - Python 3.6 from http://www.python.org to C:/python36
