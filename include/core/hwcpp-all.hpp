@@ -37,20 +37,20 @@
 // ==========================================================================
 
 #ifdef HWCPP_TARGET_use_avr8_hacks
-   #include HWCPP_INCLUDE( targets/avr8-hacks/algorithm )
    #include HWCPP_INCLUDE( targets/avr8-hacks/cstddef )
    #include HWCPP_INCLUDE( targets/avr8-hacks/climits )
+   #include HWCPP_INCLUDE( targets/avr8-hacks/cstdint )
+   #include HWCPP_INCLUDE( targets/avr8-hacks/algorithm )
    #include HWCPP_INCLUDE( targets/avr8-hacks/ratio )
    #include HWCPP_INCLUDE( targets/avr8-hacks/type_traits )
-   #include HWCPP_INCLUDE( targets/avr8-hacks/cstdint )
    #include HWCPP_INCLUDE( targets/avr8-hacks/array )
 #else
-   #include <algorithm>
    #include <cstddef>
    #include <climits>
+   #include <algorithm>
+   #include <cstdint>
    #include <ratio>
    #include <type_traits>
-   #include <cstdint>
    #include <array>
 #endif
 
