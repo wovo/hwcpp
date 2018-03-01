@@ -6,11 +6,11 @@
 //
 // ==========================================================================
 
-#include "hwcpp-all.hpp"
+#include HWCPP_INCLUDE( core/hwcpp-all.hpp )
 
 // the atmel header files use 'register', which is removed in C++17
 #define register 
-#include "io.h"
+#include "avr/io.h"
 #undef register
 
 namespace hwcpp {

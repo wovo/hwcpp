@@ -30,7 +30,6 @@ concept bool _provides_uint8 =
    || is_uint8_iterator< T >; 
 */
 
-
 struct i2c_profile_root {
    static constexpr bool is_i2c_profile = true;
 };

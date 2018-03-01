@@ -6,7 +6,7 @@
 //
 // ==========================================================================
 
-#include "hwcpp-chip-atmega328.hpp"
+#include HWCPP_INCLUDE( targets/hwcpp-chip-atmega328.hpp )
 
 namespace hwcpp {
     
