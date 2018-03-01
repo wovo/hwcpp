@@ -28,7 +28,7 @@ at least the following:
  - (optionally) an IDE to edit the source and invoke the scripts
 
 This document explains how to get started with HwCpp using either
-  - bmptk and CodeLite,
+  - bmptk and CodeLite
   - the Arduino IDE 
 for now, both only for windows.
 
@@ -54,10 +54,13 @@ for now, both only for windows.
 
 # 2 Using the Arduino IDE
 
+The AVR IDE is (IMO) not a very good IDE and its build process is slow,
+but it is easy to install and contains a lot of build and download tools.
+
 By itself, the Arduino IDE will use an old version of the compiler, 
 and the C++ language version is set to C++11. 
 For HwCpp C++17 and concepts are required, hence you
-must install a differet compiler toolchain, and change
+must install a different compiler toolchain, and change
 the language version. 
 
 Do these steps:
@@ -108,6 +111,24 @@ To verify that everything works:
   - select Tools -> Port -> the port that connects to your harsdwrae
   - click File -> Examples -> HwCpp -> Blink
   - click Sketch -> Upload
+
+To see the code sizes and the assembly output, take these steps:
+  - in the arduino/hardware/tools/avr/bin directory, create an avr-dum.bat file
+    with the following two lines:
+~~~
+"C:\Program Files (x86)\Arduino\hardware\tools\avr\bin\avr-objdump" -S "%1.elf" > "%1.lst"
+"C:\Program Files (x86)\Arduino\hardware\tools\avr\bin\avr-nm" -C -r --radix=d "%1.elf" > "%1.fns"
+rem build directory:  %1
+~~~
+  - in the arduino/hardware/arduino/avr/platform.txt file, add this line
+    at the end of the "## Create output files (.eep and .hex)" section:
+~~~
+recipe.objcopy.zzz.pattern="{compiler.path}avr-dump" "{build.path}/{build.project_name}"
+~~~
+  - in the IDE, enable File -> Preferences -> Show verbose output during compilation"
+  - now when you build, you will see a line near the end that shows the build directory.
+    In this directory you will find the .fns file that lists the functions sorted by size,
+    and the .lst file that contains the (dis)assembly listing.
 
 # 2 Using BMPTK and CodeLite
 
