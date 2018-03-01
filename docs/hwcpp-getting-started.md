@@ -63,11 +63,13 @@ the language version.
 Do these steps:
  - install the Arduino IDE
  - for AVR targets (Arduino Uno, Nano, Micro, etc.) 
-    - go to the directory arduino/hardware/tools, 
-      rename the avr directory to avr-old
-    - create a new avr directory, and copy the var-old/tools directory in it
+    - go to the directory arduino/hardware/tools
+    - make a copy the avr directory (in case you want to roll back)
+      but not in the current directory
     - get GCC for avr8 from http://blog.zakkemble.co.uk/avr-gcc-builds/ , 
-      copy the zip content to arduino/hardware/tools/avr.
+    - copy the content of the avr-gcc-* directory in the zip 
+      *over* the arduino/hardware/tools/avr directory
+      (this will cause a lot of files to be overwritten)
     - go to the directory 
       arduino/hardware/arduino/avr and use a text 
       editor to create the file platform.local.txt with the single line
@@ -91,15 +93,21 @@ Do these steps:
 ~~~
    compiler.cpp.extra_flags= -std=c++17 -fconcepts
 ~~~ 	 
-	 
-	 
-	 
+ - install git for windows from https://git-scm.com/download/win	 
+ - go to the directory arduino/libraries, 
+   right-click in Explorer to start a Git Bash Here
+ - in the bash window, run 
+~~~
+   git clone http://github.com/wovo/hwcpp
+~~~
 
-   editor to create the file platform.local.txt with the single line
-~~~
-   compiler.cpp.extra_flags= -std=c++17 -fconcepts
-~~~
- - copy this file to the arduino/hardware/arduino
+To verify that everything works:
+  - connect the Arduino
+  - start the Arduino IDE
+  - select Tools -> Board -> the board that you use (Arduino/Genuino Uno, Arduino Due)
+  - select Tools -> Port -> the port that connects to your harsdwrae
+  - click File -> Examples -> HwCpp -> Blink
+  - click Sketch -> Upload
 
 # 2 Using BMPTK and CodeLite
 
@@ -122,8 +130,8 @@ my virusscanner still refuses to run some tools untill I told it to hush up.
 
 Create a directory of your choice. 
 Go there, and clone (right-click in the explorer, "Git Bash Here", git clone ...) these repositories:
- - github/wovo/bmptk
- - github/wovo/hwcpp
+ - http://github.com/wovo/bmptk
+ - http://github.com/wovo/hwcpp
 
 Add the bmptk/tools directory to your PATH.
 

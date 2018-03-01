@@ -14,6 +14,7 @@
 //
 // ==========================================================================
 
+/*
 template< typename T >
 concept bool is_uint8 = std::is_same< 
    T, uint8_t >::value; 
@@ -27,6 +28,7 @@ template< typename T >
 concept bool _provides_uint8 = 
    is_uint8< T >  
    || is_uint8_iterator< T >; 
+*/
 
 
 struct i2c_profile_root {
