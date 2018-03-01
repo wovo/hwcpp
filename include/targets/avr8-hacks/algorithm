@@ -1,15 +1,23 @@
-// AVR has no <algoritm>
+// AVR has no <algorithm>
 
 namespace std {
+
+// Arduino.h has max and min macros
+#ifdef max
+#undef max
+#endif
+#ifdef min
+#undef min
+#endif
 
 template< typename A, typename B >
 A max( A a, B b ){ 
    return a > b ? a : b;
-};   
+}  
 
 template< typename A, typename B >
 A min( A a, B b ){ 
    return a < b ? a : b;
-};   
+} 
 
 }; // namespace std

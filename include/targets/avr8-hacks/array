@@ -1,0 +1,19 @@
+
+namespace std {
+
+template< typename T, size_t N >
+struct array {
+   T _data[ N ];
+
+   constexpr T * begin(){ return _data; }
+   constexpr T * end(){ return _data + N; }
+   constexpr const T * begin() const { return _data; }
+   constexpr const T * end() const { return _data + N; }
+   T & operator[]( size_t i ){ return _data[ i ]; }
+   constexpr T operator[]( size_t i ) const { return _data[ i ]; }
+
+};
+
+} // namespace std
+
+

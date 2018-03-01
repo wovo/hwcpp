@@ -31,15 +31,28 @@
 // The library headers we need are included here rather than in the files
 // that need them. 
 //
+// A dirty hack is needed because the AVR8 compiler lacks certain headers
+// https://github.com/maniacbug/StandardCplusplus
+//
 // ==========================================================================
 
-#include <cstddef>
-#include <climits>
-#include <cstdint>
-#include <algorithm>
-#include <ratio>
-#include <type_traits>
-#include <array>
+#ifdef HWCPP_TARGET_use_avr8_hacks
+   #include HWCPP_INCLUDE( targets/avr8-hacks/algorithm )
+   #include HWCPP_INCLUDE( targets/avr8-hacks/cstddef )
+   #include HWCPP_INCLUDE( targets/avr8-hacks/climits )
+   #include HWCPP_INCLUDE( targets/avr8-hacks/ratio )
+   #include HWCPP_INCLUDE( targets/avr8-hacks/type_traits )
+   #include HWCPP_INCLUDE( targets/avr8-hacks/cstdint )
+   #include HWCPP_INCLUDE( targets/avr8-hacks/array )
+#else
+   #include <algorithm>
+   #include <cstddef>
+   #include <climits>
+   #include <ratio>
+   #include <type_traits>
+   #include <cstdint>
+   #include <array>
+#endif
 
 
 // ==========================================================================
@@ -104,92 +117,92 @@
 
 namespace hwcpp {
 
-   #include "core/hwcpp-basics.hpp"
-   #include "core/hwcpp-buffer.hpp"
+   #include HWCPP_INCLUDE( core/hwcpp-basics.hpp )
+   #include HWCPP_INCLUDE( core/hwcpp-buffer.hpp )
    
    // ========= box/stream common
    
-   #include "core/hwcpp-bs-box.hpp"
-   #include "core/hwcpp-bs-stream.hpp"
-   #include "core/hwcpp-bs-buffering.hpp"
-   #include "core/hwcpp-bs-no-inline.hpp"
+   #include HWCPP_INCLUDE( core/hwcpp-bs-box.hpp )
+   #include HWCPP_INCLUDE( core/hwcpp-bs-stream.hpp )
+   #include HWCPP_INCLUDE( core/hwcpp-bs-buffering.hpp )
+   #include HWCPP_INCLUDE( core/hwcpp-bs-no-inline.hpp )
    
-   #include "core/hwcpp-box-adapters.hpp"
-   #include "core/hwcpp-box-invert.hpp"
-   #include "core/hwcpp-box-mirror.hpp"
-   #include "core/hwcpp-box-builder.hpp"
+   #include HWCPP_INCLUDE( core/hwcpp-box-adapters.hpp )
+   #include HWCPP_INCLUDE( core/hwcpp-box-invert.hpp )
+   #include HWCPP_INCLUDE( core/hwcpp-box-mirror.hpp )
+   #include HWCPP_INCLUDE( core/hwcpp-box-builder.hpp )
    
    // ========= pins
 
-   #include "core/hwcpp-pins.hpp"
-   #include "core/hwcpp-pin-adapters.hpp"
-   #include "core/hwcpp-pin-dummies.hpp"
-   #include "core/hwcpp-pin-fixed.hpp"
-   #include "core/hwcpp-pin-variables.hpp"
+   #include HWCPP_INCLUDE( core/hwcpp-pins.hpp )
+   #include HWCPP_INCLUDE( core/hwcpp-pin-adapters.hpp )
+   #include HWCPP_INCLUDE( core/hwcpp-pin-dummies.hpp )
+   #include HWCPP_INCLUDE( core/hwcpp-pin-fixed.hpp )
+   #include HWCPP_INCLUDE( core/hwcpp-pin-variables.hpp )
    
    // ======== ports
    
-   #include "core/hwcpp-ports.hpp"
-   #include "core/hwcpp-port-adapters.hpp"
-   #include "core/hwcpp-port-dummies.hpp"
-   #include "core/hwcpp-port-from-pins.hpp"
-   #include "core/hwcpp-port-from-buffers.hpp"
+   #include HWCPP_INCLUDE( core/hwcpp-ports.hpp )
+   #include HWCPP_INCLUDE( core/hwcpp-port-adapters.hpp )
+   #include HWCPP_INCLUDE( core/hwcpp-port-dummies.hpp )
+   #include HWCPP_INCLUDE( core/hwcpp-port-from-pins.hpp )
+   #include HWCPP_INCLUDE( core/hwcpp-port-from-buffers.hpp )
 
    // ======== requires pin and port concepts
 
-   #include "core/hwcpp-bs-fanout.hpp"
+   #include HWCPP_INCLUDE( core/hwcpp-bs-fanout.hpp )
 
    
    // ======== other boxes
    
-   #include "core/hwcpp-adc.hpp"
-   #include "core/hwcpp-dac.hpp"
+   #include HWCPP_INCLUDE( core/hwcpp-adc.hpp )
+   #include HWCPP_INCLUDE( core/hwcpp-dac.hpp )
    
    // ======== graphics
    
-   #include "core/hwcpp-graphics.hpp"
+   #include HWCPP_INCLUDE( core/hwcpp-graphics.hpp )
 
    // ======== streams
    
-   #include "core/hwcpp-stream-builder.hpp"
-   #include "core/hwcpp-stream-out-formatting.hpp"
-   #include "core/hwcpp-stream-object.hpp"
+   #include HWCPP_INCLUDE( core/hwcpp-stream-builder.hpp )
+   #include HWCPP_INCLUDE( core/hwcpp-stream-out-formatting.hpp )
+   #include HWCPP_INCLUDE( core/hwcpp-stream-object.hpp )
    
    // ======== timing
    
-   #include "core/hwcpp-timing.hpp"
-   #include "core/hwcpp-timing-waiting.hpp"
-   #include "core/hwcpp-timing-clocking.hpp"
-//   #include "core/hwcpp-timing-duration.hpp"
-//   #include "core/hwcpp-timing-waiting.hpp"
-//   #include "core/hwcpp-timing-clock.hpp"
+   #include HWCPP_INCLUDE( core/hwcpp-timing.hpp )
+   #include HWCPP_INCLUDE( core/hwcpp-timing-waiting.hpp )
+   #include HWCPP_INCLUDE( core/hwcpp-timing-clocking.hpp )
+//   #include HWCPP_INCLUDE( core/hwcpp-timing-duration.hpp )
+//   #include HWCPP_INCLUDE( core/hwcpp-timing-waiting.hpp )
+//   #include HWCPP_INCLUDE( core/hwcpp-timing-clock.hpp )
    
    // ======== ??
    
-   #include "core/hwcpp-i2c.hpp"
-   #include "core/hwcpp-spi.hpp"
-   #include "core/hwcpp-console.hpp"
-//   #include "core/hwcpp-string.hpp"
+   #include HWCPP_INCLUDE( core/hwcpp-i2c.hpp )
+   #include HWCPP_INCLUDE( core/hwcpp-spi.hpp )
+   #include HWCPP_INCLUDE( core/hwcpp-console.hpp )
+//   #include HWCPP_INCLUDE( core/hwcpp-string.hpp )
    
    
-   #include "chips/hwcpp-pcf8574.hpp"
-   #include "chips/hwcpp-pcf8591.hpp"
-   #include "chips/hwcpp-hd44780.hpp"
-//   #include "chips/hwcpp-ssd1306.hpp"
-   #include "chips/hwcpp-nrf24.hpp"
-   #include "chips/hwcpp-mfrc522.hpp"
+   #include HWCPP_INCLUDE( chips/hwcpp-pcf8574.hpp )
+   #include HWCPP_INCLUDE( chips/hwcpp-pcf8591.hpp )
+   #include HWCPP_INCLUDE( chips/hwcpp-hd44780.hpp )
+//   #include HWCPP_INCLUDE( chips/hwcpp-ssd1306.hpp )
+   #include HWCPP_INCLUDE( chips/hwcpp-nrf24.hpp )
+   #include HWCPP_INCLUDE( chips/hwcpp-mfrc522.hpp )
    
    namespace shields {   
 
-      #include "shields/hwcpp-lcd-buttons.hpp"
-      #include "shields/hwcpp-joystick-buttons.hpp"
-      #include "shields/hwcpp-funduino-joystick.hpp"
-      #include "shields/hwcpp-i2c-lcd.hpp"
+      #include HWCPP_INCLUDE( shields/hwcpp-lcd-buttons.hpp )
+      #include HWCPP_INCLUDE( shields/hwcpp-joystick-buttons.hpp )
+      #include HWCPP_INCLUDE( shields/hwcpp-funduino-joystick.hpp )
+      #include HWCPP_INCLUDE( shields/hwcpp-i2c-lcd.hpp )
    
    } // namespace shields   
 
-   #include "core/hwcpp-demos.hpp"
-   #include "core/hwcpp-tests.hpp"
+   #include HWCPP_INCLUDE( core/hwcpp-demos.hpp )
+   #include HWCPP_INCLUDE( core/hwcpp-tests.hpp )
    
 } // namespace hwcpp
 
