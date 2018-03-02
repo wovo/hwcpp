@@ -10,9 +10,6 @@
 # 
 #############################################################################
 
-# the location of the ti software directory
-TI-SOFTWARE        ?= C:/ti-software
-
 # add ourselves
 HWCPP              ?= $(RELATIVE)
 include            $(RELATIVE)Makefile.inc

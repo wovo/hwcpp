@@ -17,7 +17,7 @@ TO DO list
 # 1 Introduction
 
 HwCpp is (only) a library. 
-To build and dowload an application you need, 
+To build and download an application you need, 
 besides HwCpp and your application code, 
 at least the following:
  - a toolchain (compiler, linker, and associated tools) for your target(s)
@@ -108,7 +108,7 @@ To verify that everything works:
   - connect the Arduino
   - start the Arduino IDE
   - select Tools -> Board -> the board that you use (Arduino/Genuino Uno, Arduino Due)
-  - select Tools -> Port -> the port that connects to your harsdwrae
+  - select Tools -> Port -> the port that connects to your hardware
   - click File -> Examples -> HwCpp -> Blink
   - click Sketch -> Upload
 
