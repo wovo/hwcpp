@@ -50,8 +50,6 @@ The compilers I currently use are (gcc 7.2.0):
 -----------------------------------------------------------------------------
 
 Notes & ToDo
-- update arduino filenames
-- also 'arduino' hwlib
 - make blink, fast
 - due pcf8591
 - due compile all
