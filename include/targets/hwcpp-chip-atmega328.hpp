@@ -30,9 +30,6 @@ struct chip_atmega328 {
 // ==========================================================================	
 
 static void HWCPP_INLINE init(){
-
-   // don't do this over and over	
-   _HWCPP_RUN_ONCE;	
     
    if constexpr ( clock == 20'000'000 ){
       // 20 MHz crystal	   
@@ -53,9 +50,6 @@ static void HWCPP_INLINE init(){
 		 "or 16 or 20 MHz (external crystal) "
 		 "clock is supported for atmega328.");
    }		 
-
-    // set up timer without prescaler (input=CPU clock)
-    TCCR1B = 0x01;
   
 }
    
@@ -332,7 +326,7 @@ static constexpr auto call_overhead = 15;
 static constexpr auto chunk = 8192;
 static constexpr auto one_loop = 7;
 
-static void busy_wait_ticks_asm( int n ){ 
+static void HWCPP_NO_INLINE busy_wait_ticks_asm( int n ){ 
     // first int parameter is passd in r24/r25
     __asm volatile(                       // clocks
        "1:  cp    r1, r24         \t\n"   // 1
@@ -394,6 +388,9 @@ struct _clocking_foundation :
 	
    static void init(){
       chip::init();
+
+      // set up timer without prescaler (input=CPU clock)
+      TCCR1B = 0x01;   
    }	
 
    static ticks_type HWCPP_INLINE now_ticks(){
@@ -427,7 +424,7 @@ struct _clocking_foundation :
 
 using waiting  = _timing_waiting_builder< _waiting_foundation >;   
 using clocking = _timing_clocking_builder< _clocking_foundation >;   
-using timing   = clocking;   
+using timing   = waiting;   
 
 }; // struct atmega328
 
