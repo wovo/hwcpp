@@ -10,24 +10,12 @@
 # 
 #############################################################################
 
-
-# locations of external packages
-# change this if you installed into other directories
-#GCC-WIN         ?= C:/Program Files/msys64/mingw64
-GCC-AVR         ?= C:/Program Files/avr-gcc-7.2.0-x64-mingw
-GCC-ARM         ?= C:/SysGCC/arm-eabi
-STM32LU         ?= C:/Program Files (x86)/STMicroelectronics/STM32 ST-LINK Utility
-PYTHON          ?= "C:/Python36/Python.exe"
-
-# depends on the amd compiler :(
-   ARM-EABI        ?= arm-eabi
-
 # the location of the ti software directory
 TI-SOFTWARE        ?= C:/ti-software
 
 # add ourselves
 HWCPP              ?= $(RELATIVE)
-include            $(RELATIVE)makefile.inc
+include            $(RELATIVE)Makefile.inc
 
 # add Catch
 SEARCH             += $(HWCPP)/../Catch/include

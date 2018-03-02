@@ -36,7 +36,7 @@ Subdirectories:
 Files:
    - license_1_0.txt : boost license
    - hwcpp-documentation.docx : HwCpp documentation
-   - makefile.inc : add the settings for this library (for bmptk)
+   - Makefile.inc : add the settings for this library (for bmptk)
    - Makefile.link : build dependencies on other libraries and bmptk
    - readme.md : this file
 
