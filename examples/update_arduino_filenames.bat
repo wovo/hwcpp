@@ -1,0 +1,2 @@
+python update_arduino_filenames.py
+pause
