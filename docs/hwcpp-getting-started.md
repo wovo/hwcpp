@@ -52,7 +52,22 @@ for now, both only for windows.
 
 <a name="toc-anchor-1"></a>
 
-# 2 Using the Arduino IDE
+# 2 Using the Arduino IDE on Linux
+
+- install the Arduino IDE
+sudo apt-get install arduino
+- start arduino, I was asked to confirm that I was added to a dial-out group,
+  and a restart was needed for that to take effect
+- install git
+sudo apt install git
+- 
+cd /usr/share/arduino/libraries
+sudo git clone http://github.com/bmptk
+hwlib
+hwcpp
+
+
+# 2 Using the Arduino IDE on Windows
 
 The AVR IDE is (IMO) not a very good IDE and its build process is slow,
 but it is easy to install and contains a lot of build and download tools.
@@ -129,8 +144,18 @@ recipe.objcopy.zzz.pattern="{compiler.path}avr-dump" "{build.path}/{build.projec
   - now when you build, you will see a line near the end that shows the build directory.
     In this directory you will find the .fns file that lists the functions sorted by size,
     and the .lst file that contains the (dis)assembly listing.
+	
+# 2 Using BMPTK and CodeLite on Linux
 
-# 2 Using BMPTK and CodeLite
+  - install CodeLite
+~~~
+sudo apt-key adv --fetch-keys http://repos.codelite.org/CodeLite.asc
+sudo apt-add-repository "deb http://repos.codelite.org/ubuntu/ $(lsb_release -sc) universe"
+sudo apt-get update
+sudo apt-get install codelite wxcrafter  
+~~~
+
+# 2 Using BMPTK and CodeLite on Windows
 
 Download and install:
  - Python 3.6 from http://www.python.org to C:/python36
