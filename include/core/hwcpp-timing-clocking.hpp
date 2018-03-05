@@ -95,6 +95,10 @@ struct _timing_clocking_builder :
    }   
    
    static ns_type now_ns(){
-      return T::ns_from_ticks( T::now_ticks() );
+      return _timing_waiting_builder< T >::ns_from_ticks( T::now_ticks() );
+   }
+
+   static ns_type now_us(){
+      return now_ns() / 1'000;
    }
 };
