@@ -38,13 +38,19 @@ for now, both only for windows.
 
   - [1 Introduction](#toc-anchor-0)
 
-  - [2 Download and install](#toc-anchor-1)
+  - [2 Using the Arduino IDE on Linux](#toc-anchor-1)
 
-  - [3 First use](#toc-anchor-2)
+  - [3 Using the Arduino IDE on Windows](#toc-anchor-2)
 
-    - [3.1 Bmptk](#toc-anchor-3)
+  - [4 Using BMPTK and CodeLite on Linux](#toc-anchor-3)
 
-    - [3.2 CodeLite](#toc-anchor-4)
+  - [5 Using BMPTK and CodeLite on Windows](#toc-anchor-4)
+
+  - [6 First use](#toc-anchor-5)
+
+    - [6.1 Bmptk](#toc-anchor-6)
+
+    - [6.2 CodeLite](#toc-anchor-7)
 
 <!-- update end -->
 
@@ -67,7 +73,9 @@ hwlib
 hwcpp
 
 
-# 2 Using the Arduino IDE on Windows
+<a name="toc-anchor-2"></a>
+
+# 3 Using the Arduino IDE on Windows
 
 The AVR IDE is (IMO) not a very good IDE and its build process is slow,
 but it is easy to install and contains a lot of build and download tools.
@@ -145,7 +153,9 @@ recipe.objcopy.zzz.pattern="{compiler.path}avr-dump" "{build.path}/{build.projec
     In this directory you will find the .fns file that lists the functions sorted by size,
     and the .lst file that contains the (dis)assembly listing.
 	
-# 2 Using BMPTK and CodeLite on Linux
+<a name="toc-anchor-3"></a>
+
+# 4 Using BMPTK and CodeLite on Linux
 
   - install CodeLite
 ~~~
@@ -155,7 +165,9 @@ sudo apt-get update
 sudo apt-get install codelite wxcrafter  
 ~~~
 
-# 2 Using BMPTK and CodeLite on Windows
+<a name="toc-anchor-4"></a>
+
+# 5 Using BMPTK and CodeLite on Windows
 
 Download and install:
  - Python 3.6 from http://www.python.org to C:/python36
@@ -184,13 +196,13 @@ Add the bmptk/tools directory to your PATH.
 When you installed on of the applications to a different directory, you
 must edit hwcpp/
 
-<a name="toc-anchor-2"></a>
+<a name="toc-anchor-5"></a>
 
-# 3 First use
+# 6 First use
 
-<a name="toc-anchor-3"></a>
+<a name="toc-anchor-6"></a>
 
-## 3.1 Bmptk
+## 6.1 Bmptk
 
  - Open the hwcpp/demos/native/hello directory in windows explorer.
  
@@ -202,9 +214,9 @@ must edit hwcpp/
    - If you get a 'The system cannot find the path specified' error you either 
    didn't install thge MingW toolchain, or the ....
 
-<a name="toc-anchor-4"></a>
+<a name="toc-anchor-7"></a>
 
-## 3.2 CodeLite
+## 6.2 CodeLite
 
  - Open the hwcpp/demos/native directory in windows explorer.
 

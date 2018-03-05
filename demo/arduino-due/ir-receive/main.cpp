@@ -19,6 +19,15 @@ struct ir_receiver {
       uint8_t command;
       uint8_t command_inverted;
    };
+   
+   template< typename T >
+   friend T & operator<<( T & cout, const ir_receiver::message & msg ){
+      return cout 
+      << hwcpp::hex << msg.address
+      << hwcpp::hex << " (" << msg.address_inverted << ") : " 
+      << hwcpp::hex << msg.command 
+      << hwcpp::hex << " (" << msg.command_inverted << ")";
+   }   
     
    static uint_fast16_t receive_pulse( bool v, uint_fast16_t max ){
       auto start = timing::now_us();
@@ -32,10 +41,9 @@ struct ir_receiver {
    
    static bool receive_bit( bool & b ){
       auto t1 = receive_pulse( 1, 800 );  
-      (void)t1;
-      //if(( t1 < 300 ) || ( t1 > 800 )){ return false; }
+      if(( t1 < 300 ) || ( t1 > 800 )){ return false; }
       auto t2 = receive_pulse( 0, 2'000 );  
-      //if(( t2 < 300 ) || ( t2 > 2'000 )){ return false; }
+      if(( t2 < 300 ) || ( t2 > 2'000 )){ return false; }
       b = ( t2 > 1'000 );
       return true;
    }
@@ -80,13 +88,6 @@ int main(){
    timing::ms< 1'000 >::wait();
    cout << "NEC IR receiver\n";
    for(;;){
-      auto msg = receiver::receive();
-      cout 
-         << "received "
-         << hwcpp::hex << msg.address
-         << hwcpp::hex << " (" << msg.address_inverted << ") : " 
-         << hwcpp::hex << msg.command 
-         << hwcpp::hex << " (" << msg.command_inverted << ")\n";
+      cout << "received " << receiver::receive() << "\n";
    }
-   
 }
