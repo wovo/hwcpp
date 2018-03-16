@@ -59,7 +59,7 @@ struct mirrorable_bitwise :
             result |= 0x1;
          }
          v = v >> 1;
-   }
+      }
       return result;
    }
 };
