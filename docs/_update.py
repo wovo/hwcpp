@@ -164,6 +164,8 @@ def update( file_name ):
  	
 #update( "hwcpp-getting-started.md" )
 #update( "hwcpp-nrf24.md" )
+update( "hwcpp-getting-started.md" )
+# update( "hwcpp-nrf24.md" )
 update( "hwcpp-primer.md" )
 update( "hwcpp-reference.md" )
 update( "hwcpp-targets.md" )

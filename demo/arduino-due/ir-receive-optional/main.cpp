@@ -21,51 +21,61 @@ struct ir_receiver {
       uint8_t command_inverted;
    };
     
-   static uint_fast16_t receive_pulse( bool v, uint_fast16_t max ){
+   static std::optional< uint_fast16_t > receive_pulse( 
+      bool v, 
+      uint_fast16_t min,
+      uint_fast16_t max 
+   ){
       auto start = timing::now_us();
       for(;;){
          auto d = timing::now_us() - start;
-         if( ( d > max ) || ( v != pin::get() )){
+         if( d > max ){ return {}; }
+         if( v != pin::get() ){
+            if( d < min ){ return {}; }
             return d; 
          }
       }        
    }
    
    static std::optional< bool > receive_bit(){
-      auto t1 = receive_pulse( 1, 800 );  
-      if(( t1 < 300 ) || ( t1 > 800 )){ return {}; }
-      auto t2 = receive_pulse( 0, 2'000 );  
-      if(( t2 < 300 ) || ( t2 > 2'000 )){ return {}; }
-      return t2 > 1'000;
+      if( ! receive_pulse( 1, 300, 800 ) ){ return {}; }
+      if( auto t = receive_pulse( 0, 300, 2'000 ) ){ 
+         return t > 1'000;
+      } else {
+         return {}; 
+      }
    }
     
    static bool receive_byte( uint8_t & byte ){     
       for( uint_fast8_t i = 0; i < 8; ++i ){
-         bool b;
-         if( ! receive_bit( b )){ return false; }
-         byte = ( byte << 1 ) | ( b ? 0x01 : 0x00 );
+         if( auto b = receive_bit()){ 
+            byte = ( byte << 1 ) | ( *b ? 0x01 : 0x00 );
+         } else {
+            return false;
+         }
       }
       return true;
    }
     
    static std::optional< message > receive_message(){
-      auto t1 = receive_pulse( 1, 11'000 );
-      if(( t1 < 7'000 ) || ( t1 > 11'000 )){ return {}; }
-      auto t2 = receive_pulse( 0, 5'500 );
-      if(( t2 < 3'500 ) || ( t2 > 5'500 )){ return {}; }
+      if( ! receive_pulse( 1, 7'000, 11'000 ) ){ return {};}
+      if( ! receive_pulse( 0, 3'500, 5'500 ) ){return {}; }
       message msg;
-      return  
+      if(
             receive_byte( msg.address )
          && receive_byte( msg.address_inverted )
          && receive_byte( msg.command )
          && receive_byte( msg.command_inverted )
-         : msg ? {};
+      ){
+          return msg;
+      } else {
+          return {};
+      }
    }              
        
     static message receive(){
        for(;;){
-          std::optional< message > msg;           
-          if( msg = receive_message()){ return msg; }
+          if( auto msg = receive_message()){ return *msg; }
        }        
     }
 };
