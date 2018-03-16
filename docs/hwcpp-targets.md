@@ -842,7 +842,7 @@ int main(){
    hwcpp::blink< 
       target::led, 
       target::timing::ms< 200 > 
-   >();
+   >(); 
 }
 ~~~
 
