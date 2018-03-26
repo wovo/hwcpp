@@ -26,8 +26,7 @@ struct ir_receiver {
       uint_fast16_t min,
       uint_fast16_t max 
    ){
-      auto start = timing::now_us();
-      for(;;){
+      for( auto start = timing::now_us(); ; ){
          auto d = timing::now_us() - start;
          if( d > max ){ return {}; }
          if( v != pin::get() ){
@@ -39,43 +38,36 @@ struct ir_receiver {
    
    static std::optional< bool > receive_bit(){
       if( ! receive_pulse( 1, 300, 800 ) ){ return {}; }
-      if( auto t = receive_pulse( 0, 300, 2'000 ) ){ 
-         return t > 1'000;
-      } else {
-         return {}; 
-      }
+      auto t = receive_pulse( 0, 300, 2'000 );
+      return t ? ( *t > 1'000  ): std::optional< bool >{};
    }
     
    static bool receive_byte( uint8_t & byte ){     
       for( uint_fast8_t i = 0; i < 8; ++i ){
-         if( auto b = receive_bit()){ 
-            byte = ( byte << 1 ) | ( *b ? 0x01 : 0x00 );
-         } else {
-            return false;
-         }
+         auto b = receive_bit();
+         if( ! b ){ return false; }
+         byte = ( byte << 1 ) | ( *b ? 0x01 : 0x00 );
       }
       return true;
    }
     
    static std::optional< message > receive_message(){
-      if( ! receive_pulse( 1, 7'000, 11'000 ) ){ return {};}
-      if( ! receive_pulse( 0, 3'500, 5'500 ) ){return {}; }
+      if( ! receive_pulse( 1, 7'000, 11'000 ) ){ return {}; }
+      if( ! receive_pulse( 0, 3'500, 5'500 ) ){ return {}; }
       message msg;
-      if(
+      return (
             receive_byte( msg.address )
          && receive_byte( msg.address_inverted )
          && receive_byte( msg.command )
          && receive_byte( msg.command_inverted )
-      ){
-          return msg;
-      } else {
-          return {};
-      }
+      ) ? msg : std::optional< message >{};
    }              
        
     static message receive(){
        for(;;){
-          if( auto msg = receive_message()){ return *msg; }
+          if( auto msg = receive_message() ){ 
+             return *msg; 
+          }
        }        
     }
 };
