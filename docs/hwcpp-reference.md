@@ -11,7 +11,7 @@ HwCpp Reference
 HwCpp (HardWare library for C++) is a library for efficient and 
 re-usable programming of (small) micro-controllers. 
 It uses modern C++ features (C++17, concepts TS) to enable 
-efficient code re-use. It relies heavily on unicorns.
+efficient code re-use. It relies heavily on unicorns (templates).
 
 It contains abstractions and implementations of for instance GPIO pins, 
 timing (including a cooperative multitasking scheduler), 
@@ -19,7 +19,7 @@ and interfaces to external hardware like SPI and I2C busses,
 IO extenders, A/D converters, and LCDs. 
 
 The library  is provided under the Boost license, which basically 
-means that you can do everything you want with this software, 
+means that you can do everything you want with it, 
 except that when you re-distribute the source, 
 it must be under that same license. 
 
@@ -108,6 +108,7 @@ int main(){
 :## 3.1 Interfaces and concepts
 A static class implements on or more interfaces. It advertises this by inheriting from the root class, xyz_rooot for an interface xyz, for each interface it implements. This inserts a tag element  into the class, and probably some more items that are mandatory for that interface. For each interface xyz, a concept is_xyz tests for the marker and the other elements required by the interface. This concept is used to constrain templates that accept only classes that implement a specific interface. 
 The pin_out interface is identified by inheriting from the pin_out_root. The is_pin_out concept tests for the presence of this marker and the other required interface elements: init() and set( bool ).
+
 struct pin_out_root {
    static constexpr bool is_pin_out = true;
 };
