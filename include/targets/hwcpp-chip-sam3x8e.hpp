@@ -251,7 +251,7 @@ struct _uart_foundation :
       // Disable all interrupts.	  
       hw_uart->UART_IDR = 0xFFFFFFFF;   
 
-      // Enable the receiver and thes trasmitter.
+      // Enable the receiver and the trasmitter.
       hw_uart->UART_CR = UART_CR_RXEN | UART_CR_TXEN;      
    }	
 

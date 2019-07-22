@@ -5,7 +5,8 @@ using timing = target::clocking;
 using uart   = target::uart;
 using led    = target::led;
 
-using spi = hwcpp::spi_bus_bb_sclk_miso_mosi<
+/* old
+ * using spi = hwcpp::spi_bus_bb_sclk_miso_mosi<
    target::d13, 
    target::d12, 
    target::d11,
@@ -15,6 +16,20 @@ using nrf = hwcpp::nrf24l01_spi_ce_csn<
    spi,
    target::d9,
    target::d10,
+   timing
+>;  
+*/
+
+using spi = hwcpp::spi_bus_bb_sclk_miso_mosi<
+   target::d12, 
+   target::d13, 
+   target::d9,
+   timing
+>;
+using nrf = hwcpp::nrf24l01_spi_ce_csn<
+   spi,
+   target::d11,
+   target::d8,
    timing
 >;  
 
